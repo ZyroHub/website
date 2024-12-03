@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      ansicolor:
+        specifier: ^2.0.3
+        version: 2.0.3
       nx:
         specifier: 20.1.4
         version: 20.1.4
@@ -36,9 +39,6 @@ importers:
       '@zyrohub/toolkit':
         specifier: workspace:*
         version: link:../../packages/toolkit
-      ansicolor:
-        specifier: ^2.0.3
-        version: 2.0.3
       tsc-alias:
         specifier: ^1.8.10
         version: 1.8.10
@@ -46,11 +46,7 @@ importers:
         specifier: ^4.19.2
         version: 4.19.2
 
-  packages/toolkit:
-    dependencies:
-      ansicolor:
-        specifier: ^2.0.3
-        version: 2.0.3
+  packages/toolkit: {}
 
 packages:
 
