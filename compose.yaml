@@ -1,0 +1,14 @@
+services:
+    app:
+        build:
+            context: .
+            dockerfile: 'Dockerfile'
+        ports:
+            - '${CLIENT_PORT}:${CLIENT_PORT}'
+            - '${SERVER_PORT}:${SERVER_PORT}'
+        networks:
+            - 'zyrohub'
+
+networks:
+    zyrohub:
+        name: 'zyrohub'

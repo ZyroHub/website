@@ -1,0 +1,18 @@
+{
+	"name": "@zyrohub/client",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "nuxt build",
+		"dev": "nuxt dev",
+		"start": "node ./dist/server/index.mjs",
+		"generate": "nuxt generate",
+		"preview": "nuxt preview",
+		"postinstall": "nuxt prepare"
+	},
+	"dependencies": {
+		"nuxt": "^3.14.1592",
+		"vue": "latest",
+		"vue-router": "latest"
+	}
+}

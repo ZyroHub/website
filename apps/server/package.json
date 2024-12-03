@@ -1,0 +1,18 @@
+{
+	"name": "@zyrohub/server",
+	"private": true,
+	"main": "./src/core/index.ts",
+	"scripts": {
+		"build": "tsc && tsc-alias",
+		"start": "node ./dist/core/index.js",
+		"dev": "tsx watch ./src/core/index.ts"
+	},
+	"keywords": [],
+	"license": "ISC",
+	"dependencies": {
+		"@zyrohub/toolkit": "workspace:*",
+		"ansicolor": "^2.0.3",
+		"tsc-alias": "^1.8.10",
+		"tsx": "^4.19.2"
+	}
+}

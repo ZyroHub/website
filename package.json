@@ -1,0 +1,30 @@
+{
+	"name": "zyrohub",
+	"version": "0.0.1",
+	"author": "DMVMarcio",
+	"private": true,
+	"scripts": {
+		"build": "nx run-many -t build",
+		"build:client": "nx run @zyrohub/client:build",
+		"build:server": "nx run @zyrohub/server:build",
+		"dev": "nx run-many -t dev",
+		"dev:client": "nx run @zyrohub/client:dev",
+		"dev:server": "nx run @zyrohub/server:dev",
+		"start": "nx run-many -t start",
+		"start:client": "nx run @zyrohub/client:start",
+		"start:server": "nx run @zyrohub/server:start"
+	},
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"keywords": [],
+	"license": "ISC",
+	"dependencies": {
+		"nx": "20.1.4"
+	},
+	"devDependencies": {
+		"@types/node": "^22.10.1",
+		"typescript": "^5.7.2"
+	}
+}

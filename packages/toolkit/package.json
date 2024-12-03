@@ -1,0 +1,17 @@
+{
+	"name": "@zyrohub/toolkit",
+	"private": true,
+	"main": "./dist/index.js",
+	"types": "./dist/declarations/index.d.ts",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"build": "tsc"
+	},
+	"keywords": [],
+	"license": "ISC",
+	"dependencies": {
+		"ansicolor": "^2.0.3"
+	}
+}
