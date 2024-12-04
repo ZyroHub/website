@@ -44,28 +44,20 @@ input[type='number'] {
 	padding-right: 0.75rem;
 	margin-left: auto;
 	margin-right: auto;
-}
 
-@media screen and (max-width: 1700px) {
-	.container {
+	@media screen and (max-width: 1700px) {
 		max-width: 1350px;
 	}
-}
 
-@media screen and (max-width: 1400px) {
-	.container {
+	@media screen and (max-width: 1400px) {
 		max-width: 1290px;
 	}
-}
 
-@media screen and (max-width: 1200px) {
-	.container {
+	@media screen and (max-width: 1200px) {
 		max-width: 1000px;
 	}
-}
 
-@media screen and (max-width: 1050px) {
-	.container {
+	@media screen and (max-width: 1050px) {
 		max-width: 800px;
 	}
 }
