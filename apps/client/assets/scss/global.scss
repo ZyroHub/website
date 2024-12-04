@@ -20,23 +20,6 @@ input[type='number'] {
 	appearance: textfield;
 }
 
-.app-main {
-	min-width: 100%;
-	min-height: 100vh;
-}
-
-.light-mode {
-	.app-main {
-		background-color: colors.$white_50;
-	}
-}
-
-.dark-mode {
-	.app-main {
-		background-color: colors.$black_900;
-	}
-}
-
 .container {
 	width: 100%;
 	max-width: 1450px;

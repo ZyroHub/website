@@ -26,12 +26,18 @@ useHead({
 @use '~/assets/scss/global.scss';
 </style>
 
+<style lang="scss" scoped>
+@use '~/assets/scss/app.scss';
+</style>
+
 <template>
 	<div class="app-main">
 		<NuxtLoadingIndicator color="#ffb29a" />
 
-		<NuxtLayout>
+		<div>
 			<NuxtPage />
-		</NuxtLayout>
+		</div>
+
+		<Footer />
 	</div>
 </template>
