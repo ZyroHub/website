@@ -15,6 +15,16 @@ export default defineNuxtConfig({
 		'@nuxtjs/color-mode'
 	],
 
+	vite: {
+		css: {
+			preprocessorOptions: {
+				scss: {
+					api: 'modern-compiler'
+				}
+			}
+		}
+	},
+
 	nitro: {
 		output: {
 			publicDir: path.join(__dirname, 'dist'),
