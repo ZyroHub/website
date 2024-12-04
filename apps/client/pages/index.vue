@@ -1,8 +1,6 @@
-<script setup>
-const { t } = useI18n();
-
+<script lang="ts" setup>
 useHead({
-	title: t('pages.home.title')
+	title: 'pages.home.title'
 });
 </script>
 

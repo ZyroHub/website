@@ -6,12 +6,13 @@ export default defineNuxtConfig({
 	compatibilityDate: '2024-11-01',
 	devtools: { enabled: true },
 	modules: [
+		'@nuxtjs/i18n',
 		'@nuxtjs/sitemap',
 		'@nuxtjs/robots',
 		'@unocss/nuxt',
 		'@nuxtjs/google-fonts',
 		'@nuxt/image',
-		'@nuxtjs/i18n'
+		'@nuxtjs/color-mode'
 	],
 
 	nitro: {
@@ -26,10 +27,10 @@ export default defineNuxtConfig({
 		provider: 'ipx'
 	},
 
-	// site: {
-	// 	url: 'https://zyrohub.com',
-	// 	name: 'ZyroHub'
-	// },
+	site: {
+		url: 'https://zyrohub.com',
+		name: 'ZyroHub'
+	},
 
 	googleFonts: {
 		prefetch: true,

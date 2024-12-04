@@ -1,0 +1,71 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	scroll-behavior: smooth;
+	font-weight: 500;
+	font-family: Poppins;
+	text-decoration: none;
+
+	&:disabled {
+		opacity: 0.8;
+	}
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+	appearance: textfield;
+}
+
+.app-main {
+	min-width: 100%;
+	min-height: 100vh;
+}
+
+.light-mode {
+	.app-main {
+		background-color: colors.$white_50;
+	}
+}
+
+.dark-mode {
+	.app-main {
+		background-color: colors.$black_900;
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: 1450px;
+	padding-left: 0.75rem;
+	padding-right: 0.75rem;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+@media screen and (max-width: 1700px) {
+	.container {
+		max-width: 1350px;
+	}
+}
+
+@media screen and (max-width: 1400px) {
+	.container {
+		max-width: 1290px;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.container {
+		max-width: 1000px;
+	}
+}
+
+@media screen and (max-width: 1050px) {
+	.container {
+		max-width: 800px;
+	}
+}

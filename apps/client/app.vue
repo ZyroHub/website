@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+const { t } = useI18n();
+
 useHead({
 	htmlAttrs: { lang: 'en' },
 	titleTemplate: page_title => {
-		return page_title ? `${page_title} | ZyroHub` : 'ZyroHub';
+		return page_title ? `${t(page_title)} | ZyroHub` : 'ZyroHub';
 	},
 	link: [
 		{ rel: 'icon', type: 'image/png', href: '/favicons/favicon-96x96.png', sizes: '96x96' },
@@ -20,8 +22,12 @@ useHead({
 });
 </script>
 
+<style lang="scss">
+@use '~/assets/scss/global.scss';
+</style>
+
 <template>
-	<div>
+	<div class="app-main">
 		<NuxtLoadingIndicator color="#ffb29a" />
 
 		<NuxtLayout>

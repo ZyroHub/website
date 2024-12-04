@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@nuxt/image": "1.8.1",
+		"@nuxtjs/color-mode": "3.5.2",
 		"@nuxtjs/google-fonts": "3.2.0",
 		"@nuxtjs/i18n": "9.0.0-rc.2",
 		"@nuxtjs/robots": "^5.0.0",
@@ -22,6 +23,7 @@
 	},
 	"devDependencies": {
 		"@unocss/nuxt": "^0.65.0",
+		"sass": "^1.82.0",
 		"unocss": "^0.65.0"
 	}
 }
