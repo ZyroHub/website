@@ -12,7 +12,8 @@ export default defineNuxtConfig({
 		'@unocss/nuxt',
 		'@nuxtjs/google-fonts',
 		'@nuxt/image',
-		'@nuxtjs/color-mode'
+		'@nuxtjs/color-mode',
+		'@nuxt/icon'
 	],
 
 	vite: {
