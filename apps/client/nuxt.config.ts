@@ -9,7 +9,6 @@ export default defineNuxtConfig({
 		'@nuxtjs/i18n',
 		'@nuxtjs/sitemap',
 		'@nuxtjs/robots',
-		'@unocss/nuxt',
 		'@nuxtjs/google-fonts',
 		'@nuxt/image',
 		'@nuxtjs/color-mode',
