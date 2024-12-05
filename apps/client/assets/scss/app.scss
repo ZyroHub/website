@@ -3,6 +3,7 @@
 .app-main {
 	min-width: 100%;
 	min-height: 100vh;
+	transition: background-color 150ms ease-out;
 }
 
 .app-main-page {
@@ -11,7 +12,7 @@
 
 .light-mode {
 	.app-main {
-		background-color: colors.$white_50;
+		background-color: colors.$white_100;
 	}
 }
 

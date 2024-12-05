@@ -7,11 +7,13 @@
 		<div class="navbar-container">
 			<div class="navbar-container-start"></div>
 			<div class="navbar-container-center">
-				<NuxtLink to="/">
+				<NuxtLinkLocale to="/">
 					<NuxtImg src="images/zyro-color-wide.webp" class="navbar-logo" />
-				</NuxtLink>
+				</NuxtLinkLocale>
 			</div>
-			<div class="navbar-container-end"></div>
+			<div class="navbar-container-end">
+				<NavbarThemeSwitcher />
+			</div>
 		</div>
 	</nav>
 </template>

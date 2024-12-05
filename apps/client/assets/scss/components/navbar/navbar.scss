@@ -13,7 +13,7 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	max-height: 100%;
-	padding: 0.3rem 0;
+	padding: 0.3rem 2rem;
 
 	& > div {
 		&.navbar-container-start {
@@ -31,6 +31,10 @@ nav {
 		}
 
 		&.navbar-container-end {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+
 			width: 35%;
 		}
 	}

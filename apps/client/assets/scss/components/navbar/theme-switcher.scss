@@ -1,0 +1,21 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.navbar-theme-switcher {
+	cursor: pointer;
+	color: colors.$primary_300;
+}
+
+.transition_navbar_theme_switcher-enter-active,
+.transition_navbar_theme_switcher-leave-active {
+	transition: all 140ms ease-out;
+}
+
+.transition_navbar_theme_switcher-enter-from {
+	opacity: 0;
+	transform: rotate(-180deg);
+}
+
+.transition_navbar_theme_switcher-leave-to {
+	opacity: 0;
+	transform: rotate(180deg);
+}

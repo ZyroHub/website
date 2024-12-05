@@ -1,0 +1,12 @@
+.transition_route_switch-enter-active,
+.transition_route_switch-leave-active {
+	transition: all 200ms ease-in-out;
+}
+
+.transition_route_switch-enter-from {
+	opacity: 0;
+}
+
+.transition_route_switch-leave-to {
+	opacity: 0;
+}
