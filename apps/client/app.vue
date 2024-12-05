@@ -34,7 +34,9 @@ useHead({
 	<div class="app-main">
 		<NuxtLoadingIndicator color="#ffb29a" />
 
-		<div>
+		<Navbar />
+
+		<div class="app-main-page">
 			<NuxtPage />
 		</div>
 

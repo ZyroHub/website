@@ -1,0 +1,41 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+nav {
+	position: sticky;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 4rem;
+	background-color: colors.$black_950;
+}
+
+.navbar-container {
+	display: flex;
+	justify-content: space-between;
+	max-height: 100%;
+	padding: 0.3rem 0;
+
+	& > div {
+		&.navbar-container-start {
+			width: 35%;
+		}
+
+		&.navbar-container-center {
+			width: 30%;
+
+			& > a {
+				display: flex;
+				justify-content: center;
+				height: 100%;
+			}
+		}
+
+		&.navbar-container-end {
+			width: 35%;
+		}
+	}
+}
+
+.navbar-logo {
+	height: 100%;
+}
