@@ -22,6 +22,12 @@ input[type='number'] {
 	appearance: textfield;
 }
 
+button {
+	border: none;
+	cursor: pointer;
+	outline: none;
+}
+
 .container {
 	width: 100%;
 	max-width: 1450px;

@@ -11,6 +11,7 @@
 		"postinstall": "nuxt prepare"
 	},
 	"dependencies": {
+		"@floating-ui/vue": "^1.1.5",
 		"@nuxt/icon": "^1.9.0",
 		"@nuxt/image": "1.8.1",
 		"@nuxtjs/color-mode": "3.5.2",
@@ -23,6 +24,7 @@
 		"vue-router": "latest"
 	},
 	"devDependencies": {
+		"@iconify-json/material-symbols-light": "^1.2.8",
 		"sass": "^1.82.0"
 	}
 }

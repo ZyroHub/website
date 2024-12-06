@@ -79,5 +79,11 @@ export default defineNuxtConfig({
 				file: 'pt-BR.json'
 			}
 		]
+	},
+
+	icon: {
+		clientBundle: {
+			icons: ['material-symbols-light:dark-mode', 'material-symbols-light:light-mode']
+		}
 	}
 });

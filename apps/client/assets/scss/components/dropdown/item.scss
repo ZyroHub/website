@@ -1,0 +1,17 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.dropdown-item {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.5rem 0.6rem;
+	color: colors.$white_50;
+	text-align: left;
+	border-radius: 0.4rem;
+	background-color: colors.$black_900;
+	transition: background-color 150ms linear;
+
+	&:hover {
+		background-color: colors.$black_800;
+	}
+}

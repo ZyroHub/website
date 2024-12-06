@@ -12,12 +12,14 @@
 
 .light-mode {
 	.app-main {
+		color: colors.$black_900;
 		background-color: colors.$white_100;
 	}
 }
 
 .dark-mode {
 	.app-main {
+		color: colors.$white_100;
 		background-color: colors.$black_900;
 	}
 }

@@ -6,22 +6,27 @@ nav {
 	left: 0;
 	width: 100%;
 	height: 4rem;
-	background-color: colors.$black_950;
+	max-height: 4rem;
 }
 
 .navbar-container {
 	display: flex;
 	justify-content: space-between;
-	max-height: 100%;
+	align-items: center;
+	max-height: 4rem;
 	padding: 0.3rem 2rem;
 
 	& > div {
+		height: 4rem;
+		max-height: 4rem;
+
 		&.navbar-container-start {
 			width: 35%;
 		}
 
 		&.navbar-container-center {
 			width: 30%;
+			padding: 0.25rem 0;
 
 			& > a {
 				display: flex;
@@ -34,6 +39,7 @@ nav {
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
+			gap: 1rem;
 
 			width: 35%;
 		}
@@ -42,4 +48,16 @@ nav {
 
 .navbar-logo {
 	height: 100%;
+}
+
+.light-mode {
+	nav {
+		background-color: colors.$black_900;
+	}
+}
+
+.dark-mode {
+	nav {
+		background-color: colors.$black_950;
+	}
 }

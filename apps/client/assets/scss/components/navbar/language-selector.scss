@@ -1,0 +1,18 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.navbar-language-selector-button {
+	display: flex;
+	background-color: transparent;
+}
+
+.navbar-language-selector-languages {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.navbar-language-selector-language {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}

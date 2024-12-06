@@ -1,0 +1,23 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.dropdown-content {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	padding: 0.5rem 0.5rem;
+	border-radius: 0.5rem;
+	background-color: colors.$black_950;
+}
+
+.dropdown_visibility-enter-active,
+.dropdown_visibility-leave-active {
+	transition: all 150ms linear;
+}
+
+.dropdown_visibility-enter-from {
+	opacity: 0;
+}
+
+.dropdown_visibility-leave-to {
+	opacity: 0;
+}

@@ -11,14 +11,18 @@ const handleThemeChange = () => {
 </style>
 
 <template>
-	<Transition name="transition_navbar_theme_switcher" mode="out-in">
-		<Icon
-			:key="colorMode.value"
-			@click="handleThemeChange"
-			:name="
-				colorMode.value === 'dark' ? 'material-symbols-light:dark-mode' : 'material-symbols-light:light-mode'
-			"
-			size="30"
-			class="navbar-theme-switcher" />
-	</Transition>
+	<ClientOnly>
+		<Transition name="transition_navbar_theme_switcher" mode="out-in">
+			<Icon
+				:key="colorMode.value"
+				@click="handleThemeChange"
+				:name="
+					colorMode.value === 'dark'
+						? 'material-symbols-light:dark-mode'
+						: 'material-symbols-light:light-mode'
+				"
+				size="30"
+				class="navbar-theme-switcher" />
+		</Transition>
+	</ClientOnly>
 </template>

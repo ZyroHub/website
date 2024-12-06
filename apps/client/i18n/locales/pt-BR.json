@@ -1,4 +1,8 @@
 {
+	"locales": {
+		"en": "Inglês",
+		"pt": "Português Brasil"
+	},
 	"pages": {
 		"home": {
 			"title": "Página Inicial"
