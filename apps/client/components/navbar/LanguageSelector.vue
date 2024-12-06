@@ -27,7 +27,9 @@ const handleSwitchLocale = (new_locale: any) => {
 	<Dropdown placement="bottom-end" :offset="24">
 		<template #trigger="{ toggleIsOpen }">
 			<button @click="toggleIsOpen" class="navbar-language-selector-button">
-				<Icon size="30" :name="getLocaleFlag(locale)" />
+				<Transition name="transition_navbar_language_selector" mode="out-in">
+					<Icon :key="locale" :name="getLocaleFlag(locale)" size="30" />
+				</Transition>
 			</button>
 		</template>
 

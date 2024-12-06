@@ -9,15 +9,15 @@
 	background-color: colors.$black_950;
 }
 
-.dropdown_visibility-enter-active,
-.dropdown_visibility-leave-active {
+.transition_dropdown_visibility-enter-active,
+.transition_dropdown_visibility-leave-active {
 	transition: all 150ms linear;
 }
 
-.dropdown_visibility-enter-from {
+.transition_dropdown_visibility-enter-from {
 	opacity: 0;
 }
 
-.dropdown_visibility-leave-to {
+.transition_dropdown_visibility-leave-to {
 	opacity: 0;
 }

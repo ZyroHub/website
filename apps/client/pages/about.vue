@@ -2,12 +2,12 @@
 const { t } = useI18n();
 
 useSeoMeta({
-	description: t('pages.home.meta.description')
+	title: t('pages.about.meta.title')
 });
 </script>
 
 <template>
 	<div class="container">
-		<p>Home Page</p>
+		<p>About Page</p>
 	</div>
 </template>

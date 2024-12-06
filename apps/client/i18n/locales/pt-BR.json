@@ -8,14 +8,31 @@
 			"tabs": {
 				"home": "Início",
 				"developers": "Desenvolvedor",
-				"media": "Mídia",
+				"creators": "Utilitários",
 				"about": "Sobre"
 			}
 		}
 	},
 	"pages": {
 		"home": {
-			"title": "Página Inicial"
+			"meta": {
+				"description": "..."
+			}
+		},
+		"about": {
+			"meta": {
+				"title": "Sobre"
+			}
+		},
+		"developers": {
+			"meta": {
+				"title": "Desenvolvedores"
+			}
+		},
+		"creators": {
+			"meta": {
+				"title": "Criadores"
+			}
 		}
 	}
 }

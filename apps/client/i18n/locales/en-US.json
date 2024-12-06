@@ -8,14 +8,31 @@
 			"tabs": {
 				"home": "Home",
 				"developers": "Developers",
-				"media": "Media",
+				"creators": "Media Tools",
 				"about": "About"
 			}
 		}
 	},
 	"pages": {
 		"home": {
-			"title": "Home Page"
+			"meta": {
+				"description": "..."
+			}
+		},
+		"about": {
+			"meta": {
+				"title": "About"
+			}
+		},
+		"developers": {
+			"meta": {
+				"title": "Developers"
+			}
+		},
+		"creators": {
+			"meta": {
+				"title": "Creators"
+			}
 		}
 	}
 }

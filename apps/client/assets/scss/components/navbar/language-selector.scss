@@ -2,6 +2,8 @@
 
 .navbar-language-selector-button {
 	display: flex;
+	overflow: hidden;
+	border-radius: 100%;
 	background-color: transparent;
 }
 
@@ -15,4 +17,17 @@
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
+}
+
+.transition_navbar_language_selector-enter-active,
+.transition_navbar_language_selector-leave-active {
+	transition: all 130ms ease-out;
+}
+
+.transition_navbar_language_selector-enter-from {
+	transform: translateY(50%);
+}
+
+.transition_navbar_language_selector-leave-to {
+	transform: translateY(-50%);
 }

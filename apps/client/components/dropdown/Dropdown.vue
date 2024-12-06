@@ -49,7 +49,7 @@ provide('dropdown', {
 		</div>
 
 		<div ref="floating" :style="floatingStyles">
-			<Transition name="dropdown_visibility">
+			<Transition name="transition_dropdown_visibility">
 				<div v-if="isOpen" class="dropdown-content">
 					<slot />
 				</div>
