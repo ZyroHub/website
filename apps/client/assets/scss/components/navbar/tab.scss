@@ -17,15 +17,14 @@
 
 		&:hover {
 			cursor: pointer;
-			color: colors.$white_100;
-			background-color: colors.$black_900;
 		}
 	}
 }
 
 .light-mode {
 	.navbar-tab {
-		&.active {
+		&.active,
+		&:not(.active):hover {
 			color: colors.$black_900;
 			background-color: colors.$white_100;
 		}
@@ -34,7 +33,8 @@
 
 .dark-mode {
 	.navbar-tab {
-		&.active {
+		&.active,
+		&:not(.active):hover {
 			color: colors.$white_50;
 			background-color: colors.$black_900;
 		}
