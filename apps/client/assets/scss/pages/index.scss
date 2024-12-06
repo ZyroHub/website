@@ -1,0 +1,75 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.home-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	flex: 1 1 auto;
+}
+
+.home-logo {
+	width: 16rem;
+	margin-top: -4rem;
+}
+
+.home-title {
+	font-size: 2.4rem;
+	font-weight: 400;
+	margin-top: 2rem;
+
+	& > span {
+		font-weight: 700;
+		color: transparent;
+		background: linear-gradient(to right, colors.$primary_200, colors.$primary_300, colors.$primary_400);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+}
+
+.home-description {
+	font-size: 1.1rem;
+	font-weight: 400;
+}
+
+.home-toolkits {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1.5rem;
+	margin-top: 2.5rem;
+
+	& > a {
+		display: flex;
+		align-items: center;
+		gap: 0.3rem;
+		padding: 1rem 1.5rem;
+		cursor: pointer;
+		color: colors.$white_50;
+		font-size: 1rem;
+		font-weight: 500;
+		border: none;
+		border-radius: 0.5rem;
+		background-color: colors.$black_700;
+		transition: background-color 0.3s, transform 0.3s;
+
+		&:hover {
+			background-color: colors.$primary_500;
+			transform: translateY(-10%);
+		}
+	}
+}
+
+.home-about {
+	margin-top: 1.5rem;
+	color: colors.$white_300;
+	font-size: 1.1rem;
+	font-weight: 500;
+	text-align: center;
+	transition: color 0.3s;
+
+	&:hover {
+		color: colors.$white_200;
+	}
+}

@@ -6,9 +6,8 @@
 	"components": {
 		"navbar": {
 			"tabs": {
-				"home": "Início",
-				"developers": "Desenvolvedor",
-				"creators": "Utilitários",
+				"developers": "DevKit",
+				"media": "MediaKit",
 				"about": "Sobre"
 			}
 		}
@@ -17,7 +16,14 @@
 		"home": {
 			"meta": {
 				"description": "..."
-			}
+			},
+			"title": "Boas-Vindas ao",
+			"description": "Por favor selecione uma das opções abaixo para começar.",
+			"toolkits": {
+				"dev": "Dev Toolkit",
+				"media": "Media Toolkit"
+			},
+			"about": "SOBRE"
 		},
 		"about": {
 			"meta": {

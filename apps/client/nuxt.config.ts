@@ -59,6 +59,7 @@ export default defineNuxtConfig({
 		defaultLocale: 'en',
 		lazy: true,
 		baseUrl: 'https://zyrohub.com',
+		skipSettingLocaleOnNavigate: true,
 		detectBrowserLanguage: {
 			useCookie: true,
 			cookieKey: 'i18n_redirected',

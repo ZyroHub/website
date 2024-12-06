@@ -14,7 +14,7 @@ const { t } = useI18n();
 					<Icon size="32" name="lucide:home" />
 				</NavbarTab>
 				<NavbarTab to="/developers">{{ t('components.navbar.tabs.developers') }}</NavbarTab>
-				<NavbarTab to="/creators">{{ t('components.navbar.tabs.creators') }}</NavbarTab>
+				<NavbarTab to="/media">{{ t('components.navbar.tabs.media') }}</NavbarTab>
 				<NavbarTab to="/about">{{ t('components.navbar.tabs.about') }}</NavbarTab>
 			</div>
 

@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+const { finalizePendingLocaleChange } = useI18n();
+
+const onTransitionBeforeEnter = async () => {
+	await finalizePendingLocaleChange();
+};
+
 useHead({
 	htmlAttrs: { lang: 'en' },
 	titleTemplate: page_title => {
@@ -35,7 +41,7 @@ useHead({
 		<Navbar />
 
 		<div class="app-main-page">
-			<NuxtPage />
+			<NuxtPage :transition="{ onBeforeEnter: onTransitionBeforeEnter }" />
 		</div>
 
 		<Footer />
