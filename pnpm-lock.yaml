@@ -58,6 +58,9 @@ importers:
         specifier: latest
         version: 4.5.0(vue@3.5.13(typescript@5.7.2))
     devDependencies:
+      '@iconify-json/circle-flags':
+        specifier: ^1.2.1
+        version: 1.2.1
       '@iconify-json/material-symbols-light':
         specifier: ^1.2.8
         version: 1.2.8
@@ -739,6 +742,9 @@ packages:
   '@humanwhocodes/retry@0.4.1':
     resolution: {integrity: sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA==}
     engines: {node: '>=18.18'}
+
+  '@iconify-json/circle-flags@1.2.1':
+    resolution: {integrity: sha512-/gDW8eWHUcF22aR4RIAoqtyBWy2VQOS7JFk27z+gFJ4gxiSS2dRG156sU8Hy30TYf5MaN/fRQPwAJ1ksfiXQig==}
 
   '@iconify-json/material-symbols-light@1.2.8':
     resolution: {integrity: sha512-EWj/nzvYXVm5sPNbhB7kHR35HClXZyVErytGkaNa6DSp7iFSHi1iG1sg9gzZX8SbR9pz7zjHs5m+p4D+JFJBSA==}
@@ -4751,6 +4757,10 @@ snapshots:
   '@humanwhocodes/retry@0.3.1': {}
 
   '@humanwhocodes/retry@0.4.1': {}
+
+  '@iconify-json/circle-flags@1.2.1':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify-json/material-symbols-light@1.2.8':
     dependencies:

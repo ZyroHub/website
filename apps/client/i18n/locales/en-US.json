@@ -3,6 +3,16 @@
 		"en": "English",
 		"pt": "Brazilian Portuguese"
 	},
+	"components": {
+		"navbar": {
+			"tabs": {
+				"home": "Home",
+				"developers": "Developers",
+				"media": "Media",
+				"about": "About"
+			}
+		}
+	},
 	"pages": {
 		"home": {
 			"title": "Home Page"

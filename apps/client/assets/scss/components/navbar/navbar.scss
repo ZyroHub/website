@@ -14,13 +14,14 @@ nav {
 	justify-content: space-between;
 	align-items: center;
 	max-height: 4rem;
-	padding: 0.3rem 2rem;
+	padding: 0.3rem 0;
 
 	& > div {
 		height: 4rem;
 		max-height: 4rem;
 
 		&.navbar-container-start {
+			display: flex;
 			width: 35%;
 		}
 
@@ -39,6 +40,7 @@ nav {
 			display: flex;
 			justify-content: flex-end;
 			align-items: center;
+			padding-right: 2rem;
 			gap: 1rem;
 
 			width: 35%;

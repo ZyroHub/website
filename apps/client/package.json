@@ -24,6 +24,7 @@
 		"vue-router": "latest"
 	},
 	"devDependencies": {
+		"@iconify-json/circle-flags": "^1.2.1",
 		"@iconify-json/material-symbols-light": "^1.2.8",
 		"sass": "^1.82.0"
 	}

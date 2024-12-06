@@ -1,0 +1,42 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.navbar-tab {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-width: 5rem;
+	padding: 0 1rem;
+	height: 4rem;
+	font-size: 1rem;
+	font-weight: 400;
+	cursor: default;
+	transition: background-color 150ms ease-out, color 150ms ease-out;
+
+	&:not(.active) {
+		color: colors.$white_200;
+
+		&:hover {
+			cursor: pointer;
+			color: colors.$white_100;
+			background-color: colors.$black_900;
+		}
+	}
+}
+
+.light-mode {
+	.navbar-tab {
+		&.active {
+			color: colors.$black_900;
+			background-color: colors.$white_100;
+		}
+	}
+}
+
+.dark-mode {
+	.navbar-tab {
+		&.active {
+			color: colors.$white_50;
+			background-color: colors.$black_900;
+		}
+	}
+}

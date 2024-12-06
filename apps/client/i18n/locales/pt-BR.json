@@ -3,6 +3,16 @@
 		"en": "Inglês",
 		"pt": "Português Brasil"
 	},
+	"components": {
+		"navbar": {
+			"tabs": {
+				"home": "Início",
+				"developers": "Desenvolvedor",
+				"media": "Mídia",
+				"about": "Sobre"
+			}
+		}
+	},
 	"pages": {
 		"home": {
 			"title": "Página Inicial"
