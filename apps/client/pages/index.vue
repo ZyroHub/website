@@ -14,7 +14,7 @@ useSeoMeta({
 	<div class="home-container container">
 		<NuxtImg class="home-logo" src="images/zyro-color-wide.webp" />
 
-		<p class="home-title">{{ t('pages.home.title') }} <span>ZyroHub!</span></p>
+		<p class="home-title">{{ t('pages.home.title') }} <span>ZyroHub</span></p>
 
 		<p class="home-description">{{ t('pages.home.description') }}</p>
 
