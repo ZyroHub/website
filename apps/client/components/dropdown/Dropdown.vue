@@ -1,13 +1,14 @@
 <script lang="ts" setup>
 import { autoUpdate, flip, offset, useFloating, type Placement } from '@floating-ui/vue';
+import { onMounted, onBeforeUnmount } from 'vue';
 
 const props = defineProps<{
 	placement?: Placement;
 	offset?: number;
 }>();
 
-const reference = ref(null);
-const floating = ref(null);
+const reference = ref<HTMLElement | null>(null);
+const floating = ref<HTMLElement | null>(null);
 
 const isOpen = ref(false);
 
@@ -29,6 +30,24 @@ const handleClose = () => {
 const handleOpen = () => {
 	isOpen.value = true;
 };
+
+const handleClickOutside = (event: MouseEvent) => {
+	if (
+		reference.value &&
+		!reference.value.contains(event.target as Node) &&
+		floating.value &&
+		!floating.value.contains(event.target as Node)
+	)
+		handleClose();
+};
+
+onMounted(() => {
+	document.addEventListener('click', handleClickOutside);
+});
+
+onBeforeUnmount(() => {
+	document.removeEventListener('click', handleClickOutside);
+});
 
 provide('dropdown', {
 	close: handleClose,
