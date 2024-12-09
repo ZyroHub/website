@@ -2,7 +2,8 @@
 const { t } = useI18n();
 
 useSeoMeta({
-	description: t('pages.home.meta.description')
+	description: t('pages.home.meta.description'),
+	ogImage: '/images/zyro-color.webp'
 });
 </script>
 
@@ -12,17 +13,17 @@ useSeoMeta({
 
 <template>
 	<div class="home-container container">
-		<NuxtImg class="home-logo" src="images/zyro-color-wide.webp" />
+		<NuxtImg height="136px" class="home-logo" src="images/zyro-color-wide.webp" />
 
 		<p class="home-title">{{ t('pages.home.title') }} <span>ZyroHub</span></p>
 
 		<p class="home-description">{{ t('pages.home.description') }}</p>
 
 		<div class="home-toolkits">
+			<NuxtLinkLocale to="/media"> <Icon size="20" name="fluent-mdl2:media-add" /> Media Toolkit </NuxtLinkLocale>
 			<NuxtLinkLocale to="/developers">
-				<Icon size="20" name="fluent-mdl2:media-add" /> Media Toolkit
+				<Icon size="22" name="ant-design:code-filled" /> Dev Toolkit
 			</NuxtLinkLocale>
-			<NuxtLinkLocale to="/media"> <Icon size="22" name="ant-design:code-filled" /> Dev Toolkit </NuxtLinkLocale>
 		</div>
 
 		<NuxtLinkLocale to="/about" class="home-about">

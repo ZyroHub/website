@@ -71,13 +71,13 @@ export default defineNuxtConfig({
 				code: 'en',
 				language: 'en-US',
 				name: 'English',
-				file: 'en-US.json'
+				file: 'en-US.ts'
 			},
 			{
 				code: 'pt',
 				language: 'pt-BR',
 				name: 'Português Brasil',
-				file: 'pt-BR.json'
+				file: 'pt-BR.ts'
 			}
 		]
 	},
