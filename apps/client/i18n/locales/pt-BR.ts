@@ -10,13 +10,17 @@ export default {
 				media: 'MediaKit',
 				about: 'Sobre'
 			}
+		},
+		footer: {
+			copy: 'Copyright © 2024 ZyroHub - Todos os direitos reservados.',
+			privacy: 'Política de Privacidade'
 		}
 	},
 	pages: {
 		home: {
 			meta: {
 				description:
-					'ZyroHub é um kit de ferramentas para desenvolvedores e para conversão e manipulação de mídia, eliminando a necessidade de instalar e/ou utilizar múltiplos softwares e serviços para realizar tarefas usuais.'
+					'ZyroHub é um toolkit desenhado para desenvolvedores, oferecendo soluções para conversão e manipulação de mídia. Inclui uma variedade de ferramentas essenciais, eliminando a necessidade de instalar ou depender de múltiplos softwares e serviços para realizar tarefas comuns.'
 			},
 			title: 'Bem-Vindo ao',
 			description: 'Por favor selecione uma das opções abaixo para começar.',
@@ -32,7 +36,7 @@ export default {
 			},
 			title: 'Sobre o ZyroHub',
 			description:
-				'ZyroHub é um kit de ferramentas para desenvolvedores e para conversão e manipulação de mídia, incluindo também um conjunto de ferramentas úteis, eliminando a necessidade de instalar e/ou utilizar múltiplos softwares e serviços para realizar tarefas usuais.'
+				'ZyroHub é um toolkit desenhado para desenvolvedores, oferecendo soluções para conversão e manipulação de mídia. Inclui uma variedade de ferramentas essenciais, eliminando a necessidade de instalar ou depender de múltiplos softwares e serviços para realizar tarefas comuns.'
 		},
 		developers: {
 			meta: {

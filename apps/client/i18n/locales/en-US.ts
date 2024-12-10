@@ -10,13 +10,17 @@ export default {
 				media: 'MediaKit',
 				about: 'About'
 			}
+		},
+		footer: {
+			copy: 'Copyright © 2024 ZyroHub - All rights reserved.',
+			privacy: 'Privacy Policy'
 		}
 	},
 	pages: {
 		home: {
 			meta: {
 				description:
-					'ZyroHub is a toolkit for developers and for media conversion and manipulation, eliminating the need to install and/or use multiple softwares and services to perform usual tasks.'
+					'ZyroHub is a toolkit designed for developers, offering solutions for media conversion and manipulation. It includes a variety of essential tools, eliminating the need to install or rely on multiple software and services to accomplish common tasks.'
 			},
 			title: 'Welcome to',
 			description: 'Please select an option below to get started.',
@@ -32,7 +36,7 @@ export default {
 			},
 			title: 'About ZyroHub',
 			description:
-				'ZyroHub is a toolkit for developers and for media conversion and manipulation, also including a set of useful tools, eliminating the need to install and/or use multiple softwares and services to perform usual tasks.'
+				'ZyroHub is a toolkit designed for developers, offering solutions for media conversion and manipulation. It includes a variety of essential tools, eliminating the need to install or rely on multiple software and services to accomplish common tasks.'
 		},
 		developers: {
 			meta: {
