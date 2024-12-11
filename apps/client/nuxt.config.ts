@@ -46,7 +46,7 @@ export default defineNuxtConfig({
 	},
 
 	site: {
-		url: 'https://zyrohub.com',
+		url: 'https://zyrohub.app',
 		name: 'ZyroHub'
 	},
 
@@ -64,7 +64,7 @@ export default defineNuxtConfig({
 		strategy: 'prefix_except_default',
 		defaultLocale: 'en',
 		lazy: true,
-		baseUrl: 'https://zyrohub.com',
+		baseUrl: 'https://zyrohub.app',
 		skipSettingLocaleOnNavigate: true,
 		detectBrowserLanguage: {
 			useCookie: true,

@@ -56,7 +56,7 @@ export default {
 			content: `
 # Política de Privacidade
 
-A sua privacidade é importante para nós. É política do ZyroHub respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site [ZyroHub](https://zyrohub.com), e outros sites que possuímos e operamos.
+A sua privacidade é importante para nós. É política do ZyroHub respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site [ZyroHub](https://zyrohub.app), e outros sites que possuímos e operamos.
 
 Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado. Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.
 

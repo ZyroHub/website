@@ -56,7 +56,7 @@ export default {
 			content: `
 # Privacy Policy
 
-Your privacy is important to us. It is ZyroHub's policy to respect your privacy regarding any information we may collect on the website [ZyroHub](https://zyrohub.com), and other sites we own and operate.
+Your privacy is important to us. It is ZyroHub's policy to respect your privacy regarding any information we may collect on the website [ZyroHub](https://zyrohub.app), and other sites we own and operate.
 
 We only retain collected information for as long as necessary to provide you with your requested service. When we store data, we protect it within commercially acceptable means to prevent loss and theft, as well as unauthorized access, disclosure, copying, use, or modification.
 
