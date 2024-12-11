@@ -22,6 +22,12 @@ export default defineNuxtConfig({
 					api: 'modern-compiler'
 				}
 			}
+		},
+		resolve: {
+			alias: {
+				'#mdc-imports': path.resolve(__dirname, './stub-mdc-imports.ts'),
+				'#mdc-configs': path.resolve(__dirname, './stub-mdc-imports.ts')
+			}
 		}
 	},
 

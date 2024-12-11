@@ -14,7 +14,7 @@ const { t } = useI18n();
 
 		<div class="footer-end">
 			<p>
-				<NuxtLink to="/privacy">{{ t('components.footer.privacy') }}</NuxtLink>
+				<NuxtLinkLocale to="/privacy">{{ t('components.footer.privacy') }}</NuxtLinkLocale>
 			</p>
 		</div>
 	</footer>

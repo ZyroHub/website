@@ -1,14 +1,13 @@
 @use '~/assets/scss/utils/_colors.scss';
 
 @use '~/assets/scss/transitions.scss';
+@use '~/assets/scss/markdown.scss';
 
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	list-style: none;
 	scroll-behavior: smooth;
-	font-weight: 500;
 	font-family: Poppins;
 	text-decoration: none;
 
@@ -50,5 +49,11 @@ button {
 
 	@media screen and (max-width: 1050px) {
 		max-width: 800px;
+	}
+}
+
+.dark-mode {
+	a {
+		color: #37b6ff;
 	}
 }

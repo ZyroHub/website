@@ -13,11 +13,12 @@
 	flex-direction: column;
 	flex: 1 1 auto;
 	padding: 1rem 0;
+	padding-bottom: 5rem;
 }
 
 .light-mode {
 	.app-main {
-		color: colors.$black_900;
+		color: colors.$black_950;
 		background-color: colors.$white_200;
 	}
 }
