@@ -8,6 +8,6 @@ useSeoMeta({
 
 <template>
 	<div class="container">
-		<p>Developers Page</p>
+		<ToolkitLayout></ToolkitLayout>
 	</div>
 </template>

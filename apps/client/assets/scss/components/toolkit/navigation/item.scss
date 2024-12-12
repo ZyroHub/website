@@ -1,0 +1,73 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.toolkit-navigation-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 0.4rem;
+	width: 90%;
+	max-width: 90%;
+	padding: 0.7rem 1.25rem;
+	border-radius: 10rem;
+	font-weight: 400;
+	font-size: 0.9rem;
+	transition: background-color 0.3s;
+
+	&.active {
+		&:hover {
+			cursor: default;
+		}
+
+		& > .toolkit-navigation-item-arrow {
+			opacity: 1;
+		}
+	}
+
+	&:not(.active):hover {
+		cursor: pointer;
+
+		& > .toolkit-navigation-item-arrow {
+			opacity: 1;
+		}
+	}
+}
+
+.toolkit-navigation-item-arrow {
+	position: absolute;
+	right: 0.5rem;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+
+.light-mode {
+	.toolkit-navigation-item {
+		color: colors.$black_950;
+		background-color: colors.$white_50;
+		box-shadow: 3px 4px 6px rgba(0, 0, 0, 0.2);
+
+		&:not(.active):hover {
+			background-color: colors.$primary_100;
+		}
+
+		&.active {
+			color: colors.$white_50;
+			background-color: colors.$primary_500;
+		}
+	}
+}
+
+.dark-mode {
+	.toolkit-navigation-item {
+		color: colors.$white_100;
+		background-color: colors.$black_800;
+
+		&:not(.active):hover {
+			background-color: colors.$black_600;
+		}
+
+		&.active {
+			color: colors.$white_50;
+			background-color: colors.$primary_500;
+		}
+	}
+}

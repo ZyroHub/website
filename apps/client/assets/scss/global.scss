@@ -21,6 +21,14 @@ input[type='number'] {
 	appearance: textfield;
 }
 
+input {
+	border: none;
+
+	&:focus {
+		outline: none;
+	}
+}
+
 button {
 	border: none;
 	cursor: pointer;

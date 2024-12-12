@@ -1,0 +1,84 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.toolkit-navigation {
+	width: 100%;
+	min-height: 4rem;
+	border-radius: 1rem;
+	padding-bottom: 1.5rem;
+}
+
+.toolkit-navigation-search-area {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 1.5rem 0;
+}
+
+.toolkit-navigation-search {
+	position: relative;
+	width: 100%;
+	max-width: 80%;
+	height: 2.5rem;
+	border-radius: 10rem;
+	overflow: hidden;
+
+	& > input {
+		width: 100%;
+		height: 100%;
+		padding-left: 2.5rem;
+		padding-right: 1rem;
+		background-color: transparent;
+	}
+}
+
+.toolkit-navigation-search-icon {
+	position: absolute;
+	top: 50%;
+	left: 0.8rem;
+	transform: translateY(-50%);
+}
+
+.toolkit-navigation-items {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.light-mode {
+	.toolkit-navigation {
+		background-color: colors.$white_300;
+	}
+
+	.toolkit-navigation-search {
+		background-color: colors.$white_50;
+
+		& > input {
+			color: colors.$black_950;
+
+			&::placeholder {
+				color: colors.$black_700;
+			}
+		}
+	}
+}
+
+.dark-mode {
+	.toolkit-navigation {
+		background-color: colors.$black_950;
+	}
+
+	.toolkit-navigation-search {
+		background-color: colors.$black_900;
+
+		& > input {
+			color: colors.$white_50;
+
+			&::placeholder {
+				color: colors.$white_300;
+			}
+		}
+	}
+}

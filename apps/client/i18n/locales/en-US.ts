@@ -14,6 +14,11 @@ export default {
 		footer: {
 			copy: 'Copyright © 2024 ZyroHub - All rights reserved.',
 			privacy: 'Privacy Policy'
+		},
+		toolkit: {
+			navigation: {
+				search: 'Search for a tool...'
+			}
 		}
 	},
 	pages: {

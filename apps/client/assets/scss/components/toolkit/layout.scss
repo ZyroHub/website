@@ -1,0 +1,36 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.toolkit-container {
+	display: flex;
+	gap: 1rem;
+
+	& > div {
+		height: 1rem;
+	}
+}
+
+.toolkit-container-start {
+	width: 20rem;
+}
+
+.toolkit-container-end {
+	width: calc(100% - 20rem);
+}
+
+.toolkit-content {
+	width: 100%;
+	min-height: 10rem;
+	border-radius: 1rem;
+}
+
+.light-mode {
+	.toolkit-content {
+		background-color: colors.$white_300;
+	}
+}
+
+.dark-mode {
+	.toolkit-content {
+		background-color: colors.$black_950;
+	}
+}
