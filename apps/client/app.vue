@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { finalizePendingLocaleChange } = useI18n();
+const { finalizePendingLocaleChange, t } = useI18n();
 
 const onTransitionBeforeEnter = async () => {
 	await finalizePendingLocaleChange();
@@ -23,6 +23,11 @@ useHead({
 		{ name: 'apple-mobile-web-app-title', content: 'ZyroHub' },
 		{ property: 'og:type', content: 'website' }
 	]
+});
+
+useSeoMeta({
+	description: t('pages.meta.description'),
+	ogImage: '/images/zyro-color.webp'
 });
 </script>
 

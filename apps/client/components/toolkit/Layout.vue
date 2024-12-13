@@ -5,7 +5,11 @@
 <template>
 	<div class="toolkit-container">
 		<div class="toolkit-container-start">
-			<ToolkitNavigation />
+			<ToolkitNavigation>
+				<template #title>
+					<slot name="title"></slot>
+				</template>
+			</ToolkitNavigation>
 		</div>
 
 		<div class="toolkit-container-end">

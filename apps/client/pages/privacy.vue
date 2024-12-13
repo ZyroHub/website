@@ -4,7 +4,6 @@ import type { MDCParserResult } from '@nuxtjs/mdc';
 
 const { t } = useI18n();
 
-// const md = ref(t('pages.privacy.content'));
 const md = computed(() => t('pages.privacy.content'));
 
 const ast = ref<MDCParserResult | null>(null);
@@ -20,8 +19,7 @@ watch(md, async value => {
 
 useSeoMeta({
 	title: t('pages.privacy.meta.title'),
-	description: t('pages.privacy.meta.description'),
-	ogImage: '/images/zyro-color.webp'
+	description: t('pages.privacy.meta.description')
 });
 </script>
 

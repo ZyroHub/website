@@ -6,8 +6,8 @@ export default {
 	components: {
 		navbar: {
 			tabs: {
-				developers: 'DevKit',
-				media: 'MediaKit',
+				developers: 'Developers',
+				creators: 'Creators',
 				about: 'Sobre'
 			}
 		},
@@ -22,16 +22,16 @@ export default {
 		}
 	},
 	pages: {
+		meta: {
+			description:
+				'ZyroHub é um toolkit desenhado para desenvolvedores, oferecendo soluções para conversão e manipulação de mídia. Inclui uma variedade de ferramentas essenciais, eliminando a necessidade de instalar ou depender de múltiplos softwares e serviços para realizar tarefas comuns.'
+		},
 		home: {
-			meta: {
-				description:
-					'ZyroHub é um toolkit desenhado para desenvolvedores, oferecendo soluções para conversão e manipulação de mídia. Inclui uma variedade de ferramentas essenciais, eliminando a necessidade de instalar ou depender de múltiplos softwares e serviços para realizar tarefas comuns.'
-			},
 			title: 'Bem-Vindo ao',
 			description: 'Por favor selecione uma das opções abaixo para começar.',
 			toolkits: {
-				dev: 'Dev Toolkit',
-				media: 'Media Toolkit'
+				dev: 'Developers',
+				creators: 'Creators'
 			},
 			about: 'SOBRE'
 		},
@@ -45,12 +45,15 @@ export default {
 		},
 		developers: {
 			meta: {
-				title: 'Desenvolvedores'
-			}
+				title: 'Desenvolvedores',
+				description:
+					'Conjunto de ferramentas essenciais para desenvolvedores, oferecendo soluções para tarefas comuns, como conversão de texto, geração de senhas, codificação e decodificação de strings, e muito mais.'
+			},
+			title: 'Developers'
 		},
 		creators: {
 			meta: {
-				title: 'Criadores'
+				title: 'MediaKit'
 			}
 		},
 		privacy: {

@@ -5,8 +5,10 @@
 
 .transition_route_switch-enter-from {
 	opacity: 0;
+	transform: translateY(20px) scale(0.95);
 }
 
 .transition_route_switch-leave-to {
 	opacity: 0;
+	transform: translateY(-20px) scale(0.95);
 }

@@ -1,10 +1,5 @@
 <script lang="ts" setup>
 const { t } = useI18n();
-
-useSeoMeta({
-	description: t('pages.home.meta.description'),
-	ogImage: '/images/zyro-color.webp'
-});
 </script>
 
 <style lang="scss" scoped>
@@ -20,9 +15,13 @@ useSeoMeta({
 		<p class="home-description">{{ t('pages.home.description') }}</p>
 
 		<div class="home-toolkits">
-			<NuxtLinkLocale to="/media"> <Icon size="20" name="fluent-mdl2:media-add" /> Media Toolkit </NuxtLinkLocale>
+			<NuxtLinkLocale to="/creators">
+				<Icon size="20" name="ant-design:camera-filled" />{{
+					t('pages.home.toolkits.creators')
+				}}</NuxtLinkLocale
+			>
 			<NuxtLinkLocale to="/developers">
-				<Icon size="22" name="ant-design:code-filled" /> Dev Toolkit
+				<Icon size="22" name="ant-design:code-filled" /> {{ t('pages.home.toolkits.dev') }}
 			</NuxtLinkLocale>
 		</div>
 
