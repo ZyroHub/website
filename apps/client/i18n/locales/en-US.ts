@@ -94,5 +94,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 			`,
 			date: '~ This policy is effective us of December 11, 2024.'
 		}
+	},
+	tools: {
+		bcrypt: {
+			name: 'Bcrypt'
+		}
 	}
 };

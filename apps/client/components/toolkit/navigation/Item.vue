@@ -1,21 +1,24 @@
 <script lang="ts" setup>
 const props = defineProps<{
+	id: string;
 	path?: string;
-	title?: string;
-	icon?: string;
 	active?: boolean;
-	starred?: boolean;
 }>();
+
+const { t } = useI18n();
+
+const tools = useTools();
+const tool = computed(() => tools.get(props.id));
 
 const isHoveringUnfavorite = ref(false);
 
 const favoriteIcon = computed(() => {
 	if (isHoveringUnfavorite.value) return 'ri:heart-line';
-	return props.starred ? 'ri:heart-fill' : 'ri:heart-add-fill';
+	return tools.isFavorite(props.id) ? 'ri:heart-fill' : 'ri:heart-add-fill';
 });
 
 const handleFavoriteButtonHover = () => {
-	if (!props.starred) return (isHoveringUnfavorite.value = false);
+	if (!tools.isFavorite(props.id)) return (isHoveringUnfavorite.value = false);
 	isHoveringUnfavorite.value = true;
 };
 
@@ -23,7 +26,11 @@ const handleFavoriteButtonLeave = () => {
 	isHoveringUnfavorite.value = false;
 };
 
-const handleFavorite = () => {};
+const handleToggleFavorite = () => {
+	tools.toggleFavorite(props.id);
+
+	isHoveringUnfavorite.value = tools.isFavorite(props.id);
+};
 </script>
 
 <style lang="scss" scoped>
@@ -32,14 +39,15 @@ const handleFavorite = () => {};
 
 <template>
 	<NuxtLinkLocale :to="`/${props.path}`" :class="['toolkit-navigation-item', { active: props.active }]">
-		<Icon v-if="props.icon" :name="props.icon" size="20" />
-		{{ props.title }}
+		<Icon v-if="tool?.icon" :name="tool?.icon" size="20" />
+		{{ t(`tools.${tool?.id || ''}.name`) }}
 
 		<Icon
-			@click.prevent.stop="handleFavorite"
+			@click.prevent.stop="handleToggleFavorite"
 			@mouseover="handleFavoriteButtonHover"
 			@mouseleave="handleFavoriteButtonLeave"
-			:class="['toolkit-navigation-item-star', { active: props.starred }]"
+			:class="['toolkit-navigation-item-star', { active: tools.isFavorite(props.id) }]"
+			:key="favoriteIcon"
 			:name="favoriteIcon"
 			size="20" />
 

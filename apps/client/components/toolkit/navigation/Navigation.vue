@@ -1,11 +1,11 @@
 <script lang="ts" setup>
+const props = defineProps<{
+	tools?: ITool[];
+	path?: string;
+}>();
+
 const { t } = useI18n();
-
-const isFavoriteEnabled = ref(false);
-
-const handleFavoriteFilterSwitch = () => {
-	isFavoriteEnabled.value = !isFavoriteEnabled.value;
-};
+const tools = useTools();
 </script>
 
 <style lang="scss" scoped>
@@ -24,19 +24,14 @@ const handleFavoriteFilterSwitch = () => {
 			</div>
 
 			<div
-				@click="handleFavoriteFilterSwitch"
-				:class="['toolkit-navigation-search-star', { active: isFavoriteEnabled }]">
+				@click="tools.toggleOnlyFavorites"
+				:class="['toolkit-navigation-search-star', { active: tools.isOnlyFavorites.value }]">
 				<Icon :name="'mdi:heart'" />
 			</div>
 		</div>
 
 		<div class="toolkit-navigation-items">
-			<ToolkitNavigationItem id="test" title="Teste" icon="bxs:file" active starred />
-			<ToolkitNavigationItem id="test" title="Teste" icon="bxs:file" starred />
-			<ToolkitNavigationItem id="test" title="Teste" icon="bxs:file" />
-			<ToolkitNavigationItem id="test" title="Teste" icon="bxs:file" />
-			<ToolkitNavigationItem id="test" title="Teste" icon="bxs:file" />
-			<ToolkitNavigationItem id="test" title="Teste" icon="bxs:file" />
+			<ToolkitNavigationItem v-for="tool in props.tools" :id="tool.id" :path="`${props.path}/${tool.id}`" />
 		</div>
 	</div>
 </template>

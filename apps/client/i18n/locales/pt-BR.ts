@@ -94,5 +94,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 			`,
 			date: '~ Esta política é efetiva a partir do dia 11 de Dezembro de 2024.'
 		}
+	},
+	tools: {
+		bcrypt: {
+			name: 'Bcrypt'
+		}
 	}
 };

@@ -12,7 +12,8 @@ export default defineNuxtConfig({
 		'@nuxtjs/google-fonts',
 		'@nuxt/image',
 		'@nuxtjs/color-mode',
-		'@nuxt/icon'
+		'@nuxt/icon',
+		'@pinia/nuxt'
 	],
 
 	vite: {
@@ -43,6 +44,10 @@ export default defineNuxtConfig({
 
 	image: {
 		provider: 'ipx'
+	},
+
+	pinia: {
+		storesDirs: ['./stores/**']
 	},
 
 	site: {
