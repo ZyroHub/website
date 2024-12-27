@@ -30,8 +30,10 @@ const tools = useTools();
 			</div>
 		</div>
 
-		<div class="toolkit-navigation-items">
-			<ToolkitNavigationItem v-for="tool in props.tools" :id="tool.id" :path="`${props.path}/${tool.id}`" />
-		</div>
+		<Transition name="transition_navigation_items" mode="out-in">
+			<div :key="tools.isOnlyFavorites.value.toString()" class="toolkit-navigation-items">
+				<ToolkitNavigationItem v-for="tool in props.tools" :id="tool.id" :path="`${props.path}/${tool.id}`" />
+			</div>
+		</Transition>
 	</div>
 </template>
