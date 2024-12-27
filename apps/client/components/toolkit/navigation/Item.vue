@@ -38,7 +38,7 @@ const handleToggleFavorite = () => {
 </style>
 
 <template>
-	<NuxtLinkLocale :to="`/${props.path}`" :class="['toolkit-navigation-item', { active: props.active }]">
+	<NuxtLinkLocale :to="`/${props.path}`" :class="['toolkit-navigation-item']" active-class="active">
 		<Icon v-if="tool?.icon" :name="tool?.icon" size="20" />
 		{{ t(`tools.${tool?.id || ''}.name`) }}
 

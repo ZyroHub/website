@@ -23,7 +23,7 @@ useSeoMeta({
 			</template>
 
 			<template #content>
-				<p>ABCDEF</p>
+				<NuxtPage />
 			</template>
 		</ToolkitLayout>
 	</div>
