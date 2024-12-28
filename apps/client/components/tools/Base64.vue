@@ -1,5 +1,7 @@
 <script lang="ts" setup></script>
 
 <template>
-	<p>Base64 tool</p>
+	<div>
+		<InputsTextArea label="Input" placeholder="Plain Text" />
+	</div>
 </template>

@@ -6,16 +6,17 @@
 	margin-top: 2rem;
 
 	& > div {
-		height: 1rem;
+		min-height: 1rem;
 	}
 }
 
 .toolkit-container-start {
-	width: 20rem;
+	min-width: 20rem;
+	max-width: 20rem;
 }
 
 .toolkit-container-end {
-	width: calc(100% - 20rem);
+	min-width: calc(100% - 20rem);
 }
 
 .toolkit-content {

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-const { finalizePendingLocaleChange, t } = useI18n();
+const { finalizePendingLocaleChange, t, locale } = useI18n();
 
 const onTransitionBeforeEnter = async () => {
 	await finalizePendingLocaleChange();
 };
 
 useHead({
-	htmlAttrs: { lang: 'en' },
+	htmlAttrs: { lang: locale.value },
 	titleTemplate: page_title => {
 		return page_title ? `${page_title} | ZyroHub` : 'ZyroHub';
 	},

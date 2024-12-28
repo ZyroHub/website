@@ -1,0 +1,24 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.input-textarea-input {
+	width: 100%;
+	max-width: 100%;
+	padding: 0.6rem 1rem;
+	border-radius: 0.5rem;
+	font-size: 1rem;
+	resize: vertical;
+}
+
+.light-mode {
+	.input-textarea-input {
+		color: colors.$black_900;
+		background-color: colors.$white_50;
+	}
+}
+
+.dark-mode {
+	.input-textarea-input {
+		color: colors.$white_100;
+		background-color: colors.$black_800;
+	}
+}

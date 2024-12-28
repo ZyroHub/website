@@ -22,7 +22,8 @@ input[type='number'] {
 	appearance: textfield;
 }
 
-input {
+input,
+textarea {
 	border: none;
 
 	&:focus {
