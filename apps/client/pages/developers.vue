@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ToolTagEnum } from '~/shared/types';
+
 const { t } = useI18n();
 
 const tools = useTools();

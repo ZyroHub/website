@@ -1,10 +1,12 @@
+import { getToolList } from '~/shared/tools';
+
 import { useToolsStore } from '~/stores/tools';
 
 export const useTools = () => {
 	const toolsStore = useToolsStore();
 	const toolsStoreRef = storeToRefs(toolsStore);
 
-	const toolList = useToolList();
+	const toolList = getToolList();
 
 	const isOnlyFavorites = computed(() => toolsStoreRef.onlyFavorites.value);
 

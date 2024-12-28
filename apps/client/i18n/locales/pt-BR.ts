@@ -110,7 +110,8 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 	},
 	tools: {
 		base64: {
-			name: 'Base64'
+			name: 'Base64',
+			description: 'Codifique e decodifique textos para Base64.'
 		}
 	}
 };

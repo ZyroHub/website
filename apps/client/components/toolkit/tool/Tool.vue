@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import ToolkitToolError from '~/components/toolkit/tool/Error.vue';
 import ToolkitToolLoading from '~/components/toolkit/tool/Loading.vue';
+import { idToPascalCase } from '~/shared/utilities';
 
+const { t } = useI18n();
 const route = useRoute();
 
 const toolId = computed(() => route.params.tool_id as string);
@@ -20,6 +22,11 @@ const loadToolComponent = async () => {
 
 onMounted(() => {
 	loadToolComponent();
+});
+
+useSeoMeta({
+	title: t(`tools.${toolId.value}.name`),
+	description: t(`tools.${toolId.value}.description`)
 });
 </script>
 

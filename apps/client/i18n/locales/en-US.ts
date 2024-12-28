@@ -109,7 +109,8 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 	},
 	tools: {
 		base64: {
-			name: 'Base64'
+			name: 'Base64',
+			description: 'Encode and decode texts to Base64.'
 		}
 	}
 };

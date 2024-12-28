@@ -55,6 +55,10 @@ export default defineNuxtConfig({
 		name: 'ZyroHub'
 	},
 
+	sitemap: {
+		sources: ['/api/__sitemap__/urls']
+	},
+
 	googleFonts: {
 		prefetch: true,
 		preconnect: true,
