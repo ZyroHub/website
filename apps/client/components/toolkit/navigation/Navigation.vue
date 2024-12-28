@@ -6,6 +6,21 @@ const props = defineProps<{
 
 const { t } = useI18n();
 const tools = useTools();
+
+const searchContent = ref('');
+
+const filteredTools = computed(() => {
+	if (!props.tools) return [];
+
+	if (tools.isOnlyFavorites.value) return props.tools.filter(tool => tools.isFavorite(tool.id));
+	if (!searchContent.value) return props.tools;
+
+	return props.tools.filter(tool => {
+		const translatedName = t(`tools.${tool.id}.name`);
+
+		return translatedName.toLowerCase().includes(searchContent.value.toLowerCase());
+	});
+});
 </script>
 
 <style lang="scss" scoped>
@@ -20,7 +35,7 @@ const tools = useTools();
 			<div class="toolkit-navigation-search">
 				<Icon name="material-symbols:search" class="toolkit-navigation-search-icon" />
 
-				<input :placeholder="t('components.toolkit.navigation.search')" />
+				<input v-model="searchContent" :placeholder="t('components.toolkit.navigation.search')" />
 			</div>
 
 			<div
@@ -32,7 +47,7 @@ const tools = useTools();
 
 		<Transition name="transition_navigation_items" mode="out-in">
 			<div :key="tools.isOnlyFavorites.value.toString()" class="toolkit-navigation-items">
-				<ToolkitNavigationItem v-for="tool in props.tools" :id="tool.id" :path="`${props.path}/${tool.id}`" />
+				<ToolkitNavigationItem v-for="tool in filteredTools" :id="tool.id" :path="`${props.path}/${tool.id}`" />
 			</div>
 		</Transition>
 	</div>

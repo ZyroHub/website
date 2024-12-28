@@ -3,12 +3,7 @@ const { t } = useI18n();
 
 const tools = useTools();
 
-const creatorsTools = computed(() =>
-	tools.tools.filter(
-		tool =>
-			tool.tags.includes(ToolTagEnum.CREATORS) && (tools.isOnlyFavorites.value ? tools.isFavorite(tool.id) : true)
-	)
-);
+const creatorsTools = computed(() => tools.tools.filter(tool => tool.tags.includes(ToolTagEnum.CREATORS)));
 </script>
 
 <template>
