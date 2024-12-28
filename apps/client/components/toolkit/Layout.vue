@@ -21,7 +21,7 @@ const props = defineProps<{
 
 		<div class="toolkit-container-end">
 			<div class="toolkit-content">
-				<slot name="content"></slot>
+				<NuxtPage :transition="{ name: 'transition_tool_switch' }" />
 			</div>
 		</div>
 	</div>

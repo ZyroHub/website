@@ -13,7 +13,7 @@ const tool = computed(() => tools.get(props.id));
 const isHoveringUnfavorite = ref(false);
 
 const favoriteIcon = computed(() => {
-	if (isHoveringUnfavorite.value) return 'ri:heart-line';
+	// if (isHoveringUnfavorite.value) return 'ri:heart-line';
 	return tools.isFavorite(props.id) ? 'ri:heart-fill' : 'ri:heart-add-fill';
 });
 
@@ -38,7 +38,11 @@ const handleToggleFavorite = () => {
 </style>
 
 <template>
-	<NuxtLinkLocale :to="`/${props.path}`" :class="['toolkit-navigation-item']" active-class="active">
+	<NuxtLinkLocale
+		:to="`/${props.path}`"
+		:class="['toolkit-navigation-item', { 'toolkit-navigation-item-favorite': tools.isFavorite(props.id) }]"
+		active-class="active"
+		:draggable="false">
 		<Icon v-if="tool?.icon" :name="tool?.icon" size="20" />
 		{{ t(`tools.${tool?.id || ''}.name`) }}
 

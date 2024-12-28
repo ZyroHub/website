@@ -1,0 +1,25 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.toolkit-tool-loading-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+}
+
+.toolkit-tool-loading {
+	font-size: 3rem;
+}
+
+.light-mode {
+	.toolkit-tool-loading {
+		color: colors.$black_950;
+	}
+}
+
+.dark-mode {
+	.toolkit-tool-loading {
+		color: colors.$white_200;
+	}
+}

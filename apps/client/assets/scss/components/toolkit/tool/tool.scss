@@ -1,0 +1,16 @@
+.toolkit-tool-container {
+	width: 100%;
+}
+
+.transition_tool_state_change-enter-active,
+.transition_tool_state_change-leave-active {
+	transition: all 300ms ease-in-out;
+}
+
+.transition_tool_state_change-enter-from {
+	opacity: 0;
+}
+
+.transition_tool_state_change-leave-to {
+	opacity: 0;
+}

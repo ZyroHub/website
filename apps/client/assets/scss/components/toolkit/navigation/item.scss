@@ -11,7 +11,13 @@
 	border-radius: 10rem;
 	font-weight: 400;
 	font-size: 0.9rem;
+	border: 2px solid transparent;
 	transition: background-color 0.3s;
+	user-select: none;
+
+	&.toolkit-navigation-item-favorite {
+		animation: ButtonFavorite 600ms ease-out;
+	}
 
 	&.active {
 		&:hover {
@@ -50,11 +56,13 @@
 	top: 50%;
 	right: 2rem;
 	opacity: 0;
-	transform: translateY(-60%);
+	transform-origin: top;
+	transform: translateY(-50%);
 	transition: opacity 0.3s;
 
 	&.active {
 		opacity: 1;
+		animation: HeartFavorite 0.5s ease;
 	}
 
 	&:hover {
@@ -107,5 +115,26 @@
 
 	.toolkit-navigation-item-star {
 		color: colors.$black_200;
+	}
+}
+
+@keyframes ButtonFavorite {
+	50% {
+		border-color: colors.$primary_500;
+	}
+}
+
+@keyframes HeartFavorite {
+	0% {
+		transform: scale(1) translateY(-50%);
+	}
+
+	50% {
+		color: colors.$primary_500;
+		transform: scale(1.2) translateY(-50%);
+	}
+
+	100% {
+		transform: scale(1) translateY(-50%);
 	}
 }

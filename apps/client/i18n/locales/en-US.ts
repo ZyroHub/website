@@ -18,6 +18,12 @@ export default {
 		toolkit: {
 			navigation: {
 				search: 'Search for a tool...'
+			},
+			tool: {
+				error: {
+					title: 'An Error Occurred!',
+					description: 'The tool you are trying to access may not exist or be unavailable at the moment.'
+				}
 			}
 		}
 	},

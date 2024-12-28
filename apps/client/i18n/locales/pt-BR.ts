@@ -18,6 +18,13 @@ export default {
 		toolkit: {
 			navigation: {
 				search: 'Pesquisar ferramenta...'
+			},
+			tool: {
+				error: {
+					title: 'Ocorreu um Erro!',
+					description:
+						'A ferramenta que você está tentando acessar pode não existir ou estar indisponível no momento.'
+				}
 			}
 		}
 	},

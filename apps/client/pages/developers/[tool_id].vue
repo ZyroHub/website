@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
-	<p>ABCDEF</p>
+	<ToolkitTool />
 </template>
