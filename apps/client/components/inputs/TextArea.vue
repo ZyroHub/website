@@ -2,6 +2,7 @@
 const props = defineProps<{
 	label?: string;
 	placeholder?: string;
+	rows?: number;
 }>();
 
 const model = defineModel<string>();
@@ -15,7 +16,11 @@ const model = defineModel<string>();
 	<div>
 		<InputsBase :label="props.label">
 			<template #content>
-				<textarea v-model="model" :placeholder="props.placeholder" class="input-textarea-input"></textarea>
+				<textarea
+					v-model="model"
+					:placeholder="props.placeholder"
+					:rows="props.rows"
+					class="input-textarea-input"></textarea>
 			</template>
 		</InputsBase>
 	</div>

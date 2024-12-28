@@ -1,5 +1,14 @@
 .toolkit-tool-container {
 	width: 100%;
+
+	& > div {
+		height: 100%;
+	}
+}
+
+.toolkit-tool-title {
+	font-size: 1.5rem;
+	font-weight: 600;
 }
 
 .transition_tool_state_change-enter-active,

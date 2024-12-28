@@ -109,9 +109,13 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		}
 	},
 	tools: {
-		base64: {
-			name: 'Base64',
+		base64_text: {
+			name: 'Texto Base64',
 			description: 'Codifique e decodifique textos para Base64.'
+		},
+		base64_image: {
+			name: 'Imagem Base64',
+			description: 'Codifique e decodifique imagens para Base64.'
 		}
 	}
 };

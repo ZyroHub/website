@@ -108,9 +108,13 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		}
 	},
 	tools: {
-		base64: {
-			name: 'Base64',
+		base64_text: {
+			name: 'Base64 Text',
 			description: 'Encode and decode texts to Base64.'
+		},
+		base64_image: {
+			name: 'Base64 Image',
+			description: 'Encode and decode images to Base64.'
 		}
 	}
 };

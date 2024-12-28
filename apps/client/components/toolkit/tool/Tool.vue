@@ -6,22 +6,29 @@ import { idToPascalCase } from '~/shared/utilities';
 const { t } = useI18n();
 const route = useRoute();
 
+const tools = useTools();
+
 const toolId = computed(() => route.params.tool_id as string);
+const tool = computed(() => tools.get(toolId.value));
 
-const component = shallowRef(ToolkitToolLoading);
-
-const loadToolComponent = async () => {
+const handleLoader = async () => {
 	try {
-		const { default: toolComponent } = await import(`~/components/tools/${idToPascalCase(toolId.value)}.vue`);
+		const toolComponent = await import(`~/components/tools/${idToPascalCase(toolId.value)}.vue`);
 
-		component.value = toolComponent;
-	} catch (error) {
-		component.value = ToolkitToolError;
+		return toolComponent;
+	} catch (e) {
+		return ToolkitToolError;
 	}
 };
 
-onMounted(() => {
-	loadToolComponent();
+const component = defineAsyncComponent({
+	loader: async () => {
+		const toolComponent = await handleLoader();
+
+		return toolComponent;
+	},
+	loadingComponent: ToolkitToolLoading,
+	errorComponent: ToolkitToolError
 });
 
 useSeoMeta({
@@ -37,7 +44,21 @@ useSeoMeta({
 <template>
 	<div class="toolkit-tool-container">
 		<Transition name="transition_tool_state_change" mode="out-in">
-			<component :is="component" />
+			<div :key="component">
+				<Suspense>
+					<div>
+						<p v-if="tool" class="toolkit-tool-title">
+							<Icon :name="tool?.icon" /> {{ t(`tools.${toolId}.name`) }}
+						</p>
+
+						<component :is="component" />
+					</div>
+
+					<template #fallback>
+						<ToolkitToolLoading />
+					</template>
+				</Suspense>
+			</div>
 		</Transition>
 	</div>
 </template>
