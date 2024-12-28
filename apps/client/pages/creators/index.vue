@@ -2,8 +2,8 @@
 const { t } = useI18n();
 
 useSeoMeta({
-	title: t('pages.developers.meta.title'),
-	description: t('pages.developers.meta.description')
+	title: t('pages.creators.meta.title'),
+	description: t('pages.creators.meta.description')
 });
 </script>
 

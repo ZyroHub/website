@@ -20,6 +20,9 @@ export default {
 				search: 'Search for a tool...'
 			},
 			tool: {
+				unselected: {
+					description: 'Select a tool to continue.'
+				},
 				error: {
 					title: 'An Error Occurred!',
 					description: 'The tool you are trying to access may not exist or be unavailable at the moment.'
@@ -59,8 +62,11 @@ export default {
 		},
 		creators: {
 			meta: {
-				title: 'Creators'
-			}
+				title: 'Creators',
+				description:
+					'A set of essential tools for creators, offering solutions for common tasks such as image conversion, video editing, audio manipulation, and more.'
+			},
+			title: 'Creators'
 		},
 		privacy: {
 			meta: {

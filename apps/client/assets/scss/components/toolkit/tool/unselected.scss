@@ -1,0 +1,12 @@
+.toolkit-tool-unselected-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+
+	& > p {
+		font-size: 1.1rem;
+		text-align: center;
+	}
+}

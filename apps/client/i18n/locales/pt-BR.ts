@@ -20,6 +20,9 @@ export default {
 				search: 'Pesquisar ferramenta...'
 			},
 			tool: {
+				unselected: {
+					description: 'Selecione alguma ferramenta para continuar.'
+				},
 				error: {
 					title: 'Ocorreu um Erro!',
 					description:
@@ -60,8 +63,11 @@ export default {
 		},
 		creators: {
 			meta: {
-				title: 'MediaKit'
-			}
+				title: 'Creators',
+				description:
+					'Conjunto de ferramentas essenciais para criadores, oferecendo soluções para tarefas comuns, como conversão de mídia, manipulação de imagens, edição de vídeos, e muito mais.'
+			},
+			title: 'Creators'
 		},
 		privacy: {
 			meta: {
