@@ -1,9 +1,3 @@
 export const useToolList = (): ITool[] => {
-	return [
-		{ id: 'bcrypt', icon: 'mdi:password', tags: [ToolTagEnum.DEV] },
-		{ id: 'bcrypt2', icon: 'mdi:password', tags: [ToolTagEnum.DEV] },
-		{ id: 'bcrypt3', icon: 'mdi:password', tags: [ToolTagEnum.DEV] },
-		{ id: 'bcrypt4', icon: 'mdi:password', tags: [ToolTagEnum.DEV] },
-		{ id: 'image-converter', icon: 'mdi:password', tags: [ToolTagEnum.CREATORS] }
-	];
+	return [{ id: 'base64', icon: 'lucide:scan-text', tags: [ToolTagEnum.DEV] }];
 };

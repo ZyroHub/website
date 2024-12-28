@@ -109,8 +109,8 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		}
 	},
 	tools: {
-		bcrypt: {
-			name: 'Bcrypt'
+		base64: {
+			name: 'Base64'
 		}
 	}
 };
