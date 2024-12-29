@@ -3,6 +3,8 @@ const { t } = useI18n();
 
 const inputContent = ref('');
 
+const isDragOver = ref(false);
+
 const filePicker = useFilePicker({
 	accept: 'image/*',
 	onFilesAdd: async files => {
@@ -15,6 +17,29 @@ const filePicker = useFilePicker({
 		}
 	}
 });
+
+const handleDragOver = (event: DragEvent) => {
+	event.preventDefault();
+	isDragOver.value = true;
+};
+
+const handleDragLeave = () => {
+	isDragOver.value = false;
+};
+
+const handleDrop = async (event: DragEvent) => {
+	event.preventDefault();
+	isDragOver.value = false;
+
+	const file = event.dataTransfer?.files[0];
+
+	if (!file) return;
+	if (!file.type.startsWith('image/')) return;
+
+	const dataURL = await getFileBase64(file);
+
+	if (dataURL) inputContent.value = dataURL;
+};
 
 const handleDownload = () => {
 	downloadFile('base64-image.png', inputContent.value);
@@ -56,7 +81,12 @@ const handleClear = () => {
 						</Button>
 					</div>
 				</div>
-				<div v-else class="tools-base64-no-image-content">
+				<div
+					v-else
+					@drop="handleDrop"
+					@dragover="handleDragOver"
+					@dragleave="handleDragLeave"
+					:class="['tools-base64-no-image-content', { 'tools-base64-no-image-content-drag': isDragOver }]">
 					<Icon name="material-symbols:hide-image-rounded" class="tools-base64-no-image-icon" />
 
 					<div class="tools-base64-no-image-content-actions">

@@ -35,12 +35,15 @@
 }
 
 .tools-base64-no-image-content {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	width: 100%;
 	height: 100%;
+	border: 0.2rem dashed transparent;
+	transition: 200ms;
 }
 
 .tools-base64-no-image-icon {
@@ -59,12 +62,20 @@
 }
 
 .light-mode {
+	.tools-base64-no-image-content-drag {
+		border-color: colors.$white_400;
+	}
+
 	.tools-base64-no-image-icon {
 		color: colors.$white_600;
 	}
 }
 
 .dark-mode {
+	.tools-base64-no-image-content-drag {
+		border-color: colors.$black_500;
+	}
+
 	.tools-base64-no-image-icon {
 		color: colors.$black_400;
 	}
