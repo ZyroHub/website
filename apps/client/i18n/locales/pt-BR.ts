@@ -8,6 +8,7 @@ export default {
 			tabs: {
 				developers: 'Developers',
 				creators: 'Creators',
+				misc: 'Outros',
 				about: 'Sobre'
 			}
 		},
@@ -70,7 +71,8 @@ export default {
 			description: 'Por favor selecione uma das opções abaixo para começar.',
 			toolkits: {
 				dev: 'Developers',
-				creators: 'Creators'
+				creators: 'Creators',
+				misc: 'Outros'
 			},
 			about: 'SOBRE'
 		},
@@ -97,6 +99,14 @@ export default {
 					'Conjunto de ferramentas essenciais para criadores, oferecendo soluções para tarefas comuns, como conversão de mídia, manipulação de imagens, edição de vídeos, e muito mais.'
 			},
 			title: 'Creators'
+		},
+		misc: {
+			meta: {
+				title: 'Outros',
+				description:
+					'Conjunto de ferramentas diversas, oferecendo soluções para tarefas comuns, como cálculos matemáticos, conversão de unidades, geração de QR Codes, e muito mais.'
+			},
+			title: 'Outros'
 		},
 		privacy: {
 			meta: {

@@ -15,6 +15,7 @@ const { t } = useI18n();
 				</NavbarTab>
 				<NavbarTab to="/developers">{{ t('components.navbar.tabs.developers') }}</NavbarTab>
 				<NavbarTab to="/creators">{{ t('components.navbar.tabs.creators') }}</NavbarTab>
+				<NavbarTab to="/misc">{{ t('components.navbar.tabs.misc') }}</NavbarTab>
 				<NavbarTab to="/about">{{ t('components.navbar.tabs.about') }}</NavbarTab>
 			</div>
 

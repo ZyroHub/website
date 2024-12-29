@@ -8,6 +8,7 @@ export default {
 			tabs: {
 				developers: 'Developers',
 				creators: 'Creators',
+				misc: 'Misc',
 				about: 'About'
 			}
 		},
@@ -69,7 +70,8 @@ export default {
 			description: 'Please select an option below to get started.',
 			toolkits: {
 				dev: 'Developers',
-				creators: 'Creators'
+				creators: 'Creators',
+				misc: 'Misc'
 			},
 			about: 'ABOUT'
 		},
@@ -88,6 +90,14 @@ export default {
 					'A set of essential tools for developers, offering solutions for common tasks such as text conversion, password generation, string encoding and decoding, and more.'
 			},
 			title: 'Developers'
+		},
+		misc: {
+			meta: {
+				title: 'Misc',
+				description:
+					'A set of diverse tools, offering solutions for common tasks such as mathematical calculations, unit conversion, QR code generation, and much more.'
+			},
+			title: 'Misc'
 		},
 		creators: {
 			meta: {
@@ -133,7 +143,7 @@ C) Not to cause damage to the physical (hardware) and logical (software) systems
 
 We hope this is clear, and as mentioned earlier, if there is something that you aren't sure whether you need or not, it's usually safer to leave cookies enabled in case it interacts with one of the features you use on our website.
 			`,
-			date: '~ This policy is effective us of December 11, 2024.'
+			date: '~ This policy is effective as of December 11, 2024.'
 		}
 	},
 	tools: {

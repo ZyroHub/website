@@ -12,7 +12,7 @@ const creatorsTools = computed(() => tools.tools.filter(tool => tool.tags.includ
 	<div class="container">
 		<ToolkitLayout :tools="creatorsTools" path="creators">
 			<template #title>
-				<Icon size="22" name="ant-design:code-filled" /> {{ t('pages.creators.title') }}
+				<Icon size="22" name="ant-design:camera-filled" /> {{ t('pages.creators.title') }}
 			</template>
 		</ToolkitLayout>
 	</div>

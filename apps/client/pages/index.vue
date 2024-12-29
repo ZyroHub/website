@@ -23,6 +23,9 @@ const { t } = useI18n();
 			<NuxtLinkLocale to="/developers">
 				<Icon size="22" name="ant-design:code-filled" /> {{ t('pages.home.toolkits.dev') }}
 			</NuxtLinkLocale>
+			<NuxtLinkLocale to="/misc">
+				<Icon size="22" name="jam:tools-f" /> {{ t('pages.home.toolkits.misc') }}
+			</NuxtLinkLocale>
 		</div>
 
 		<NuxtLinkLocale to="/about" class="home-about">

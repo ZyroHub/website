@@ -1,6 +1,7 @@
 export enum ToolTagEnum {
 	DEV,
-	CREATORS
+	CREATORS,
+	MISC
 }
 
 export type ToolTagType = keyof typeof ToolTagEnum;
