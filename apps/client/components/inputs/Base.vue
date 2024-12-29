@@ -12,6 +12,8 @@ const props = defineProps<{
 	<div>
 		<p v-if="props.label">{{ props.label }}</p>
 
-		<slot name="content"></slot>
+		<div class="inputs-base-content">
+			<slot name="content"></slot>
+		</div>
 	</div>
 </template>

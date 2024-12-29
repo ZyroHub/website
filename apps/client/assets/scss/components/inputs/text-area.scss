@@ -10,6 +10,17 @@
 	resize: vertical;
 }
 
+.input-textarea-copy {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	transform-origin: top right;
+}
+
+.input-textarea-copy-copied {
+	animation: Pulse 500ms;
+}
+
 .light-mode {
 	.input-textarea-input {
 		color: colors.$black_900;

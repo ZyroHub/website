@@ -16,6 +16,14 @@ export default {
 			copy: 'Copyright © 2024 ZyroHub - Todos os direitos reservados.',
 			privacy: 'Política de Privacidade'
 		},
+		inputs: {
+			text_area: {
+				copy: {
+					default: 'Copiar',
+					success: 'Copiado!'
+				}
+			}
+		},
 		toolkit: {
 			navigation: {
 				search: 'Pesquisar ferramenta...'

@@ -61,7 +61,8 @@ const handleClear = () => {
 				v-model="inputContent"
 				:label="t('components.tools.base64_image.input.label')"
 				:placeholder="t('components.tools.base64_image.input.placeholder')"
-				:rows="10" />
+				:rows="10"
+				showCopy />
 		</div>
 
 		<div>
