@@ -26,10 +26,32 @@ footer {
 			}
 		}
 	}
+
+	@media screen and (max-width: 810px) {
+		position: relative;
+		flex-direction: column;
+		height: max-content;
+		gap: 0.5rem;
+		padding: 1rem 0;
+
+		& > div {
+			width: 100%;
+
+			& > p {
+				text-align: center;
+			}
+		}
+	}
 }
 
 .footer-end {
 	& > p {
 		text-align: right;
+	}
+
+	@media screen and (max-width: 810px) {
+		& > p {
+			text-align: center;
+		}
 	}
 }

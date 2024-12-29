@@ -2,17 +2,32 @@
 	display: flex;
 	width: 100%;
 	padding-top: 8rem;
+
+	@media screen and (max-width: 1050px) {
+		flex-direction: column-reverse;
+		gap: 1rem;
+		padding-top: 4rem;
+	}
 }
 
 .about-container-start {
 	overflow: hidden;
 	width: calc(100% - 40rem);
+
+	@media screen and (max-width: 1050px) {
+		width: 100%;
+		margin-top: 1rem;
+	}
 }
 
 .about-container-end {
 	display: flex;
 	justify-content: center;
 	width: 40rem;
+
+	@media screen and (max-width: 1050px) {
+		width: 100%;
+	}
 }
 
 .about-logo {

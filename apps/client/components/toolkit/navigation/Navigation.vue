@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { ITool } from '~/shared/types';
+
 const props = defineProps<{
 	tools?: ITool[];
 	path?: string;

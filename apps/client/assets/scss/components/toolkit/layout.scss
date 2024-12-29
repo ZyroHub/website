@@ -8,11 +8,20 @@
 	& > div {
 		min-height: 1rem;
 	}
+
+	@media screen and (max-width: 1050px) {
+		flex-direction: column;
+	}
 }
 
 .toolkit-container-start {
 	min-width: 20rem;
 	max-width: 20rem;
+
+	@media screen and (max-width: 1050px) {
+		min-width: 100%;
+		max-width: 100%;
+	}
 }
 
 .toolkit-container-end {

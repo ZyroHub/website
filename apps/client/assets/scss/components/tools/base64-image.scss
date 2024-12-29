@@ -7,6 +7,15 @@
 	& > div {
 		width: 50%;
 	}
+
+	@media screen and (max-width: 650px) {
+		flex-direction: column;
+		gap: 1rem;
+
+		& > div {
+			width: 100%;
+		}
+	}
 }
 
 .tools-base64-image-preview-content {
