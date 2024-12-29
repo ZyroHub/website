@@ -29,6 +29,18 @@ export default {
 						'A ferramenta que você está tentando acessar pode não existir ou estar indisponível no momento.'
 				}
 			}
+		},
+		tools: {
+			base64_text: {
+				input: {
+					label: 'Texto',
+					placeholder: 'Digite seu texto aqui...'
+				},
+				output: {
+					label: 'Texto Base64',
+					placeholder: 'Texto codificado em Base64...'
+				}
+			}
 		}
 	},
 	pages: {

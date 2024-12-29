@@ -1,4 +1,17 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const { t } = useI18n();
+
+const inputContent = ref('');
+const outputContent = ref('');
+
+watch(inputContent, newValue => {
+	outputContent.value = btoa(newValue);
+});
+
+watch(outputContent, newValue => {
+	inputContent.value = atob(newValue);
+});
+</script>
 
 <style lang="scss" scoped>
 @use '~/assets/scss/components/tools/base64.scss';
@@ -7,11 +20,19 @@
 <template>
 	<div class="tools-base64-container">
 		<div>
-			<InputsTextArea label="Input" placeholder="Plain Text" :rows="8" />
+			<InputsTextArea
+				v-model="inputContent"
+				:label="t('components.tools.base64_text.input.label')"
+				:placeholder="t('components.tools.base64_text.input.placeholder')"
+				:rows="8" />
 		</div>
 
 		<div>
-			<InputsTextArea label="Input" placeholder="Base64 Encoded" :rows="8" />
+			<InputsTextArea
+				v-model="outputContent"
+				:label="t('components.tools.base64_text.output.label')"
+				:placeholder="t('components.tools.base64_text.output.placeholder')"
+				:rows="8" />
 		</div>
 	</div>
 </template>

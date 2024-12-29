@@ -28,6 +28,18 @@ export default {
 					description: 'The tool you are trying to access may not exist or be unavailable at the moment.'
 				}
 			}
+		},
+		tools: {
+			base64_text: {
+				input: {
+					label: 'Text',
+					placeholder: 'Type your text here...'
+				},
+				output: {
+					label: 'Base64 Text',
+					placeholder: 'Text encoded in Base64...'
+				}
+			}
 		}
 	},
 	pages: {
