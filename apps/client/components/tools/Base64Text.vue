@@ -14,11 +14,11 @@ watch(outputContent, newValue => {
 </script>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/components/tools/base64.scss';
+@use '~/assets/scss/components/tools/base64-text.scss';
 </style>
 
 <template>
-	<div class="tools-base64-container">
+	<div class="tools-base64-text-container">
 		<div>
 			<InputsTextArea
 				v-model="inputContent"

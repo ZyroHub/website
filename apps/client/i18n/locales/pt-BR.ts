@@ -40,6 +40,23 @@ export default {
 					label: 'Texto Base64',
 					placeholder: 'Texto codificado em Base64...'
 				}
+			},
+			base64_image: {
+				input: {
+					label: 'Texto Base64',
+					placeholder: 'Imagem codificada em Base64...'
+				},
+				preview: {
+					buttons: {
+						download: 'Download',
+						clear: 'Cancelar'
+					}
+				},
+				no_image: {
+					description: 'Arraste e solte uma imagem aqui.',
+					or: 'ou',
+					upload: 'Selecione um Arquivo'
+				}
 			}
 		}
 	},

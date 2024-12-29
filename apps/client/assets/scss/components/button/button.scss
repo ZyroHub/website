@@ -1,0 +1,42 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.button {
+	display: flex;
+	align-items: center;
+	gap: 0.2rem;
+	padding: 0.5rem 1rem;
+	border-radius: 0.4rem;
+	font-weight: 500;
+	transition: all 0.3s ease;
+}
+
+.light-mode {
+	.button-primary {
+		color: colors.$white_50;
+		background-color: colors.$primary_500;
+
+		&:hover {
+			background-color: colors.$primary_600;
+		}
+	}
+}
+
+.dark-mode {
+	.button-primary {
+		color: colors.$white_50;
+		background-color: colors.$primary_500;
+
+		&:hover {
+			background-color: colors.$primary_600;
+		}
+	}
+
+	.button-gray {
+		color: colors.$white_50;
+		background-color: colors.$white_700;
+
+		&:hover {
+			background-color: colors.$white_600;
+		}
+	}
+}

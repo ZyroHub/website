@@ -39,6 +39,23 @@ export default {
 					label: 'Base64 Text',
 					placeholder: 'Text encoded in Base64...'
 				}
+			},
+			base64_image: {
+				input: {
+					label: 'Base64 Text',
+					placeholder: 'Image encoded in Base64...'
+				},
+				preview: {
+					buttons: {
+						download: 'Download',
+						clear: 'Clear'
+					}
+				},
+				no_image: {
+					description: 'Drag and drop an image here.',
+					or: 'or',
+					upload: 'Select a File'
+				}
 			}
 		}
 	},
