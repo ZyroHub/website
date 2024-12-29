@@ -62,9 +62,23 @@ export default {
 					}
 				},
 				no_image: {
-					description: 'Arraste e solte uma imagem aqui.',
+					description: 'Arraste e solte uma imagem.',
 					or: 'ou',
 					upload: 'Selecione um Arquivo'
+				}
+			},
+			bcrypt_generator: {
+				input: {
+					label: 'Senha',
+					placeholder: 'Digite sua senha...'
+				},
+				rounds: {
+					label: 'Rounds'
+				},
+				generate: 'Gerar Hash',
+				output: {
+					label: 'Hash Bcrypt',
+					placeholder: 'Hash gerado com Bcrypt...'
 				}
 			}
 		}
@@ -163,6 +177,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		base64_image: {
 			name: 'Imagem Base64',
 			description: 'Codifique e decodifique imagens para Base64.'
+		},
+		bcrypt_generator: {
+			name: 'Gerador Bcrypt',
+			description: 'Gere hash de senhas utilizando o algoritmo de hash bcrypt.'
 		}
 	}
 };

@@ -21,6 +21,7 @@
 		"@nuxtjs/robots": "^5.0.0",
 		"@nuxtjs/sitemap": "^7.0.0",
 		"@pinia/nuxt": "^0.9.0",
+		"maska": "^3.0.4",
 		"nuxt": "^3.14.1592",
 		"pinia": "^2.3.0",
 		"vue": "latest",
@@ -29,6 +30,8 @@
 	"devDependencies": {
 		"@iconify-json/circle-flags": "^1.2.1",
 		"@iconify-json/material-symbols-light": "^1.2.8",
-		"sass": "^1.82.0"
+		"@unocss/nuxt": "^0.65.3",
+		"sass": "^1.82.0",
+		"unocss": "^0.65.3"
 	}
 }

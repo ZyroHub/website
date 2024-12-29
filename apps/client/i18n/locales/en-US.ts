@@ -65,6 +65,20 @@ export default {
 					or: 'or',
 					upload: 'Select a File'
 				}
+			},
+			bcrypt_generator: {
+				input: {
+					label: 'Password',
+					placeholder: 'Type your password here...'
+				},
+				rounds: {
+					label: 'Rounds'
+				},
+				generate: 'Generate Hash',
+				output: {
+					label: 'Hash Bcrypt',
+					placeholder: 'Bcrypt generated hash...'
+				}
 			}
 		}
 	},
@@ -162,6 +176,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		base64_image: {
 			name: 'Base64 Image',
 			description: 'Encode and decode images to Base64.'
+		},
+		bcrypt_generator: {
+			name: 'Bcrypt Generator',
+			description: 'Generate password hashes using the bcrypt hashing algorithm.'
 		}
 	}
 };

@@ -11,6 +11,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/robots',
 		'@nuxtjs/google-fonts',
 		'@nuxt/image',
+		'@unocss/nuxt',
 		'@nuxtjs/color-mode',
 		'@nuxt/icon',
 		'@pinia/nuxt'
