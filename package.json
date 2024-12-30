@@ -7,12 +7,12 @@
 		"build": "nx run-many -t build",
 		"build:client": "nx run @zyrohub/client:build",
 		"build:server": "nx run @zyrohub/server:build",
-		"dev": "nx run-many -t dev",
-		"dev:client": "nx run @zyrohub/client:dev",
-		"dev:server": "nx run @zyrohub/server:dev",
-		"start": "nx run-many -t start",
-		"start:client": "nx run @zyrohub/client:start",
-		"start:server": "nx run @zyrohub/server:start",
+		"dev": "dotenvx run -f .env.development -- nx run-many -t dev",
+		"dev:client": "dotenvx run -f .env.development -- nx run @zyrohub/client:dev",
+		"dev:server": "dotenvx run -f .env.development -- nx run @zyrohub/server:dev",
+		"start": "dotenvx run -f .env -- nx run-many -t start",
+		"start:client": "dotenvx run -f .env -- nx run @zyrohub/client:start",
+		"start:server": "dotenvx run -f .env -- nx run @zyrohub/server:start",
 		"nx:reset": "nx reset"
 	},
 	"workspaces": [
@@ -22,6 +22,7 @@
 	"keywords": [],
 	"license": "ISC",
 	"dependencies": {
+		"@dotenvx/dotenvx": "^1.32.0",
 		"ansicolor": "^2.0.3",
 		"nx": "20.1.4"
 	},
