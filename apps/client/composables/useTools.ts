@@ -22,9 +22,6 @@ export const useTools = () => {
 		if (toolsStoreRef.favorites.value.includes(id))
 			toolsStoreRef.favorites.value.splice(toolsStoreRef.favorites.value.indexOf(id), 1);
 		else toolsStoreRef.favorites.value.push(id);
-
-		if (import.meta.client)
-			localStorage.setItem(FavoriteStorageName, JSON.stringify(toolsStoreRef.favorites.value));
 	};
 
 	const isFavorite = (id: string) => {
