@@ -11,7 +11,11 @@
 	"license": "ISC",
 	"dependencies": {
 		"@zyrohub/toolkit": "workspace:*",
+		"amqplib": "^0.10.5",
 		"tsc-alias": "^1.8.10",
 		"tsx": "^4.19.2"
+	},
+	"devDependencies": {
+		"@types/amqplib": "^0.10.6"
 	}
 }
