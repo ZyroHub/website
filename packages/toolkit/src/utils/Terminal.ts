@@ -1,4 +1,6 @@
+import cluster from 'cluster';
 import ansicolor, { type AnsicolorMethods } from 'ansicolor';
+import process from 'process';
 
 export class Terminal {
 	static log(flag: string, flag_color: AnsicolorMethods, content: any[] | any) {
@@ -15,7 +17,11 @@ export class Terminal {
 			})
 			.replace(',', '');
 
-		console.log(ansicolor.darkGray(`${formattedDate} |`), flag_color(`[${flag.toUpperCase()}]`), ...content);
+		console.log(
+			ansicolor.darkGray(`${formattedDate} | ${!cluster.isPrimary ? `${process.pid} |` : ''}`),
+			flag_color(`[${flag.toUpperCase()}]`),
+			...content
+		);
 	}
 
 	static success(flag: string, content: any[] | any) {
