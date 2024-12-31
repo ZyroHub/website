@@ -10,6 +10,8 @@ import { bootstrap } from 'fastify-decorators';
 import { BaseModule } from '../Base';
 import { ServerError } from './models';
 
+import { fastifySocket } from './plugins';
+
 import * as config from '@/config';
 
 export class ServerModuleBase extends BaseModule {
@@ -52,12 +54,13 @@ export class ServerModuleBase extends BaseModule {
 		});
 
 		this.server
-			.register(fastifyCors)
+			.register(fastifyCors, config.server.cors)
 			.register(fastifyHelmet, {})
 			.register(bootstrap, {
 				directory: new URL('../../router/routes', pathToFileURL(__filename).href),
 				mask: /\.route\./
-			});
+			})
+			.register(fastifySocket);
 
 		this.initHandlers();
 
