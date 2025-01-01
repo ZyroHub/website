@@ -17,6 +17,7 @@
 		"fastify": "^5.2.0",
 		"fastify-decorators": "^3.16.1",
 		"fastify-plugin": "^5.0.1",
+		"ioredis": "^5.4.2",
 		"socket.io": "^4.8.1",
 		"tsc-alias": "^1.8.10",
 		"tsx": "^4.19.2"
