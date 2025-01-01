@@ -12,7 +12,9 @@ export class ServerModuleSocketPlugin {
 	async initHandlers() {
 		if (!this.instance) return;
 
-		this.instance.on('connection', socket => {});
+		this.instance.on('connection', socket => {
+			
+		});
 
 		Terminal.success('SOCKET', 'Successfully initialized handlers!');
 	}

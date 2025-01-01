@@ -8,7 +8,9 @@ import fastifyCors from '@fastify/cors';
 import { bootstrap } from 'fastify-decorators';
 
 import { BaseModule } from '../Base';
+
 import { RedisModule } from '../Redis';
+import { TasksModule } from '../tasks/Tasks';
 
 import { ServerError } from './models';
 
@@ -18,7 +20,7 @@ import * as config from '@/config';
 
 export class ServerModuleBase extends BaseModule {
 	server?: FastifyInstance;
-	dependencies = [RedisModule];
+	dependencies = [RedisModule, TasksModule];
 
 	initHandlers() {
 		if (!this.server) return;
