@@ -25,7 +25,7 @@ export class RedisModuleBase extends BaseModule {
 			Terminal.error('REDIS', ['Error on connect', err]);
 		});
 
-		this.instance.connect();
+		await this.instance.connect();
 	}
 }
 
