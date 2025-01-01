@@ -8,7 +8,11 @@ export class ServerModuleSocketPlugin {
 	public instance?: SocketIO;
 
 	async initHandlers() {
-		Terminal.success('SOCKET', 'Successfully initialized!');
+		if (!this.instance) return;
+
+		this.instance.on('connection', socket => {});
+
+		Terminal.success('SOCKET', 'Successfully initialized handlers!');
 	}
 
 	init(app: FastifyInstance) {
