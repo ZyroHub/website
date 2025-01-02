@@ -12,16 +12,14 @@ export class ServerModuleSocketPlugin {
 	async initHandlers() {
 		if (!this.instance) return;
 
-		this.instance.on('connection', socket => {
-			
-		});
+		this.instance.on('connection', socket => {});
 
-		Terminal.success('SOCKET', 'Successfully initialized handlers!');
+		Terminal.info('SOCKET', 'Successfully initialized handlers!');
 	}
 
 	init(app: FastifyInstance) {
 		this.instance = new SocketIO(app.server, {
-			adapter: createAdapter(RedisModule.instance ),
+			adapter: createAdapter(RedisModule.instance),
 			cors: config.server.cors as any
 		});
 

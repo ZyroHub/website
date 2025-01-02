@@ -1,5 +1,5 @@
 {
-	"name": "@zyrohub/server",
+	"name": "@zyrohub/workers",
 	"private": true,
 	"main": "./src/core/index.ts",
 	"scripts": {
@@ -10,15 +10,9 @@
 	"keywords": [],
 	"license": "ISC",
 	"dependencies": {
-		"@fastify/cors": "^10.0.1",
-		"@fastify/helmet": "^13.0.0",
-		"@socket.io/redis-streams-adapter": "0.2.2",
 		"@zyrohub/toolkit": "workspace:*",
-		"fastify": "^5.2.0",
-		"fastify-decorators": "^3.16.1",
-		"fastify-plugin": "^5.0.1",
-		"socket.io": "^4.8.1",
 		"tsc-alias": "^1.8.10",
 		"tsx": "^4.19.2"
-	}
+	},
+	"devDependencies": {}
 }

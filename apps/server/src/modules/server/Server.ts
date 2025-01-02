@@ -10,7 +10,7 @@ import { bootstrap } from 'fastify-decorators';
 import { BaseModule } from '../Base';
 
 import { RedisModule } from '../Redis';
-import { TasksModule } from '../tasks/Tasks';
+import { TasksModule } from '../Tasks';
 
 import { ServerError } from './models';
 
@@ -19,8 +19,9 @@ import { fastifySocket } from './plugins';
 import * as config from '@/config';
 
 export class ServerModuleBase extends BaseModule {
-	server?: FastifyInstance;
 	dependencies = [RedisModule, TasksModule];
+
+	server?: FastifyInstance;
 
 	initHandlers() {
 		if (!this.server) return;
@@ -73,7 +74,7 @@ export class ServerModuleBase extends BaseModule {
 			port: config.server.port
 		});
 
-		Terminal.success('SERVER', `Successfully initialized on port: ${ansicolor.cyan(config.server.port)}`);
+		Terminal.info('SERVER', `Successfully initialized on port: ${ansicolor.cyan(config.server.port)}`);
 	}
 }
 

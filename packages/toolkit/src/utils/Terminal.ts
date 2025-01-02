@@ -17,8 +17,14 @@ export class Terminal {
 			})
 			.replace(',', '');
 
+		const packageName = process.env.npm_package_name?.replace('@zyrohub/', '').toUpperCase();
+
 		console.log(
-			ansicolor.darkGray(`${formattedDate} | ${!cluster.isPrimary ? `${process.pid} |` : ''}`),
+			ansicolor.darkGray(
+				`${formattedDate} | ${packageName ? `${packageName} |` : ''}${
+					!cluster.isPrimary ? ` ${process.pid} |` : ''
+				}`
+			),
 			flag_color(`[${flag.toUpperCase()}]`),
 			...content
 		);
