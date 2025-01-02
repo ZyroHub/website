@@ -11,8 +11,11 @@
 	"license": "ISC",
 	"dependencies": {
 		"@zyrohub/toolkit": "workspace:*",
+		"bcrypt": "^5.1.1",
 		"tsc-alias": "^1.8.10",
 		"tsx": "^4.19.2"
 	},
-	"devDependencies": {}
+	"devDependencies": {
+		"@types/bcrypt": "^5.0.2"
+	}
 }
