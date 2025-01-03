@@ -43,7 +43,7 @@ export class TasksModuleBase extends BaseModule {
 			return { success: false, error: 'task-position-failed' };
 		}
 
-		return { success: true, task_id: taskId, position: 1 };
+		return { success: true, task_id: taskId, position: taskPositionData.position };
 	}
 
 	async getQueuePosition(taskId: string) {
