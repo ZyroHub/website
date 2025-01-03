@@ -29,7 +29,8 @@
 		"amqplib": "^0.10.5",
 		"ansicolor": "^2.0.3",
 		"ioredis": "^5.4.2",
-		"nx": "20.1.4"
+		"nx": "20.1.4",
+		"zod": "^3.24.1"
 	},
 	"devDependencies": {
 		"@types/amqplib": "^0.10.6",

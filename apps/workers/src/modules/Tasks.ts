@@ -1,5 +1,5 @@
 import amqp from 'amqplib';
-import { Terminal } from '@zyrohub/toolkit';
+import { Terminal, WorkerId } from '@zyrohub/toolkit';
 
 import { BaseModule } from './Base';
 import { RedisModule } from './Redis';
@@ -25,10 +25,15 @@ export class TasksModuleBase extends BaseModule {
 
 			RedisModule.instance?.lrem(this.queueName, 0, content.id);
 
-			const worker = workers[content.worker_id];
-			if (!worker) throw new Error('invalid-worker');
+			const workerId = content.worker_id as WorkerId;
+			const workerData = workers[workerId];
+			if (!workerData) throw new Error('invalid-worker');
 
-			const workerResponse = (await worker.execute(content.worker_data)) || null;
+			Terminal.info('TASKS', `Processing task ${content.id}...`);
+
+			const workerResponse = (await workerData.execute(content.worker_data)) || null;
+
+			Terminal.info('TASKS', `Task ${content.id} processed!`);
 
 			if (message?.properties.replyTo) {
 				this.channel?.sendToQueue(

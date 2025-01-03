@@ -1,6 +1,6 @@
 import amqp from 'amqplib';
 import { randomUUID } from 'crypto';
-import { Terminal } from '@zyrohub/toolkit';
+import { TaskData, Terminal, WorkerArgs, WorkerId } from '@zyrohub/toolkit';
 
 import { BaseModule } from './Base';
 import { RedisModule } from './Redis';
@@ -14,12 +14,17 @@ export class TasksModuleBase extends BaseModule {
 	channel?: amqp.Channel;
 	channelQueueName = process.env.RABBIT_MQ_TASKS_QUEUE || 'tasks';
 
-	async addToQueue(data: { worker_id?: string; worker_data?: any; reply_to?: string; correlation_id?: string }) {
+	async addToQueue<TWorkerId extends WorkerId>(data: {
+		worker_id: TWorkerId;
+		worker_data: WorkerArgs<TWorkerId>;
+		reply_to?: string;
+		correlation_id?: string;
+	}) {
 		if (!this.channel) return { success: false, error: 'channel-not-initialized' };
 
 		const taskId = randomUUID();
 
-		const taskData = {
+		const taskData: TaskData<TWorkerId> = {
 			id: taskId,
 			worker_id: data.worker_id,
 			worker_data: data.worker_data
@@ -31,6 +36,29 @@ export class TasksModuleBase extends BaseModule {
 			replyTo: data.reply_to,
 			correlationId: data.correlation_id
 		});
+
+		const taskPositionData = await this.getQueuePosition(taskId);
+		if (!taskPositionData.success) {
+			this.cancelTask(taskId);
+			return { success: false, error: 'task-position-failed' };
+		}
+
+		return { success: true, task_id: taskId, position: 1 };
+	}
+
+	async getQueuePosition(taskId: string) {
+		const taskPosition = await RedisModule.instance?.lpos(this.queueName, taskId);
+		if (!taskPosition && taskPosition !== 0) return { success: false, error: 'task-not-found' };
+
+		const taskQueuePosition = taskPosition + 1;
+
+		return { success: true, position: taskQueuePosition };
+	}
+
+	async cancelTask(taskId: string) {
+		await RedisModule.instance?.lrem(this.queueName, 0, taskId);
+
+		return { success: true };
 	}
 
 	async initHandlers() {
@@ -44,6 +72,8 @@ export class TasksModuleBase extends BaseModule {
 			Terminal.error('TASKS', `Failed to initialize handlers! Failed to create channel!`);
 			return;
 		}
+
+		this.channel.assertQueue(this.channelQueueName, { durable: true });
 	}
 
 	async init() {
