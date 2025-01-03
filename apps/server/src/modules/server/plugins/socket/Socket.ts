@@ -165,7 +165,7 @@ export class ServerModuleSocketPlugin {
 			tasksCorrelation.clear();
 
 			for (const task of tasks) {
-				await TasksModule.cancelTask(task.id);
+				await TasksModule.cancelTask(task);
 			}
 
 			for (const [correlationId, receiverChannel] of receiversChannel) {
