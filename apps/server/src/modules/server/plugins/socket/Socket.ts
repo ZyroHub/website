@@ -92,6 +92,8 @@ export class ServerModuleSocketPlugin {
 						task_id: content.task_id,
 						data: content.data
 					});
+
+					this.instance?.emit('queue:updated', {});
 				} catch (e) {
 					socket.emit('task:error', {
 						request_id: data.request_id,

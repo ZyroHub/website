@@ -5,6 +5,7 @@ import { TaskData, Terminal, WorkerArgs, WorkerId } from '@zyrohub/toolkit';
 import { BaseModule } from './Base';
 import { RedisModule } from './Redis';
 import { MessengerModule } from './Messenger';
+import { ServerModule } from './modules';
 
 export class TasksModuleBase extends BaseModule {
 	dependencies = [RedisModule, MessengerModule];
@@ -57,6 +58,8 @@ export class TasksModuleBase extends BaseModule {
 
 	async cancelTask(taskId: string) {
 		await RedisModule.instance?.lrem(this.queueName, 0, taskId);
+
+		ServerModule.server?.io?.emit('queue:updated', {});
 
 		return { success: true };
 	}
