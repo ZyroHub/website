@@ -16,6 +16,22 @@ export class TasksModuleBase extends BaseModule {
 	channel?: amqp.Channel;
 	channelQueueName = process.env.RABBIT_MQ_TASKS_QUEUE || 'tasks';
 
+	async updateTaskProgress(data: { task_id: string; correlation_id: string; reply_to: string; progress: number }) {
+		this.channel?.sendToQueue(
+			data.reply_to,
+			Buffer.from(
+				JSON.stringify({
+					action: 'progress',
+					task_id: data.task_id,
+					progress: data.progress
+				})
+			),
+			{
+				correlationId: data.correlation_id
+			}
+		);
+	}
+
 	async onQueueMessage(message: amqp.ConsumeMessage | null) {
 		let taskId = '';
 
@@ -50,7 +66,16 @@ export class TasksModuleBase extends BaseModule {
 
 			Terminal.info('TASKS', `Processing task ${ansicolor.cyan(content.id)}...`);
 
-			const workerResponse = (await workerData.execute(content.worker_data)) || null;
+			const workerResponse =
+				(await workerData.execute(content.worker_data, progress => {
+					if (message?.properties.replyTo)
+						this.updateTaskProgress({
+							task_id: content.id,
+							correlation_id: message?.properties.correlationId,
+							reply_to: message?.properties.replyTo,
+							progress
+						});
+				})) || null;
 
 			Terminal.info('TASKS', `Task ${ansicolor.cyan(content.id)} processed!`);
 
