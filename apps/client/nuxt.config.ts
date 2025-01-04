@@ -68,6 +68,7 @@ export default defineNuxtConfig({
 		prefetch: true,
 		preconnect: true,
 		preload: true,
+		download: true,
 		display: 'swap',
 		families: {
 			Poppins: [400, 500, 600, 700]
