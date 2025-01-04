@@ -6,6 +6,7 @@ import { RedisModule } from './Redis';
 import { MessengerModule } from './Messenger';
 
 import { workers } from '@/workers/workers';
+import ansicolor from 'ansicolor';
 
 export class TasksModuleBase extends BaseModule {
 	dependencies = [RedisModule, MessengerModule];
@@ -16,9 +17,12 @@ export class TasksModuleBase extends BaseModule {
 	channelQueueName = process.env.RABBIT_MQ_TASKS_QUEUE || 'tasks';
 
 	async onQueueMessage(message: amqp.ConsumeMessage | null) {
+		let taskId = '';
+
 		try {
 			const content = JSON.parse(message?.content.toString() || '{}');
 			if (!content.id) throw new Error('invalid-task-data');
+			taskId = content.id;
 
 			const queuePosition = await RedisModule.instance?.lpos(this.queueName, content.id);
 			if (!queuePosition && queuePosition !== 0) throw new Error('task-not-in-queue');
@@ -29,17 +33,33 @@ export class TasksModuleBase extends BaseModule {
 			const workerData = workers[workerId];
 			if (!workerData) throw new Error('invalid-worker');
 
-			Terminal.info('TASKS', `Processing task ${content.id}...`);
+			if (message?.properties.replyTo) {
+				this.channel?.sendToQueue(
+					message.properties.replyTo,
+					Buffer.from(
+						JSON.stringify({
+							action: 'start',
+							task_id: content.id
+						})
+					),
+					{
+						correlationId: message.properties.correlationId
+					}
+				);
+			}
+
+			Terminal.info('TASKS', `Processing task ${ansicolor.cyan(content.id)}...`);
 
 			const workerResponse = (await workerData.execute(content.worker_data)) || null;
 
-			Terminal.info('TASKS', `Task ${content.id} processed!`);
+			Terminal.info('TASKS', `Task ${ansicolor.cyan(content.id)} processed!`);
 
 			if (message?.properties.replyTo) {
 				this.channel?.sendToQueue(
 					message.properties.replyTo,
 					Buffer.from(
 						JSON.stringify({
+							action: 'finished',
 							task_id: content.id,
 							data: workerResponse
 						})
@@ -53,6 +73,21 @@ export class TasksModuleBase extends BaseModule {
 			this.channel?.ack(message as amqp.Message);
 		} catch (e: any) {
 			this.channel?.nack(message as amqp.Message, false, false);
+
+			if (message?.properties.replyTo && taskId) {
+				this.channel?.sendToQueue(
+					message.properties.replyTo,
+					Buffer.from(
+						JSON.stringify({
+							action: 'error',
+							task_id: taskId
+						})
+					),
+					{
+						correlationId: message.properties.correlationId
+					}
+				);
+			}
 		}
 	}
 

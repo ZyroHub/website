@@ -87,23 +87,58 @@ export class ServerModuleSocketPlugin {
 
 					if (message?.properties.correlationId !== correlationId) throw new Error('invalid-correlation-id');
 
-					socket.emit('task:finished', {
-						request_id: data.request_id,
-						task_id: content.task_id,
-						data: content.data
-					});
+					const contentAction = content.action as string;
 
-					this.instance?.emit('queue:updated', {});
+					switch (contentAction) {
+						case 'start':
+							socket.emit('task:started', {
+								request_id: data.request_id,
+								task_id: taskID
+							});
+
+							break;
+						case 'progress':
+							socket.emit('task:progress', {
+								request_id: data.request_id,
+								task_id: taskID,
+								progress: content.progress
+							});
+
+							break;
+						case 'finished':
+							socket.emit('task:finished', {
+								request_id: data.request_id,
+								task_id: taskID,
+								data: content.data
+							});
+
+							this.instance?.emit('queue:updated', {});
+
+							if (message) receiverChannel.ack(message);
+							await receiverChannel.close();
+
+							receiversChannel.delete(correlationId);
+
+							socket.data.tasks.splice(socket.data.tasks.indexOf(taskID), 1);
+
+							break;
+						case 'error':
+							throw new Error(content.error || 'unknown-error');
+
+							break;
+					}
 				} catch (e) {
 					socket.emit('task:error', {
 						request_id: data.request_id,
 						task_id: taskID
 					});
-				} finally {
+
 					if (message) receiverChannel.ack(message);
 					await receiverChannel.close();
 
 					receiversChannel.delete(correlationId);
+
+					socket.data.tasks.splice(socket.data.tasks.indexOf(taskID), 1);
 				}
 			});
 
@@ -118,7 +153,7 @@ export class ServerModuleSocketPlugin {
 				tasksCorrelation.set(taskData.task_id, correlationId);
 				socket.data.tasks.push(taskData.task_id);
 
-				socket.emit('task:started', {
+				socket.emit('task:queued', {
 					request_id: data.request_id,
 					task_id: taskData.task_id,
 					worker_id: workerId,
@@ -155,6 +190,8 @@ export class ServerModuleSocketPlugin {
 					request_id: data.request_id,
 					task_id: data.task_id
 				});
+
+				socket.data.tasks.splice(socket.data.tasks.indexOf(data.task_id), 1);
 			}
 		});
 

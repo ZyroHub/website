@@ -1,4 +1,5 @@
 import amqp from 'amqplib';
+import ansicolor from 'ansicolor';
 import { randomUUID } from 'crypto';
 import { TaskData, Terminal, WorkerArgs, WorkerId } from '@zyrohub/toolkit';
 
@@ -44,6 +45,11 @@ export class TasksModuleBase extends BaseModule {
 			return { success: false, error: 'task-position-failed' };
 		}
 
+		Terminal.info(
+			'TASKS',
+			`Task ${ansicolor.cyan(taskId)} added to queue at position ${ansicolor.cyan(taskPositionData.position)}`
+		);
+
 		return { success: true, task_id: taskId, position: taskPositionData.position };
 	}
 
@@ -60,6 +66,8 @@ export class TasksModuleBase extends BaseModule {
 		await RedisModule.instance?.lrem(this.queueName, 0, taskId);
 
 		ServerModule.server?.io?.emit('queue:updated', {});
+
+		Terminal.info('TASKS', `Task ${ansicolor.cyan(taskId)} canceled!`);
 
 		return { success: true };
 	}
