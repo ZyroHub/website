@@ -33,6 +33,10 @@ export default defineNuxtConfig({
 		}
 	},
 
+	devServer: {
+		port: process.env.PORT ? Number(process.env.PORT) : 3e3
+	},
+
 	nitro: {
 		output: {
 			publicDir: path.join(__dirname, 'dist'),
