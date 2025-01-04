@@ -3,14 +3,12 @@ import { randomUUID } from 'node:crypto';
 import { FastifyInstance } from 'fastify';
 import { Server as SocketIO, Socket } from 'socket.io';
 import { createAdapter } from '@socket.io/redis-streams-adapter';
-import { Terminal, WorkerArgs, WorkerId, workersSchemas } from '@zyrohub/toolkit';
+import { config, Terminal, WorkerArgs, WorkerId, workersSchemas } from '@zyrohub/toolkit';
 import { Channel } from 'amqplib';
 
 import { RedisModule } from '@/modules/Redis';
 import { TasksModule } from '@/modules/Tasks';
 import { MessengerModule } from '@/modules/Messenger';
-
-import * as config from '@/config';
 
 export class ServerModuleSocketPlugin {
 	public instance?: SocketIO;
@@ -56,6 +54,27 @@ export class ServerModuleSocketPlugin {
 					code: 'invalid-worker-data',
 					errors: workerParseResponse.error.errors
 				});
+				return;
+			}
+
+			const tasksQueueSize = await TasksModule.getQueueSize();
+			if (!tasksQueueSize.success) {
+				socket.emit('task:start:error', {
+					request_id: data.request_id,
+					code: 'failed-to-get-queue-size'
+				});
+
+				return;
+			}
+
+			if (tasksQueueSize.size! >= config.tasks.maxQueueSize) {
+				socket.emit('task:start:error', {
+					request_id: data.request_id,
+					code: 'queue-is-full',
+					queue_size: tasksQueueSize.size,
+					max_queue_size: config.tasks.maxQueueSize
+				});
+
 				return;
 			}
 

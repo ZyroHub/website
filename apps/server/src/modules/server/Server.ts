@@ -1,6 +1,6 @@
 import ansicolor from 'ansicolor';
 import { pathToFileURL } from 'node:url';
-import { Terminal } from '@zyrohub/toolkit';
+import { config, Terminal } from '@zyrohub/toolkit';
 
 import fastify, { FastifyInstance } from 'fastify';
 import fastifyHelmet from '@fastify/helmet';
@@ -15,8 +15,6 @@ import { TasksModule } from '../Tasks';
 import { ServerError } from './models';
 
 import { fastifySocket } from './plugins';
-
-import * as config from '@/config';
 
 export class ServerModuleBase extends BaseModule {
 	dependencies = [RedisModule, TasksModule];

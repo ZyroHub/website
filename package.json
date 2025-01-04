@@ -26,6 +26,7 @@
 	"license": "ISC",
 	"dependencies": {
 		"@dotenvx/dotenvx": "^1.32.0",
+		"@fastify/cors": "^10.0.1",
 		"amqplib": "^0.10.5",
 		"ansicolor": "^2.0.3",
 		"ioredis": "^5.4.2",

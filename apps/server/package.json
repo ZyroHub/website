@@ -10,7 +10,6 @@
 	"keywords": [],
 	"license": "ISC",
 	"dependencies": {
-		"@fastify/cors": "^10.0.1",
 		"@fastify/helmet": "^13.0.0",
 		"@socket.io/redis-streams-adapter": "0.2.2",
 		"@zyrohub/toolkit": "workspace:*",

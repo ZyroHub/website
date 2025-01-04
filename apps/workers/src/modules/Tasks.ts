@@ -1,5 +1,5 @@
 import amqp from 'amqplib';
-import { Terminal, WorkerId } from '@zyrohub/toolkit';
+import { config, Terminal, WorkerId } from '@zyrohub/toolkit';
 
 import { BaseModule } from './Base';
 import { RedisModule } from './Redis';
@@ -64,7 +64,7 @@ export class TasksModuleBase extends BaseModule {
 				);
 			}
 
-			Terminal.info('TASKS', `Processing task ${ansicolor.cyan(content.id)}...`);
+			if (config.tasks.activeLogs) Terminal.info('TASKS', `Processing task ${ansicolor.cyan(content.id)}...`);
 
 			const workerResponse =
 				(await workerData.execute(content.worker_data, progress => {
@@ -77,7 +77,7 @@ export class TasksModuleBase extends BaseModule {
 						});
 				})) || null;
 
-			Terminal.info('TASKS', `Task ${ansicolor.cyan(content.id)} processed!`);
+			if (config.tasks.activeLogs) Terminal.info('TASKS', `Task ${ansicolor.cyan(content.id)} processed!`);
 
 			if (message?.properties.replyTo) {
 				this.channel?.sendToQueue(

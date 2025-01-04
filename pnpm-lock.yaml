@@ -11,6 +11,9 @@ importers:
       '@dotenvx/dotenvx':
         specifier: ^1.32.0
         version: 1.32.0
+      '@fastify/cors':
+        specifier: ^10.0.1
+        version: 10.0.1
       amqplib:
         specifier: ^0.10.5
         version: 0.10.5
@@ -103,9 +106,6 @@ importers:
 
   apps/server:
     dependencies:
-      '@fastify/cors':
-        specifier: ^10.0.1
-        version: 10.0.1
       '@fastify/helmet':
         specifier: ^13.0.0
         version: 13.0.0
