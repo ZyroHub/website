@@ -1,4 +1,4 @@
-import io from 'socket.io-client';
+import io, { Manager } from 'socket.io-client';
 
 import { useAppStore } from '~/stores/app';
 
@@ -8,7 +8,14 @@ export default defineNuxtPlugin(nuxtApp => {
 	const appStore = useAppStore();
 	const appStoreRefs = storeToRefs(appStore);
 
-	const socket = io(runtimeConfig.public.server_url);
+	const manager = new Manager(runtimeConfig.public.server_url, {
+		reconnection: true,
+		reconnectionAttempts: 10
+	});
+
+	const socket = manager.socket('/');
+
+	appStoreRefs.connectionStatus.value = 'connecting';
 
 	socket.on('connect', () => {
 		appStoreRefs.connectionStatus.value = 'connected';
@@ -16,14 +23,22 @@ export default defineNuxtPlugin(nuxtApp => {
 
 	socket.on('connect_error', () => {
 		if (socket.active) {
-			appStoreRefs.connectionStatus.value = 'disconnected';
+			appStoreRefs.connectionStatus.value = 'connecting';
 		} else {
 			appStoreRefs.connectionStatus.value = 'error';
 		}
 	});
 
 	socket.on('disconnect', () => {
-		appStoreRefs.connectionStatus.value = 'disconnected';
+		if (socket.active) {
+			appStoreRefs.connectionStatus.value = 'connecting';
+		} else {
+			appStoreRefs.connectionStatus.value = 'disconnected';
+		}
+	});
+
+	socket.io.on('reconnect_failed', () => {
+		appStoreRefs.connectionStatus.value = 'error';
 	});
 
 	return {

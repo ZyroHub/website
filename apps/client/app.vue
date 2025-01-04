@@ -43,6 +43,8 @@ useSeoMeta({
 	<div class="app-main">
 		<NuxtLoadingIndicator color="#ffb29a" />
 
+		<Connection />
+
 		<Navbar />
 
 		<div class="app-main-page">

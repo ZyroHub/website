@@ -40,6 +40,12 @@ export default defineConfig({
 		['items-baseline', { ['align-items']: 'baseline' }],
 		['items-stretch', { ['align-items']: 'stretch' }],
 
+		// Position
+		[/^l-(\d+)$/, ([, d]) => ({ left: `${Number(d) / 4}rem` })],
+		[/^t-(\d+)$/, ([, d]) => ({ top: `${Number(d) / 4}rem` })],
+		[/^r-(\d+)$/, ([, d]) => ({ right: `${Number(d) / 4}rem` })],
+		[/^b-(\d+)$/, ([, d]) => ({ bottom: `${Number(d) / 4}rem` })],
+
 		// Margin
 		[/^m-(\d+)$/, ([, d]) => ({ margin: `${Number(d) / 4}rem` })],
 		[/^ml-(\d+)$/, ([, d]) => ({ ['margin-left']: `${Number(d) / 4}rem` })],
@@ -69,6 +75,15 @@ export default defineConfig({
 			/^py-(\d+)$/,
 			([, d]) => ({ ['padding-top']: `${Number(d) / 4}rem`, ['padding-bottom']: `${Number(d) / 4}rem` })
 		],
+
+		// Text
+		['text-center', { textAlign: 'center' }],
+		['text-left', { textAlign: 'left' }],
+		['text-right', { textAlign: 'right' }],
+		['text-justify', { textAlign: 'justify' }],
+		['text-nowrap', { whiteSpace: 'nowrap' }],
+		['text-truncate', { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }],
+		[/^text-(\d+)$/, ([, d]) => ({ fontSize: `${Number(d) / 4}rem` })],
 
 		// Misc
 		[/^gap-(\d+)$/, ([, d]) => ({ gap: `${Number(d) / 4}rem` })]
