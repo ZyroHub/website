@@ -106,5 +106,11 @@ export default defineNuxtConfig({
 		clientBundle: {
 			icons: ['material-symbols-light:dark-mode', 'material-symbols-light:light-mode']
 		}
+	},
+
+	runtimeConfig: {
+		public: {
+			server_url: process.env.SERVER_FULL_URL || 'http://localhost:3000'
+		}
 	}
 });

@@ -24,6 +24,7 @@
 		"maska": "^3.0.4",
 		"nuxt": "^3.14.1592",
 		"pinia": "^2.3.0",
+		"socket.io-client": "^4.8.1",
 		"vue": "latest",
 		"vue-router": "latest"
 	},
