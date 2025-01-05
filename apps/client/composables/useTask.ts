@@ -52,6 +52,14 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 		);
 	};
 
+	const onTaskQueued = (callback: (data: Listeners<T>['task:queued']) => void) => {
+		listener.listen('task:queued', listener_data => {
+			if (listener_data.task.worker_id !== options.worker_id) return;
+
+			callback(listener_data);
+		});
+	};
+
 	const onTaskFinished = (callback: (data: Listeners<T>['task:finished']) => void) => {
 		listener.listen('task:finished', listener_data => {
 			if (listener_data.task.worker_id !== options.worker_id) return;
@@ -88,10 +96,12 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 
 	return {
 		task,
+		worker_id: options.worker_id,
 
 		start,
 		cancel,
 
+		onTaskQueued,
 		onTaskFinished,
 		onTaskError
 	};

@@ -24,6 +24,9 @@ export const useTasksStore = defineStore('tasks', () => {
 			task.id = data.task_id;
 			task.status = 'queued';
 			task.position = data.position;
+			task.initial_position = data.position;
+
+			listener.emit('task:queued', { task });
 		}
 	});
 

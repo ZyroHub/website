@@ -44,24 +44,12 @@ task.onTaskFinished(data => {
 				<InputsText v-model="form.values.value.rounds" label="Rounds" :mask="{ mask: '##' }" class="max-w-16" />
 
 				<Button @click="handleGenerate" theme="primary" :disabled="!isSubmittable">
-					<template
-						v-if="task.task.value && ['pending', 'queued', 'running'].includes(task.task.value.status)">
-						<template v-if="task.task.value.status === 'queued'">
-							{{
-								t('components.tools.bcrypt_generator.button.in_queue', {
-									position: task.task.value.position
-								})
-							}}
-						</template>
-						<template v-else-if="task.task.value.status === 'running'">
-							{{ t('components.tools.bcrypt_generator.button.generating') }}
-						</template>
-						<template v-else>{{ t('components.tools.bcrypt_generator.button.pending') }}</template>
-					</template>
-					<template v-else>{{ t('components.tools.bcrypt_generator.button.generate') }}</template>
+					{{ t('components.tools.bcrypt_generator.generate') }}
 				</Button>
 			</div>
 		</div>
+
+		<ToolkitToolProgress :worker_id="task.worker_id" />
 
 		<InputsText
 			v-model="outputContent"

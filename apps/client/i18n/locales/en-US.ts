@@ -42,6 +42,13 @@ export default {
 						description: 'Establishing connection with the server...'
 					}
 				},
+				progress: {
+					none: 'Waiting for execution...',
+					pending: 'Initializing...',
+					queued: 'In Queue: {position}',
+					running: 'Running...',
+					finished: 'Finished!'
+				},
 				unselected: {
 					description: 'Select a tool to continue.'
 				},
@@ -87,12 +94,7 @@ export default {
 				rounds: {
 					label: 'Rounds'
 				},
-				button: {
-					generate: 'Generate Hash',
-					pending: 'Pending...',
-					in_queue: 'Queue: {position}',
-					generating: 'Generating...'
-				},
+				generate: 'Generate Hash',
 				output: {
 					label: 'Hash Bcrypt',
 					placeholder: 'Bcrypt generated hash...'

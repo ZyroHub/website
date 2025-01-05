@@ -11,7 +11,7 @@ export class BcryptGeneratorWorker extends BaseWorker {
 		const rounds = data.rounds || 10;
 
 		const salt = await bcrypt.genSalt(rounds);
-		await new Promise(resolve => setTimeout(resolve, Math.random() * 2000));
+		await new Promise(resolve => setTimeout(resolve, Math.random() * 5000));
 		const hash = await bcrypt.hash(data.password, salt);
 
 		return { hash };

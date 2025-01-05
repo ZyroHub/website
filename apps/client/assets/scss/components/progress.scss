@@ -1,0 +1,42 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.progress-bar {
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	height: 1rem;
+	border-radius: 10rem;
+}
+
+.progress-bar-progress-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 10rem;
+	overflow-x: hidden;
+	transition: max-width 0.3s ease;
+}
+
+.progress-bar-progress {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 10rem;
+}
+
+.light-mode {
+}
+
+.dark-mode {
+	.progress-bar {
+		background-color: colors.$black_900;
+	}
+
+	.progress-bar-progress {
+		background-color: colors.$primary_500;
+	}
+}
