@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { workersSchemas } from '@zyrohub/toolkit';
 import { z } from 'zod';
 
 const { t } = useI18n();
@@ -12,8 +11,8 @@ const form = useForm(
 		rounds: '10'
 	},
 	z.object({
-		input: workersSchemas[task.worker_id].args.shape.password,
-		rounds: workersSchemas[task.worker_id].args.shape.rounds
+		input: z.string().min(1).max(100),
+		rounds: z.number({ coerce: true }).min(1).max(15)
 	})
 );
 
