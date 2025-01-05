@@ -47,7 +47,7 @@ const handleCopy = () => {
 					v-maska="props.mask" />
 
 				<Transition name="transition_fade_200" mode="out-in">
-					<div @click="handleCopy" class="input-text-copy">
+					<div v-if="props.showCopy && model" @click="handleCopy" class="input-text-copy">
 						<Icon v-if="copyState" class="input-text-copy-copied" name="mdi:check-bold" />
 						<Icon v-else name="mdi:content-copy" />
 					</div>
