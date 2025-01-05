@@ -8,6 +8,25 @@
 	font-size: 1rem;
 }
 
+.input-text-copy {
+	position: absolute;
+	max-width: max-content;
+	max-height: max-content;
+	top: 50%;
+	right: 0.5rem;
+	transform: translateY(-50%);
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.input-text-copy-copied {
+	color: colors.$primary_400;
+	animation: Pulse 400ms;
+	transform-origin: top right;
+}
+
 .light-mode {
 	.input-text-input {
 		color: colors.$black_900;

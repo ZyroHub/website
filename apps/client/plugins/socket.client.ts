@@ -10,7 +10,7 @@ export default defineNuxtPlugin(nuxtApp => {
 
 	const manager = new Manager(runtimeConfig.public.server_url, {
 		reconnection: true,
-		reconnectionAttempts: 10
+		reconnectionAttempts: 3
 	});
 
 	const socket = manager.socket('/');

@@ -10,6 +10,10 @@
 	font-size: 1rem;
 	font-weight: 500;
 	transition: all 0.3s ease;
+
+	&:disabled {
+		cursor: default;
+	}
 }
 
 .light-mode {
@@ -17,7 +21,7 @@
 		color: colors.$white_50;
 		background-color: colors.$primary_500;
 
-		&:hover {
+		&:not(:disabled):hover {
 			background-color: colors.$primary_600;
 		}
 	}
@@ -28,7 +32,7 @@
 		color: colors.$white_50;
 		background-color: colors.$primary_500;
 
-		&:hover {
+		&:not(:disabled):hover {
 			background-color: colors.$primary_600;
 		}
 	}
@@ -37,7 +41,7 @@
 		color: colors.$white_50;
 		background-color: colors.$white_700;
 
-		&:hover {
+		&:not(:disabled):hover {
 			background-color: colors.$white_600;
 		}
 	}

@@ -77,12 +77,11 @@ export default defineConfig({
 		],
 
 		// Text
-		['text-center', { textAlign: 'center' }],
-		['text-left', { textAlign: 'left' }],
-		['text-right', { textAlign: 'right' }],
-		['text-justify', { textAlign: 'justify' }],
+		['text-center', { ['text-align']: 'center' }],
+		['text-left', { ['text-align']: 'left' }],
+		['text-right', { ['text-align']: 'right' }],
+		['text-justify', { ['text-align']: 'justify' }],
 		['text-nowrap', { whiteSpace: 'nowrap' }],
-		['text-truncate', { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }],
 		[/^text-(\d+)$/, ([, d]) => ({ fontSize: `${Number(d) / 4}rem` })],
 
 		// Misc

@@ -1,0 +1,55 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.toolkit-tool-connection-error-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	padding: 2rem 0;
+}
+
+.toolkit-tool-connection-error-icon {
+	font-size: 4rem;
+}
+
+.toolkit-tool-connection-error-title {
+	margin-top: 0.5rem;
+	font-size: 1.6rem;
+	font-weight: 600;
+}
+
+.toolkit-tool-connection-error-description {
+	max-width: 35rem;
+	margin-top: 0.5rem;
+	font-size: 1rem;
+	text-align: center;
+}
+
+.light-mode {
+	.toolkit-tool-connection-error-icon {
+		color: colors.$black_900;
+	}
+
+	.toolkit-tool-connection-error-title {
+		color: colors.$black_900;
+	}
+
+	.toolkit-tool-connection-error-description {
+		color: colors.$black_900;
+	}
+}
+
+.dark-mode {
+	.toolkit-tool-connection-error-icon {
+		color: colors.$white_200;
+	}
+
+	.toolkit-tool-connection-error-title {
+		color: colors.$white_200;
+	}
+
+	.toolkit-tool-connection-error-description {
+		color: colors.$white_200;
+	}
+}

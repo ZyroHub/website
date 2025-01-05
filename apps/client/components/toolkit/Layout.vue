@@ -5,6 +5,8 @@ const props = defineProps<{
 	tools?: ITool[];
 	path?: string;
 }>();
+
+provide('kit_path', props.path);
 </script>
 
 <style lang="scss" scoped>

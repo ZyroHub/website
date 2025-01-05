@@ -114,6 +114,7 @@ export class ServerModuleSocketPlugin {
 								request_id: data.request_id,
 								task_id: taskID
 							});
+							this.instance?.emit('queue:updated', {});
 
 							break;
 						case 'progress':
@@ -130,8 +131,6 @@ export class ServerModuleSocketPlugin {
 								task_id: taskID,
 								data: content.data
 							});
-
-							this.instance?.emit('queue:updated', {});
 
 							if (message) receiverChannel.ack(message);
 							await receiverChannel.close();

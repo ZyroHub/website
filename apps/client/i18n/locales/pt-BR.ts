@@ -75,7 +75,12 @@ export default {
 				rounds: {
 					label: 'Rounds'
 				},
-				generate: 'Gerar Hash',
+				button: {
+					generate: 'Gerar Hash',
+					pending: 'Carregando...',
+					in_queue: 'Fila: {{position}}',
+					generating: 'Gerando...'
+				},
 				output: {
 					label: 'Hash Bcrypt',
 					placeholder: 'Hash gerado com Bcrypt...'

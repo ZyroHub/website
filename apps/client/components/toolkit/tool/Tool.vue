@@ -6,6 +6,8 @@ import { idToPascalCase } from '~/shared/utilities';
 const { t } = useI18n();
 const route = useRoute();
 
+const appStore = useAppStore();
+
 const tools = useTools();
 
 const toolId = computed(() => route.params.tool_id as string);
@@ -44,7 +46,7 @@ useSeoMeta({
 <template>
 	<div class="toolkit-tool-container">
 		<Transition name="transition_tool_state_change" mode="out-in">
-			<div :key="component">
+			<div v-if="!tool?.needs_connection || appStore.connectionStatus === 'connected'" :key="component">
 				<Suspense>
 					<div>
 						<p v-if="tool" class="toolkit-tool-title">
@@ -58,6 +60,12 @@ useSeoMeta({
 						<ToolkitToolLoading />
 					</template>
 				</Suspense>
+			</div>
+			<div v-else-if="appStore.connectionStatus === 'connecting'" key="connecting">
+				<ToolkitToolConnectionLoading />
+			</div>
+			<div v-else key="error">
+				<ToolkitToolConnectionError />
 			</div>
 		</Transition>
 	</div>
