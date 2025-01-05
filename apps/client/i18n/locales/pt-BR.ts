@@ -202,5 +202,6 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 			name: 'Gerador Bcrypt',
 			description: 'Gere hash de senhas utilizando o algoritmo de hash bcrypt.'
 		}
-	}
+	},
+	workers: {}
 };

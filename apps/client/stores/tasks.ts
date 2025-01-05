@@ -1,4 +1,4 @@
-import type { Task } from '~/shared/types';
+import type { Task, TaskProgress } from '~/shared/types';
 
 export const useTasksStore = defineStore('tasks', () => {
 	const { $socket } = useNuxtApp();
@@ -46,7 +46,7 @@ export const useTasksStore = defineStore('tasks', () => {
 		}
 	});
 
-	$socket.on('task:progress', (data: { request_id: string; task_id: string; progress: number }) => {
+	$socket.on('task:progress', (data: { request_id: string; task_id: string; progress: TaskProgress }) => {
 		const task = tasks.value.find(task => task.id === data.task_id);
 
 		if (task) {

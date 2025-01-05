@@ -16,7 +16,12 @@ export class TasksModuleBase extends BaseModule {
 	channel?: amqp.Channel;
 	channelQueueName = process.env.RABBIT_MQ_TASKS_QUEUE || 'tasks';
 
-	async updateTaskProgress(data: { task_id: string; correlation_id: string; reply_to: string; progress: number }) {
+	async updateTaskProgress(data: {
+		task_id: string;
+		correlation_id: string;
+		reply_to: string;
+		progress: { percentage: number; message?: string };
+	}) {
 		this.channel?.sendToQueue(
 			data.reply_to,
 			Buffer.from(
@@ -67,13 +72,13 @@ export class TasksModuleBase extends BaseModule {
 			if (config.tasks.activeLogs) Terminal.info('TASKS', `Processing task ${ansicolor.cyan(content.id)}...`);
 
 			const workerResponse =
-				(await workerData.execute(content.worker_data, progress => {
+				(await workerData.execute(content.worker_data, (progress_percentage, progress_message) => {
 					if (message?.properties.replyTo)
 						this.updateTaskProgress({
 							task_id: content.id,
 							correlation_id: message?.properties.correlationId,
 							reply_to: message?.properties.replyTo,
-							progress
+							progress: { percentage: progress_percentage, message: progress_message }
 						});
 				})) || null;
 

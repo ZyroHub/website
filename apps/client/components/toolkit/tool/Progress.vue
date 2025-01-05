@@ -1,6 +1,9 @@
 <script lang="ts" setup>
+import Progress from '~/components/Progress.vue';
+import type { WorkerId } from '@zyrohub/toolkit';
+
 const props = defineProps<{
-	worker_id: string;
+	worker_id: WorkerId;
 }>();
 
 const { t } = useI18n();
@@ -10,13 +13,13 @@ const task = useTask({ worker_id: props.worker_id });
 const finished = ref(false);
 
 const progress = computed(() => {
-	if (finished.value) return 100;
-	if (!task.task.value) return 0;
-	if (task.task.value.status === 'queued')
-		return 100 - task.task.value.position / (task.task.value.initial_position / 100);
+	if (finished.value) return { percentage: 100 };
+	if (!task.task.value) return { percentage: 0 };
+	if (task.task.value.status === 'queued' && task.task.value.position && task.task.value.initial_position)
+		return { percentage: 100 - task.task.value.position / (task.task.value.initial_position / 100) };
 	if (task.task.value.status === 'running') return task.task.value.progress;
 
-	return 0;
+	return { percentage: 0 };
 });
 
 task.onTaskFinished(() => {
@@ -42,7 +45,12 @@ watch(task.task, (newValue, oldValue) => {
 					}}
 				</template>
 				<template v-else-if="task.task.value.status === 'running'">
-					{{ t('components.toolkit.tool.progress.running') }}
+					<template v-if="progress.message">
+						{{ t(`workers.${props.worker_id}.progress.${progress.message}`) }}
+					</template>
+					<template v-else>
+						{{ t('components.toolkit.tool.progress.running') }}
+					</template>
 				</template>
 				<template v-else>{{ t('components.toolkit.tool.progress.pending') }}</template>
 			</template>
@@ -51,7 +59,7 @@ watch(task.task, (newValue, oldValue) => {
 		</p>
 
 		<div class="mt-2">
-			<Progress :progress="progress" />
+			<Progress :progress="progress.percentage" />
 		</div>
 	</div>
 </template>

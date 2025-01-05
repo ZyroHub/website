@@ -10,7 +10,7 @@ const props = defineProps<{
 
 <template>
 	<div class="progress-bar">
-		<div class="progress-bar-progress-container" :style="{ maxWidth: `${progress}%` }">
+		<div class="progress-bar-progress-container" :style="{ maxWidth: `${props.progress}%` }">
 			<div class="progress-bar-progress" />
 		</div>
 	</div>

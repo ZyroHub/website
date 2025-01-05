@@ -1,5 +1,5 @@
-export type BaseWorkerProgress = (progress: number) => void;
+export type BaseWorkerProgress = (percentage: number, message?: string) => void;
 
 export class BaseWorker {
-	static async execute(data?: any, update_progress?: BaseWorkerProgress): Promise<any | void> {}
+	static async execute(data: any, update_progress: BaseWorkerProgress): Promise<any | void> {}
 }

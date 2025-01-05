@@ -32,7 +32,7 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 			request_id: requestId,
 			worker_id: options.worker_id,
 			status: 'pending',
-			progress: 0
+			progress: { percentage: 0 }
 		});
 		$socket.emit('task:start', { request_id: requestId, worker_id: options.worker_id, worker_data: data });
 	};

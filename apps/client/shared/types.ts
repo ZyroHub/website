@@ -18,12 +18,17 @@ export interface ITool {
 
 export type TaskStatus = 'pending' | 'queued' | 'running' | 'finished' | 'error';
 
+export interface TaskProgress {
+	percentage: number;
+	message?: string;
+}
+
 export interface Task<T extends WorkerId> {
 	id?: string;
 	request_id?: string;
 	worker_id: T;
 	status: TaskStatus;
-	progress: number;
+	progress: TaskProgress;
 	position?: number;
 	initial_position?: number;
 	data?: WorkerResponse<T>;

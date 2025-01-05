@@ -201,5 +201,6 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 			name: 'Bcrypt Generator',
 			description: 'Generate password hashes using the bcrypt hashing algorithm.'
 		}
-	}
+	},
+	workers: {}
 };
