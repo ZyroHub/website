@@ -1,5 +1,5 @@
 import amqp from 'amqplib';
-import { config, Terminal, WorkerId } from '@zyrohub/toolkit';
+import { config, Terminal, WorkerId, workersSchemas } from '@zyrohub/toolkit';
 
 import { BaseModule } from './Base';
 import { RedisModule } from './Redis';
@@ -39,6 +39,7 @@ export class TasksModuleBase extends BaseModule {
 
 	async onQueueMessage(message: amqp.ConsumeMessage | null) {
 		let taskId = '';
+		let workerId: WorkerId | undefined;
 
 		try {
 			const content = JSON.parse(message?.content.toString() || '{}');
@@ -50,7 +51,7 @@ export class TasksModuleBase extends BaseModule {
 
 			RedisModule.instance?.lrem(this.queueName, 0, content.id);
 
-			const workerId = content.worker_id as WorkerId;
+			workerId = content.worker_id as WorkerId;
 			const workerData = workers[workerId];
 			if (!workerData) throw new Error('invalid-worker');
 
@@ -110,7 +111,8 @@ export class TasksModuleBase extends BaseModule {
 					Buffer.from(
 						JSON.stringify({
 							action: 'error',
-							task_id: taskId
+							task_id: taskId,
+							...(workerId && workersSchemas[workerId]?.errors.includes(e.message) ? { error: e.message } : {})
 						})
 					),
 					{

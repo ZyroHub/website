@@ -47,7 +47,8 @@ export default {
 					pending: 'Inicializando...',
 					queued: 'Na Fila: {position}',
 					running: 'Executando...',
-					finished: 'Concluído!'
+					finished: 'Concluído!',
+					error: 'Ocorreu um erro!'
 				},
 				unselected: {
 					description: 'Selecione alguma ferramenta para continuar.'

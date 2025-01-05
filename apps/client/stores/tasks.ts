@@ -65,11 +65,12 @@ export const useTasksStore = defineStore('tasks', () => {
 		}
 	});
 
-	$socket.on('task:error', (data: { request_id: string; task_id: string }) => {
+	$socket.on('task:error', (data: { request_id: string; task_id: string; error?: string }) => {
 		const task = tasks.value.find(task => task.id === data.task_id);
 
 		if (task) {
 			task.status = 'error';
+			task.error = data.error || 'unknown-error';
 
 			listener.emit('task:error', { task });
 		}

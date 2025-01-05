@@ -47,7 +47,8 @@ export default {
 					pending: 'Initializing...',
 					queued: 'In Queue: {position}',
 					running: 'Running...',
-					finished: 'Finished!'
+					finished: 'Finished!',
+					error: 'An error occurred!'
 				},
 				unselected: {
 					description: 'Select a tool to continue.'

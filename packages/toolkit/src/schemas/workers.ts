@@ -8,7 +8,8 @@ export const workersSchemas = {
 		}),
 		response: z.object({
 			hash: z.string()
-		})
+		}),
+		errors: []
 	}
 };
 

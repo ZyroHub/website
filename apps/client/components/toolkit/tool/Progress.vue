@@ -11,6 +11,7 @@ const { t } = useI18n();
 const task = useTask({ worker_id: props.worker_id });
 
 const finished = ref(false);
+const error = ref('');
 
 const progress = computed(() => {
 	if (finished.value) return { percentage: 100 };
@@ -27,9 +28,15 @@ task.onTaskFinished(() => {
 	console.log('finished');
 });
 
+task.onTaskError(data => {
+	error.value = data.task.error || '';
+});
+
 watch(task.task, (newValue, oldValue) => {
-	if (newValue && !oldValue) finished.value = false;
-	console.log(newValue && !oldValue);
+	if (newValue && !oldValue) {
+		finished.value = false;
+		error.value = '';
+	}
 });
 </script>
 
@@ -55,11 +62,15 @@ watch(task.task, (newValue, oldValue) => {
 				<template v-else>{{ t('components.toolkit.tool.progress.pending') }}</template>
 			</template>
 			<template v-else-if="finished">{{ t('components.toolkit.tool.progress.finished') }}</template>
+			<template v-else-if="error">
+				<template v-if="error === 'unknown-error'">{{ t('components.toolkit.tool.progress.error') }}</template>
+				<template v-else>{{ t(`workers.${props.worker_id}.errors.${error}`) }}</template>
+			</template>
 			<template v-else>{{ t('components.toolkit.tool.progress.none') }}</template>
 		</p>
 
 		<div class="mt-2">
-			<Progress :progress="progress.percentage" />
+			<Progress :progress="progress.percentage" :error="!!error" />
 		</div>
 	</div>
 </template>

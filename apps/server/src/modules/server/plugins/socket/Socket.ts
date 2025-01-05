@@ -145,10 +145,11 @@ export class ServerModuleSocketPlugin {
 
 							break;
 					}
-				} catch (e) {
+				} catch (e: any) {
 					socket.emit('task:error', {
 						request_id: data.request_id,
-						task_id: taskID
+						task_id: taskID,
+						error: e.message
 					});
 
 					if (message) receiverChannel.ack(message);

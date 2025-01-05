@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
 	progress: number;
+	error?: boolean;
 }>();
 </script>
 
@@ -10,8 +11,10 @@ const props = defineProps<{
 
 <template>
 	<div class="progress-bar">
-		<div class="progress-bar-progress-container" :style="{ maxWidth: `${props.progress}%` }">
-			<div class="progress-bar-progress" />
+		<div
+			class="progress-bar-progress-container"
+			:style="{ maxWidth: `${props.error ? 100 : props.progress}%` }">
+			<div :class="['progress-bar-progress', { 'progress-bar-progress-error': props.error }]" />
 		</div>
 	</div>
 </template>

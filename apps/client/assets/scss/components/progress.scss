@@ -16,7 +16,7 @@
 	height: 100%;
 	border-radius: 10rem;
 	overflow-x: hidden;
-	transition: max-width 0.3s ease;
+	transition: max-width 300ms ease;
 }
 
 .progress-bar-progress {
@@ -26,9 +26,21 @@
 	width: 100%;
 	height: 100%;
 	border-radius: 10rem;
+	transition: background-color 400ms ease;
 }
 
 .light-mode {
+	.progress-bar {
+		background-color: colors.$white_400;
+	}
+
+	.progress-bar-progress {
+		background-color: colors.$primary_500;
+	}
+
+	.progress-bar-progress-error {
+		background-color: colors.$red_500;
+	}
 }
 
 .dark-mode {
@@ -38,5 +50,9 @@
 
 	.progress-bar-progress {
 		background-color: colors.$primary_500;
+	}
+
+	.progress-bar-progress-error {
+		background-color: colors.$red_500;
 	}
 }

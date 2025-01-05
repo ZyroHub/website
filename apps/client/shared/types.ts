@@ -28,6 +28,7 @@ export interface Task<T extends WorkerId> {
 	request_id?: string;
 	worker_id: T;
 	status: TaskStatus;
+	error?: string;
 	progress: TaskProgress;
 	position?: number;
 	initial_position?: number;
