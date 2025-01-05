@@ -29,6 +29,19 @@ export default {
 				search: 'Search for a tool...'
 			},
 			tool: {
+				connection: {
+					error: {
+						title: 'Connection Failed',
+						description: 'Could not establish a connection with the server.',
+						buttons: {
+							try_again: 'Try Again',
+							cancel: 'Cancel'
+						}
+					},
+					loading: {
+						description: 'Establishing connection with the server...'
+					}
+				},
 				unselected: {
 					description: 'Select a tool to continue.'
 				},

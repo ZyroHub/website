@@ -29,6 +29,19 @@ export default {
 				search: 'Pesquisar ferramenta...'
 			},
 			tool: {
+				connection: {
+					error: {
+						title: 'Falha na Conexão',
+						description: 'Não foi possível estabelecer conexão com o servidor.',
+						buttons: {
+							try_again: 'Tentar Novamente',
+							cancel: 'Cancelar'
+						}
+					},
+					loading: {
+						description: 'Estabelecendo conexão com o servidor...'
+					}
+				},
 				unselected: {
 					description: 'Selecione alguma ferramenta para continuar.'
 				},

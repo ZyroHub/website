@@ -12,6 +12,8 @@ export const useTasksStore = defineStore('tasks', () => {
 
 		if (task) {
 			task.status = 'error';
+
+			listener.emit('task:error', { task });
 		}
 	});
 

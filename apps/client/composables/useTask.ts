@@ -56,11 +56,6 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 		listener.listen('task:finished', listener_data => {
 			if (listener_data.task.worker_id !== options.worker_id) return;
 
-			tasksStoreRefs.tasks.value.splice(
-				tasksStoreRefs.tasks.value.findIndex(task => task.worker_id === options.worker_id),
-				1
-			);
-
 			callback(listener_data);
 		});
 	};
@@ -69,14 +64,27 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 		listener.listen('task:error', listener_data => {
 			if (listener_data.task.worker_id !== options.worker_id) return;
 
-			tasksStoreRefs.tasks.value.splice(
-				tasksStoreRefs.tasks.value.findIndex(task => task.worker_id === options.worker_id),
-				1
-			);
-
 			callback(listener_data);
 		});
 	};
+
+	listener.listen('task:finished', listener_data => {
+		if (listener_data.task.worker_id !== options.worker_id) return;
+
+		tasksStoreRefs.tasks.value.splice(
+			tasksStoreRefs.tasks.value.findIndex(task => task.worker_id === options.worker_id),
+			1
+		);
+	});
+
+	listener.listen('task:error', listener_data => {
+		if (listener_data.task.worker_id !== options.worker_id) return;
+
+		tasksStoreRefs.tasks.value.splice(
+			tasksStoreRefs.tasks.value.findIndex(task => task.worker_id === options.worker_id),
+			1
+		);
+	});
 
 	return {
 		task,
