@@ -8,7 +8,7 @@ const task = useTask({ worker_id: 'bcrypt_generator' });
 const form = useForm(
 	{
 		input: '',
-		rounds: '10'
+		rounds: '12'
 	},
 	z.object({
 		input: z.string().min(1).max(100),
@@ -34,20 +34,22 @@ task.onTaskFinished(data => {
 
 <template>
 	<div class="flex flex-col gap-4">
-		<div class="flex flex-col gap-4">
-			<InputsText
-				v-model="form.values.value.input"
-				:label="t('components.tools.bcrypt_generator.input.label')"
-				:placeholder="t('components.tools.bcrypt_generator.input.placeholder')" />
+		<InputsProvider :form="form">
+			<div class="flex flex-col gap-4">
+				<InputsText
+					name="input"
+					:label="t('components.tools.bcrypt_generator.input.label')"
+					:placeholder="t('components.tools.bcrypt_generator.input.placeholder')" />
 
-			<div class="flex gap-4 items-end">
-				<InputsText v-model="form.values.value.rounds" label="Rounds" :mask="{ mask: '##' }" class="max-w-16" />
+				<div class="flex gap-4 items-end">
+					<InputsText name="rounds" label="Rounds" :mask="{ mask: '##' }" class="max-w-16" />
 
-				<Button @click="handleGenerate" theme="primary" :disabled="!isSubmittable">
-					{{ t('components.tools.bcrypt_generator.generate') }}
-				</Button>
+					<Button @click="handleGenerate" theme="primary" :disabled="!isSubmittable">
+						{{ t('components.tools.bcrypt_generator.generate') }}
+					</Button>
+				</div>
 			</div>
-		</div>
+		</InputsProvider>
 
 		<ToolkitToolProgress :worker_id="task.worker_id" />
 

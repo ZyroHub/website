@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
 	label?: string;
+	name?: string;
 	placeholder?: string;
 	rows?: number;
 	showCopy?: boolean;
@@ -10,15 +11,17 @@ const { t } = useI18n();
 
 const model = defineModel<string>();
 
+const formInput = useFormInput(props.name, model);
+
 const copyState = ref<boolean>(false);
 const copyText = computed(() =>
 	copyState.value ? t('components.inputs.text_area.copy.success') : t('components.inputs.text_area.copy.default')
 );
 
 const handleCopy = () => {
-	if (!model.value) return;
+	if (!formInput.inputRef.value) return;
 
-	navigator.clipboard.writeText(model.value);
+	navigator.clipboard.writeText(formInput.inputRef.value);
 	copyState.value = true;
 
 	setTimeout(() => {
@@ -36,7 +39,7 @@ const handleCopy = () => {
 		<InputsBase :label="props.label">
 			<template #content>
 				<textarea
-					v-model="model"
+					v-model="formInput.inputRef.value"
 					:placeholder="props.placeholder"
 					:rows="props.rows"
 					class="input-textarea-input"></textarea>
@@ -44,7 +47,7 @@ const handleCopy = () => {
 				<Transition name="transition_fade_200" mode="out-in">
 					<Button
 						@click="handleCopy"
-						v-if="props.showCopy && model"
+						v-if="props.showCopy && formInput.inputRef.value"
 						theme="primary"
 						:class="['input-textarea-copy', { 'input-textarea-copy-copied': copyState }]">
 						{{ copyText }}

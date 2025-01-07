@@ -9,7 +9,11 @@ watch(inputContent, newValue => {
 });
 
 watch(outputContent, newValue => {
-	inputContent.value = atob(newValue);
+	try {
+		inputContent.value = atob(newValue);
+	} catch {
+		return;
+	}
 });
 </script>
 

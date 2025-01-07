@@ -4,6 +4,7 @@ import type { HtmlHTMLAttributes, InputTypeHTMLAttribute } from 'vue';
 
 const props = defineProps<{
 	label?: string;
+	name?: string;
 	placeholder?: string;
 	readonly?: boolean;
 	type?: InputTypeHTMLAttribute;
@@ -12,16 +13,16 @@ const props = defineProps<{
 	showCopy?: boolean;
 }>();
 
-const { t } = useI18n();
+const model = defineModel();
 
-const model = defineModel<string>();
+const formInput = useFormInput(props.name, model);
 
 const copyState = ref<boolean>(false);
 
 const handleCopy = () => {
-	if (!model.value) return;
+	if (!formInput.inputRef.value) return;
 
-	navigator.clipboard.writeText(model.value);
+	navigator.clipboard.writeText(formInput.inputRef.value);
 	copyState.value = true;
 
 	setTimeout(() => {
@@ -36,10 +37,10 @@ const handleCopy = () => {
 
 <template>
 	<div :class="props.class">
-		<InputsBase :label="props.label">
+		<InputsBase :label="props.label" :name="props.name">
 			<template #content>
 				<input
-					v-model="model"
+					v-model="formInput.inputRef.value"
 					:placeholder="props.placeholder"
 					:type="props.type"
 					class="input-text-input"
@@ -47,7 +48,7 @@ const handleCopy = () => {
 					v-maska="props.mask" />
 
 				<Transition name="transition_fade_200" mode="out-in">
-					<div v-if="props.showCopy && model" @click="handleCopy" class="input-text-copy">
+					<div v-if="props.showCopy && formInput.inputRef.value" @click="handleCopy" class="input-text-copy">
 						<Icon v-if="copyState" class="input-text-copy-copied" name="mdi:check-bold" />
 						<Icon v-else name="mdi:content-copy" />
 					</div>

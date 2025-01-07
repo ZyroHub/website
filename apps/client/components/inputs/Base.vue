@@ -6,7 +6,9 @@ const props = defineProps<{
 
 <template>
 	<div>
-		<p v-if="props.label">{{ props.label }}</p>
+		<p v-if="props.label">
+			{{ props.label }}
+		</p>
 
 		<div class="relative mt-1">
 			<slot name="content"></slot>

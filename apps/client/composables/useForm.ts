@@ -2,20 +2,9 @@ import { z } from 'zod';
 
 export const useForm = <T>(initialValues: T, validateSchema?: z.Schema) => {
 	const values = ref<T>(initialValues);
-	const errors = ref<Record<keyof T, string>>({} as Record<keyof T, string>);
+	const errors = ref<Record<keyof T, string | undefined>>({} as Record<keyof T, string>);
 
 	const isValid = computed(() => Object.keys(errors.value).length === 0);
-
-	const setValue = (key: keyof T, value: T[keyof T]) => {
-		values.value[key] = value;
-	};
-
-	const setValues = (newValues: Partial<T>) => {
-		values.value = {
-			...values.value,
-			...newValues
-		};
-	};
 
 	const validate = () => {
 		if (!validateSchema) return true;
@@ -47,9 +36,6 @@ export const useForm = <T>(initialValues: T, validateSchema?: z.Schema) => {
 	return {
 		values,
 		errors,
-
-		setValue,
-		setValues,
 
 		validate,
 		isValid
