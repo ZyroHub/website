@@ -1,42 +1,27 @@
 <script lang="ts" setup>
 import Progress from '~/components/Progress.vue';
-import type { WorkerId } from '@zyrohub/toolkit';
 
 const props = defineProps<{
-	worker_id: WorkerId;
+	task: ReturnType<typeof useTask>;
 }>();
 
 const { t } = useI18n();
 
-const task = useTask({ worker_id: props.worker_id });
-
-const finished = ref(false);
-const error = ref('');
+const finished = computed(() => props.task.task.value?.status === 'finished');
+const error = computed(() => (props.task.task.value?.status === 'error' ? props.task.task.value.error : null));
 
 const progress = computed(() => {
 	if (finished.value) return { percentage: 100 };
-	if (!task.task.value) return { percentage: 0 };
-	if (task.task.value.status === 'queued' && task.task.value.position && task.task.value.initial_position)
-		return { percentage: 100 - task.task.value.position / (task.task.value.initial_position / 100) };
-	if (task.task.value.status === 'running') return task.task.value.progress;
+	if (!props.task.task.value) return { percentage: 0 };
+	if (
+		props.task.task.value.status === 'queued' &&
+		props.task.task.value.position &&
+		props.task.task.value.initial_position
+	)
+		return { percentage: 100 - props.task.task.value.position / (props.task.task.value.initial_position / 100) };
+	if (props.task.task.value.status === 'running') return props.task.task.value.progress;
 
 	return { percentage: 0 };
-});
-
-task.onTaskFinished(() => {
-	finished.value = true;
-	console.log('finished');
-});
-
-task.onTaskError(data => {
-	error.value = data.task.error || '';
-});
-
-watch(task.task, (newValue, oldValue) => {
-	if (newValue && !oldValue) {
-		finished.value = false;
-		error.value = '';
-	}
 });
 </script>
 
@@ -53,7 +38,7 @@ watch(task.task, (newValue, oldValue) => {
 				</template>
 				<template v-else-if="task.task.value.status === 'running'">
 					<template v-if="progress.message">
-						{{ t(`workers.${props.worker_id}.progress.${progress.message}`) }}
+						{{ t(`workers.${props.task?.worker_id}.progress.${progress.message}`) }}
 					</template>
 					<template v-else>
 						{{ t('components.toolkit.tool.progress.running') }}
@@ -64,7 +49,7 @@ watch(task.task, (newValue, oldValue) => {
 			<template v-else-if="finished">{{ t('components.toolkit.tool.progress.finished') }}</template>
 			<template v-else-if="error">
 				<template v-if="error === 'unknown-error'">{{ t('components.toolkit.tool.progress.error') }}</template>
-				<template v-else>{{ t(`workers.${props.worker_id}.errors.${error}`) }}</template>
+				<template v-else>{{ t(`workers.${props.task?.worker_id}.errors.${error}`) }}</template>
 			</template>
 			<template v-else>{{ t('components.toolkit.tool.progress.none') }}</template>
 		</p>

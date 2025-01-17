@@ -16,7 +16,7 @@ const form = useForm(
 	})
 );
 
-const isSubmittable = computed(() => form.isValid.value && !task?.task?.value);
+const isSubmittable = computed(() => form.isValid.value && task.isSubmittable.value);
 
 const outputContent = ref('');
 
@@ -51,7 +51,7 @@ task.onTaskFinished(data => {
 			</div>
 		</InputsProvider>
 
-		<ToolkitToolProgress :worker_id="task.worker_id" />
+		<ToolkitToolProgress :task="task" />
 
 		<InputsText
 			v-model="outputContent"

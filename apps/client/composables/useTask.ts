@@ -3,6 +3,7 @@ import type { Task } from '~/shared/types';
 
 export interface UseTaskOptions<T> {
 	worker_id: T;
+	clear_on_unmount?: boolean;
 }
 
 export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
@@ -15,6 +16,10 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 
 	const task = computed(
 		() => tasksStoreRefs.tasks.value.find(task => task.worker_id === options.worker_id) as Task<T> | undefined
+	);
+
+	const isSubmittable = computed(() =>
+		task.value ? !['pending', 'queued', 'running'].includes(task.value.status) : true
 	);
 
 	const start = (data: WorkerArgs<T>) => {
@@ -76,27 +81,20 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 		});
 	};
 
-	listener.listen('task:finished', listener_data => {
-		if (listener_data.task.worker_id !== options.worker_id) return;
-
-		tasksStoreRefs.tasks.value.splice(
-			tasksStoreRefs.tasks.value.findIndex(task => task.worker_id === options.worker_id),
-			1
-		);
-	});
-
-	listener.listen('task:error', listener_data => {
-		if (listener_data.task.worker_id !== options.worker_id) return;
-
-		tasksStoreRefs.tasks.value.splice(
-			tasksStoreRefs.tasks.value.findIndex(task => task.worker_id === options.worker_id),
-			1
-		);
+	onBeforeMount(() => {
+		if (task.value && options.clear_on_unmount !== false) {
+			tasksStoreRefs.tasks.value.splice(
+				tasksStoreRefs.tasks.value.findIndex(task => task.worker_id === options.worker_id),
+				1
+			);
+		}
 	});
 
 	return {
 		task,
 		worker_id: options.worker_id,
+
+		isSubmittable,
 
 		start,
 		cancel,
