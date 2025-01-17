@@ -5,6 +5,8 @@ const { t } = useI18n();
 
 const task = useTask({ worker_id: 'bcrypt_generator' });
 
+const outputContent = computed(() => task.task.value?.data?.hash);
+
 const form = useForm(
 	{
 		input: '',
@@ -18,18 +20,12 @@ const form = useForm(
 
 const isSubmittable = computed(() => form.isValid.value && task.isSubmittable.value);
 
-const outputContent = ref('');
-
 const handleGenerate = async () => {
 	task.start({
 		password: form.values.value.input,
 		rounds: Number(form.values.value.rounds)
 	});
 };
-
-task.onTaskFinished(data => {
-	outputContent.value = data.task.data?.hash || '';
-});
 </script>
 
 <template>
