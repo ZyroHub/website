@@ -20,7 +20,7 @@ const form = useForm(
 
 const isSubmittable = computed(() => form.isValid.value && task.isSubmittable.value);
 
-const handleGenerate = async () => {
+const handleExecute = async () => {
 	task.start({
 		password: form.values.value.input,
 		rounds: Number(form.values.value.rounds)
@@ -40,7 +40,7 @@ const handleGenerate = async () => {
 				<div class="flex gap-4 items-end">
 					<InputsText name="rounds" label="Rounds" :mask="{ mask: '##' }" class="max-w-16" />
 
-					<Button @click="handleGenerate" theme="primary" :disabled="!isSubmittable">
+					<Button @click="handleExecute" theme="primary" :disabled="!isSubmittable">
 						{{ t('components.tools.bcrypt_generator.generate') }}
 					</Button>
 				</div>

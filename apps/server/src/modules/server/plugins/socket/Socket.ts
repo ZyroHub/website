@@ -24,7 +24,7 @@ export class ServerModuleSocketPlugin {
 		}
 
 		socket.on('task:start', async (data: any) => {
-			if (socket.data.tasks.length >= 1) return;
+			if (socket.data.tasks.length >= config.tasks.concurrencyPerUser) return;
 
 			const dataParse = z.object({
 				request_id: z.string().min(1).max(36),

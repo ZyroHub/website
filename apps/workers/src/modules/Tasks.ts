@@ -7,11 +7,10 @@ import { MessengerModule } from './Messenger';
 
 import { workers } from '@/workers/workers';
 import ansicolor from 'ansicolor';
+import { BaseWorkerProgress } from '@/workers/Base';
 
 export class TasksModuleBase extends BaseModule {
 	dependencies = [RedisModule, MessengerModule];
-
-	queueName = process.env.REDIS_TASKS_QUEUE || 'tasks-queue';
 
 	channel?: amqp.Channel;
 	channelQueueName = process.env.RABBIT_MQ_TASKS_QUEUE || 'tasks';
@@ -46,10 +45,11 @@ export class TasksModuleBase extends BaseModule {
 			if (!content.id) throw new Error('invalid-task-data');
 			taskId = content.id;
 
-			const queuePosition = await RedisModule.instance?.lpos(this.queueName, content.id);
+			const queuePosition = await RedisModule.instance?.lpos(config.tasks.redisQueueName, content.id);
 			if (!queuePosition && queuePosition !== 0) throw new Error('task-not-in-queue');
 
-			RedisModule.instance?.lrem(this.queueName, 0, content.id);
+			RedisModule.instance?.lrem(config.tasks.redisQueueName, 0, taskId);
+			RedisModule.instance?.rpush(config.tasks.redisRunningQueueName, taskId);
 
 			workerId = content.worker_id as WorkerId;
 			const workerData = workers[workerId];
@@ -61,7 +61,7 @@ export class TasksModuleBase extends BaseModule {
 					Buffer.from(
 						JSON.stringify({
 							action: 'start',
-							task_id: content.id
+							task_id: taskId
 						})
 					),
 					{
@@ -70,20 +70,32 @@ export class TasksModuleBase extends BaseModule {
 				);
 			}
 
-			if (config.tasks.activeLogs) Terminal.info('TASKS', `Processing task ${ansicolor.cyan(content.id)}...`);
+			if (config.tasks.activeLogs) Terminal.info('TASKS', `Processing task ${ansicolor.cyan(taskId)}...`);
 
-			const workerResponse =
-				(await workerData.execute(content.worker_data, (progress_percentage, progress_message) => {
-					if (message?.properties.replyTo)
-						this.updateTaskProgress({
-							task_id: content.id,
-							correlation_id: message?.properties.correlationId,
-							reply_to: message?.properties.replyTo,
-							progress: { percentage: progress_percentage, message: progress_message }
-						});
-				})) || null;
+			const updateProgress: BaseWorkerProgress = async (progress_percentage, progress_message) => {
+				const existingTask = await RedisModule.instance?.lpos(config.tasks.redisRunningQueueName, taskId);
 
-			if (config.tasks.activeLogs) Terminal.info('TASKS', `Task ${ansicolor.cyan(content.id)} processed!`);
+				if (!existingTask && existingTask !== 0) {
+					if (config.tasks.activeLogs)
+						Terminal.warn('TASKS', `Task ${ansicolor.cyan(taskId)} is not running anymore!`);
+					throw new Error('task-not-running');
+				}
+
+				if (message?.properties.replyTo) {
+					this.updateTaskProgress({
+						task_id: taskId,
+						correlation_id: message?.properties.correlationId,
+						reply_to: message?.properties.replyTo,
+						progress: { percentage: progress_percentage, message: progress_message }
+					});
+				}
+			};
+
+			const workerResponse = (await workerData.execute(content.worker_data, updateProgress)) || null;
+
+			RedisModule.instance?.lrem(config.tasks.redisRunningQueueName, 0, taskId);
+
+			if (config.tasks.activeLogs) Terminal.info('TASKS', `Task ${ansicolor.cyan(taskId)} processed!`);
 
 			if (message?.properties.replyTo) {
 				this.channel?.sendToQueue(
@@ -91,7 +103,7 @@ export class TasksModuleBase extends BaseModule {
 					Buffer.from(
 						JSON.stringify({
 							action: 'finished',
-							task_id: content.id,
+							task_id: taskId,
 							data: workerResponse
 						})
 					),
@@ -112,7 +124,9 @@ export class TasksModuleBase extends BaseModule {
 						JSON.stringify({
 							action: 'error',
 							task_id: taskId,
-							...(workerId && workersSchemas[workerId]?.errors.includes(e.message) ? { error: e.message } : {})
+							...(workerId && workersSchemas[workerId]?.errors.includes(e.message)
+								? { error: e.message }
+								: {})
 						})
 					),
 					{

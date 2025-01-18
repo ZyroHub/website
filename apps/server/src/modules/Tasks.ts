@@ -11,8 +11,6 @@ import { ServerModule } from './modules';
 export class TasksModuleBase extends BaseModule {
 	dependencies = [RedisModule, MessengerModule];
 
-	queueName = process.env.REDIS_TASKS_QUEUE || 'tasks-queue';
-
 	channel?: amqp.Channel;
 	channelQueueName = process.env.RABBIT_MQ_TASKS_QUEUE || 'tasks';
 
@@ -32,7 +30,7 @@ export class TasksModuleBase extends BaseModule {
 			worker_data: data.worker_data
 		};
 
-		await RedisModule.instance?.rpush(this.queueName, taskId);
+		await RedisModule.instance?.rpush(config.tasks.redisQueueName, taskId);
 		this.channel.sendToQueue(this.channelQueueName, Buffer.from(JSON.stringify(taskData)), {
 			persistent: false,
 			replyTo: data.reply_to,
@@ -55,7 +53,7 @@ export class TasksModuleBase extends BaseModule {
 	}
 
 	async getQueuePosition(taskId: string) {
-		const taskPosition = await RedisModule.instance?.lpos(this.queueName, taskId);
+		const taskPosition = await RedisModule.instance?.lpos(config.tasks.redisQueueName, taskId);
 		if (!taskPosition && taskPosition !== 0) return { success: false, error: 'task-not-found' };
 
 		const taskQueuePosition = taskPosition + 1;
@@ -64,14 +62,15 @@ export class TasksModuleBase extends BaseModule {
 	}
 
 	async getQueueSize() {
-		const queueSize = await RedisModule.instance?.llen(this.queueName);
+		const queueSize = await RedisModule.instance?.llen(config.tasks.redisQueueName);
 		if (!queueSize && queueSize !== 0) return { success: false, error: 'queue-not-found' };
 
 		return { success: true, size: queueSize };
 	}
 
 	async cancelTask(taskId: string) {
-		await RedisModule.instance?.lrem(this.queueName, 0, taskId);
+		await RedisModule.instance?.lrem(config.tasks.redisQueueName, 0, taskId);
+		await RedisModule.instance?.lrem(config.tasks.redisRunningQueueName, 0, taskId);
 
 		ServerModule.server?.io?.emit('queue:updated', {});
 

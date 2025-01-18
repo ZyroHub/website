@@ -101,6 +101,25 @@ export default {
 					label: 'Hash Bcrypt',
 					placeholder: 'Hash gerado com Bcrypt...'
 				}
+			},
+			bcrypt_checker: {
+				password: {
+					label: 'Senha',
+					placeholder: 'Digite sua senha...'
+				},
+				hash: {
+					label: 'Hash Bcrypt',
+					placeholder: 'Digite o hash Bcrypt...'
+				},
+				validate: 'Verificar Hash',
+				result: {
+					text: 'Resultado:',
+					awaiting: 'AGUARDANDO',
+					running: 'VERIFICANDO',
+					error: 'FALHOU',
+					valid: 'CORRESPONDENTE',
+					invalid: 'NÃO CORRESPONDEM'
+				}
 			}
 		}
 	},
@@ -202,6 +221,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		bcrypt_generator: {
 			name: 'Gerador Bcrypt',
 			description: 'Gere hash de senhas utilizando o algoritmo de hash bcrypt.'
+		},
+		bcrypt_checker: {
+			name: 'Verificador Bcrypt',
+			description: 'Verifique se uma senha corresponde a um hash bcrypt.'
 		}
 	},
 	workers: {}

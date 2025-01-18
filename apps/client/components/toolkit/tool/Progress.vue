@@ -2,7 +2,7 @@
 import Progress from '~/components/Progress.vue';
 
 const props = defineProps<{
-	task: ReturnType<typeof useTask>;
+	task: ReturnType<typeof useTask<any>>;
 }>();
 
 const { t } = useI18n();

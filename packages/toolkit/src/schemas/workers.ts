@@ -9,7 +9,17 @@ export const workersSchemas = {
 		response: z.object({
 			hash: z.string()
 		}),
-		errors: []
+		errors: [] as string[]
+	},
+	bcrypt_checker: {
+		args: z.object({
+			password: z.string().min(1).max(100),
+			hash: z.string().min(1).max(100)
+		}),
+		response: z.object({
+			is_valid: z.boolean()
+		}),
+		errors: [] as string[]
 	}
 };
 

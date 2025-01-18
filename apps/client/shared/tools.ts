@@ -17,6 +17,12 @@ export const getToolList = (): ITool[] => {
 			icon: 'mdi:password',
 			tags: [ToolTagEnum.DEV],
 			needs_connection: true
+		},
+		{
+			id: 'bcrypt_checker',
+			icon: 'mdi:password',
+			tags: [ToolTagEnum.DEV],
+			needs_connection: true
 		}
 	];
 };

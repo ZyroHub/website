@@ -9,7 +9,7 @@
 	}
 
 	@media screen and (max-width: 650px) {
-		flex-direction: column;
+		flex-direction: column-reverse;
 		gap: 1rem;
 
 		& > div {

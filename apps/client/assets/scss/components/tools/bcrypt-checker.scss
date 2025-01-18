@@ -1,0 +1,50 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.tools-bcrypt-checker-result {
+	& > span {
+		margin-left: 0.5rem;
+		padding: 0.1rem 0.6rem;
+		color: colors.$white_100;
+		border-radius: 10rem;
+	}
+}
+
+.light-mode {
+	.tools-bcrypt-checker-result {
+		& > span {
+			background-color: colors.$white_600;
+
+			&.error {
+				background-color: colors.$red_500;
+			}
+
+			&.valid {
+				background-color: colors.$green_600;
+			}
+
+			&.invalid {
+				background-color: colors.$red_500;
+			}
+		}
+	}
+}
+
+.dark-mode {
+	.tools-bcrypt-checker-result {
+		& > span {
+			background-color: colors.$black_600;
+
+			&.error {
+				background-color: colors.$red_500;
+			}
+
+			&.valid {
+				background-color: colors.$green_600;
+			}
+
+			&.invalid {
+				background-color: colors.$red_500;
+			}
+		}
+	}
+}

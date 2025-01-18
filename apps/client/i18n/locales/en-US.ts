@@ -100,6 +100,25 @@ export default {
 					label: 'Hash Bcrypt',
 					placeholder: 'Bcrypt generated hash...'
 				}
+			},
+			bcrypt_checker: {
+				password: {
+					label: 'Password',
+					placeholder: 'Type your password here...'
+				},
+				hash: {
+					label: 'Bcrypt Hash',
+					placeholder: 'Type the bcrypt hash here...'
+				},
+				validate: 'Validate Hash',
+				result: {
+					text: 'Result:',
+					awaiting: 'AWAITING',
+					running: 'RUNNING',
+					error: 'FAILED',
+					valid: 'MATCHED',
+					invalid: 'INVALID MATCH'
+				}
 			}
 		}
 	},
@@ -201,6 +220,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		bcrypt_generator: {
 			name: 'Bcrypt Generator',
 			description: 'Generate password hashes using the bcrypt hashing algorithm.'
+		},
+		bcrypt_checker: {
+			name: 'Bcrypt Checker',
+			description: 'Check if a password matches a bcrypt hash.'
 		}
 	},
 	workers: {}
