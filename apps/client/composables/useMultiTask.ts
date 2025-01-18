@@ -3,7 +3,6 @@ import type { Task } from '~/shared/types';
 
 export interface UseMultiTaskOptions<T> {
 	worker_id: T;
-	clear_on_unmount?: boolean;
 }
 
 export const useMultiTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
