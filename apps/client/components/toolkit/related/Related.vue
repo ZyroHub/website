@@ -38,9 +38,11 @@ const relatedTools = computed(() => {
 		<div v-if="tool" class="toolkit-related">
 			<p>{{ t('components.toolkit.related.title') }}</p>
 
-			<div class="mt-4 flex flex-wrap gap-4 justify-center md:justify-start">
-				<ToolkitRelatedCard v-for="relatedTool in relatedTools" :key="relatedTool.id" :tool="relatedTool" />
-			</div>
+			<Transition name="transition_fade_200" mode="out-in">
+				<div :key="toolId" class="mt-4 flex flex-wrap gap-4 justify-center md:justify-start">
+					<ToolkitRelatedCard v-for="relatedTool in relatedTools" :key="relatedTool.id" :tool="relatedTool" />
+				</div>
+			</Transition>
 		</div>
 	</div>
 </template>
