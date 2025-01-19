@@ -1,0 +1,24 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.toolkit-related {
+	width: 100%;
+	border-radius: 1rem;
+	padding: 2rem;
+
+	& > p {
+		font-size: 1.5rem;
+		font-weight: 600;
+	}
+}
+
+.light-mode {
+	.toolkit-related {
+		background-color: colors.$white_200;
+	}
+}
+
+.dark-mode {
+	.toolkit-related {
+		background-color: colors.$black_950;
+	}
+}

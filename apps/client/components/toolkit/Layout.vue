@@ -27,6 +27,8 @@ provide('kit_path', props.path);
 			<div class="toolkit-content">
 				<NuxtPage :transition="{ name: 'transition_tool_switch' }" />
 			</div>
+
+			<ToolkitRelated />
 		</div>
 	</div>
 </template>

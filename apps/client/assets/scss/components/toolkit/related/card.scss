@@ -1,0 +1,56 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.toolkit-related-card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	width: 9rem;
+	height: 9rem;
+	max-width: 9rem;
+	max-height: 9rem;
+	padding: 1rem;
+	color: inherit;
+	border-radius: 0.5rem;
+	transition: background-color 0.3s;
+
+	&:hover {
+		cursor: pointer;
+	}
+}
+
+.toolkit-related-card-icon {
+	flex: 1 0 auto;
+	font-size: 3.5rem;
+}
+
+.toolkit-related-card-name {
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 100%;
+	max-width: 100%;
+	text-align: center;
+	white-space: pre-wrap;
+}
+
+.light-mode {
+	.toolkit-related-card {
+		background-color: colors.$white_50;
+
+		&:hover {
+			background-color: colors.$white_100;
+		}
+	}
+}
+
+.dark-mode {
+	.toolkit-related-card {
+		background-color: colors.$black_900;
+
+		&:hover {
+			background-color: colors.$black_800;
+		}
+	}
+}

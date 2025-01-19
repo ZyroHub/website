@@ -28,6 +28,9 @@ export default {
 			navigation: {
 				search: 'Search for a tool...'
 			},
+			related: {
+				title: 'Related Tools'
+			},
 			tool: {
 				connection: {
 					error: {

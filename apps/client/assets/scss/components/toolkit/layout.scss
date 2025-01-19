@@ -25,6 +25,9 @@
 }
 
 .toolkit-container-end {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 	min-width: calc(100% - 20rem);
 }
 

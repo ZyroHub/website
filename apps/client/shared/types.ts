@@ -1,9 +1,33 @@
 import type { WorkerId, WorkerResponse } from '@zyrohub/toolkit';
+import type { getToolList } from './tools';
 
 export enum ToolTagEnum {
 	DEV,
 	CREATORS,
-	MISC
+	MISC,
+
+	TEXT,
+	IMAGE,
+	VIDEO,
+	AUDIO,
+
+	CRYPTO,
+
+	EDITOR,
+	ENCODER,
+	DECODER,
+	CONVERTER,
+	VALIDATOR,
+	GENERATOR,
+
+	COMPRESSION,
+	DECOMPRESSION,
+
+	COLOR,
+	DATE,
+
+	PASSWORD,
+	HASH
 }
 
 export type ToolTagType = keyof typeof ToolTagEnum;
@@ -12,6 +36,7 @@ export const ToolTagsId = Object.keys(ToolTagEnum) as ToolTagType[];
 export interface ITool {
 	id: string;
 	icon: string;
+	related?: string[];
 	tags: ToolTagEnum[];
 	needs_connection?: boolean;
 }

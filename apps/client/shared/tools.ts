@@ -5,23 +5,27 @@ export const getToolList = (): ITool[] => {
 		{
 			id: 'base64_text',
 			icon: 'lucide:scan-text',
-			tags: [ToolTagEnum.DEV]
+			related: ['base64_image'],
+			tags: [ToolTagEnum.DEV, ToolTagEnum.CONVERTER, ToolTagEnum.TEXT]
 		},
 		{
 			id: 'base64_image',
 			icon: 'material-symbols:image',
-			tags: [ToolTagEnum.DEV]
+			related: ['base64_text'],
+			tags: [ToolTagEnum.DEV, ToolTagEnum.CONVERTER, ToolTagEnum.IMAGE]
 		},
 		{
 			id: 'bcrypt_generator',
 			icon: 'mdi:password',
-			tags: [ToolTagEnum.DEV],
+			related: ['bcrypt_checker'],
+			tags: [ToolTagEnum.DEV, ToolTagEnum.CRYPTO, ToolTagEnum.GENERATOR, ToolTagEnum.PASSWORD, ToolTagEnum.HASH],
 			needs_connection: true
 		},
 		{
 			id: 'bcrypt_checker',
 			icon: 'mdi:password',
-			tags: [ToolTagEnum.DEV],
+			related: ['bcrypt_generator'],
+			tags: [ToolTagEnum.DEV, ToolTagEnum.CRYPTO, ToolTagEnum.VALIDATOR, ToolTagEnum.PASSWORD, ToolTagEnum.HASH],
 			needs_connection: true
 		}
 	];
