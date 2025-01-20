@@ -27,6 +27,13 @@ export const getToolList = (): ITool[] => {
 			related: ['bcrypt_generator'],
 			tags: [ToolTagEnum.DEV, ToolTagEnum.CRYPTO, ToolTagEnum.VALIDATOR, ToolTagEnum.PASSWORD, ToolTagEnum.HASH],
 			needs_connection: true
+		},
+		{
+			id: 'image_converter',
+			icon: 'mdi:image',
+			related: [],
+			tags: [ToolTagEnum.CREATORS, ToolTagEnum.CONVERTER, ToolTagEnum.IMAGE],
+			needs_connection: true
 		}
 	];
 };

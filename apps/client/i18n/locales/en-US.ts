@@ -227,6 +227,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		bcrypt_checker: {
 			name: 'Bcrypt Checker',
 			description: 'Check if a password matches a bcrypt hash.'
+		},
+		image_converter: {
+			name: 'Image Converter',
+			description: 'Convert images to different formats.'
 		}
 	},
 	workers: {}

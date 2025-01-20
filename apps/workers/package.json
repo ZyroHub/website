@@ -12,6 +12,8 @@
 	"dependencies": {
 		"@zyrohub/toolkit": "workspace:*",
 		"bcrypt": "^5.1.1",
+		"magic-bytes.js": "^1.10.0",
+		"sharp": "^0.33.5",
 		"tsc-alias": "^1.8.10",
 		"tsx": "^4.19.2"
 	},

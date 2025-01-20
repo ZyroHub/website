@@ -20,6 +20,17 @@ export const workersSchemas = {
 			is_valid: z.boolean()
 		}),
 		errors: [] as string[]
+	},
+	image_converter: {
+		args: z.object({
+			name: z.string().min(1).max(256),
+			image: z.instanceof(Buffer),
+			format: z.enum(['webp', 'png', 'jpeg', 'jpg'])
+		}),
+		response: z.object({
+			converted_image: z.instanceof(Buffer)
+		}),
+		errors: ['invalid-file-type'] as string[]
 	}
 };
 

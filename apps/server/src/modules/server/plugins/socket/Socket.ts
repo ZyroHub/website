@@ -36,7 +36,7 @@ export class ServerModuleSocketPlugin {
 			if (!dataParseResponse.success) return;
 
 			const workerId = data.worker_id as WorkerId;
-			const workerData = data.worker_data as WorkerArgs<WorkerId>;
+			let workerData = data.worker_data as WorkerArgs<WorkerId>;
 
 			const workerSchema = workersSchemas[workerId];
 			if (!workerSchema) {
@@ -56,6 +56,7 @@ export class ServerModuleSocketPlugin {
 				});
 				return;
 			}
+			workerData = workerParseResponse.data;
 
 			const tasksQueueSize = await TasksModule.getQueueSize();
 			if (!tasksQueueSize.success) {

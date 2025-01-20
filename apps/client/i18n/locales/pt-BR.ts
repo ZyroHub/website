@@ -228,6 +228,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		bcrypt_checker: {
 			name: 'Verificador Bcrypt',
 			description: 'Verifique se uma senha corresponde a um hash bcrypt.'
+		},
+		image_converter: {
+			name: 'Conversor de Imagens',
+			description: 'Converta imagens para diferentes formatos diferentes.'
 		}
 	},
 	workers: {}

@@ -36,7 +36,9 @@ const relatedTools = computed(() => {
 <template>
 	<div>
 		<div v-if="tool" class="toolkit-related">
-			<p>{{ t('components.toolkit.related.title') }}</p>
+			<p class="flex items-center gap-2">
+				<Icon name="solar:box-bold" /> {{ t('components.toolkit.related.title') }}
+			</p>
 
 			<Transition name="transition_fade_200" mode="out-in">
 				<div :key="toolId" class="mt-4 flex flex-wrap gap-4 justify-center md:justify-start">

@@ -26,6 +26,6 @@ const toLocale = computed(() => {
 	<NuxtLinkLocale :to="toLocale" class="toolkit-related-card">
 		<Icon :name="props.tool.icon" class="toolkit-related-card-icon" />
 
-		<p class="toolkit-related-card-name">{{ t(`tools.${props.tool.id}.name`)?.split(' ').join('\n') }}</p>
+		<p class="toolkit-related-card-name">{{ t(`tools.${props.tool.id}.name`) }}</p>
 	</NuxtLinkLocale>
 </template>
