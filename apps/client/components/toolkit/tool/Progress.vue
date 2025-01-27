@@ -1,25 +1,23 @@
 <script lang="ts" setup>
 import Progress from '~/components/Progress.vue';
+import type { Task } from '~/shared/types';
 
 const props = defineProps<{
-	task: ReturnType<typeof useTask<any>>;
+	task?: Task<any>;
+	textClass?: string;
 }>();
 
 const { t } = useI18n();
 
-const finished = computed(() => props.task.task.value?.status === 'finished');
-const error = computed(() => (props.task.task.value?.status === 'error' ? props.task.task.value.error : null));
+const finished = computed(() => props.task?.status === 'finished');
+const error = computed(() => (props.task?.status === 'error' ? props.task.error : null));
 
 const progress = computed(() => {
 	if (finished.value) return { percentage: 100 };
-	if (!props.task.task.value) return { percentage: 0 };
-	if (
-		props.task.task.value.status === 'queued' &&
-		props.task.task.value.position &&
-		props.task.task.value.initial_position
-	)
-		return { percentage: 100 - props.task.task.value.position / (props.task.task.value.initial_position / 100) };
-	if (props.task.task.value.status === 'running') return props.task.task.value.progress;
+	if (!props.task) return { percentage: 0 };
+	if (props.task.status === 'queued' && props.task.position && props.task.initial_position)
+		return { percentage: 100 - props.task.position / (props.task.initial_position / 100) };
+	if (props.task.status === 'running') return props.task.progress;
 
 	return { percentage: 0 };
 });
@@ -27,16 +25,16 @@ const progress = computed(() => {
 
 <template>
 	<div>
-		<p class="text-center">
-			<template v-if="task.task.value && ['pending', 'queued', 'running'].includes(task.task.value.status)">
-				<template v-if="task.task.value.status === 'queued'">
+		<p :class="['text-center', props.textClass]">
+			<template v-if="task && ['pending', 'queued', 'running'].includes(task.status)">
+				<template v-if="task.status === 'queued'">
 					{{
 						t('components.toolkit.tool.progress.queued', {
-							position: task.task.value.position
+							position: task.position
 						})
 					}}
 				</template>
-				<template v-else-if="task.task.value.status === 'running'">
+				<template v-else-if="task.status === 'running'">
 					<template v-if="progress.message">
 						{{ t(`workers.${props.task?.worker_id}.progress.${progress.message}`) }}
 					</template>

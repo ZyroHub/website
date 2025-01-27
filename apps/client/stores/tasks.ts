@@ -8,6 +8,7 @@ export const useTasksStore = defineStore('tasks', () => {
 	const tasks = ref<Task<any>[]>([]);
 
 	$socket.on('task:start:error', (data: { request_id: string; code: string }) => {
+		console.log('task-error', data);
 		const task = tasks.value.find(task => task.request_id === data.request_id);
 
 		if (task) {
@@ -30,10 +31,12 @@ export const useTasksStore = defineStore('tasks', () => {
 		}
 	});
 
-	$socket.on('queue:updated', (data: {}) => {
+	$socket.on('queue:updated', (data: { removed_position?: number }) => {
 		for (const task of tasks.value) {
-			if (task.status === 'queued') {
-				if (task.position) task.position--;
+			if (task.status === 'queued' && task.position) {
+				if (data.removed_position) {
+					if (task.position > data.removed_position) task.position--;
+				} else task.position--;
 			}
 		}
 	});
@@ -59,9 +62,10 @@ export const useTasksStore = defineStore('tasks', () => {
 
 		if (task) {
 			task.status = 'finished';
-			task.data = data.data;
 
-			listener.emit('task:finished', { task });
+			if (task.options?.save_data !== false) task.data = data.data;
+
+			listener.emit('task:finished', { task, data: data.data });
 		}
 	});
 

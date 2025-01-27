@@ -105,7 +105,16 @@ export default defineNuxtConfig({
 
 	icon: {
 		clientBundle: {
-			icons: ['material-symbols-light:dark-mode', 'material-symbols-light:light-mode']
+			icons: [
+				'material-symbols-light:dark-mode',
+				'material-symbols-light:light-mode',
+
+				'mdi:check-bold',
+				'mdi:content-copy',
+
+				'circle-flags:us-um',
+				'circle-flags:br'
+			]
 		}
 	},
 

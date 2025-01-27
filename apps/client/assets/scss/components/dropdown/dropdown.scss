@@ -1,12 +1,14 @@
 @use '~/assets/scss/utils/_colors.scss';
 
 .dropdown-content {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	gap: 0.3rem;
 	padding: 0.5rem 0.5rem;
+	max-width: 16rem;
+	font-size: 0.8rem;
 	border-radius: 0.5rem;
-	background-color: colors.$black_950;
 }
 
 .transition_dropdown_visibility-enter-active,
@@ -20,4 +22,18 @@
 
 .transition_dropdown_visibility-leave-to {
 	opacity: 0;
+}
+
+.light-mode {
+	.dropdown-content {
+		background-color: colors.$white_600;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.459);
+	}
+}
+
+.dark-mode {
+	.dropdown-content {
+		background-color: colors.$black_950;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.459);
+	}
 }

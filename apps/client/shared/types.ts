@@ -1,5 +1,4 @@
-import type { WorkerId, WorkerResponse } from '@zyrohub/toolkit';
-import type { getToolList } from './tools';
+import type { WorkerId, WorkerResponse, WorkerStorage } from '@zyrohub/toolkit';
 
 export enum ToolTagEnum {
 	DEV,
@@ -48,9 +47,13 @@ export interface TaskProgress {
 	message?: string;
 }
 
+export interface TaskOptions {
+	save_data?: boolean;
+}
+
 export interface Task<T extends WorkerId> {
 	id?: string;
-	request_id?: string;
+	request_id: string;
 	worker_id: T;
 	status: TaskStatus;
 	error?: string;
@@ -58,4 +61,7 @@ export interface Task<T extends WorkerId> {
 	position?: number;
 	initial_position?: number;
 	data?: WorkerResponse<T>;
+	storage?: WorkerStorage<T>;
+	options?: TaskOptions;
+	created_at: Date;
 }

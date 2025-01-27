@@ -122,6 +122,9 @@ export default {
 					valid: 'MATCHED',
 					invalid: 'INVALID MATCH'
 				}
+			},
+			image_converter: {
+				upload: 'Selecione um Arquivo'
 			}
 		}
 	},
@@ -230,7 +233,7 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		},
 		image_converter: {
 			name: 'Image Converter',
-			description: 'Convert images to different formats.'
+			description: 'Convert images to different formats. (WebP, PNG, JPG and JPEG)'
 		}
 	},
 	workers: {}

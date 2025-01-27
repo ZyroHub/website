@@ -1,17 +1,23 @@
 @use '~/assets/scss/utils/_colors.scss';
 
 .dropdown-item {
-	display: flex;
-	align-items: center;
-	gap: 0.5rem;
 	padding: 0.5rem 0.6rem;
 	color: colors.$white_50;
-	text-align: left;
+	max-width: 100%;
 	border-radius: 0.4rem;
 	background-color: colors.$black_900;
 	transition: background-color 150ms linear;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	user-select: none;
+
+	&.active {
+		background-color: colors.$black_700;
+	}
 
 	&:hover {
+		cursor: pointer;
 		background-color: colors.$black_800;
 	}
 }

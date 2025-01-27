@@ -21,7 +21,7 @@ const form = useForm(
 const isSubmittable = computed(() => form.isValid.value && task.isSubmittable.value);
 
 const handleExecute = async () => {
-	task.start({
+	await task.start({
 		password: form.values.value.input,
 		rounds: Number(form.values.value.rounds)
 	});
@@ -37,7 +37,7 @@ const handleExecute = async () => {
 					:label="t('components.tools.bcrypt_generator.input.label')"
 					:placeholder="t('components.tools.bcrypt_generator.input.placeholder')" />
 
-				<div class="flex gap-4 items-end">
+				<div class="flex items-end gap-4">
 					<InputsText name="rounds" label="Rounds" :mask="{ mask: '##' }" class="max-w-16" />
 
 					<Button @click="handleExecute" theme="primary" :disabled="!isSubmittable">
@@ -47,7 +47,7 @@ const handleExecute = async () => {
 			</div>
 		</InputsProvider>
 
-		<ToolkitToolProgress :task="task" />
+		<ToolkitToolProgress :task="task.task.value" />
 
 		<InputsText
 			v-model="outputContent"

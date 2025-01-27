@@ -12,7 +12,6 @@ export class ImageConverterWorker extends BaseWorker {
 		const fileBuffer = Utilities.getFileFromSocketData(data.image);
 
 		const mimeType = filetypemime(fileBuffer)?.[0];
-		console.log(mimeType);
 		if (!mimeType?.startsWith('image/')) throw new Error('invalid-file-type');
 
 		const imageSharp = sharp(fileBuffer);

@@ -1,0 +1,25 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.tools-image-converter-image-icon {
+	font-size: 8rem;
+}
+
+.light-mode {
+	.tools-image-converter-content-drag {
+		border-color: colors.$white_400;
+	}
+
+	.tools-image-converter-image-icon {
+		color: colors.$white_600;
+	}
+}
+
+.dark-mode {
+	.tools-image-converter-content-drag {
+		border-color: colors.$black_500;
+	}
+
+	.tools-image-converter-image-icon {
+		color: colors.$black_400;
+	}
+}

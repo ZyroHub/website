@@ -5,6 +5,7 @@ import { onMounted, onBeforeUnmount } from 'vue';
 const props = defineProps<{
 	placement?: Placement;
 	offset?: number;
+	contentClass?: string;
 }>();
 
 const reference = ref<HTMLElement | null>(null);
@@ -62,14 +63,14 @@ provide('dropdown', {
 <template>
 	<div>
 		<div ref="reference">
-			<slot name="trigger" :toggleIsOpen="toggleIsOpen">
+			<slot name="trigger" :toggleIsOpen="toggleIsOpen" :open="handleOpen" :close="handleClose">
 				<button @click="toggleIsOpen">Open dropdown</button>
 			</slot>
 		</div>
 
-		<div ref="floating" :style="floatingStyles">
+		<div ref="floating" :style="floatingStyles" class="z-100">
 			<Transition name="transition_dropdown_visibility">
-				<div v-if="isOpen" class="dropdown-content">
+				<div v-if="isOpen" :class="['dropdown-content', props.contentClass]">
 					<slot />
 				</div>
 			</Transition>

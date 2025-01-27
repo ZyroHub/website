@@ -6,6 +6,28 @@
 	padding: 0.5rem 1rem;
 	border-radius: 0.5rem;
 	font-size: 1rem;
+
+	&.prepended {
+		padding-left: 2rem;
+	}
+
+	&.appended {
+		padding-right: 2rem;
+	}
+}
+
+.input-text-prepend-icon {
+	position: absolute;
+	top: 50%;
+	left: 0.5rem;
+	transform: translateY(-50%);
+}
+
+.input-text-append-icon {
+	position: absolute;
+	top: 50%;
+	right: 0.5rem;
+	transform: translateY(-50%);
 }
 
 .input-text-copy {
@@ -18,6 +40,14 @@
 
 	&:hover {
 		cursor: pointer;
+	}
+
+	&.preppended {
+		left: 0.5rem;
+	}
+
+	&.appended {
+		right: 0.5rem;
 	}
 }
 

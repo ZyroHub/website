@@ -123,6 +123,9 @@ export default {
 					valid: 'CORRESPONDENTE',
 					invalid: 'NÃO CORRESPONDEM'
 				}
+			},
+			image_converter: {
+				upload: 'Selecione um Arquivo'
 			}
 		}
 	},
@@ -231,7 +234,7 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		},
 		image_converter: {
 			name: 'Conversor de Imagens',
-			description: 'Converta imagens para diferentes formatos diferentes.'
+			description: 'Converta imagens para diferentes formatos diferentes. (WebP, PNG, JPG e JPEG)'
 		}
 	},
 	workers: {}

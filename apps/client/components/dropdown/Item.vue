@@ -1,13 +1,22 @@
 <script lang="ts" setup>
-const emit = defineEmits(['click']);
+import type { HTMLAttributes } from 'vue';
+
+const emit = defineEmits<{
+	click: [event: MouseEvent];
+}>();
+
+const props = defineProps<{
+	class?: HTMLAttributes['class'];
+	active?: boolean;
+}>();
 
 const dropdown = inject<{
 	close: () => void;
 	open: () => void;
 } | null>('dropdown', null);
 
-const handleClick = () => {
-	emit('click');
+const handleClick = (event: MouseEvent) => {
+	emit('click', event);
 
 	dropdown?.close();
 };
@@ -18,7 +27,7 @@ const handleClick = () => {
 </style>
 
 <template>
-	<button @click="handleClick" class="dropdown-item">
+	<div @click="handleClick($event)" :class="['dropdown-item', { active: props.active }, props.class]">
 		<slot />
-	</button>
+	</div>
 </template>

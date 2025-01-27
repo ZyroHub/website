@@ -1,4 +1,4 @@
-import type { WorkerArgs, WorkerId } from '@zyrohub/toolkit';
+import type { WorkerArgs, WorkerId, WorkerStorage } from '@zyrohub/toolkit';
 import type { Task } from '~/shared/types';
 
 export interface UseTaskOptions<T> {
@@ -22,8 +22,8 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 		task.value ? !['pending', 'queued', 'running'].includes(task.value.status) : true
 	);
 
-	const start = (data: WorkerArgs<T>) => {
-		const requestId = Date.now().toString();
+	const start = async (data: WorkerArgs<T>, storage?: WorkerStorage<T>) => {
+		const requestId = `${Date.now().toString()}-${Math.random().toString().slice(2)}`;
 
 		if (task.value) {
 			if (['pending', 'queued', 'running'].includes(task.value.status)) return;
@@ -37,15 +37,22 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 			request_id: requestId,
 			worker_id: options.worker_id,
 			status: 'pending',
-			progress: { percentage: 0 }
+			progress: { percentage: 0 },
+			storage: storage,
+			created_at: new Date()
 		});
-		$socket.emit('task:start', { request_id: requestId, worker_id: options.worker_id, worker_data: data });
+
+		$socket.emit('task:start', {
+			request_id: requestId,
+			worker_id: options.worker_id,
+			worker_data: data
+		});
 	};
 
 	const cancel = () => {
 		if (!task.value) return;
 
-		const requestId = Date.now().toString();
+		const requestId = `${Date.now().toString()}-${Math.random().toString().slice(2)}`;
 
 		if (task.value.status !== 'pending')
 			$socket.emit('task:cancel', { request_id: requestId, task_id: task.value.id });

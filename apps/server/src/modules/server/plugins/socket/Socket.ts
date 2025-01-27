@@ -23,9 +23,7 @@ export class ServerModuleSocketPlugin {
 			socket.data.tasks = [];
 		}
 
-		socket.on('task:start', async (data: any) => {
-			if (socket.data.tasks.length >= config.tasks.concurrencyPerUser) return;
-
+		socket.on('task:start', async (data: any, ack) => {
 			const dataParse = z.object({
 				request_id: z.string().min(1).max(36),
 				worker_id: z.string().min(1).max(36),
@@ -33,7 +31,15 @@ export class ServerModuleSocketPlugin {
 			});
 
 			const dataParseResponse = await dataParse.safeParseAsync(data);
-			if (!dataParseResponse.success) return;
+			if (!dataParseResponse.success) return ack?.({ success: false, code: 'unknown' });
+
+			if (socket.data.tasks.length >= config.tasks.concurrencyPerUser) {
+				socket.emit('task:start:error', {
+					request_id: data.request_id,
+					code: 'max-user-concurrency'
+				});
+				return ack?.({ success: false, code: 'max-user-concurrency' });
+			}
 
 			const workerId = data.worker_id as WorkerId;
 			let workerData = data.worker_data as WorkerArgs<WorkerId>;
@@ -44,6 +50,7 @@ export class ServerModuleSocketPlugin {
 					request_id: data.request_id,
 					code: 'invalid-worker'
 				});
+				ack?.({ success: false, code: 'invalid-worker' });
 				return;
 			}
 
@@ -54,6 +61,8 @@ export class ServerModuleSocketPlugin {
 					code: 'invalid-worker-data',
 					errors: workerParseResponse.error.errors
 				});
+				ack?.({ success: false, code: 'invalid-worker-data' });
+
 				return;
 			}
 			workerData = workerParseResponse.data;
@@ -64,6 +73,7 @@ export class ServerModuleSocketPlugin {
 					request_id: data.request_id,
 					code: 'failed-to-get-queue-size'
 				});
+				ack?.({ success: false, code: 'failed-to-get-queue-size' });
 
 				return;
 			}
@@ -75,6 +85,7 @@ export class ServerModuleSocketPlugin {
 					queue_size: tasksQueueSize.size,
 					max_queue_size: config.tasks.maxQueueSize
 				});
+				ack?.({ success: false, code: 'queue-is-full' });
 
 				return;
 			}
@@ -87,6 +98,8 @@ export class ServerModuleSocketPlugin {
 					request_id: data.request_id,
 					code: 'failed-to-create-channel'
 				});
+				ack?.({ success: false, code: 'failed-to-create-channel' });
+
 				return;
 			}
 
@@ -173,12 +186,21 @@ export class ServerModuleSocketPlugin {
 				tasksCorrelation.set(taskData.task_id, correlationId);
 				socket.data.tasks.push(taskData.task_id);
 
+				ack?.({ success: true, task_id: taskData.task_id });
+
 				socket.emit('task:queued', {
 					request_id: data.request_id,
 					task_id: taskData.task_id,
 					worker_id: workerId,
 					position: taskData.position
 				});
+			} else {
+				socket.emit('task:start:error', {
+					request_id: data.request_id,
+					code: 'failed-to-add-task-to-queue'
+				});
+
+				ack?.({ success: false, code: 'failed-to-add-task-to-queue' });
 			}
 		});
 
@@ -249,7 +271,8 @@ export class ServerModuleSocketPlugin {
 	init(app: FastifyInstance) {
 		this.instance = new SocketIO(app.server, {
 			adapter: createAdapter(RedisModule.instance),
-			cors: config.server.cors as any
+			cors: config.server.cors as any,
+			maxHttpBufferSize: config.tasks.fileSizeLimit
 		});
 
 		app.decorate('io', this.instance);

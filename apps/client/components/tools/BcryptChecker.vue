@@ -21,7 +21,7 @@ const form = useForm(
 const isSubmittable = computed(() => form.isValid.value && task.isSubmittable.value);
 
 const handleExecute = async () => {
-	task.start({
+	await task.start({
 		password: form.values.value.password,
 		hash: form.values.value.hash
 	});
@@ -75,6 +75,6 @@ const handleExecute = async () => {
 			</div>
 		</InputsProvider>
 
-		<ToolkitToolProgress :task="task" />
+		<ToolkitToolProgress :task="task.task.value" />
 	</div>
 </template>

@@ -1,6 +1,8 @@
 export interface UseFilePickerOptions {
 	accept?: string;
 	multiple?: boolean;
+	maxCount?: number;
+	maxFileSize?: number;
 	accumulative?: boolean;
 	onFilesAdd?: (files: File[]) => void;
 }
@@ -17,7 +19,7 @@ export const useFilePicker = (options?: UseFilePickerOptions) => {
 	const handleInputChange = () => {
 		if (!inputRef.value) return;
 
-		const newFiles = Array.from(inputRef.value.files || []).map(file => {
+		let newFiles = Array.from(inputRef.value.files || []).map(file => {
 			const newFile = file as File;
 
 			return newFile;
@@ -26,7 +28,17 @@ export const useFilePicker = (options?: UseFilePickerOptions) => {
 		if (!options?.accumulative) files.value = newFiles;
 		else files.value.push(...newFiles);
 
+		if (options?.maxCount && files.value.length > options.maxCount) {
+			files.value = files.value.slice(0, options.maxCount);
+		}
+
+		if (options?.maxFileSize) {
+			files.value = files.value.filter(file => file.size <= (options.maxFileSize || 0));
+		}
+
 		inputRef.value.value = '';
+
+		newFiles = newFiles.filter(file => files.value.includes(file));
 
 		options?.onFilesAdd?.(newFiles);
 	};
