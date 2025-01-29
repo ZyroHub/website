@@ -1,69 +1,54 @@
 import ansicolor from 'ansicolor';
-import { pathToFileURL } from 'node:url';
 import { config, Terminal } from '@zyrohub/toolkit';
-
-import fastify, { FastifyInstance } from 'fastify';
-import fastifyHelmet from '@fastify/helmet';
-import fastifyCors from '@fastify/cors';
-import { bootstrap } from 'fastify-decorators';
 
 import { BaseModule } from '../Base';
 
 import { RedisModule } from '../Redis';
 import { TasksModule } from '../Tasks';
 
-import { ServerError } from './models';
+import Elysia from 'elysia';
+import cors from '@elysiajs/cors';
+import { helmet } from 'elysia-helmet';
+import { decorators } from 'elysia-decorators';
 
-import { fastifySocket } from './plugins';
+import HomeRoute from '@/router/routes/home.route';
 
 export class ServerModuleBase extends BaseModule {
 	dependencies = [RedisModule, TasksModule];
 
-	server?: FastifyInstance;
+	server?: Elysia;
 
 	initHandlers() {
 		if (!this.server) return;
 
-		this.server.setNotFoundHandler((request, reply) => {
-			reply.status(404).send({
-				success: false,
-				code: 'NOT_FOUND',
-				data: {}
-			});
-		});
+		this.server.onError(({ code, error }) => {
+			if (code === 'NOT_FOUND')
+				return {
+					success: false,
+					code: 'NOT_FOUND',
+					data: {}
+				};
 
-		this.server.setErrorHandler((error, request, reply) => {
-			if (error instanceof ServerError) return reply.status(error.status).send(error.toJSON());
-
-			Terminal.error('SERVER', [error]);
-			if (error.code === 'FST_ERR_VALIDATION')
-				return reply.status(400).send({
+			if (code === 'VALIDATION')
+				return {
 					success: false,
 					code: 'VALIDATION_ERROR',
-					data: { message: error.message }
-				});
-
-			reply.status(500).send({
-				success: false,
-				code: error.code,
-				data: {}
-			});
+					data: { message: error.validator.Errors(error.value).First().message }
+				};
 		});
 	}
 
 	async init() {
-		this.server = fastify({
-			logger: false
-		});
+		this.server = new Elysia({});
 
 		this.server
-			.register(fastifyCors, config.server.cors)
-			.register(fastifyHelmet, {})
-			.register(bootstrap, {
-				directory: new URL('../../router/routes', pathToFileURL(__filename).href),
-				mask: /\.route\./
-			})
-			.register(fastifySocket);
+			.use(
+				decorators({
+					controllers: [HomeRoute]
+				})
+			)
+			.use(cors(config.server.cors))
+			.use(helmet());
 
 		this.initHandlers();
 

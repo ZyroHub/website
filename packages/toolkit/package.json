@@ -1,14 +1,11 @@
 {
 	"name": "@zyrohub/toolkit",
 	"private": true,
-	"main": "./dist/index.js",
-	"types": "./dist/declarations/index.d.ts",
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"build": "tsc"
-	},
+	"main": "./src/index.ts",
+	"types": "./src/index.ts",
 	"keywords": [],
+	"devDependencies": {
+		"@zyrohub/config": "workspace:*"
+	},
 	"license": "ISC"
 }

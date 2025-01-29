@@ -4,19 +4,8 @@
 	"author": "DMVMarcio",
 	"private": true,
 	"scripts": {
-		"build": "nx run-many -t build",
-		"build:client": "nx run @zyrohub/client:build",
-		"build:server": "nx run @zyrohub/server:build",
-		"build:workers": "nx run @zyrohub/workers:build",
-		"dev": "dotenvx run -f .env.development -- nx run-many -t dev",
-		"dev:client": "dotenvx run -f .env.development -- nx run @zyrohub/client:dev",
-		"dev:server": "dotenvx run -f .env.development -- nx run @zyrohub/server:dev",
-		"dev:workers": "dotenvx run -f .env.development -- nx run @zyrohub/workers:dev",
-		"start": "dotenvx run -f .env -- nx run-many -t start",
-		"start:client": "dotenvx run -f .env -- nx run @zyrohub/client:start",
-		"start:server": "dotenvx run -f .env -- nx run @zyrohub/server:start",
-		"start:workers": "dotenvx run -f .env -- nx run @zyrohub/workers:start",
-		"nx:reset": "nx reset"
+		"build": "turbo build",
+		"dev": "dotenvx run -f .env.development -- turbo dev"
 	},
 	"workspaces": [
 		"apps/*",
@@ -26,18 +15,17 @@
 	"license": "ISC",
 	"dependencies": {
 		"@dotenvx/dotenvx": "^1.32.0",
-		"@fastify/cors": "^10.0.1",
+		"@elysiajs/cors": "^1.2.0",
 		"amqplib": "^0.10.5",
 		"ansicolor": "^2.0.3",
 		"ioredis": "^5.4.2",
-		"nx": "20.1.4",
+		"turbo": "^2.3.4",
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
 		"@types/amqplib": "^0.10.6",
-		"@types/node": "^22.10.1",
-		"prettier-plugin-tailwindcss": "^0.6.11",
-		"typescript": "^5.7.2"
+		"@types/bun": "^1.2.1",
+		"prettier-plugin-tailwindcss": "^0.6.11"
 	},
-	"packageManager": "pnpm@9.4.0+sha1.9217c800d4ab947a7aee520242a7b70d64fc7638"
+	"packageManager": "bun@1.2.1"
 }

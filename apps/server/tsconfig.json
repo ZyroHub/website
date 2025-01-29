@@ -1,14 +1,7 @@
 {
+	"extends": "@zyrohub/config/typescript/base.json",
+	"include": ["src"],
 	"compilerOptions": {
-		"target": "ES2015",
-		"module": "CommonJS",
-		"moduleResolution": "node",
-		"esModuleInterop": true,
-		"forceConsistentCasingInFileNames": true,
-		"outDir": "./dist",
-		"rootDir": "./src",
-		"declaration": true,
-		"declarationDir": "./dist/declarations",
 		"strict": true,
 		"skipLibCheck": true,
 		"baseUrl": ".",
@@ -17,12 +10,5 @@
 			"@/*": ["src/*"]
 		}
 	},
-	"tsc-alias": {
-		"resolveFullPaths": true,
-		"resolveFullExtension": ".js",
-		"fileExtensions": {
-			"inputGlob": "{js,mjs}",
-			"outputCheck": ["js", "json", "mjs"]
-		}
-	}
+	"exclude": ["node_modules", "dist"]
 }

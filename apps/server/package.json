@@ -3,21 +3,17 @@
 	"private": true,
 	"main": "./src/core/index.ts",
 	"scripts": {
-		"build": "tsc && tsc-alias",
-		"start": "node ./dist/core/index.js",
-		"dev": "tsx watch ./src/core/index.ts"
+		"build": "bun build ./src/core/index.ts --target bun --out-dir ./dist/core",
+		"start": "bun ./dist/core/index.js",
+		"dev": "cd ../../ && bun run --watch apps/server/src/core/index.ts"
 	},
 	"keywords": [],
 	"license": "ISC",
 	"dependencies": {
-		"@fastify/helmet": "^13.0.0",
-		"@socket.io/redis-streams-adapter": "0.2.2",
+		"@zyrohub/config": "workspace:*",
 		"@zyrohub/toolkit": "workspace:*",
-		"fastify": "^5.2.0",
-		"fastify-decorators": "^3.16.1",
-		"fastify-plugin": "^5.0.1",
-		"socket.io": "^4.8.1",
-		"tsc-alias": "^1.8.10",
-		"tsx": "^4.19.2"
+		"elysia": "^1.2.10",
+		"elysia-decorators": "^1.0.2",
+		"elysia-helmet": "^2.0.0"
 	}
 }
