@@ -4,10 +4,40 @@ services:
             context: .
             dockerfile: 'Dockerfile'
         ports:
-            - '${CLIENT_PORT}:${CLIENT_PORT}'
+            - '${PORT}:${PORT}'
             - '${SERVER_PORT}:${SERVER_PORT}'
         networks:
             - 'zyrohub'
+        profiles:
+            - 'full'
+    redis:
+        image: 'redis:latest'
+        ports:
+            - '6379:6379'
+        networks:
+            - 'zyrohub'
+        profiles:
+            - 'full'
+            - 'services'
+    rabbitmq:
+        image: 'rabbitmq:management-alpine'
+        environment:
+            RABBITMQ_DEFAULT_USER: 'root'
+            RABBITMQ_DEFAULT_PASS: 'root'
+        ports:
+            - '15671:15671'
+            - '15672:15672'
+            - '15691:15691'
+            - '15692:15692'
+            - '25672:25672'
+            - '4369:4369'
+            - '5671:5671'
+            - '5672:5672'
+        networks:
+            - 'zyrohub'
+        profiles:
+            - 'full'
+            - 'services'
 
 networks:
     zyrohub:
