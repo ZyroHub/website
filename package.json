@@ -5,7 +5,7 @@
 	"private": true,
 	"scripts": {
 		"build": "turbo build",
-		"dev": "dotenvx run -f .env.development -- turbo dev"
+		"dev": "turbo dev --env-mode loose"
 	},
 	"workspaces": [
 		"apps/*",
@@ -14,7 +14,6 @@
 	"keywords": [],
 	"license": "ISC",
 	"dependencies": {
-		"@dotenvx/dotenvx": "^1.32.0",
 		"@elysiajs/cors": "^1.2.0",
 		"amqplib": "^0.10.5",
 		"ansicolor": "^2.0.3",

@@ -16,7 +16,14 @@ import HomeRoute from '@/router/routes/home.route';
 export class ServerModuleBase extends BaseModule {
 	dependencies = [RedisModule, TasksModule];
 
-	server?: Elysia;
+	server = new Elysia({})
+		.use(
+			decorators({
+				controllers: [HomeRoute]
+			})
+		)
+		.use(cors(config.server.cors))
+		.use(helmet());
 
 	initHandlers() {
 		if (!this.server) return;
@@ -39,17 +46,6 @@ export class ServerModuleBase extends BaseModule {
 	}
 
 	async init() {
-		this.server = new Elysia({});
-
-		this.server
-			.use(
-				decorators({
-					controllers: [HomeRoute]
-				})
-			)
-			.use(cors(config.server.cors))
-			.use(helmet());
-
 		this.initHandlers();
 
 		this.server.listen({
