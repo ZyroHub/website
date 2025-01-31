@@ -1,4 +1,3 @@
-import cluster from 'cluster';
 import ansicolor, { type AnsicolorMethods } from 'ansicolor';
 import process from 'process';
 
@@ -20,11 +19,7 @@ export class Terminal {
 		const packageName = process.env.npm_package_name?.replace('@zyrohub/', '').toUpperCase();
 
 		console.log(
-			ansicolor.darkGray(
-				`${formattedDate} | ${packageName ? `${packageName} |` : ''}${
-					!cluster.isPrimary ? ` ${process.pid} |` : ''
-				}`
-			),
+			ansicolor.darkGray(`${formattedDate} | ${packageName ? `${packageName} |` : ''}`),
 			flag_color(`[${flag.toUpperCase()}]`),
 			...content
 		);

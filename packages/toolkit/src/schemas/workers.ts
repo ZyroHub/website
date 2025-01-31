@@ -25,7 +25,8 @@ export const workersSchemas = {
 	},
 	image_converter: {
 		args: z.object({
-			image: z.instanceof(Buffer),
+			// image: z.instanceof(Buffer),
+			image: z.any(),
 			format: z.enum(['webp', 'png', 'jpeg', 'jpg'])
 		}),
 		response: z.object({

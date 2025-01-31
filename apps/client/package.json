@@ -11,6 +11,7 @@
 		"postinstall": "nuxt prepare"
 	},
 	"dependencies": {
+		"@elysiajs/eden": "^1.2.0",
 		"@floating-ui/vue": "^1.1.5",
 		"@nuxt/icon": "^1.9.0",
 		"@nuxt/image": "1.8.1",
@@ -35,6 +36,7 @@
 		"@iconify-json/mdi": "^1.2.2",
 		"@iconify-json/ri": "^1.2.5",
 		"@unocss/nuxt": "^0.65.3",
+		"@zyrohub/server": "workspace:*",
 		"sass": "^1.82.0",
 		"unocss": "^0.65.3"
 	}

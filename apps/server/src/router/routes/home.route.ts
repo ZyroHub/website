@@ -1,9 +1,8 @@
-import { GET, RequestHandler } from 'fastify-decorators';
+import { Controller, Get } from 'elysia-decorators';
 
-@GET({
-	url: '/'
-})
-export default class extends RequestHandler {
+@Controller('/')
+export default class {
+	@Get()
 	async handle() {
 		return { success: true };
 	}

@@ -75,9 +75,9 @@ export class TasksModuleBase extends BaseModule {
 		await RedisModule.instance?.lrem(config.tasks.redisRunningQueueName, 0, taskId);
 
 		if (taskPositionData.success) {
-			ServerModule.server?.io?.emit('queue:updated', {
-				removed_position: taskPositionData.position
-			});
+			// ServerModule.server?.io?.emit('queue:updated', {
+			// 	removed_position: taskPositionData.position
+			// });
 		}
 
 		if (config.tasks.activeLogs) Terminal.info('TASKS', `Task ${ansicolor.cyan(taskId)} canceled!`);

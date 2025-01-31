@@ -1,0 +1,9 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"strict": true,
+		"target": "es2022",
+		"module": "NodeNext",
+		"esModuleInterop": true
+	}
+}

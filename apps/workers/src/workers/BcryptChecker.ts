@@ -1,4 +1,3 @@
-import bcrypt from 'bcrypt';
 import { WorkerArgs, WorkerResponse } from '@zyrohub/toolkit';
 
 import { BaseWorker, BaseWorkerProgress } from './Base';
@@ -11,7 +10,7 @@ export class BcryptCheckerWorker extends BaseWorker {
 		const password = data.password;
 		const hash = data.hash;
 
-		const isValid = await bcrypt.compare(password, hash);
+		const isValid = await Bun.password.verify(password, hash, 'bcrypt');
 
 		return { is_valid: isValid };
 	}
