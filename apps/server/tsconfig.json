@@ -3,6 +3,7 @@
 	"compilerOptions": {
 		"baseUrl": ".",
 		"experimentalDecorators": true,
+		"composite": true,
 		"paths": {
 			"@/*": ["src/*"]
 		}

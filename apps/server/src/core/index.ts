@@ -5,4 +5,4 @@ const core = new Core();
 
 core.init();
 
-export type app = typeof ServerModule.server;
+export type App = (typeof ServerModule)['server'];

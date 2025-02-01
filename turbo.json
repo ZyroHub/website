@@ -6,6 +6,12 @@
 			"outputs": ["dist/**"],
 			"dependsOn": ["^build"]
 		},
+		"start": {
+			"cache": false,
+			"persistent": true,
+			"inputs": ["$TURBO_DEFAULT$", ".env", ".env.local", ".env.production"],
+			"passThroughEnv": ["PORT", "SERVER_FULL_URL"]
+		},
 		"dev": {
 			"cache": false,
 			"persistent": true,

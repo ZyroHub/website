@@ -4,9 +4,8 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"build": "bun build ./src/core/index.ts --target bun --out-dir ./dist/core",
-		"start": "bun ./dist/core/index.js",
-		"dev": "cd ../../ && bun run --watch apps/workers/src/core/index.ts"
+		"start": "cd ../../ && dotenvx run -f .env -- bun run apps/workers/src/core/index.ts",
+		"dev": "cd ../../ && dotenvx run -f .env.development -- bun run --watch apps/workers/src/core/index.ts"
 	},
 	"keywords": [],
 	"license": "ISC",

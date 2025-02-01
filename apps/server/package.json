@@ -1,20 +1,16 @@
 {
 	"name": "@zyrohub/server",
 	"main": "./src/core/index.ts",
+	"types": "./src/core/index.ts",
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"build": "bun build ./src/core/index.ts --target bun --out-dir ./dist/core",
-		"start": "bun ./dist/core/index.js",
-		"dev": "cd ../../ && bun run --watch apps/server/src/core/index.ts"
+		"start": "cd ../../ && dotenvx run -f .env -- bun run apps/server/src/core/index.ts",
+		"dev": "cd ../../ && dotenvx run -f .env.development -- bun run --watch apps/server/src/core/index.ts"
 	},
 	"keywords": [],
-	"license": "ISC",
 	"dependencies": {
 		"@zyrohub/config": "workspace:*",
-		"@zyrohub/toolkit": "workspace:*",
-		"elysia": "^1.2.10",
-		"elysia-decorators": "^1.0.2",
-		"elysia-helmet": "^2.0.0"
+		"@zyrohub/toolkit": "workspace:*"
 	}
 }

@@ -6,6 +6,7 @@
 		"target": "ESNext",
 		"module": "NodeNext",
 		"moduleResolution": "nodenext",
+		"types": ["bun-types"],
 		"esModuleInterop": true
 	}
 }

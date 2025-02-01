@@ -9,21 +9,11 @@ import { TasksModule } from '../Tasks.js';
 import { Elysia } from 'elysia';
 import { cors } from '@elysiajs/cors';
 import { helmet } from 'elysia-helmet';
-import { decorators } from 'elysia-decorators';
-
-import HomeRoute from '@/router/routes/home.route.js';
 
 export class ServerModuleBase extends BaseModule {
 	dependencies = [RedisModule, TasksModule];
 
-	server = new Elysia({})
-		.use(
-			decorators({
-				controllers: [HomeRoute]
-			})
-		)
-		.use(cors(config.server.cors))
-		.use(helmet());
+	server = new Elysia({}).get('/', 'Hello Elysia').use(cors(config.server.cors));
 
 	initHandlers() {
 		if (!this.server) return;
