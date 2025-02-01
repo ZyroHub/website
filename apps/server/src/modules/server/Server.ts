@@ -8,7 +8,6 @@ import { TasksModule } from '../Tasks.js';
 
 import { Elysia } from 'elysia';
 import { cors } from '@elysiajs/cors';
-import { helmet } from 'elysia-helmet';
 
 export class ServerModuleBase extends BaseModule {
 	dependencies = [RedisModule, TasksModule];
