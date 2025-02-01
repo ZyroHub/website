@@ -32,7 +32,7 @@ export const getFileBase64 = async (file: File) => {
 	});
 };
 
-export const getFileBuffer = async (file: File) => {
+export const getFileArrayBuffer = async (file: File) => {
 	return new Promise<ArrayBuffer>((resolve, reject) => {
 		const reader = new FileReader();
 

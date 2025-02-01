@@ -27,11 +27,12 @@ const filePicker = useFilePicker({
 	maxCount: 10,
 	onFilesAdd: async files => {
 		for (const file of files) {
-			const fileBuffer = await getFileBuffer(file);
+			const fileBuffer = await getFileArrayBuffer(file);
+			const fileDataArray = Array.from(new Uint8Array(fileBuffer));
 
 			await multiTask.start(
 				{
-					image: fileBuffer,
+					image: fileDataArray,
 					format: form.values.value.format
 				},
 				{
@@ -64,10 +65,12 @@ const handleDrop = async (event: DragEvent) => {
 	for (const file of filesArray) {
 		if (!file.type.startsWith('image/')) continue;
 
-		const fileBuffer = await getFileBuffer(file);
+		const fileBuffer = await getFileArrayBuffer(file);
+		const fileDataArray = Array.from(new Uint8Array(fileBuffer));
+
 		await multiTask.start(
 			{
-				image: fileBuffer,
+				image: fileDataArray,
 				format: form.values.value.format
 			},
 			{
@@ -101,7 +104,7 @@ multiTask.onTaskFinished(async data => {
 	const task = multiTask.get(data.task.id);
 	if (!task) return;
 
-	const convertedFile = getFileFromSocketData(data.data?.converted_image);
+	const convertedFile = getFileFromSocketData(data.data?.converted_image) as ArrayBuffer;
 	if (!convertedFile) return;
 
 	const fileBlob = new Blob([convertedFile], { type: 'image/' + task.storage?.converted_image_format });

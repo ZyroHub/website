@@ -25,12 +25,11 @@ export const workersSchemas = {
 	},
 	image_converter: {
 		args: z.object({
-			// image: z.instanceof(Buffer),
-			image: z.any(),
+			image: z.array(z.number()),
 			format: z.enum(['webp', 'png', 'jpeg', 'jpg'])
 		}),
 		response: z.object({
-			converted_image: z.instanceof(Buffer)
+			converted_image: z.any()
 		}),
 		storage: z.object({
 			name: z.string(),

@@ -1,4 +1,4 @@
-import { Utilities, WorkerArgs, WorkerResponse } from '@zyrohub/toolkit';
+import { WorkerArgs, WorkerResponse } from '@zyrohub/toolkit';
 import sharp from 'sharp';
 import { filetypemime } from 'magic-bytes.js';
 
@@ -9,7 +9,7 @@ export class ImageConverterWorker extends BaseWorker {
 		data: WorkerArgs<T>,
 		update_progress: BaseWorkerProgress
 	): Promise<WorkerResponse<T>> {
-		const fileBuffer = Utilities.getFileFromSocketData(data.image);
+		const fileBuffer = Buffer.from(data.image);
 
 		const mimeType = filetypemime(fileBuffer)?.[0];
 		if (!mimeType?.startsWith('image/')) throw new Error('invalid-file-type');
