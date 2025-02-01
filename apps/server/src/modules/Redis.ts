@@ -1,7 +1,7 @@
 import { Terminal } from '@zyrohub/toolkit';
+import { Redis } from 'ioredis';
 
-import { BaseModule } from './Base';
-import Redis from 'ioredis';
+import { BaseModule } from './Base.js';
 
 export class RedisModuleBase extends BaseModule {
 	dependencies = [];

@@ -1,14 +1,10 @@
 {
 	"extends": "@zyrohub/config/typescript/base.json",
-	"include": ["src"],
 	"compilerOptions": {
-		"target": "ES2015",
-		"module": "CommonJS",
-		"moduleResolution": "node",
-		"skipLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["src/*"]
 		}
-	}
+	},
+	"include": ["src"]
 }

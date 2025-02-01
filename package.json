@@ -2,10 +2,11 @@
 	"name": "zyrohub",
 	"version": "0.0.1",
 	"author": "DMVMarcio",
+	"type": "module",
 	"private": true,
 	"scripts": {
 		"build": "turbo build",
-		"dev": "turbo dev --env-mode loose"
+		"dev": "turbo dev"
 	},
 	"workspaces": [
 		"apps/*",

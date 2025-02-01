@@ -1,2 +1,2 @@
-export * from './Terminal';
-export * from './Utilities';
+export * from './Terminal.js';
+export * from './Utilities.js';

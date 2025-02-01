@@ -1,4 +1,3 @@
-export * from './models';
-export * from './plugins';
+export * from './models/index.js';
 
-export * from './Server';
+export * from './Server.js';

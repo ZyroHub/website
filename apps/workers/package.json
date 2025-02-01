@@ -1,7 +1,8 @@
 {
 	"name": "@zyrohub/workers",
-	"private": true,
 	"main": "./src/core/index.ts",
+	"type": "module",
+	"private": true,
 	"scripts": {
 		"build": "bun build ./src/core/index.ts --target bun --out-dir ./dist/core",
 		"start": "bun ./dist/core/index.js",

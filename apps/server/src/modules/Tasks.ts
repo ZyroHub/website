@@ -3,10 +3,9 @@ import ansicolor from 'ansicolor';
 import { randomUUID } from 'crypto';
 import { config, TaskData, Terminal, WorkerArgs, WorkerId } from '@zyrohub/toolkit';
 
-import { BaseModule } from './Base';
-import { RedisModule } from './Redis';
-import { MessengerModule } from './Messenger';
-import { ServerModule } from './modules';
+import { BaseModule } from './Base.js';
+import { RedisModule } from './Redis.js';
+import { MessengerModule } from './Messenger.js';
 
 export class TasksModuleBase extends BaseModule {
 	dependencies = [RedisModule, MessengerModule];

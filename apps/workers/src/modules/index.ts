@@ -1,3 +1,3 @@
-export * from './Messenger';
-export * from './Redis';
-export * from './Tasks';
+export * from './Messenger.js';
+export * from './Redis.js';
+export * from './Tasks.js';

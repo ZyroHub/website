@@ -1,4 +1,4 @@
-import { Core } from './Core';
+import { Core } from './Core.js';
 
 const core = new Core();
 

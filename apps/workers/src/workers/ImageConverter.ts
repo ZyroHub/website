@@ -1,8 +1,8 @@
 import { Utilities, WorkerArgs, WorkerResponse } from '@zyrohub/toolkit';
-
-import { BaseWorker, BaseWorkerProgress } from './Base';
 import sharp from 'sharp';
 import { filetypemime } from 'magic-bytes.js';
+
+import { BaseWorker, BaseWorkerProgress } from './Base.js';
 
 export class ImageConverterWorker extends BaseWorker {
 	static async execute<T extends 'image_converter'>(

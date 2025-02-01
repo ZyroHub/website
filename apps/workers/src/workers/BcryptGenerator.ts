@@ -1,6 +1,6 @@
 import { WorkerArgs, WorkerResponse } from '@zyrohub/toolkit';
 
-import { BaseWorker, BaseWorkerProgress } from './Base';
+import { BaseWorker, BaseWorkerProgress } from './Base.js';
 
 export class BcryptGeneratorWorker extends BaseWorker {
 	static async execute<T extends 'bcrypt_generator'>(

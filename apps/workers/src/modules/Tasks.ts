@@ -1,13 +1,13 @@
 import amqp from 'amqplib';
 import { config, Terminal, WorkerId, workersSchemas } from '@zyrohub/toolkit';
-
-import { BaseModule } from './Base';
-import { RedisModule } from './Redis';
-import { MessengerModule } from './Messenger';
-
-import { workers } from '@/workers/workers';
 import ansicolor from 'ansicolor';
-import { BaseWorkerProgress } from '@/workers/Base';
+
+import { BaseModule } from './Base.js';
+import { RedisModule } from './Redis.js';
+import { MessengerModule } from './Messenger.js';
+
+import { BaseWorkerProgress } from '@/workers/Base.js';
+import { workers } from '@/workers/workers.js';
 
 export class TasksModuleBase extends BaseModule {
 	dependencies = [RedisModule, MessengerModule];

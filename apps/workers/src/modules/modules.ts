@@ -1,3 +1,3 @@
-export { MessengerModule } from './Messenger';
-export { RedisModule } from './Redis';
-export { TasksModule } from './Tasks';
+export { MessengerModule } from './Messenger.js';
+export { RedisModule } from './Redis.js';
+export { TasksModule } from './Tasks.js';

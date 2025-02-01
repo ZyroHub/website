@@ -1,4 +1,4 @@
-import { WorkerArgs, WorkerId } from './workers';
+import { WorkerArgs, WorkerId } from './workers.js';
 
 export type TaskData<TWorkerId extends WorkerId> = {
 	id: string;

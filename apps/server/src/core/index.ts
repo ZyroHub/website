@@ -1,5 +1,5 @@
-import { ServerModule } from '@/modules';
-import { Core } from './Core';
+import { ServerModule } from '@/modules/index.js';
+import { Core } from './Core.js';
 
 const core = new Core();
 

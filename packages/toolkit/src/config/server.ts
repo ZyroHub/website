@@ -1,4 +1,4 @@
-import * as client from './client';
+import * as client from './client.js';
 
 export const port = Number(process.env.SERVER_PORT || 3e3);
 

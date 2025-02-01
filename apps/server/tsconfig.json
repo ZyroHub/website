@@ -1,14 +1,12 @@
 {
 	"extends": "@zyrohub/config/typescript/base.json",
-	"include": ["src"],
 	"compilerOptions": {
-		"strict": true,
-		"skipLibCheck": true,
 		"baseUrl": ".",
 		"experimentalDecorators": true,
 		"paths": {
 			"@/*": ["src/*"]
 		}
 	},
+	"include": ["src"],
 	"exclude": ["node_modules", "dist"]
 }

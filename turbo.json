@@ -9,7 +9,8 @@
 		"dev": {
 			"cache": false,
 			"persistent": true,
-			"inputs": [".env.development"]
+			"inputs": ["$TURBO_DEFAULT$", ".env.local", ".env.development"],
+			"passThroughEnv": ["PORT", "SERVER_FULL_URL"]
 		}
 	}
 }

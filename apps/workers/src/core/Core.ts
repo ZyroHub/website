@@ -1,7 +1,7 @@
 import { Terminal } from '@zyrohub/toolkit';
 
-import * as modules from '@/modules/modules';
-import type { BaseModule } from '@/modules/Base';
+import * as modules from '@/modules/modules.js';
+import type { BaseModule } from '@/modules/Base.js';
 
 export class Core {
 	private async initModules() {

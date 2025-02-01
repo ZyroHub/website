@@ -1,17 +1,17 @@
 import ansicolor from 'ansicolor';
 import { config, Terminal } from '@zyrohub/toolkit';
 
-import { BaseModule } from '../Base';
+import { BaseModule } from '../Base.js';
 
-import { RedisModule } from '../Redis';
-import { TasksModule } from '../Tasks';
+import { RedisModule } from '../Redis.js';
+import { TasksModule } from '../Tasks.js';
 
-import Elysia from 'elysia';
-import cors from '@elysiajs/cors';
+import { Elysia } from 'elysia';
+import { cors } from '@elysiajs/cors';
 import { helmet } from 'elysia-helmet';
 import { decorators } from 'elysia-decorators';
 
-import HomeRoute from '@/router/routes/home.route';
+import HomeRoute from '@/router/routes/home.route.js';
 
 export class ServerModuleBase extends BaseModule {
 	dependencies = [RedisModule, TasksModule];

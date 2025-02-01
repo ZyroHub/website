@@ -7,7 +7,7 @@ export class ServerError {
 		public data: any = {}
 	) {}
 
-	public toJSON() {
+	public toData() {
 		return {
 			success: this.success,
 			code: this.code,
