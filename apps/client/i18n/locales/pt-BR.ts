@@ -125,7 +125,11 @@ export default {
 				}
 			},
 			image_converter: {
-				upload: 'Selecione um Arquivo'
+				upload: 'Selecione um Arquivo',
+				bulk: {
+					download: 'Baixar Todos',
+					clear: 'Limpar'
+				}
 			}
 		}
 	},

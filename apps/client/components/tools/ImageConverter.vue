@@ -100,6 +100,18 @@ const handleCancelTask = (task_id: string) => {
 	multiTask.cancel(task_id);
 };
 
+const handleDownloadAllTasks = () => {
+	for (const task of multiTask.tasks.value) {
+		handleDownloadTaskFile(task.id || task.request_id);
+	}
+};
+
+const handleCancelAllTasks = () => {
+	for (const task of multiTask.tasks.value) {
+		handleCancelTask(task.id || task.request_id);
+	}
+};
+
 multiTask.onTaskFinished(async data => {
 	const task = multiTask.get(data.task.id);
 	if (!task) return;
@@ -131,7 +143,7 @@ multiTask.onTaskFinished(async data => {
 				@dragover="handleDragOver"
 				@dragleave="handleDragLeave"
 				:class="[
-					'h-76 max-h-76 border-3 flex w-full flex-col items-center justify-center border-dashed border-transparent duration-200 md:w-1/2',
+					'h-84 max-h-84 border-3 flex w-full flex-col items-center justify-center border-dashed border-transparent duration-200 md:w-1/2',
 					{ 'tools-image-converter-content-drag': isDragOver }
 				]">
 				<Icon name="material-symbols:hide-image-rounded" class="tools-image-converter-image-icon" />
@@ -155,40 +167,52 @@ multiTask.onTaskFinished(async data => {
 			</div>
 		</InputsProvider>
 
-		<div class="h-76 max-h-76 flex w-full flex-col gap-4 overflow-y-auto px-4 md:w-1/2">
-			<div v-for="task in orderedTasks" :key="task.id || task.request_id" class="w-full">
-				<div class="grid w-full grid-cols-8 gap-2">
-					<div class="col-span-2">
-						<img
-							:src="task.storage?.converted_image_url || task.storage?.image_url"
-							class="aspect-square w-full rounded-lg object-cover" />
-					</div>
-					<div class="col-span-6">
-						<div class="flex w-full items-center gap-2">
-							<p class="max-w-1/2 truncate">
-								{{ task.storage?.name }}
-							</p>
-
-							<Icon name="mdi:keyboard-arrow-right" />
-
-							<span>{{ task.storage?.converted_image_format }}</span>
+		<div class="w-full md:w-1/2">
+			<div class="h-84 max-h-84 flex flex-col gap-4 overflow-y-auto px-4">
+				<div v-for="task in orderedTasks" :key="task.id || task.request_id" class="w-full">
+					<div class="grid w-full grid-cols-8 gap-2">
+						<div class="col-span-2">
+							<img
+								:src="task.storage?.converted_image_url || task.storage?.image_url"
+								class="aspect-square w-full rounded-lg object-cover" />
 						</div>
+						<div class="col-span-6">
+							<div class="flex w-full items-center gap-2">
+								<p class="max-w-1/2 truncate">
+									{{ task.storage?.name }}
+								</p>
 
-						<ToolkitToolProgress :task="task" text-class="!text-start" />
+								<Icon name="mdi:keyboard-arrow-right" />
 
-						<div class="mt-2 flex gap-1">
-							<Button
-								v-if="task.storage?.converted_image_url"
-								@click="handleDownloadTaskFile(task.id!)"
-								theme="primary">
-								<Icon name="material-symbols:download-rounded" />
-							</Button>
-							<Button @click="handleCancelTask(task.id || task.request_id)" theme="gray">
-								<Icon name="mdi:close" />
-							</Button>
+								<span>{{ task.storage?.converted_image_format }}</span>
+							</div>
+
+							<ToolkitToolProgress :task="task" text-class="!text-start" />
+
+							<div class="mt-2 flex gap-1">
+								<Button
+									v-if="task.storage?.converted_image_url"
+									@click="handleDownloadTaskFile(task.id!)"
+									theme="primary">
+									<Icon name="material-symbols:download-rounded" />
+								</Button>
+								<Button @click="handleCancelTask(task.id || task.request_id)" theme="gray">
+									<Icon name="mdi:close" />
+								</Button>
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+
+			<div v-if="multiTask.tasks.value.length" class="flex gap-2 mt-4">
+				<Button @click="handleDownloadAllTasks" theme="primary">
+					<Icon name="material-symbols:download-rounded" />
+					{{ t('components.tools.image_converter.bulk.download') }}
+				</Button>
+				<Button @click="handleCancelAllTasks" theme="gray">
+					<Icon name="mdi:close" /> {{ t('components.tools.image_converter.bulk.clear') }}
+				</Button>
 			</div>
 		</div>
 	</div>
