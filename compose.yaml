@@ -1,15 +1,4 @@
 services:
-    app:
-        build:
-            context: .
-            dockerfile: 'Dockerfile'
-        ports:
-            - '${PORT}:${PORT}'
-            - '${SERVER_PORT}:${SERVER_PORT}'
-        networks:
-            - 'zyrohub'
-        profiles:
-            - 'full'
     redis:
         image: 'redis:latest'
         ports:

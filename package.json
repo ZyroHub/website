@@ -26,13 +26,13 @@
 		"ansicolor": "^2.0.3",
 		"elysia": "^1.2.11",
 		"ioredis": "^5.4.2",
-		"turbo": "^2.3.4",
 		"zod": "^3.24.1"
 	},
 	"devDependencies": {
 		"@types/amqplib": "^0.10.6",
 		"@types/bun": "^1.2.1",
-		"prettier-plugin-tailwindcss": "^0.6.11"
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"turbo": "^2.4.0"
 	},
 	"packageManager": "bun@1.2.1"
 }
