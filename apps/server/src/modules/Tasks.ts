@@ -6,6 +6,7 @@ import { config, TaskData, Terminal, WorkerArgs, WorkerId } from '@zyrohub/toolk
 import { BaseModule } from './Base.js';
 import { RedisModule } from './Redis.js';
 import { MessengerModule } from './Messenger.js';
+import { ServerModule } from './modules.js';
 
 export class TasksModuleBase extends BaseModule {
 	dependencies = [RedisModule, MessengerModule];
@@ -74,9 +75,10 @@ export class TasksModuleBase extends BaseModule {
 		await RedisModule.instance?.lrem(config.tasks.redisRunningQueueName, 0, taskId);
 
 		if (taskPositionData.success) {
-			// ServerModule.server?.io?.emit('queue:updated', {
-			// 	removed_position: taskPositionData.position
-			// });
+			ServerModule.server.server?.publish('tasks', {
+				name: 'queue:updated',
+				content: { removed_position: taskPositionData.position }
+			} as any);
 		}
 
 		if (config.tasks.activeLogs) Terminal.info('TASKS', `Task ${ansicolor.cyan(taskId)} canceled!`);

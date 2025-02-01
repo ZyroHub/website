@@ -1,18 +1,20 @@
 import ansicolor from 'ansicolor';
 import { config, Terminal } from '@zyrohub/toolkit';
 
+import { Elysia } from 'elysia';
+import { cors } from '@elysiajs/cors';
+
 import { BaseModule } from '../Base.js';
 
 import { RedisModule } from '../Redis.js';
 import { TasksModule } from '../Tasks.js';
 
-import { Elysia } from 'elysia';
-import { cors } from '@elysiajs/cors';
+import { TasksController } from '@/handlers/controllers/tasks.controller.js';
 
 export class ServerModuleBase extends BaseModule {
 	dependencies = [RedisModule, TasksModule];
 
-	server = new Elysia({}).get('/', 'Hello Elysia').use(cors(config.server.cors));
+	server = new Elysia().use(cors(config.server.cors)).use(TasksController);
 
 	initHandlers() {
 		if (!this.server) return;

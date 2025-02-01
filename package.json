@@ -7,7 +7,10 @@
 	"scripts": {
 		"start": "turbo start",
 		"build": "turbo build",
-		"dev": "turbo dev"
+		"dev": "turbo dev",
+		"dev:client": "turbo dev --filter @zyrohub/client",
+		"dev:server": "turbo dev --filter @zyrohub/server",
+		"dev:workers": "turbo dev --filter @zyrohub/workers"
 	},
 	"workspaces": [
 		"apps/*",

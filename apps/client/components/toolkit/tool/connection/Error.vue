@@ -1,18 +1,14 @@
 <script lang="ts" setup>
-const { $socket } = useNuxtApp();
+const { $edenTasksConnect } = useNuxtApp();
 
 const { t } = useI18n();
-
-const appStore = useAppStore();
-const appStoreRefs = storeToRefs(appStore);
 
 const router = useRouter();
 
 const kitPath = inject<string>('kit_path');
 
 const handleTryAgain = () => {
-	$socket.connect();
-	appStoreRefs.connectionStatus.value = 'connecting';
+	$edenTasksConnect();
 };
 
 const handleCancel = () => {

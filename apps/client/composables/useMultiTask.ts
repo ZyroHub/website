@@ -7,7 +7,7 @@ export interface UseMultiTaskOptions<T> {
 }
 
 export const useMultiTask = <T extends WorkerId>(options: UseMultiTaskOptions<T>) => {
-	const { $socket } = useNuxtApp();
+	const { $edenTasks } = useNuxtApp();
 
 	const tasksStore = useTasksStore();
 	const tasksStoreRefs = storeToRefs(tasksStore);
@@ -35,10 +35,13 @@ export const useMultiTask = <T extends WorkerId>(options: UseMultiTaskOptions<T>
 			created_at: new Date()
 		});
 
-		$socket.emit('task:start', {
-			request_id: requestId,
-			worker_id: options.worker_id,
-			worker_data: data
+		$edenTasks.value?.send({
+			name: 'task:start',
+			content: {
+				request_id: requestId,
+				worker_id: options.worker_id,
+				worker_data: data
+			}
 		});
 	};
 
@@ -49,7 +52,13 @@ export const useMultiTask = <T extends WorkerId>(options: UseMultiTaskOptions<T>
 		if (!['pending', 'finished', 'error'].includes(task.status)) {
 			const requestId = Date.now().toString();
 
-			$socket.emit('task:cancel', { request_id: requestId, task_id: task.id });
+			$edenTasks.value?.send({
+				name: 'task:cancel',
+				content: {
+					request_id: requestId,
+					task_id: task.id
+				}
+			});
 		}
 
 		tasksStoreRefs.tasks.value.splice(

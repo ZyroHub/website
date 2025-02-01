@@ -7,7 +7,7 @@ export interface UseTaskOptions<T> {
 }
 
 export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
-	const { $socket } = useNuxtApp();
+	const { $edenTasks } = useNuxtApp();
 
 	const tasksStore = useTasksStore();
 	const tasksStoreRefs = storeToRefs(tasksStore);
@@ -42,10 +42,13 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 			created_at: new Date()
 		});
 
-		$socket.emit('task:start', {
-			request_id: requestId,
-			worker_id: options.worker_id,
-			worker_data: data
+		$edenTasks.value?.send({
+			name: 'task:start',
+			content: {
+				request_id: requestId,
+				worker_id: options.worker_id,
+				worker_data: data
+			}
 		});
 	};
 
@@ -55,7 +58,10 @@ export const useTask = <T extends WorkerId>(options: UseTaskOptions<T>) => {
 		const requestId = `${Date.now().toString()}-${Math.random().toString().slice(2)}`;
 
 		if (task.value.status !== 'pending')
-			$socket.emit('task:cancel', { request_id: requestId, task_id: task.value.id });
+			$edenTasks.value?.send({
+				name: 'task:cancel',
+				content: { request_id: requestId, worker_id: options.worker_id }
+			});
 
 		tasksStoreRefs.tasks.value.splice(
 			tasksStoreRefs.tasks.value.findIndex(task => task.worker_id === options.worker_id),
