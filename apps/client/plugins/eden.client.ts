@@ -38,7 +38,9 @@ export default defineNuxtPlugin(nuxtApp => {
 		}
 	};
 
-	const edenTasksConnect = (auto: boolean = false) => {
+	appStoreRefs.connectionStatus.value = 'connecting';
+
+	const edenTasksConnect = async (auto: boolean = false) => {
 		appStoreRefs.connectionStatus.value = 'connecting';
 
 		if (edenTasks.value) {
@@ -159,7 +161,9 @@ export default defineNuxtPlugin(nuxtApp => {
 		});
 	};
 
-	edenTasksConnect();
+	nuxtApp.hook('app:mounted', () => {
+		edenTasksConnect();
+	});
 
 	return {
 		provide: {
