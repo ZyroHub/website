@@ -14,7 +14,13 @@ import { TasksController } from '@/handlers/controllers/tasks.controller.js';
 export class ServerModuleBase extends BaseModule {
 	dependencies = [RedisModule, TasksModule];
 
-	server = new Elysia().use(cors(config.server.cors)).use(TasksController);
+	server = new Elysia({
+		websocket: {
+			maxPayloadLength: config.server.socketPayloadLimit
+		}
+	})
+		.use(cors(config.server.cors))
+		.use(TasksController);
 
 	initHandlers() {
 		if (!this.server) return;

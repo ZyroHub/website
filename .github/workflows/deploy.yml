@@ -1,0 +1,30 @@
+name: 🌎 Deploy to VPS
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: 🔒 Checkout code
+              uses: actions/checkout@v4
+
+            - name: ✉️ Run deploy commands on VPS
+              uses: appleboy/ssh-action@v1.0.0
+              with:
+                  host: ${{ vars.SSH_HOST }}
+                  username: ${{ vars.SSH_USER }}
+                  port: ${{ vars.SSH_PORT }}
+                  key: ${{ secrets.SSH_SECRET_KEY }}
+                  script: |
+                      cd /home/apps/zyrohub
+                      pm2 stop ZyroHub
+                      git pull
+                      bun install
+                      echo "${{ vars.ENV_PROD }}" >> .env
+                      bun run build
+                      pm2 start ZyroHub

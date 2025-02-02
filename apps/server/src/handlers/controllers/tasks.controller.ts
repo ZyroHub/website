@@ -2,11 +2,14 @@ import { config, Terminal, WorkerArgs, WorkerId, workersSchemas } from '@zyrohub
 import { Channel } from 'amqplib';
 import { Elysia, t } from 'elysia';
 
-import { MessengerModule, ServerModule, TasksModule } from '@/modules/modules.js';
+import { MessengerModule, TasksModule } from '@/modules/modules.js';
 import { z } from 'zod';
 
 export const TasksController = new Elysia({
-	prefix: '/tasks'
+	prefix: '/tasks',
+	websocket: {
+		maxPayloadLength: config.server.socketPayloadLimit
+	}
 })
 	.state({
 		tasks: [] as string[],
