@@ -22,6 +22,8 @@ jobs:
                   key: ${{ secrets.SSH_SECRET_KEY }}
                   script: |
                       cd /home/apps/zyrohub
+                      whoami
+                      pm2 status
                       pm2 stop ZyroHub
                       git pull
                       bun install
