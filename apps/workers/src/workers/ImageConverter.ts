@@ -13,9 +13,12 @@ export class ImageConverterWorker extends BaseWorker {
 		const mimeType = filetypemime(fileBuffer)?.[0];
 		if (!mimeType?.startsWith('image/')) throw new Error('invalid-file-type');
 
-		const imageSharp = sharp(fileBuffer);
+		let imageSharp = sharp(fileBuffer);
 
-		const imageBuffer = await imageSharp.toFormat(data.format).toBuffer();
+		imageSharp = imageSharp.toFormat(data.format);
+		if (!['png', 'webp'].includes(data.format)) imageSharp = imageSharp.flatten({ background: '#ffffff' });
+
+		const imageBuffer = await imageSharp.toBuffer();
 
 		return { converted_image: imageBuffer } as any;
 	}
