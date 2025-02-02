@@ -23,6 +23,12 @@ if (cluster.isPrimary) {
 				code
 			)}, and signal: ${ansicolor.red(signal)}`
 		);
+
+		setTimeout(() => {
+			Terminal.info('CLUSTER', 'Restarting worker...');
+
+			cluster.fork();
+		}, 5000);
 	});
 } else {
 	Terminal.success('CLUSTER', `Worker ${ansicolor.cyan(process.pid)} started!`);
