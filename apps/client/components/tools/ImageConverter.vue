@@ -27,12 +27,11 @@ const filePicker = useFilePicker({
 	maxCount: 10,
 	onFilesAdd: async files => {
 		for (const file of files) {
-			const fileBuffer = await getFileArrayBuffer(file);
-			const fileDataArray = Array.from(new Uint8Array(fileBuffer));
+			const fileBuffer = await getFileBase64(file);
 
 			await multiTask.start(
 				{
-					image: fileDataArray,
+					image: fileBuffer,
 					format: form.values.value.format
 				},
 				{
@@ -65,12 +64,11 @@ const handleDrop = async (event: DragEvent) => {
 	for (const file of filesArray) {
 		if (!file.type.startsWith('image/')) continue;
 
-		const fileBuffer = await getFileArrayBuffer(file);
-		const fileDataArray = Array.from(new Uint8Array(fileBuffer));
+		const fileBuffer = await getFileBase64(file);
 
 		await multiTask.start(
 			{
-				image: fileDataArray,
+				image: fileBuffer,
 				format: form.values.value.format
 			},
 			{

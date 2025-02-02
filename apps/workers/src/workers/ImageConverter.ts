@@ -9,8 +9,7 @@ export class ImageConverterWorker extends BaseWorker {
 		data: WorkerArgs<T>,
 		update_progress: BaseWorkerProgress
 	): Promise<WorkerResponse<T>> {
-		const fileBuffer = Buffer.from(data.image);
-
+		const fileBuffer = Buffer.from(data.image.split(',')[1], 'base64');
 		const mimeType = filetypemime(fileBuffer)?.[0];
 		if (!mimeType?.startsWith('image/')) throw new Error('invalid-file-type');
 

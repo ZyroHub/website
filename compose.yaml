@@ -22,6 +22,8 @@ services:
             - '4369:4369'
             - '5671:5671'
             - '5672:5672'
+        command: >
+            sh -c "echo 'max_message_size = 150000000' > /etc/rabbitmq/rabbitmq.conf && rabbitmq-server"
         networks:
             - 'zyrohub'
         profiles:
