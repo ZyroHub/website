@@ -26,6 +26,10 @@ useSeoMeta({
 						src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=zyrohub&button_colour=ffa88a&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"
 						class="h-12" />
 				</a>
+
+				<a href="https://github.com/DMVMarcio/zyrohub" target="_blank">
+					<Button class="!h-12" theme="gray"><Icon name="mdi:github" :size="24" /> Contribute</Button>
+				</a>
 			</div>
 		</div>
 		<div class="about-container-end">

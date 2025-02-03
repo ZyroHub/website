@@ -28,6 +28,10 @@ const { t } = useI18n();
 			<div class="navbar-container-end">
 				<NavbarLanguageSelector />
 
+				<a class="display-inherit" href="https://github.com/DMVMarcio/zyrohub" target="_blank">
+					<Icon name="mdi:github" size="30" class="navbar-icon" />
+				</a>
+
 				<NavbarThemeSwitcher />
 			</div>
 		</div>

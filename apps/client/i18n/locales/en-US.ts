@@ -152,8 +152,13 @@ export default {
 				title: 'About'
 			},
 			title: 'About ZyroHub',
-			description:
-				'ZyroHub is a toolkit designed for developers, offering solutions for media conversion and manipulation. It includes a variety of essential tools, eliminating the need to install or rely on multiple software and services to accomplish common tasks.'
+			description: `
+ZyroHub is a toolkit designed for developers, offering solutions for media conversion and manipulation. It includes a variety of essential tools, eliminating the need to install or rely on multiple software and services to accomplish common tasks.
+
+It's a fully open-source project, aimed at providing a free and accessible platform for everyone. If you would like to contribute to the project, you can access the official repository on GitHub and submit your suggestions, corrections, or new tools.
+
+If the project has been useful to you, consider making a donation to help keep the platform active, functional, and improving continuously. Any amount is welcome and will be used to cover the hosting and development costs of the platform.
+`
 		},
 		developers: {
 			meta: {

@@ -53,6 +53,10 @@ nav {
 	height: 100%;
 }
 
+.navbar-icon {
+	color: colors.$primary_300;
+}
+
 .light-mode {
 	nav {
 		background-color: colors.$black_900;
