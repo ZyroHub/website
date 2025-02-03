@@ -18,11 +18,13 @@ export const TasksController = new Elysia({
 	})
 	.ws('/', {
 		body: t.Object({
-			name: t.UnionEnum(['task:start', 'task:cancel']),
+			name: t.UnionEnum(['ping', 'task:start', 'task:cancel']),
 			content: t.Any()
 		}),
 		response: t.Object({
 			name: t.UnionEnum([
+				'pong',
+
 				'task:queued',
 				'task:started',
 				'task:progress',
@@ -66,6 +68,14 @@ export const TasksController = new Elysia({
 		},
 		async message(ws, body) {
 			switch (body.name) {
+				case 'ping':
+					{
+						ws.send({
+							name: 'pong',
+							content: {}
+						});
+					}
+					break;
 				case 'task:start':
 					{
 						const dataParse = z.object({

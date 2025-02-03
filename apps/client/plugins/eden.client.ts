@@ -16,12 +16,19 @@ export default defineNuxtPlugin(nuxtApp => {
 	const eden = treaty<App>(runtimeConfig.public.server_url);
 
 	let edenTasks = ref<ReturnType<typeof eden.tasks.index.subscribe>>();
+	let edenTasksInterval = ref<ReturnType<typeof setInterval> | null>(null);
 
 	let edenTasksRetries = 0;
 
 	const handleOpen = (event: Event) => {
 		edenTasksRetries = 0;
 		appStoreRefs.connectionStatus.value = 'connected';
+
+		edenTasks.value?.send({
+			name: 'ping',
+			content: {}
+		});
+		console.log(edenTasks.value?.ws);
 	};
 
 	const handleClose = (event: Event) => {
@@ -47,6 +54,11 @@ export default defineNuxtPlugin(nuxtApp => {
 			edenTasks.value.off('open', handleOpen);
 			edenTasks.value.off('close', handleClose);
 
+			if (edenTasksInterval.value) {
+				clearInterval(edenTasksInterval.value);
+				edenTasksInterval.value = null;
+			}
+
 			edenTasks.value.close();
 		}
 
@@ -56,6 +68,13 @@ export default defineNuxtPlugin(nuxtApp => {
 
 		edenTasks.value.on('open', handleOpen);
 		edenTasks.value.on('close', handleClose);
+
+		edenTasksInterval.value = setInterval(() => {
+			edenTasks.value?.send({
+				name: 'ping',
+				content: {}
+			});
+		}, 30_000);
 
 		edenTasks.value.subscribe(event => {
 			console.log('event', event.data);
