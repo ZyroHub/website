@@ -28,7 +28,9 @@ useSeoMeta({
 				</a>
 
 				<a href="https://github.com/DMVMarcio/zyrohub" target="_blank">
-					<Button class="!h-12" theme="gray"><Icon name="mdi:github" :size="24" /> Contribute</Button>
+					<Button class="!h-12" theme="gray">
+						<Icon name="mdi:github" :size="24" /> {{ t('pages.about.contribute') }}
+					</Button>
 				</a>
 			</div>
 		</div>

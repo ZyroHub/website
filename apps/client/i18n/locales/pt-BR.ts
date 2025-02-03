@@ -159,7 +159,8 @@ ZyroHub é um toolkit desenhado para desenvolvedores, oferecendo soluções para
 É um projeto totalmente open-source, com o intuito de fornecer uma plataforma gratuita e acessível para todos. Se você gostaria de contribuir com o projeto, você pode acessar o repositório oficial no GitHub e enviar suas sugestões, correções ou novas ferramentas.
 
 Se o projeto foi útil para você, considere fazer uma doação para ajudar a manter a plataforma ativa, funcional e melhor cada vez mais. Qualquer valor é bem-vindo e será utilizado para cobrir os custos de hospedagem e desenvolvimento da plataforma.
-`
+`,
+			contribute: 'Contribuir'
 		},
 		developers: {
 			meta: {
