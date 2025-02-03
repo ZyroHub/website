@@ -120,7 +120,8 @@ export default defineNuxtConfig({
 
 	runtimeConfig: {
 		public: {
-			server_url: process.env.SERVER_FULL_URL || 'http://localhost:3000'
+			server_url: process.env.SERVER_FULL_URL || 'http://localhost:3000',
+			github_repo: process.env.GITHUB_REPO
 		}
 	}
 });

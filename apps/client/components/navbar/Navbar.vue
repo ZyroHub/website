@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const runtimeConfig = useRuntimeConfig();
+
 const { t } = useI18n();
 </script>
 
@@ -28,7 +30,11 @@ const { t } = useI18n();
 			<div class="navbar-container-end">
 				<NavbarLanguageSelector />
 
-				<a class="display-inherit" href="https://github.com/DMVMarcio/zyrohub" target="_blank">
+				<a
+					v-if="runtimeConfig.public.github_repo"
+					class="display-inherit"
+					:href="`https://github.com/${runtimeConfig.public.github_repo}`"
+					target="_blank">
 					<Icon name="mdi:github" size="30" class="navbar-icon" />
 				</a>
 

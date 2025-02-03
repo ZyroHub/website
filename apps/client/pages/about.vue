@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const runtimeConfig = useRuntimeConfig();
+
 const { t } = useI18n();
 const colorMode = useColorMode();
 
@@ -27,7 +29,10 @@ useSeoMeta({
 						class="h-12" />
 				</a>
 
-				<a href="https://github.com/DMVMarcio/zyrohub" target="_blank">
+				<a
+					v-if="runtimeConfig.public.github_repo"
+					:href="`https://github.com/${runtimeConfig.public.github_repo}`"
+					target="_blank">
 					<Button class="!h-12" theme="gray">
 						<Icon name="mdi:github" :size="24" /> {{ t('pages.about.contribute') }}
 					</Button>
