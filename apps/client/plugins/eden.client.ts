@@ -28,7 +28,6 @@ export default defineNuxtPlugin(nuxtApp => {
 			name: 'ping',
 			content: {}
 		});
-		console.log(edenTasks.value?.ws);
 	};
 
 	const handleClose = (event: Event) => {
@@ -77,8 +76,6 @@ export default defineNuxtPlugin(nuxtApp => {
 		}, 30_000);
 
 		edenTasks.value.subscribe(event => {
-			console.log('event', event.data);
-
 			switch (event.data.name) {
 				case 'task:start:error':
 					const taskStartErrorData = event.data.content as { request_id: string; code: string };
