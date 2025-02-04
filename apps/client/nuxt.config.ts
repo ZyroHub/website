@@ -119,9 +119,13 @@ export default defineNuxtConfig({
 	},
 
 	runtimeConfig: {
+		buy_me_a_coffee_token: process.env.BUY_ME_A_COFFEE_TOKEN,
+
 		public: {
 			server_url: process.env.SERVER_FULL_URL || 'http://localhost:3000',
-			github_repo: process.env.GITHUB_REPO
+			github_repo: process.env.GITHUB_REPO,
+			buy_me_a_coffee_id: process.env.BUY_ME_A_COFFEE_ID,
+			buy_me_a_coffee_slug: process.env.BUY_ME_A_COFFEE_SLUG
 		}
 	}
 });

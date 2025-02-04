@@ -23,9 +23,12 @@ useSeoMeta({
 			<p class="about-description">{{ t('pages.about.description') }}</p>
 
 			<div class="mt-10 flex items-center gap-4">
-				<a href="https://www.buymeacoffee.com/zyrohub" class="max-w-max max-h-12">
+				<a
+					v-if="runtimeConfig.public.buy_me_a_coffee_slug"
+					:href="`https://www.buymeacoffee.com/${runtimeConfig.public.buy_me_a_coffee_slug}`"
+					class="max-w-max max-h-12">
 					<img
-						src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=zyrohub&button_colour=ffa88a&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00"
+						:src="`https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=${runtimeConfig.public.buy_me_a_coffee_slug}&button_colour=ffa88a&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=FFDD00`"
 						class="h-12" />
 				</a>
 
@@ -40,8 +43,12 @@ useSeoMeta({
 			</div>
 		</div>
 		<div class="about-container-end">
-			<div>
+			<div class="w-full">
 				<NuxtImg class="about-logo" src="images/zyro-color-wide.webp" />
+
+				<div class="mt-12">
+					<Contributors />
+				</div>
 			</div>
 		</div>
 	</div>

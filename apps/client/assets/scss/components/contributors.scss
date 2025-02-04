@@ -1,0 +1,68 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.contributors-title {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	font-size: 1.2rem;
+	font-weight: 600;
+
+	& > span {
+		margin-left: 0.5rem;
+		font-size: 1rem;
+		font-weight: 400;
+	}
+}
+
+.contributors-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+	margin-top: 0.5rem;
+	max-width: 100%;
+}
+
+.contributors-item {
+	& > a {
+		& > img {
+			width: 3rem;
+			height: 3rem;
+			border-radius: 50%;
+		}
+	}
+}
+
+.contributors-item-more {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	font-size: 2rem;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
+}
+
+.light-mode {
+	.contributors-item-more {
+		color: colors.$black_50;
+		background-color: colors.$black_600;
+
+		&:hover {
+			background-color: colors.$black_900;
+		}
+	}
+}
+
+.dark-mode {
+	.contributors-item-more {
+		color: colors.$white_100;
+		background-color: colors.$black_700;
+
+		&:hover {
+			background-color: colors.$black_600;
+		}
+	}
+}
