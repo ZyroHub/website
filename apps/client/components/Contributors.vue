@@ -42,7 +42,7 @@ const { data: contributorsData } = await useFetch('/api/contributors', {});
 						v-for="contributor in contributorsData.buy_me_a_coffee_supporters.data?.slice(0, 15)"
 						:key="contributor.id"
 						class="contributors-item">
-						<a :href="`https://github.com/${contributor.name}`" target="_blank">
+						<a>
 							<img :src="contributor.avatar" :alt="contributor.name" />
 						</a>
 					</div>
