@@ -6,7 +6,8 @@ export default {
 	components: {
 		contributors: {
 			github: 'Contribuidores no GitHub',
-			buy_me_a_coffee: 'Apoiadores no Buy Me a Coffee'
+			buy_me_a_coffee: 'Apoiadores no Buy Me a Coffee',
+			more: 'Ver Todos'
 		},
 		navbar: {
 			tabs: {

@@ -4,7 +4,7 @@ export default defineCachedEventHandler(
 
 		let githubContributors = {
 			total: 0,
-			data: [] as { id: number; name: string; avatar: string }[]
+			data: [] as { id: number; name: string; avatar: string; contributions: number }[]
 		};
 
 		let buyMeACoffeeSupporters = {
@@ -25,7 +25,8 @@ export default defineCachedEventHandler(
 				githubContributors.data = githubContributorsRes.map((contributor: any) => ({
 					id: contributor.id,
 					name: contributor.login,
-					avatar: contributor.avatar_url
+					avatar: contributor.avatar_url,
+					contributions: contributor.contributions
 				}));
 			}
 		}

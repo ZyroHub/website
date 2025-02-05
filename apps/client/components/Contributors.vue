@@ -28,20 +28,35 @@ const getBuyMeACoffeeSupporterUrl = (username: string, type: string) => {
 				</p>
 
 				<div class="contributors-list">
-					<div
+					<Tooltip
 						v-for="contributor in contributorsData.github_contributors.data?.slice(0, 15)"
-						:key="contributor.id"
-						class="contributors-item">
-						<a :href="`https://github.com/${contributor.name}`" target="_blank">
-							<img :src="contributor.avatar" :alt="contributor.name" />
-						</a>
-					</div>
+						:key="contributor.id">
+						<template #trigger>
+							<div class="contributors-item">
+								<a :href="`https://github.com/${contributor.name}`" target="_blank">
+									<img :src="contributor.avatar" :alt="contributor.name" />
+								</a>
+							</div>
+						</template>
 
-					<a
-						:href="`https://github.com/${runtimeConfig.public.github_repo}/graphs/contributors`"
-						target="_blank">
-						<button class="contributors-item-more"><Icon name="mdi:dots-horizontal" /></button>
-					</a>
+						<template #default>
+							<p>{{ contributor.name }} ({{ contributor.contributions }})</p>
+						</template>
+					</Tooltip>
+
+					<Tooltip>
+						<template #trigger>
+							<a
+								:href="`https://github.com/${runtimeConfig.public.github_repo}/graphs/contributors`"
+								target="_blank">
+								<button class="contributors-item-more"><Icon name="mdi:dots-horizontal" /></button>
+							</a>
+						</template>
+
+						<template #default>
+							<p>{{ t('components.contributors.more') }}</p>
+						</template>
+					</Tooltip>
 				</div>
 			</div>
 
@@ -52,20 +67,37 @@ const getBuyMeACoffeeSupporterUrl = (username: string, type: string) => {
 				</p>
 
 				<div class="contributors-list">
-					<div
+					<Tooltip
 						v-for="contributor in contributorsData.buy_me_a_coffee_supporters.data?.slice(0, 15)"
-						:key="contributor.id"
-						class="contributors-item">
-						<a :href="getBuyMeACoffeeSupporterUrl(contributor.name, contributor.type)" target="_blank">
-							<img :src="contributor.avatar" :alt="contributor.name" />
-						</a>
-					</div>
+						:key="contributor.id">
+						<template #trigger>
+							<div class="contributors-item">
+								<a
+									:href="getBuyMeACoffeeSupporterUrl(contributor.name, contributor.type)"
+									target="_blank">
+									<img :src="contributor.avatar" :alt="contributor.name" />
+								</a>
+							</div>
+						</template>
 
-					<a
-						:href="`https://www.buymeacoffee.com/${runtimeConfig.public.buy_me_a_coffee_slug}`"
-						target="_blank">
-						<button class="contributors-item-more"><Icon name="mdi:dots-horizontal" /></button>
-					</a>
+						<template #default>
+							<p>{{ contributor.name }} ({{ contributor.type }})</p>
+						</template>
+					</Tooltip>
+
+					<Tooltip>
+						<template #trigger>
+							<a
+								:href="`https://www.buymeacoffee.com/${runtimeConfig.public.buy_me_a_coffee_slug}`"
+								target="_blank">
+								<button class="contributors-item-more"><Icon name="mdi:dots-horizontal" /></button>
+							</a>
+						</template>
+
+						<template #default>
+							<p>{{ t('components.contributors.more') }}</p>
+						</template>
+					</Tooltip>
 				</div>
 			</div>
 		</div>

@@ -1,0 +1,41 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.tooltip-content {
+	padding: 0.5rem 1rem;
+	max-width: 20rem;
+	border-radius: 0.5rem;
+
+	& > p {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 100%;
+		font-size: 0.9rem;
+	}
+}
+
+.transition_tooltip_visibility-enter-active,
+.transition_tooltip_visibility-leave-active {
+	transition: all 150ms linear;
+}
+
+.transition_tooltip_visibility-enter-from {
+	opacity: 0;
+}
+
+.transition_tooltip_visibility-leave-to {
+	opacity: 0;
+}
+
+.light-mode {
+	.tooltip-content {
+		background-color: colors.$black_950;
+		color: colors.$white_100;
+	}
+}
+
+.dark-mode {
+	.tooltip-content {
+		background-color: colors.$black;
+		color: colors.$white_100;
+	}
+}
