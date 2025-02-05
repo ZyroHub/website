@@ -4,6 +4,10 @@ export default {
 		pt: 'Brazilian Portuguese'
 	},
 	components: {
+		contributors: {
+			github: 'GitHub Contributors',
+			buy_me_a_coffee: 'Buy Me a Coffee Supporters'
+		},
 		navbar: {
 			tabs: {
 				developers: 'Developers',

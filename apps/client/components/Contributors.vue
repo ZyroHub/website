@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 const runtimeConfig = useRuntimeConfig();
 
+const { t } = useI18n();
+
 const { data: contributorsData } = await useFetch('/api/contributors', {});
 
 const getBuyMeACoffeeSupporterUrl = (username: string, type: string) => {
@@ -21,7 +23,9 @@ const getBuyMeACoffeeSupporterUrl = (username: string, type: string) => {
 	<div>
 		<div v-if="contributorsData" class="flex flex-col gap-8">
 			<div v-if="contributorsData.github_contributors.total">
-				<p class="contributors-title"><Icon name="mdi:github" :size="24" /> GitHub Contributors</p>
+				<p class="contributors-title">
+					<Icon name="mdi:github" :size="24" /> {{ t('components.contributors.github') }}
+				</p>
 
 				<div class="contributors-list">
 					<div
@@ -43,7 +47,8 @@ const getBuyMeACoffeeSupporterUrl = (username: string, type: string) => {
 
 			<div v-if="contributorsData.buy_me_a_coffee_supporters.total">
 				<p class="contributors-title">
-					<Icon name="simple-icons:buymeacoffee" :size="24" /> Buy Me a Coffee Supporters
+					<Icon name="simple-icons:buymeacoffee" :size="24" />
+					{{ t('components.contributors.buy_me_a_coffee') }}
 				</p>
 
 				<div class="contributors-list">
