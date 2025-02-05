@@ -67,5 +67,5 @@ export default defineCachedEventHandler(
 			buy_me_a_coffee_supporters: buyMeACoffeeSupporters
 		};
 	},
-	{ maxAge: 5 }
+	{ maxAge: 60 * 10 }
 );

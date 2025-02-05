@@ -2,6 +2,15 @@
 const runtimeConfig = useRuntimeConfig();
 
 const { data: contributorsData } = await useFetch('/api/contributors', {});
+
+const getBuyMeACoffeeSupporterUrl = (username: string, type: string) => {
+	username = username.replace('@', '');
+
+	if (['twitter', 'x'].includes(type)) return `https://www.x.com/${username}`;
+
+	if (type === 'instagram') return `https://www.instagram.com/${username}`;
+	if (type === 'tiktok') return `https://www.tiktok.com/@${username}`;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -42,7 +51,7 @@ const { data: contributorsData } = await useFetch('/api/contributors', {});
 						v-for="contributor in contributorsData.buy_me_a_coffee_supporters.data?.slice(0, 15)"
 						:key="contributor.id"
 						class="contributors-item">
-						<a>
+						<a :href="getBuyMeACoffeeSupporterUrl(contributor.name, contributor.type)" target="_blank">
 							<img :src="contributor.avatar" :alt="contributor.name" />
 						</a>
 					</div>
