@@ -13,11 +13,17 @@ const { t } = useI18n();
 		<div class="navbar-container">
 			<div class="navbar-container-start">
 				<NavbarTab to="/">
-					<Icon size="32" name="lucide:home" />
+					<Icon :size="30" name="lucide:home" />
 				</NavbarTab>
-				<NavbarTab to="/developers">{{ t('components.navbar.tabs.developers') }}</NavbarTab>
-				<NavbarTab to="/creators">{{ t('components.navbar.tabs.creators') }}</NavbarTab>
-				<NavbarTab to="/misc">{{ t('components.navbar.tabs.misc') }}</NavbarTab>
+				<NavbarTab to="/developers" :title="t('components.navbar.tabs.developers')">
+					<Icon :size="30" name="ant-design:code-filled" />
+				</NavbarTab>
+				<NavbarTab to="/creators" :title="t('components.navbar.tabs.creators')">
+					<Icon :size="30" name="ant-design:camera-filled" />
+				</NavbarTab>
+				<NavbarTab to="/misc" :title="t('components.navbar.tabs.misc')">
+					<Icon :size="30" name="jam:tools-f" />
+				</NavbarTab>
 				<NavbarTab to="/about">{{ t('components.navbar.tabs.about') }}</NavbarTab>
 			</div>
 

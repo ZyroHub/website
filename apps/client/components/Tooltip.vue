@@ -37,7 +37,7 @@ const handleOpen = () => {
 			<slot name="trigger"></slot>
 		</div>
 
-		<div ref="floating" :style="floatingStyles" class="z-100">
+		<div v-if="$slots.default" ref="floating" :style="floatingStyles" class="z-100">
 			<Transition name="transition_tooltip_visibility">
 				<div v-if="isOpen" class="tooltip-content">
 					<p><slot /></p>

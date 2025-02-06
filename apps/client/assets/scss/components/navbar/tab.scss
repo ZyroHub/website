@@ -10,7 +10,9 @@
 	font-size: 1rem;
 	font-weight: 400;
 	cursor: default;
-	transition: background-color 150ms ease-out, color 150ms ease-out;
+	transition:
+		background-color 150ms ease-out,
+		color 150ms ease-out;
 
 	&:not(.active) {
 		color: colors.$white_200;
@@ -26,7 +28,7 @@
 		&.active,
 		&:not(.active):hover {
 			color: colors.$black_900;
-			background-color: colors.$white_100;
+			background-color: colors.$white_50;
 		}
 	}
 }
