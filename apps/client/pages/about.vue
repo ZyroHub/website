@@ -43,7 +43,7 @@ useSeoMeta({
 			</div>
 		</div>
 		<div class="about-container-end">
-			<div class="w-full">
+			<div class="w-full flex flex-wrap justify-center">
 				<NuxtImg class="about-logo" src="images/zyro-color-wide.webp" />
 
 				<div class="mt-12">

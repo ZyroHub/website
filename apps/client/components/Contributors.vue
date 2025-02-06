@@ -21,7 +21,7 @@ const getBuyMeACoffeeSupporterUrl = (username: string, type: string) => {
 
 <template>
 	<div>
-		<div v-if="contributorsData" class="flex flex-col gap-8">
+		<div v-if="contributorsData" class="flex lg:flex-col gap-8">
 			<div v-if="contributorsData.github_contributors.total">
 				<p class="contributors-title">
 					<Icon name="mdi:github" :size="24" /> {{ t('components.contributors.github') }}
