@@ -1,9 +1,12 @@
 @use '~/assets/scss/utils/_colors.scss';
 
 .button-bmac {
+	display: flex;
 	gap: 1rem;
 	padding: 0rem 0rem 0rem 1rem;
+	border-radius: 0.4rem;
 	background-color: colors.$primary_300;
+	transition: all 0.3s ease;
 
 	& > span {
 		display: flex;
