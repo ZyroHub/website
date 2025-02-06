@@ -209,12 +209,6 @@ O nosso site pode ter links para sites externos que não são operados por nós.
 
 O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais. Se você tiver alguma dúvida sobre como lidamos com dados do usuário e informações pessoais, entre em contacto connosco.
 
-Além disso, coletamos dados de forma anônima por meio da ferramenta Google Analytics para mensurar a utilização da nossa plataforma. Nenhum dado sensível é coletado. Ao utilizar nossa plataforma, você concorda que informações como sua cidade, país e tempo médio de sessão serão registrados apenas e exclusivamente para fins analíticos.
-
-- O serviço Google AdSense que usamos para veicular publicidade usa um cookie DoubleClick para veicular anúncios mais relevantes em toda a Web e limitar o número de vezes que um determinado anúncio é exibido para você.
-- Para mais informações sobre o Google AdSense, consulte as FAQs oficiais sobre privacidade do Google AdSense.
-- Utilizamos anúncios para compensar os custos de funcionamento deste site e fornecer financiamento para futuros desenvolvimentos. Os cookies de publicidade comportamental usados por este site foram projetados para garantir que você forneça os anúncios mais relevantes sempre que possível, rastreando anonimamente seus interesses e apresentando coisas semelhantes que possam ser do seu interesse.
-
 ## Compromisso do Usuário
 
 O usuário se compromete a fazer uso adequado dos conteúdos e da informação que o ZyroHub oferece no site e com caráter enunciativo, mas não limitativo:
@@ -227,7 +221,7 @@ O usuário se compromete a fazer uso adequado dos conteúdos e da informação q
 
 Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em nosso site.
 			`,
-			date: '~ Esta política é efetiva a partir do dia 11 de Dezembro de 2024.'
+			date: '~ Esta política é efetiva a partir do dia 06 de Janeiro de 2025.'
 		}
 	},
 	tools: {

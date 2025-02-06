@@ -208,12 +208,6 @@ Our website may link to external sites that are not operated by us. Please be aw
 
 Your continued use of our website will be regarded as acceptance of our practices around privacy and personal information. If you have any questions about how we handle user data and personal information, feel free to contact us.
 
-Additionally, we collect data anonymously through the Google Analytics tool to measure the use of our platform. No sensitive data is collected. By using our platform, you agree that information such as your city, country, and average session time will be recorded solely and exclusively for analytical purposes.
-
-- The Google AdSense service we use to serve advertising uses a DoubleClick cookie to serve more relevant ads across the web and limit the number of times a given ad is shown to you.
-- For more information on Google AdSense, see the official Google AdSense privacy FAQ.
-- We use ads to offset the costs of running this website and provide funding for future development. The behavioral advertising cookies used by this website are designed to ensure that you provide the most relevant ads wherever possible by anonymously tracking your interests and presenting similar things that may be of interest.
-
 ## User Commitment
 
 The user undertakes to make appropriate use of the content and information that ZyroHub offers on the website and with an enunciative, but not limiting, character:
@@ -226,7 +220,7 @@ C) Not to cause damage to the physical (hardware) and logical (software) systems
 
 We hope this is clear, and as mentioned earlier, if there is something that you aren't sure whether you need or not, it's usually safer to leave cookies enabled in case it interacts with one of the features you use on our website.
 			`,
-			date: '~ This policy is effective as of December 11, 2024.'
+			date: '~ This policy is effective as of January 06, 2025.'
 		}
 	},
 	tools: {
