@@ -71,7 +71,8 @@ export default defineNuxtConfig({
 		download: true,
 		display: 'swap',
 		families: {
-			Poppins: [400, 500, 600, 700]
+			Poppins: [400, 500, 600, 700],
+			Cookie: [400]
 		}
 	},
 

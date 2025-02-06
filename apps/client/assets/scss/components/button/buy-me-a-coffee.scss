@@ -1,0 +1,40 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.button-bmac {
+	gap: 1rem;
+	padding: 0rem 0rem 0rem 1rem;
+	background-color: colors.$primary_300;
+
+	& > span {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-family: Cookie;
+		font-size: 1.5rem;
+
+		& > img {
+			height: 1.5rem;
+		}
+	}
+
+	& > div {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 0.4rem 0.8rem;
+		font-size: 0.75rem;
+		color: colors.$white_50;
+		border-top-right-radius: 0.4rem;
+		border-bottom-right-radius: 0.4rem;
+		background-color: colors.$primary_400;
+		transition: all 0.3s ease;
+	}
+
+	&:hover {
+		background-color: colors.$primary_400;
+
+		& > div {
+			background-color: colors.$primary_500;
+		}
+	}
+}

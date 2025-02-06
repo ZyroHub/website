@@ -2,6 +2,7 @@
 const props = defineProps<{
 	theme?: 'primary' | 'gray';
 	disabled?: boolean;
+	class?: HtmlHTMLAttributes['class'];
 }>();
 
 const emit = defineEmits(['click']);
@@ -14,7 +15,7 @@ const emit = defineEmits(['click']);
 <template>
 	<button
 		@click="e => emit('click', e)"
-		:class="['button', props.theme && `button-${props.theme}`]"
+		:class="['button', props.theme && `button-${props.theme}`, props.class]"
 		:disabled="props.disabled">
 		<slot />
 	</button>
