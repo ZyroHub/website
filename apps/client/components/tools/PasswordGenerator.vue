@@ -2,6 +2,6 @@
 
 <template>
 	<div>
-		<p>ABCDEf</p>
+		<InputsSlider />
 	</div>
 </template>
