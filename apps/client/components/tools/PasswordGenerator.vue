@@ -1,5 +1,9 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+const form = useForm({});
+</script>
 
 <template>
-	<div></div>
+	<div>
+		<InputsProvider :form="form"> </InputsProvider>
+	</div>
 </template>

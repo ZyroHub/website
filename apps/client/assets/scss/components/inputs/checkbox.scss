@@ -1,0 +1,26 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.input-checkbox-box {
+	position: relative;
+	width: 1.25rem;
+	height: 1.25rem;
+	aspect-ratio: 1;
+	border: 2px solid colors.$primary_500;
+	border-radius: 0.25rem;
+
+	& > span {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		font-size: 0.8rem;
+		transform: translate(-50%, -50%);
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&.checked {
+		background-color: colors.$primary_500;
+	}
+}

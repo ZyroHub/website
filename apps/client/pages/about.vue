@@ -28,7 +28,8 @@ useSeoMeta({
 				<a
 					v-if="runtimeConfig.public.github_repo"
 					:href="`https://github.com/${runtimeConfig.public.github_repo}`"
-					target="_blank">
+					target="_blank"
+					:draggable="false">
 					<Button class="!h-12" theme="gray">
 						<Icon name="mdi:github" :size="24" /> {{ t('pages.about.contribute') }}
 					</Button>
