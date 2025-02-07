@@ -18,6 +18,16 @@ const props = withDefaults(
 const model = defineModel();
 const formInput = useFormInput(props.name, model);
 
+const textContent = computed({
+	get: () => String(formInput.inputRef.value),
+	set: (value: string) => {
+		const numberValue = Number(value);
+		if (isNaN(numberValue)) return;
+
+		formInput.inputRef.value = Math.max(props.min, Math.min(props.max, numberValue));
+	}
+});
+
 const isDragging = ref(false);
 const slider = ref<HTMLElement>();
 
@@ -62,17 +72,21 @@ onBeforeUnmount(() => {
 	<div :class="props.class">
 		<InputsBase :label="props.label" :name="props.name">
 			<template #content>
-				<div ref="slider" class="input-slider-track" @mousedown="handleStartDrag">
-					<div
-						class="input-slider-fill"
-						:style="{
-							width: ((formInput.inputRef.value - props.min) / (props.max - props.min)) * 100 + '%'
-						}" />
-					<div
-						class="input-slider-thumb"
-						:style="{
-							left: `${((formInput.inputRef.value - props.min) / (props.max - props.min)) * 100}%`
-						}" />
+				<div class="flex items-center gap-4">
+					<InputsText v-model="textContent" class="max-w-16" :mask="{ mask: '##' }" />
+
+					<div ref="slider" class="input-slider-track" @mousedown="handleStartDrag">
+						<div
+							class="input-slider-fill"
+							:style="{
+								width: ((formInput.inputRef.value - props.min) / (props.max - props.min)) * 100 + '%'
+							}" />
+						<div
+							class="input-slider-thumb"
+							:style="{
+								left: `${((formInput.inputRef.value - props.min) / (props.max - props.min)) * 100}%`
+							}" />
+					</div>
 				</div>
 			</template>
 		</InputsBase>

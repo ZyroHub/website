@@ -3,7 +3,7 @@ import type { ModelRef } from 'vue';
 export const useFormInput = (name?: string, model?: ModelRef<any>) => {
 	const injectedForm = useInjectedForm();
 
-	const localRef = ref<any>(null);
+	const localRef = ref<any>(model?.value || null);
 
 	const inputRef = computed({
 		get: () => (name ? injectedForm?.form?.values?.value?.[name] : localRef.value),
