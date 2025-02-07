@@ -244,6 +244,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		image_converter: {
 			name: 'Conversor de Imagens',
 			description: 'Converta imagens para diferentes formatos diferentes. (WebP, PNG, JPG e JPEG)'
+		},
+		password_generator: {
+			name: 'Gerador de Senhas',
+			description: 'Gere senhas aleatórias com diferentes níveis de segurança e configurações.'
 		}
 	},
 	workers: {}

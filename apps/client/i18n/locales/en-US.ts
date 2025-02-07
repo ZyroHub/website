@@ -243,6 +243,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		image_converter: {
 			name: 'Image Converter',
 			description: 'Convert images to different formats. (WebP, PNG, JPG and JPEG)'
+		},
+		password_generator: {
+			name: 'Password Generator',
+			description: 'Generate random passwords with different security levels and settings.'
 		}
 	},
 	workers: {}
