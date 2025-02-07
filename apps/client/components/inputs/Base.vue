@@ -10,7 +10,7 @@ const props = defineProps<{
 			{{ props.label }}
 		</p>
 
-		<div class="relative mt-1">
+		<div :class="['relative', { 'mt-1': !!props.label }]">
 			<slot name="content"></slot>
 		</div>
 	</div>

@@ -134,6 +134,16 @@ export default {
 					download: 'Download All',
 					clear: 'Clear'
 				}
+			},
+			password_generator: {
+				settings: {
+					size: 'Size',
+					ignore: 'Ignore Characters',
+					letters: 'Include Letters',
+					numbers: 'Include Numbers',
+					symbols: 'Include Symbols'
+				},
+				output: 'Generated Password'
 			}
 		}
 	},

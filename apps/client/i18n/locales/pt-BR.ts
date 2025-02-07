@@ -135,6 +135,16 @@ export default {
 					download: 'Baixar Todos',
 					clear: 'Limpar'
 				}
+			},
+			password_generator: {
+				settings: {
+					size: 'Tamanho da Senha',
+					ignore: 'Ignorar Caracteres',
+					letters: 'Incluir Letras',
+					numbers: 'Incluir Números',
+					symbols: 'Incluir Caracteres Especiais'
+				},
+				output: 'Senha Gerada'
 			}
 		}
 	},

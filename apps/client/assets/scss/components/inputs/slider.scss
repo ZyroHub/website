@@ -1,5 +1,13 @@
 @use '~/assets/scss/utils/_colors.scss';
 
+.input-slider-box {
+	display: flex;
+	align-items: center;
+	padding: 0 0.5rem;
+	border-radius: 0.5rem;
+	background-color: colors.$black_800;
+}
+
 .input-slider-track {
 	position: relative;
 	width: 100%;
@@ -45,7 +53,7 @@
 
 .dark-mode {
 	.input-slider-track {
-		background-color: colors.$black_700;
+		background-color: colors.$black_950;
 	}
 
 	.input-slider-fill {

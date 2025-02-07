@@ -72,8 +72,12 @@ onBeforeUnmount(() => {
 	<div :class="props.class">
 		<InputsBase :label="props.label" :name="props.name">
 			<template #content>
-				<div class="flex items-center gap-4">
-					<InputsText v-model="textContent" class="max-w-16" :mask="{ mask: '##' }" />
+				<div class="input-slider-box">
+					<InputsText
+						v-model="textContent"
+						class="max-w-16"
+						innerClass="text-center"
+						:mask="{ mask: '##' }" />
 
 					<div ref="slider" class="input-slider-track" @mousedown="handleStartDrag">
 						<div
