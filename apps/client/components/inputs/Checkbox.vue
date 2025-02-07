@@ -34,7 +34,10 @@ const handleClick = () => {
 						<Icon v-if="formInput.inputRef.value" name="mdi:check-bold" />
 					</div>
 
-					<p v-if="props.labelPlacement === 'right'" @click="handleClick" class="cursor-pointer select-none">
+					<p
+						v-if="props.labelPlacement === 'right'"
+						@click="handleClick"
+						class="cursor-pointer select-none text-sm">
 						{{ props.label }}
 					</p>
 				</div>
