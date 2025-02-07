@@ -16,14 +16,14 @@ export const getToolList = (): ITool[] => {
 		},
 		{
 			id: 'bcrypt_generator',
-			icon: 'mdi:password',
+			icon: 'mdi:shield-key',
 			related: ['bcrypt_checker'],
 			tags: [ToolTagEnum.DEV, ToolTagEnum.CRYPTO, ToolTagEnum.GENERATOR, ToolTagEnum.PASSWORD, ToolTagEnum.HASH],
 			needs_connection: true
 		},
 		{
 			id: 'bcrypt_checker',
-			icon: 'mdi:password',
+			icon: 'iconamoon:shield-yes-fill',
 			related: ['bcrypt_generator'],
 			tags: [ToolTagEnum.DEV, ToolTagEnum.CRYPTO, ToolTagEnum.VALIDATOR, ToolTagEnum.PASSWORD, ToolTagEnum.HASH],
 			needs_connection: true
@@ -34,6 +34,12 @@ export const getToolList = (): ITool[] => {
 			related: [],
 			tags: [ToolTagEnum.CREATORS, ToolTagEnum.CONVERTER, ToolTagEnum.IMAGE],
 			needs_connection: true
+		},
+		{
+			id: 'password_generator',
+			icon: 'fluent:password-clock-48-filled',
+			related: [],
+			tags: [ToolTagEnum.MISC, ToolTagEnum.GENERATOR, ToolTagEnum.PASSWORD]
 		}
 	];
 };
