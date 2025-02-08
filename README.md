@@ -21,35 +21,35 @@ Copy the `.env.example` file to `.env` for production or `.env.development` for 
 `production`:
 
 ```bash
-$ cp .env.example .env
+cp .env.example .env
 ```
 
 `development`:
 
 ```bash
-$ cp .env.example .env.development
+cp .env.example .env.development
 ```
 
 #### 2. Install the dependencies:
 
 ```bash
-$ bun install
+bun install
 ```
 
 #### 3. Run the project in development mode:
 
 ```bash
-$ bun run dev
+bun run dev
 ```
 
 #### 4. Build the project:
 
 ```bash
-$ bun build
+bun build
 ```
 
 #### 5. Run the project in production mode:
 
 ```bash
-$ bun start
+bun start
 ```
