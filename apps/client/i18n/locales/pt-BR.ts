@@ -155,6 +155,12 @@ export default {
 					label: 'Slug',
 					placeholder: 'Texto convertido para slug...'
 				}
+			},
+			uuid_generator: {
+				version: 'Versão',
+				namespace: 'Namespace',
+				generate: 'Gerar',
+				output: 'UUID Gerado'
 			}
 		}
 	},
@@ -272,6 +278,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		text_to_slug: {
 			name: 'Texto para Slug',
 			description: 'Converta textos em um formato amigável para URLs e identificadores.'
+		},
+		uuid_generator: {
+			name: 'Gerador UUID',
+			description: 'Gere identificadores únicos universais (UUID) de todas as versões para suas aplicações.'
 		}
 	},
 	workers: {}

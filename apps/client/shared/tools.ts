@@ -46,6 +46,12 @@ export const getToolList = (): ITool[] => {
 			icon: 'mdi:format-letter-case',
 			related: [],
 			tags: [ToolTagEnum.DEV, ToolTagEnum.CONVERTER, ToolTagEnum.TEXT, ToolTagEnum.URL]
+		},
+		{
+			id: 'uuid_generator',
+			icon: 'fluent:document-key-20-filled',
+			related: [],
+			tags: [ToolTagEnum.DEV, ToolTagEnum.MISC, ToolTagEnum.GENERATOR]
 		}
 	];
 };
