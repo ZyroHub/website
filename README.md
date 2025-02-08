@@ -39,13 +39,13 @@ bun install
 #### 3. Run the project in development mode:
 
 ```bash
-bun run dev
+bun dev
 ```
 
 #### 4. Build the project:
 
 ```bash
-bun build
+bun run build
 ```
 
 #### 5. Run the project in production mode:
