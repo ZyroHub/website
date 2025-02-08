@@ -40,6 +40,12 @@ export const getToolList = (): ITool[] => {
 			icon: 'fluent:password-clock-48-filled',
 			related: [],
 			tags: [ToolTagEnum.MISC, ToolTagEnum.GENERATOR, ToolTagEnum.PASSWORD]
+		},
+		{
+			id: 'text_to_slug',
+			icon: 'mdi:format-letter-case',
+			related: [],
+			tags: [ToolTagEnum.DEV, ToolTagEnum.CONVERTER, ToolTagEnum.TEXT]
 		}
 	];
 };

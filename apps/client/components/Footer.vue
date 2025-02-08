@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 const { t } = useI18n();
+
+const fullYear = new Date().getFullYear();
 </script>
 
 <style lang="scss" scoped>
@@ -9,7 +11,7 @@ const { t } = useI18n();
 <template>
 	<footer>
 		<div class="footer-start">
-			<p>{{ t('components.footer.copy') }}</p>
+			<p>{{ t('components.footer.copy', { year: fullYear }) }}</p>
 		</div>
 
 		<div class="footer-end">

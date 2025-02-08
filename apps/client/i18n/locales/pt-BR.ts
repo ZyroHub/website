@@ -9,16 +9,8 @@ export default {
 			buy_me_a_coffee: 'Apoiadores no Buy Me a Coffee',
 			more: 'Ver Todos'
 		},
-		navbar: {
-			tabs: {
-				developers: 'Developers',
-				creators: 'Creators',
-				misc: 'Outros',
-				about: 'Sobre'
-			}
-		},
 		footer: {
-			copy: 'Copyright © 2024 ZyroHub - Todos os direitos reservados.',
+			copy: 'Copyright © {year} ZyroHub - Todos os direitos reservados.',
 			privacy: 'Política de Privacidade'
 		},
 		inputs: {
@@ -27,6 +19,14 @@ export default {
 					default: 'Copiar',
 					success: 'Copiado!'
 				}
+			}
+		},
+		navbar: {
+			tabs: {
+				developers: 'Developers',
+				creators: 'Creators',
+				misc: 'Outros',
+				about: 'Sobre'
 			}
 		},
 		toolkit: {
@@ -145,6 +145,16 @@ export default {
 					symbols: 'Incluir Caracteres Especiais'
 				},
 				output: 'Senha Gerada'
+			},
+			text_to_slug: {
+				input: {
+					label: 'Texto',
+					placeholder: 'Digite seu texto aqui...'
+				},
+				output: {
+					label: 'Slug',
+					placeholder: 'Texto convertido para slug...'
+				}
 			}
 		}
 	},
@@ -258,6 +268,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		password_generator: {
 			name: 'Gerador de Senhas',
 			description: 'Gere senhas aleatórias com diferentes níveis de segurança e configurações.'
+		},
+		text_to_slug: {
+			name: 'Texto para Slug',
+			description: 'Converta textos em um formato amigável para URLs e identificadores.'
 		}
 	},
 	workers: {}

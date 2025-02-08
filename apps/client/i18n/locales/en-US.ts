@@ -9,16 +9,8 @@ export default {
 			buy_me_a_coffee: 'Buy Me a Coffee Supporters',
 			more: 'View All'
 		},
-		navbar: {
-			tabs: {
-				developers: 'Developers',
-				creators: 'Creators',
-				misc: 'Misc',
-				about: 'About'
-			}
-		},
 		footer: {
-			copy: 'Copyright © 2024 ZyroHub - All rights reserved.',
+			copy: 'Copyright © {year} ZyroHub - All rights reserved.',
 			privacy: 'Privacy Policy'
 		},
 		inputs: {
@@ -27,6 +19,14 @@ export default {
 					default: 'Copy',
 					success: 'Copied!'
 				}
+			}
+		},
+		navbar: {
+			tabs: {
+				developers: 'Developers',
+				creators: 'Creators',
+				misc: 'Misc',
+				about: 'About'
 			}
 		},
 		toolkit: {
@@ -144,6 +144,16 @@ export default {
 					symbols: 'Include Symbols'
 				},
 				output: 'Generated Password'
+			},
+			text_to_slug: {
+				input: {
+					label: 'Text',
+					placeholder: 'Type your text here...'
+				},
+				output: {
+					label: 'Slug Text',
+					placeholder: 'Text converted to slug...'
+				}
 			}
 		}
 	},
@@ -257,6 +267,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		password_generator: {
 			name: 'Password Generator',
 			description: 'Generate random passwords with different security levels and settings.'
+		},
+		text_to_slug: {
+			name: 'Text to Slug',
+			description: 'Convert texts into a friendly format for URLs and identifiers.'
 		}
 	},
 	workers: {}
