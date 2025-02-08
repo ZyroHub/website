@@ -9,6 +9,7 @@ export enum ToolTagEnum {
 	IMAGE,
 	VIDEO,
 	AUDIO,
+	URL,
 
 	CRYPTO,
 
