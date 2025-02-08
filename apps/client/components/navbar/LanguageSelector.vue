@@ -9,6 +9,8 @@ const getLocaleFlag = (locale: string) => {
 			return 'circle-flags:us-um';
 		case 'pt':
 			return 'circle-flags:br';
+		case 'es':
+			return 'circle-flags:es';
 		default:
 			return 'circle-flags:us-um';
 	}

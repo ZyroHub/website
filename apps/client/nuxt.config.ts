@@ -100,6 +100,12 @@ export default defineNuxtConfig({
 				language: 'pt-BR',
 				name: 'Português Brasil',
 				file: 'pt-BR.ts'
+			},
+			{
+				code: 'es',
+				language: 'es-ES',
+				name: 'Español',
+				file: 'es-ES.ts'
 			}
 		]
 	},
@@ -114,7 +120,8 @@ export default defineNuxtConfig({
 				'mdi:content-copy',
 
 				'circle-flags:us-um',
-				'circle-flags:br'
+				'circle-flags:br',
+				'circle-flags:es'
 			]
 		}
 	},

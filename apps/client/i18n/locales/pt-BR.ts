@@ -1,7 +1,8 @@
 export default {
 	locales: {
-		en: 'Inglês',
-		pt: 'Português Brasil'
+		en: 'English',
+		pt: 'Português Brasil',
+		es: 'Español'
 	},
 	components: {
 		contributors: {
