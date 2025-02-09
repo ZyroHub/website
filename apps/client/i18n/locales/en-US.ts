@@ -130,7 +130,7 @@ export default {
 				}
 			},
 			hash_generator: {
-				input: {
+				text: {
 					label: 'Text',
 					placeholder: 'Type your text here...'
 				},
