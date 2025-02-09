@@ -23,6 +23,32 @@ export const workersSchemas = {
 		storage: z.object({}),
 		errors: [] as string[]
 	},
+	hash_generator: {
+		args: z.object({
+			text: z.string().min(1).max(2048),
+			algorithm: z.enum([
+				'md4',
+				'md5',
+
+				'sha1',
+				'sha224',
+				'sha256',
+				'sha384',
+				'sha512',
+				'sha512-224',
+				'sha512-256',
+				'sha3-224',
+				'sha3-256',
+				'sha3-384',
+				'sha3-512'
+			])
+		}),
+		response: z.object({
+			hash: z.string()
+		}),
+		storage: z.object({}),
+		errors: [] as string[]
+	},
 	image_converter: {
 		args: z.object({
 			image: z.string(),

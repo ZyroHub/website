@@ -4,11 +4,20 @@ import { v1, v3, v4, v5, v6, v7 } from 'uuid';
 const { t } = useI18n();
 
 const form = useForm({
-	version: '1',
+	version: '4',
 	name: '',
 
 	output: ''
 });
+
+const uuidOptions = [
+	{ label: 'UUID v1', value: '1' },
+	{ label: 'UUID v3', value: '3' },
+	{ label: 'UUID v4', value: '4' },
+	{ label: 'UUID v5', value: '5' },
+	{ label: 'UUID v6', value: '6' },
+	{ label: 'UUID v7', value: '7' }
+];
 
 const handleGenerate = async () => {
 	switch (form.values.value.version) {
@@ -42,14 +51,7 @@ const handleGenerate = async () => {
 					name="version"
 					:label="t('components.tools.uuid_generator.version')"
 					class="max-w-32"
-					:options="[
-						{ label: 'UUID v1', value: '1' },
-						{ label: 'UUID v3', value: '3' },
-						{ label: 'UUID v4', value: '4' },
-						{ label: 'UUID v5', value: '5' },
-						{ label: 'UUID v6', value: '6' },
-						{ label: 'UUID v7', value: '7' }
-					]" />
+					:options="uuidOptions" />
 
 				<InputsText
 					v-if="['3', '5'].includes(form.values.value.version)"
