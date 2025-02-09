@@ -130,6 +130,18 @@ export default {
 					invalid: 'NÃO CORRESPONDEM'
 				}
 			},
+			hash_generator: {
+				text: {
+					label: 'Texto',
+					placeholder: 'Digite seu texto aqui...'
+				},
+				algorithm: 'Algoritmo',
+				generate: 'Gerar Hash',
+				output: {
+					label: 'Hash Gerado',
+					placeholder: 'Hash gerado...'
+				}
+			},
 			image_converter: {
 				upload: 'Selecione um Arquivo',
 				bulk: {
@@ -267,6 +279,11 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		bcrypt_checker: {
 			name: 'Verificador Bcrypt',
 			description: 'Verifique se uma senha corresponde a um hash bcrypt.'
+		},
+		hash_generator: {
+			name: 'Gerador de Hash',
+			description:
+				'Gere hash de textos utilizando diferentes algoritmos de hash. (MD5, SHA1, SHA256, SHA512, entre outros...)'
 		},
 		image_converter: {
 			name: 'Conversor de Imagens',

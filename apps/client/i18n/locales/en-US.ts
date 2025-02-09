@@ -129,6 +129,18 @@ export default {
 					invalid: 'INVALID MATCH'
 				}
 			},
+			hash_generator: {
+				input: {
+					label: 'Text',
+					placeholder: 'Type your text here...'
+				},
+				algorithm: 'Algorithm',
+				generate: 'Generate Hash',
+				output: {
+					label: 'Hash Text',
+					placeholder: 'Text generated hash...'
+				}
+			},
 			image_converter: {
 				upload: 'Select a File',
 				bulk: {
@@ -266,6 +278,11 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		bcrypt_checker: {
 			name: 'Bcrypt Checker',
 			description: 'Check if a password matches a bcrypt hash.'
+		},
+		hash_generator: {
+			name: 'Hash Generator',
+			description:
+				'Generate text hashes using different hashing algorithms. (MD5, SHA1, SHA256, SHA512, and others...)'
 		},
 		image_converter: {
 			name: 'Image Converter',

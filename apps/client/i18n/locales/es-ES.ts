@@ -130,6 +130,18 @@ export default {
 					invalid: 'NO COINCIDE'
 				}
 			},
+			hash_generator: {
+				input: {
+					label: 'Texto',
+					placeholder: 'Escriba su texto aquí...'
+				},
+				algorithm: 'Algoritmo',
+				generate: 'Generar Hash',
+				output: {
+					label: 'Hash Generado',
+					placeholder: 'Hash generado...'
+				}
+			},
 			image_converter: {
 				upload: 'Seleccione un Archivo',
 				bulk: {
@@ -267,6 +279,11 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 		bcrypt_checker: {
 			name: 'Verificador Bcrypt',
 			description: 'Verificar si una contraseña coincide con un hash bcrypt.'
+		},
+		hash_generator: {
+			name: 'Generador de Hash',
+			description:
+				'Generar hashes de textos utilizando diferentes algoritmos de hash. (MD5, SHA1, SHA256, SHA512, entre otros...)'
 		},
 		image_converter: {
 			name: 'Convertidor de Imágenes',

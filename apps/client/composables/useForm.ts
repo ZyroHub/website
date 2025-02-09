@@ -14,10 +14,13 @@ export const useForm = <T>(initialValues: T, validateSchema?: z.Schema) => {
 		if (result.success) {
 			errors.value = {};
 		} else {
-			errors.value = result.error.errors.reduce((acc, error) => {
-				acc[error.path[0] as keyof T] = error.message;
-				return acc;
-			}, {} as Record<keyof T, string>);
+			errors.value = result.error.errors.reduce(
+				(acc, error) => {
+					acc[error.path[0] as keyof T] = error.message;
+					return acc;
+				},
+				{} as Record<keyof T, string>
+			);
 		}
 
 		return result.success;

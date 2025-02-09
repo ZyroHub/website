@@ -29,6 +29,21 @@ export const getToolList = (): ITool[] => {
 			needs_connection: true
 		},
 		{
+			id: 'hash_generator',
+			icon: 'mynaui:hash-square-solid',
+			related: [],
+			tags: [
+				ToolTagEnum.DEV,
+				ToolTagEnum.TEXT,
+				ToolTagEnum.CRYPTO,
+				ToolTagEnum.GENERATOR,
+				ToolTagEnum.HASH,
+				ToolTagEnum.CONVERTER,
+				ToolTagEnum.ENCODER
+			],
+			needs_connection: true
+		},
+		{
 			id: 'image_converter',
 			icon: 'mdi:image',
 			related: [],
