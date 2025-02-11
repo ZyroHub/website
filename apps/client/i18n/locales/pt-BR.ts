@@ -182,6 +182,23 @@ export default {
 			description:
 				'ZyroHub é um toolkit desenhado para desenvolvedores, oferecendo soluções para conversão e manipulação de mídia. Inclui uma variedade de ferramentas essenciais, eliminando a necessidade de instalar ou depender de múltiplos softwares e serviços para realizar tarefas comuns.'
 		},
+		error: {
+			meta: {
+				title: 'Error {code}',
+				description: 'Ocorreu um erro ao tentar acessar a página solicitada.'
+			},
+			back: 'Voltar para o Início',
+			errors: {
+				not_found: {
+					title: 'Página Não Encontrada',
+					description: 'A página que você está tentando acessar não existe ou está indisponível no momento.'
+				},
+				default: {
+					title: 'Oops! Um erro ocorreu.',
+					description: 'Algo deu errado ao tentar acessar a página solicitada.'
+				}
+			}
+		},
 		home: {
 			title: 'Bem-Vindo ao',
 			description: 'Por favor selecione uma das opções abaixo para começar.',
