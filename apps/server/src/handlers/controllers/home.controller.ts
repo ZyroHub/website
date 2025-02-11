@@ -1,7 +1,5 @@
 import { Elysia } from 'elysia';
 
-export const HomeController = new Elysia({
-	prefix: '/'
-}).get('/', () => {
-	return { sucess: true };
+export const HomeController = new Elysia().get('/', () => {
+	return { success: true };
 });
