@@ -47,11 +47,11 @@
 
 .light-mode {
 	.contributors-item-more {
-		color: colors.$black_50;
-		background-color: colors.$black_600;
+		color: colors.$white_50;
+		background-color: colors.$black_500;
 
 		&:hover {
-			background-color: colors.$black_900;
+			background-color: colors.$black_700;
 		}
 	}
 }

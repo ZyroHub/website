@@ -1,0 +1,75 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.error-main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-width: 100%;
+	min-height: 100vh;
+}
+
+.error-main-image {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	height: 100vh;
+	min-height: 25rem;
+	opacity: 0.5;
+	transform: translate(5%, 35%);
+	z-index: 1;
+}
+
+.error-main-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 2;
+	padding: 0 1rem;
+
+	& > h1 {
+		font-size: 8rem;
+		font-weight: 700;
+		line-height: 7rem;
+	}
+
+	& > h2 {
+		font-size: 2rem;
+		font-weight: 400;
+	}
+
+	& > p {
+		font-size: 1rem;
+		font-weight: 400;
+		max-width: 25rem;
+		margin-top: 1rem;
+		text-align: center;
+	}
+}
+
+.light-mode {
+	.error-main-content {
+		& > h1 {
+			color: colors.$primary_400;
+		}
+	}
+
+	.error-main {
+		color: colors.$black_700;
+		background-color: colors.$white_50;
+	}
+}
+
+.dark-mode {
+	.error-main-content {
+		& > h1 {
+			color: colors.$primary_300;
+		}
+	}
+
+	.error-main {
+		color: colors.$white_100;
+		background-color: colors.$black_900;
+	}
+}
