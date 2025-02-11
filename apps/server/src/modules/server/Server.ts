@@ -9,6 +9,7 @@ import { BaseModule } from '../Base.js';
 import { RedisModule } from '../Redis.js';
 import { TasksModule } from '../Tasks.js';
 
+import { HomeController } from '@/handlers/controllers/home.controller.js';
 import { TasksController } from '@/handlers/controllers/tasks.controller.js';
 
 export class ServerModuleBase extends BaseModule {
@@ -20,6 +21,7 @@ export class ServerModuleBase extends BaseModule {
 		}
 	})
 		.use(cors(config.server.cors))
+		.use(HomeController)
 		.use(TasksController);
 
 	initHandlers() {
