@@ -25,6 +25,7 @@ jobs:
                       pm2 stop ZyroHub
                       git pull
                       bun install
+                      echo "::add-mask::${{ secrets.TEST }}"
                       echo "::add-mask::${{ vars.ENV_PROD }}" >> .env
                       bun run build
                       pm2 start ZyroHub
