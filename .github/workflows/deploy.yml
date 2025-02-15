@@ -4,8 +4,6 @@ on:
     push:
         branches:
             - main
-env:
-    ENV_PROD: ${{ vars.ENV_PROD }}
 
 jobs:
     deploy:
@@ -22,11 +20,12 @@ jobs:
                   username: ${{ vars.SSH_USER }}
                   port: ${{ vars.SSH_PORT }}
                   key: ${{ secrets.SSH_SECRET_KEY }}
+                  debug: false
                   script: |
                       cd /home/apps/zyrohub
                       pm2 stop ZyroHub
                       git pull
                       bun install
-                      echo "::add-mask::$ENV_PROD" >> .env
+                      echo "${{ vars.ENV_PROD }}" > .env
                       bun run build
                       pm2 start ZyroHub
