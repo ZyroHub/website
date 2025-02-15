@@ -16,9 +16,9 @@ jobs:
             - name: ✉️ Run deploy commands on VPS
               uses: appleboy/ssh-action@master
               with:
-                  host: ${{ vars.SSH_HOST }}
-                  username: ${{ vars.SSH_USER }}
-                  port: ${{ vars.SSH_PORT }}
+                  host: ${{ secrets.SSH_HOST }}
+                  username: ${{ secrets.SSH_USER }}
+                  port: ${{ secrets.SSH_PORT }}
                   key: ${{ secrets.SSH_SECRET_KEY }}
                   script: |
                       cd /home/apps/zyrohub
