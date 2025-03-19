@@ -310,6 +310,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 			name: 'Gerador de Senhas',
 			description: 'Gere senhas aleatórias com diferentes níveis de segurança e configurações.'
 		},
+		password_strength_tester: {
+			name: 'Validador de Senhas',
+			description: 'Teste a força de suas senhas e obtenha sugestões para melhorá-las.'
+		},
 		text_to_slug: {
 			name: 'Texto para Slug',
 			description: 'Converta textos em um formato amigável para URLs e identificadores.'

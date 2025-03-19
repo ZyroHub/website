@@ -57,6 +57,12 @@ export const getToolList = (): ITool[] => {
 			tags: [ToolTagEnum.MISC, ToolTagEnum.GENERATOR, ToolTagEnum.PASSWORD]
 		},
 		{
+			id: 'password_strength_tester',
+			icon: 'fluent:password-48-filled',
+			related: [],
+			tags: [ToolTagEnum.MISC, ToolTagEnum.VALIDATOR, ToolTagEnum.PASSWORD]
+		},
+		{
 			id: 'text_to_slug',
 			icon: 'mdi:format-letter-case',
 			related: [],

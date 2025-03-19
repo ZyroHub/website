@@ -309,6 +309,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 			name: 'Password Generator',
 			description: 'Generate random passwords with different security levels and settings.'
 		},
+		password_strength_tester: {
+			name: 'Password Strength Tester',
+			description: 'Test the strength of your passwords and see how secure they are.'
+		},
 		text_to_slug: {
 			name: 'Text to Slug',
 			description: 'Convert texts into a friendly format for URLs and identifiers.'

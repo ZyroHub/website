@@ -310,6 +310,10 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 			name: 'Generador de Contraseñas',
 			description: 'Generar contraseñas aleatorias con diferentes niveles de seguridad y configuraciones.'
 		},
+		password_strength_tester: {
+			name: 'Probador de Contraseñas',
+			description: 'Verificar la seguridad de sus contraseñas utilizando diferentes métricas.'
+		},
 		text_to_slug: {
 			name: 'Texto a Slug',
 			description: 'Convertir textos en un formato amigable para URLs e identificadores.'
