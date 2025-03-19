@@ -45,3 +45,4 @@ services:
 networks:
     zyrohub:
         name: 'zyrohub'
+        external: true
