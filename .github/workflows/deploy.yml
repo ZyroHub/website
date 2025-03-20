@@ -21,7 +21,6 @@ jobs:
                   port: ${{ secrets.SSH_PORT }}
                   key: ${{ secrets.SSH_SECRET_KEY }}
                   script: |
-                      su ubuntu
                       cd /home/ubuntu/apps/zyrohub
                       pm2 stop ZyroHub
                       git pull
