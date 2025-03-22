@@ -102,6 +102,8 @@ onMounted(() => {
 				:label="t('components.tools.password_generator.output')"
 				name="output"
 				class="mt-6 max-w-128"
+				append-icon="material-symbols:refresh-rounded"
+				@append-icon:click="handleGeneratePassword"
 				readonly
 				show-copy />
 		</InputsProvider>
