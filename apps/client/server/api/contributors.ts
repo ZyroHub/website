@@ -54,12 +54,21 @@ export default defineCachedEventHandler(
 				.catch(() => null);
 
 			if (Array.isArray(buyMeACoffeeSupportersPublicRes?.data)) {
-				buyMeACoffeeSupporters.data = buyMeACoffeeSupportersPublicRes.data.map((support: any) => ({
-					id: support.id,
-					name: support.supporter?.name || 'Anonymous',
-					type: support.supporter?.name_type || '',
-					avatar: support.supporter?.dp || ''
-				}));
+				const uniqueSupporters = new Map<string, any>();
+
+				buyMeACoffeeSupportersPublicRes.data.forEach((support: any) => {
+					const key = `${support.supporter?.name || 'Anonymous'}-${support.supporter?.name_type || ''}`;
+					if (!uniqueSupporters.has(key)) {
+						uniqueSupporters.set(key, {
+							id: support.id,
+							name: support.supporter?.name || 'Anonymous',
+							type: support.supporter?.name_type || '',
+							avatar: support.supporter?.dp || ''
+						});
+					}
+				});
+
+				buyMeACoffeeSupporters.data = Array.from(uniqueSupporters.values());
 			}
 		}
 
