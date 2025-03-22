@@ -5,7 +5,6 @@
 	align-items: center;
 	padding: 0 0.5rem;
 	border-radius: 0.5rem;
-	background-color: colors.$black_800;
 }
 
 .input-slider-track {
@@ -38,8 +37,12 @@
 }
 
 .light-mode {
-	.input-slider-track {
+	.input-slider-box {
 		background-color: colors.$white_50;
+	}
+
+	.input-slider-track {
+		background-color: colors.$white_300;
 	}
 
 	.input-slider-fill {
@@ -52,6 +55,10 @@
 }
 
 .dark-mode {
+	.input-slider-box {
+		background-color: colors.$black_800;
+	}
+
 	.input-slider-track {
 		background-color: colors.$black_950;
 	}

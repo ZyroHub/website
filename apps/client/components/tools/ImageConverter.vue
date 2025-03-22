@@ -149,7 +149,7 @@ multiTask.onTaskFinished(async data => {
 				<div class="flex items-end gap-4">
 					<InputsSelect
 						name="format"
-						label="Format"
+						:label="t('components.tools.image_converter.format')"
 						class="max-w-24"
 						:options="[
 							{ label: 'webp', value: 'webp' },

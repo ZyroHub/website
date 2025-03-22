@@ -142,6 +142,7 @@ export default {
 				}
 			},
 			image_converter: {
+				format: 'Format',
 				upload: 'Select a File',
 				bulk: {
 					download: 'Download All',
@@ -152,7 +153,8 @@ export default {
 				settings: {
 					size: 'Size',
 					ignore: 'Ignore Characters',
-					letters: 'Include Letters',
+					uppers: 'Include Uppercase Letters',
+					lowers: 'Include Lowercase Letters',
 					numbers: 'Include Numbers',
 					symbols: 'Include Symbols'
 				},

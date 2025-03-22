@@ -143,6 +143,7 @@ export default {
 				}
 			},
 			image_converter: {
+				format: 'Formato',
 				upload: 'Seleccione un Archivo',
 				bulk: {
 					download: 'Descargar Todo',
@@ -153,7 +154,8 @@ export default {
 				settings: {
 					size: 'Tamaño',
 					ignore: 'Ignorar Caracteres',
-					letters: 'Incluir Letras',
+					uppers: 'Incluir Letras Mayúsculas',
+					lowers: 'Incluir Letras Minúsculas',
 					numbers: 'Incluir Números',
 					symbols: 'Incluir Símbolos'
 				},
