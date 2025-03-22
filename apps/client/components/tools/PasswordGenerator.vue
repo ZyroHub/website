@@ -11,8 +11,7 @@ const form = useForm(
 		uppers: true,
 		lowers: true,
 
-		symbols: false,
-		ambiguous: false,
+		symbols: true,
 
 		numbers: true,
 
