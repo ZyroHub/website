@@ -143,6 +143,7 @@ export default {
 				}
 			},
 			image_converter: {
+				format: 'Formato',
 				upload: 'Seleccione un Archivo',
 				bulk: {
 					download: 'Descargar Todo',

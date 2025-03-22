@@ -142,6 +142,7 @@ export default {
 				}
 			},
 			image_converter: {
+				format: 'Format',
 				upload: 'Select a File',
 				bulk: {
 					download: 'Download All',
