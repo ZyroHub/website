@@ -153,7 +153,8 @@ export default {
 				settings: {
 					size: 'Tamanho da Senha',
 					ignore: 'Ignorar Caracteres',
-					letters: 'Incluir Letras',
+					uppers: 'Incluir Letras Maiúsculas',
+					lowers: 'Incluir Letras Minúsculas',
 					numbers: 'Incluir Números',
 					symbols: 'Incluir Caracteres Especiais'
 				},

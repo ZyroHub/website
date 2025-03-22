@@ -153,7 +153,8 @@ export default {
 				settings: {
 					size: 'Tamaño',
 					ignore: 'Ignorar Caracteres',
-					letters: 'Incluir Letras',
+					uppers: 'Incluir Letras Mayúsculas',
+					lowers: 'Incluir Letras Minúsculas',
 					numbers: 'Incluir Números',
 					symbols: 'Incluir Símbolos'
 				},

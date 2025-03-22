@@ -8,7 +8,9 @@ const form = useForm(
 		size: 16,
 		ignore: '',
 
-		letters: true,
+		uppers: true,
+		lowers: true,
+
 		numbers: true,
 		symbols: false,
 
@@ -23,14 +25,18 @@ const handleGeneratePassword = () => {
 	let generatedPassword = '';
 
 	const charactersData = {
-		letters: 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+		uppers: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+		lowers: 'abcdefghijklmnopqrstuvwxyz',
+
 		numbers: '0123456789',
 		symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
 	};
 
 	let characters = '';
 
-	if (form.values.value.letters) characters += charactersData.letters;
+	if (form.values.value.uppers) characters += charactersData.uppers;
+	if (form.values.value.lowers) characters += charactersData.lowers;
+
 	if (form.values.value.numbers) characters += charactersData.numbers;
 	if (form.values.value.symbols) characters += charactersData.symbols;
 
@@ -71,19 +77,28 @@ onMounted(() => {
 					:min="1"
 					:max="64" />
 
-				<InputsText :label="t('components.tools.password_generator.settings.ignore')" name="ignore" class="max-w-48" />
+				<InputsText
+					:label="t('components.tools.password_generator.settings.ignore')"
+					name="ignore"
+					class="max-w-48" />
 			</div>
 
-			<div class="flex gap-4 mt-4">
-				<InputsCheckbox :label="t('components.tools.password_generator.settings.letters')" name="letters" />
-				<InputsCheckbox :label="t('components.tools.password_generator.settings.numbers')" name="numbers" />
-				<InputsCheckbox :label="t('components.tools.password_generator.settings.symbols')" name="symbols" />
+			<div class="flex flex-col gap-3 mt-4">
+				<div class="flex gap-4">
+					<InputsCheckbox :label="t('components.tools.password_generator.settings.uppers')" name="uppers" />
+					<InputsCheckbox :label="t('components.tools.password_generator.settings.lowers')" name="lowers" />
+				</div>
+
+				<div class="flex gap-4">
+					<InputsCheckbox :label="t('components.tools.password_generator.settings.numbers')" name="numbers" />
+					<InputsCheckbox :label="t('components.tools.password_generator.settings.symbols')" name="symbols" />
+				</div>
 			</div>
 
 			<InputsText
 				:label="t('components.tools.password_generator.output')"
 				name="output"
-				class="mt-8 max-w-128"
+				class="mt-6 max-w-128"
 				readonly
 				show-copy />
 		</InputsProvider>

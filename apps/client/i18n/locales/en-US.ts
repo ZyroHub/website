@@ -152,7 +152,8 @@ export default {
 				settings: {
 					size: 'Size',
 					ignore: 'Ignore Characters',
-					letters: 'Include Letters',
+					uppers: 'Include Uppercase Letters',
+					lowers: 'Include Lowercase Letters',
 					numbers: 'Include Numbers',
 					symbols: 'Include Symbols'
 				},
