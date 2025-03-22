@@ -22,8 +22,8 @@ jobs:
                   key: ${{ secrets.SSH_SECRET_KEY }}
                   script: |
                       cd /home/ubuntu/apps/zyrohub
-                      pm2 stop ZyroHub
+                      sudo -u ubuntu pm2 stop ZyroHub
                       git pull
-                      bun install
-                      bun run build
-                      pm2 start ZyroHub
+                      sudo -u ubuntu bun install
+                      sudo -u ubuntu bun run build
+                      sudo -u ubuntu pm2 start ZyroHub
