@@ -60,8 +60,12 @@ export default defineNuxtConfig({
 		name: 'ZyroHub'
 	},
 
+	robots: {
+		disallow: ['/_nuxt/', '/home/'],
+	},
+
 	sitemap: {
-		sources: ['/api/__sitemap__/urls']
+		sources: ['/api/__sitemap__/urls'],
 	},
 
 	googleFonts: {
