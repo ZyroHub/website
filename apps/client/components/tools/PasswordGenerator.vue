@@ -11,8 +11,10 @@ const form = useForm(
 		uppers: true,
 		lowers: true,
 
-		numbers: true,
 		symbols: false,
+		ambiguous: false,
+
+		numbers: true,
 
 		output: ''
 	},
@@ -28,8 +30,9 @@ const handleGeneratePassword = () => {
 		uppers: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 		lowers: 'abcdefghijklmnopqrstuvwxyz',
 
-		numbers: '0123456789',
-		symbols: '!@#$%^&*()_+-=[]{}|;:,.<>?'
+		symbols: '!@#$%^&*_+-=|?\'"`()[]{}<>;:,.~\\/',
+
+		numbers: '0123456789'
 	};
 
 	let characters = '';
@@ -37,8 +40,9 @@ const handleGeneratePassword = () => {
 	if (form.values.value.uppers) characters += charactersData.uppers;
 	if (form.values.value.lowers) characters += charactersData.lowers;
 
-	if (form.values.value.numbers) characters += charactersData.numbers;
 	if (form.values.value.symbols) characters += charactersData.symbols;
+
+	if (form.values.value.numbers) characters += charactersData.numbers;
 
 	characters = characters
 		.split('')
