@@ -33,6 +33,9 @@ export default {
 				creators: 'Creators',
 				misc: 'Misc',
 				about: 'About'
+			},
+			logo: {
+				alt: 'ZyroHub Logo'
 			}
 		},
 		toolkit: {

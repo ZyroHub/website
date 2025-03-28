@@ -33,6 +33,9 @@ export default {
 				creators: 'Creators',
 				misc: 'Outros',
 				about: 'Sobre'
+			},
+			logo: {
+				alt: 'Logotipo do ZyroHub'
 			}
 		},
 		toolkit: {

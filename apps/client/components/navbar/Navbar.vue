@@ -29,7 +29,10 @@ const { t } = useI18n();
 
 			<div class="navbar-container-center">
 				<NuxtLinkLocale to="/">
-					<NuxtImg src="images/zyro-color-wide.webp" class="navbar-logo" />
+					<NuxtImg
+						src="images/zyro-color-wide.webp"
+						class="navbar-logo"
+						:alt="t('components.navbar.logo.alt')" />
 				</NuxtLinkLocale>
 			</div>
 
