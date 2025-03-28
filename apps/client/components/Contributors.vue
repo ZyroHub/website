@@ -49,7 +49,9 @@ const getBuyMeACoffeeSupporterUrl = (username: string, type: string) => {
 							<a
 								:href="`https://github.com/${runtimeConfig.public.github_repo}/graphs/contributors`"
 								target="_blank">
-								<button class="contributors-item-more"><Icon name="mdi:dots-horizontal" /></button>
+								<button class="contributors-item-more" :aria-label="t('components.contributors.more')">
+									<Icon name="mdi:dots-horizontal" />
+								</button>
 							</a>
 						</template>
 

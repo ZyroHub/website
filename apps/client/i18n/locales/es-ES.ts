@@ -23,6 +23,11 @@ export default {
 			}
 		},
 		navbar: {
+			language_selector: {
+				button: {
+					label: 'Cambiar idioma'
+				}
+			},
 			tabs: {
 				developers: 'Desarrolladores',
 				creators: 'Creadores',
@@ -145,6 +150,10 @@ export default {
 			image_converter: {
 				format: 'Formato',
 				upload: 'Seleccione un Archivo',
+				items: {
+					download: 'Descargar',
+					remove: 'Eliminar'
+				},
 				bulk: {
 					download: 'Descargar Todo',
 					clear: 'Limpiar'
@@ -202,6 +211,9 @@ export default {
 			}
 		},
 		home: {
+			logo: {
+				alt: 'Logotipo de ZyroHub'
+			},
 			title: 'Bienvenido a',
 			description: 'Seleccione una opción a continuación para comenzar.',
 			toolkits: {
