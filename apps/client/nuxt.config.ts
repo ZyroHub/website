@@ -63,7 +63,7 @@ export default defineNuxtConfig({
 	},
 
 	robots: {
-		disallow: ['/_nuxt/', '/home/']
+		disallow: ['/home/']
 	},
 
 	sitemap: {
