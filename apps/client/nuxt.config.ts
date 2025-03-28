@@ -14,7 +14,9 @@ export default defineNuxtConfig({
 		'@unocss/nuxt',
 		'@nuxtjs/color-mode',
 		'@nuxt/icon',
-		'@pinia/nuxt'
+		'@pinia/nuxt',
+		'@vite-pwa/nuxt',
+		'nuxt-booster'
 	],
 
 	vite: {
@@ -61,12 +63,16 @@ export default defineNuxtConfig({
 	},
 
 	robots: {
-		disallow: ['/_nuxt/', '/home/'],
+		disallow: ['/_nuxt/', '/home/']
 	},
 
 	sitemap: {
-		sources: ['/api/__sitemap__/urls'],
+		sources: ['/api/__sitemap__/urls']
 	},
+
+	pwa: {},
+
+	booster: {},
 
 	googleFonts: {
 		prefetch: true,
