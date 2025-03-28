@@ -43,7 +43,8 @@ const { t } = useI18n();
 					v-if="runtimeConfig.public.github_repo"
 					class="display-inherit"
 					:href="`https://github.com/${runtimeConfig.public.github_repo}`"
-					target="_blank">
+					target="_blank"
+					aria-label="GitHub">
 					<Icon name="mdi:github" size="30" class="navbar-icon" />
 				</a>
 
