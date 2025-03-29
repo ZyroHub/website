@@ -33,6 +33,8 @@ const { t } = useI18n();
 						src="images/zyro-color-wide.webp"
 						class="navbar-logo"
 						:alt="t('components.navbar.logo.alt')"
+						width="82px"
+						height="44px"
 						sizes="82px" />
 				</NuxtLinkLocale>
 			</div>

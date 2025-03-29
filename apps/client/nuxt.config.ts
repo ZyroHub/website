@@ -16,6 +16,7 @@ export default defineNuxtConfig({
 		'@nuxt/icon',
 		'@pinia/nuxt',
 		'@vite-pwa/nuxt',
+		'@nuxtjs/fontaine',
 		'nuxt-booster'
 	],
 
