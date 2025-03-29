@@ -8,7 +8,7 @@ const { t } = useI18n();
 
 <template>
 	<div class="home-container container">
-		<NuxtImg height="136px" class="home-logo" src="images/zyro-color-wide.webp" :alt="t('pages.home.logo.alt')" />
+		<NuxtImg class="home-logo" src="images/zyro-color-wide.webp" :alt="t('pages.home.logo.alt')" sizes="256px" />
 
 		<p class="home-title">{{ t('pages.home.title') }} <span>ZyroHub</span></p>
 

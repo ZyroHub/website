@@ -29,6 +29,7 @@ export default {
 				}
 			},
 			tabs: {
+				home: 'Inicio',
 				developers: 'Desarrolladores',
 				creators: 'Creadores',
 				misc: 'Misceláneo',

@@ -12,7 +12,7 @@ const { t } = useI18n();
 	<nav>
 		<div class="navbar-container">
 			<div class="navbar-container-start">
-				<NavbarTab to="/">
+				<NavbarTab to="/" :title="t('components.navbar.tabs.home')">
 					<Icon :size="30" name="lucide:home" />
 				</NavbarTab>
 				<NavbarTab to="/developers" :title="t('components.navbar.tabs.developers')">
@@ -32,7 +32,8 @@ const { t } = useI18n();
 					<NuxtImg
 						src="images/zyro-color-wide.webp"
 						class="navbar-logo"
-						:alt="t('components.navbar.logo.alt')" />
+						:alt="t('components.navbar.logo.alt')"
+						sizes="82px" />
 				</NuxtLinkLocale>
 			</div>
 
