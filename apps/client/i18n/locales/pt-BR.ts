@@ -174,6 +174,16 @@ export default {
 				},
 				output: 'Senha Gerada'
 			},
+			password_strength_tester: {
+				input: 'Senha',
+				conditions: {
+					length: 'Mínimo de 8 caracteres',
+					uppercase: 'Pelo menos uma letra maiúscula',
+					lowercase: 'Pelo menos uma letra minúscula',
+					number: 'Pelo menos um número',
+					special: 'Pelo menos um caractere especial'
+				}
+			},
 			text_to_slug: {
 				input: {
 					label: 'Texto',
@@ -327,6 +337,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		password_generator: {
 			name: 'Gerador de Senhas',
 			description: 'Gere senhas aleatórias com diferentes níveis de segurança e configurações.'
+		},
+		password_strength_tester: {
+			name: 'Validador de Senhas',
+			description: 'Teste a força de suas senhas e obtenha sugestões para melhorá-las.'
 		},
 		text_to_slug: {
 			name: 'Texto para Slug',

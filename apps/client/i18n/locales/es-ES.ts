@@ -174,6 +174,16 @@ export default {
 				},
 				output: 'Contraseña Generada'
 			},
+			password_strength_tester: {
+				input: 'Contraseña',
+				conditions: {
+					length: 'Mínimo de 8 caracteres',
+					uppercase: 'Al menos una letra mayúscula',
+					lowercase: 'Al menos una letra minúscula',
+					number: 'Al menos un número',
+					special: 'Al menos un carácter especial'
+				}
+			},
 			text_to_slug: {
 				input: {
 					label: 'Texto',
@@ -327,6 +337,10 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 		password_generator: {
 			name: 'Generador de Contraseñas',
 			description: 'Generar contraseñas aleatorias con diferentes niveles de seguridad y configuraciones.'
+		},
+		password_strength_tester: {
+			name: 'Probador de Contraseñas',
+			description: 'Verificar la seguridad de sus contraseñas utilizando diferentes métricas.'
 		},
 		text_to_slug: {
 			name: 'Texto a Slug',

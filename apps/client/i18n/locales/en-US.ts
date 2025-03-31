@@ -173,6 +173,16 @@ export default {
 				},
 				output: 'Generated Password'
 			},
+			password_strength_tester: {
+				input: 'Password',
+				conditions: {
+					length: 'Minimum of 8 characters',
+					uppercase: 'At least one uppercase letter',
+					lowercase: 'At least one lowercase letter',
+					number: 'At least one number',
+					special: 'At least one special character'
+				}
+			},
 			text_to_slug: {
 				input: {
 					label: 'Text',
@@ -326,6 +336,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		password_generator: {
 			name: 'Password Generator',
 			description: 'Generate random passwords with different security levels and settings.'
+		},
+		password_strength_tester: {
+			name: 'Password Strength Tester',
+			description: 'Test the strength of your passwords and see how secure they are.'
 		},
 		text_to_slug: {
 			name: 'Text to Slug',
