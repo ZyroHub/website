@@ -76,11 +76,13 @@ onMounted(() => {
 
 		<div class="mt-6">
 			<p v-for="condition in conditions">
-				<Icon
-					name="mdi:check"
-					v-if="passedConditions.includes(condition.id)"
-					class="tools-password-strength-tester-condition-icon-passed" />
-				<Icon name="mdi:close" v-else class="tools-password-strength-tester-condition-icon-failed" />
+				<Transition name="transition_fade_200" mode="out-in">
+					<Icon
+						name="mdi:check"
+						v-if="passedConditions.includes(condition.id)"
+						class="tools-password-strength-tester-condition-icon-passed" />
+					<Icon name="mdi:close" v-else class="tools-password-strength-tester-condition-icon-failed" />
+				</Transition>
 
 				{{ t(`components.tools.password_strength_tester.conditions.${condition.id}`) }}
 			</p>
