@@ -12,7 +12,7 @@ const { t } = useI18n();
 	<nav>
 		<div class="navbar-container">
 			<div class="navbar-container-start">
-				<NavbarTab to="/">
+				<NavbarTab to="/" :title="t('components.navbar.tabs.home')">
 					<Icon :size="30" name="lucide:home" />
 				</NavbarTab>
 				<NavbarTab to="/developers" :title="t('components.navbar.tabs.developers')">
@@ -29,7 +29,13 @@ const { t } = useI18n();
 
 			<div class="navbar-container-center">
 				<NuxtLinkLocale to="/">
-					<NuxtImg src="images/zyro-color-wide.webp" class="navbar-logo" />
+					<NuxtImg
+						src="images/zyro-color-wide.webp"
+						class="navbar-logo"
+						:alt="t('components.navbar.logo.alt')"
+						width="82px"
+						height="44px"
+						sizes="82px" />
 				</NuxtLinkLocale>
 			</div>
 
@@ -40,7 +46,8 @@ const { t } = useI18n();
 					v-if="runtimeConfig.public.github_repo"
 					class="display-inherit"
 					:href="`https://github.com/${runtimeConfig.public.github_repo}`"
-					target="_blank">
+					target="_blank"
+					aria-label="GitHub">
 					<Icon name="mdi:github" size="30" class="navbar-icon" />
 				</a>
 

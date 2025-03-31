@@ -23,11 +23,20 @@ export default {
 			}
 		},
 		navbar: {
+			language_selector: {
+				button: {
+					label: 'Change language'
+				}
+			},
 			tabs: {
+				home: 'Home',
 				developers: 'Developers',
 				creators: 'Creators',
 				misc: 'Misc',
 				about: 'About'
+			},
+			logo: {
+				alt: 'ZyroHub Logo'
 			}
 		},
 		toolkit: {
@@ -144,6 +153,10 @@ export default {
 			image_converter: {
 				format: 'Format',
 				upload: 'Select a File',
+				items: {
+					download: 'Download',
+					remove: 'Remove'
+				},
 				bulk: {
 					download: 'Download All',
 					clear: 'Clear'
@@ -201,6 +214,9 @@ export default {
 			}
 		},
 		home: {
+			logo: {
+				alt: 'ZyroHub Logo'
+			},
 			title: 'Welcome to',
 			description: 'Please select an option below to get started.',
 			toolkits: {

@@ -2,6 +2,7 @@
 const props = defineProps<{
 	to?: string;
 	title?: string;
+	hideTitle?: boolean;
 }>();
 </script>
 
@@ -12,12 +13,12 @@ const props = defineProps<{
 <template>
 	<Tooltip placement="bottom">
 		<template #trigger>
-			<NuxtLinkLocale :to="props.to" is="div" class="navbar-tab" active-class="active">
+			<NuxtLinkLocale :to="props.to" :aria-label="props.title" is="div" class="navbar-tab" active-class="active">
 				<slot />
 			</NuxtLinkLocale>
 		</template>
 
-		<template v-if="props.title" #default>
+		<template v-if="props.title && !props.hideTitle" #default>
 			{{ props.title }}
 		</template>
 	</Tooltip>

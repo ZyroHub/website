@@ -191,10 +191,14 @@ multiTask.onTaskFinished(async data => {
 								<Button
 									v-if="task.storage?.converted_image_url"
 									@click="handleDownloadTaskFile(task.id!)"
-									theme="primary">
+									theme="primary"
+									:aria-label="t('components.tools.image_converter.items.download')">
 									<Icon name="material-symbols:download-rounded" />
 								</Button>
-								<Button @click="handleCancelTask(task.id || task.request_id)" theme="gray">
+								<Button
+									@click="handleCancelTask(task.id || task.request_id)"
+									theme="gray"
+									:aria-label="t('components.tools.image_converter.items.remove')">
 									<Icon name="mdi:close" />
 								</Button>
 							</div>

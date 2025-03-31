@@ -1,8 +1,11 @@
 <script lang="ts" setup>
+import type { HtmlHTMLAttributes } from 'vue';
+
 const props = defineProps<{
 	theme?: 'primary' | 'gray';
 	disabled?: boolean;
 	class?: HtmlHTMLAttributes['class'];
+	ariaLabel?: string;
 }>();
 
 const emit = defineEmits(['click']);
@@ -16,7 +19,8 @@ const emit = defineEmits(['click']);
 	<button
 		@click="e => emit('click', e)"
 		:class="['button', props.theme && `button-${props.theme}`, props.class]"
-		:disabled="props.disabled">
+		:disabled="props.disabled"
+		:aria-label="props.ariaLabel">
 		<slot />
 	</button>
 </template>
