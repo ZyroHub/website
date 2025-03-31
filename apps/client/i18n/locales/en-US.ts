@@ -173,6 +173,16 @@ export default {
 				},
 				output: 'Generated Password'
 			},
+			password_strength_tester: {
+				input: 'Password',
+				conditions: {
+					length: 'Minimum of 8 characters',
+					uppercase: 'At least one uppercase letter',
+					lowercase: 'At least one lowercase letter',
+					number: 'At least one number',
+					special: 'At least one special character'
+				}
+			},
 			text_to_slug: {
 				input: {
 					label: 'Text',

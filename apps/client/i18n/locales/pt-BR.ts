@@ -174,6 +174,16 @@ export default {
 				},
 				output: 'Senha Gerada'
 			},
+			password_strength_tester: {
+				input: 'Senha',
+				conditions: {
+					length: 'Mínimo de 8 caracteres',
+					uppercase: 'Pelo menos uma letra maiúscula',
+					lowercase: 'Pelo menos uma letra minúscula',
+					number: 'Pelo menos um número',
+					special: 'Pelo menos um caractere especial'
+				}
+			},
 			text_to_slug: {
 				input: {
 					label: 'Texto',
