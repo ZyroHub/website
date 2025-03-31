@@ -53,13 +53,13 @@ export const getToolList = (): ITool[] => {
 		{
 			id: 'password_generator',
 			icon: 'fluent:password-clock-48-filled',
-			related: [],
+			related: ['password_strength_tester'],
 			tags: [ToolTagEnum.MISC, ToolTagEnum.GENERATOR, ToolTagEnum.PASSWORD]
 		},
 		{
 			id: 'password_strength_tester',
 			icon: 'fluent:password-48-filled',
-			related: [],
+			related: ['password_generator'],
 			tags: [ToolTagEnum.MISC, ToolTagEnum.VALIDATOR, ToolTagEnum.PASSWORD]
 		},
 		{
