@@ -4,7 +4,7 @@ import amqp from 'amqplib';
 import { BaseModule } from './Base.js';
 
 export class MessengerModuleBase extends BaseModule {
-	instance?: amqp.Connection;
+	instance?: amqp.ChannelModel;
 	dependencies = [];
 
 	async init() {
