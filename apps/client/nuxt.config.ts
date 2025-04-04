@@ -51,7 +51,10 @@ export default defineNuxtConfig({
 	app: { pageTransition: { name: 'transition_route_switch', mode: 'out-in' } },
 
 	image: {
-		provider: 'ipx'
+		provider: 'ipx',
+		ipx: {
+			maxAge: 31536000
+		}
 	},
 
 	pinia: {

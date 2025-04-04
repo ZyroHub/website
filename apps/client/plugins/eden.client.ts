@@ -148,7 +148,11 @@ export default defineNuxtPlugin(nuxtApp => {
 					break;
 
 				case 'task:finished':
-					const taskFinishedData = event.data.content as { request_id: string; task_id: string; data: any };
+					const taskFinishedData = event.data.content as {
+						request_id: string;
+						task_id: string;
+						data: any;
+					};
 					const taskFinishedTask = tasksStoreRefs.tasks.value.find(
 						task => task.id === taskFinishedData.task_id
 					);
@@ -164,7 +168,11 @@ export default defineNuxtPlugin(nuxtApp => {
 					break;
 
 				case 'task:error':
-					const taskErrorData = event.data.content as { request_id: string; task_id: string; error?: string };
+					const taskErrorData = event.data.content as {
+						request_id: string;
+						task_id: string;
+						error?: string;
+					};
 					const taskErrorTask = tasksStoreRefs.tasks.value.find(task => task.id === taskErrorData.task_id);
 
 					if (taskErrorTask) {
