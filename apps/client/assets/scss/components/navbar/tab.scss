@@ -21,6 +21,12 @@
 			cursor: pointer;
 		}
 	}
+
+	@media screen and (max-width: 410px) {
+		min-width: 4rem;
+		padding: 0 0.5rem;
+		font-size: 0.9rem;
+	}
 }
 
 .light-mode {

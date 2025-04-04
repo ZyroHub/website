@@ -8,6 +8,11 @@ nav {
 	height: 4rem;
 	max-height: 4rem;
 	z-index: 100;
+
+	@media screen and (max-width: 1000px) {
+		height: 8rem;
+		max-height: 8rem;
+	}
 }
 
 .navbar-container {
@@ -28,6 +33,7 @@ nav {
 
 		&.navbar-container-center {
 			width: 30%;
+			max-width: 10rem;
 			padding: 0.6rem 0;
 
 			& > a {
@@ -45,6 +51,41 @@ nav {
 			gap: 1rem;
 
 			width: 35%;
+		}
+	}
+
+	@media screen and (max-width: 1000px) {
+		flex-wrap: wrap;
+
+		& > div {
+			&.navbar-container-start {
+				order: 3;
+				width: 100%;
+			}
+
+			&.navbar-container-center {
+				order: 1;
+				width: 50%;
+				max-width: 50%;
+				padding-left: 2rem;
+
+				& > a {
+					justify-content: flex-start;
+				}
+			}
+
+			&.navbar-container-end {
+				order: 2;
+				width: 50%;
+			}
+		}
+	}
+
+	@media screen and (max-width: 500px) {
+		& > div {
+			&.navbar-container-start {
+				justify-content: space-between;
+			}
 		}
 	}
 }
