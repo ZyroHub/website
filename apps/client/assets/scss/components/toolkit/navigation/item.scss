@@ -73,30 +73,30 @@
 .light-mode {
 	.toolkit-navigation-item {
 		color: colors.$black_950;
-		background-color: colors.$white_50;
+		background-color: colors.$neutral_50;
 
 		&:not(.active):hover {
 			background-color: colors.$primary_200;
 		}
 
 		&.active {
-			color: colors.$white_50;
+			color: colors.$neutral_50;
 			background-color: colors.$primary_500;
 
 			.toolkit-navigation-item-star {
-				color: colors.$white_50;
+				color: colors.$neutral_50;
 			}
 		}
 	}
 
 	.toolkit-navigation-item-star {
-		color: colors.$white_800;
+		color: colors.$neutral_800;
 	}
 }
 
 .dark-mode {
 	.toolkit-navigation-item {
-		color: colors.$white_100;
+		color: colors.$neutral_100;
 		background-color: colors.$black_800;
 
 		&:not(.active):hover {
@@ -104,11 +104,11 @@
 		}
 
 		&.active {
-			color: colors.$white_50;
+			color: colors.$neutral_50;
 			background-color: colors.$primary_500;
 
 			.toolkit-navigation-item-star {
-				color: colors.$white_50;
+				color: colors.$neutral_50;
 			}
 		}
 	}

@@ -4,7 +4,7 @@
 	& > span {
 		margin-left: 0.5rem;
 		padding: 0.1rem 0.6rem;
-		color: colors.$white_100;
+		color: colors.$neutral_100;
 		border-radius: 10rem;
 	}
 }
@@ -12,7 +12,7 @@
 .light-mode {
 	.tools-bcrypt-checker-result {
 		& > span {
-			background-color: colors.$white_600;
+			background-color: colors.$neutral_600;
 
 			&.error {
 				background-color: colors.$red_500;

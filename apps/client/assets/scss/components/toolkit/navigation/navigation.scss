@@ -55,7 +55,9 @@
 	font-size: 1.5rem;
 	border-radius: 100%;
 	user-select: none;
-	transition: color 0.3s, background-color 0.3s;
+	transition:
+		color 0.3s,
+		background-color 0.3s;
 
 	& > span {
 		position: absolute;
@@ -79,11 +81,11 @@
 
 .light-mode {
 	.toolkit-navigation {
-		background-color: colors.$white_200;
+		background-color: colors.$neutral_200;
 	}
 
 	.toolkit-navigation-search {
-		background-color: colors.$white_50;
+		background-color: colors.$neutral_50;
 
 		& > input {
 			color: colors.$black_950;
@@ -96,7 +98,7 @@
 
 	.toolkit-navigation-search-star {
 		color: colors.$black_500;
-		background-color: colors.$white_50;
+		background-color: colors.$neutral_50;
 
 		&:not(.active) {
 			&:hover {
@@ -105,7 +107,7 @@
 		}
 
 		&.active {
-			color: colors.$white_100;
+			color: colors.$neutral_100;
 			background-color: colors.$primary_500;
 
 			&:hover {
@@ -124,10 +126,10 @@
 		background-color: colors.$black_900;
 
 		& > input {
-			color: colors.$white_50;
+			color: colors.$neutral_50;
 
 			&::placeholder {
-				color: colors.$white_300;
+				color: colors.$neutral_300;
 			}
 		}
 	}
@@ -143,7 +145,7 @@
 		}
 
 		&.active {
-			color: colors.$white_100;
+			color: colors.$neutral_100;
 			background-color: colors.$primary_500;
 
 			&:hover {

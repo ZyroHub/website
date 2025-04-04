@@ -93,12 +93,12 @@
 
 	.home-toolkits {
 		& > a {
-			color: colors.$white_50;
-			background-color: colors.$primary_400;
+			color: colors.$neutral_50;
+			background-color: colors.$primary_500;
 
 			&:hover {
-				color: colors.$white_50;
-				background-color: colors.$primary_500;
+				color: colors.$neutral_50;
+				background-color: colors.$primary_600;
 			}
 		}
 	}
@@ -124,7 +124,7 @@
 
 	.home-toolkits {
 		& > a {
-			color: colors.$white_50;
+			color: colors.$neutral_50;
 			background-color: colors.$black_700;
 
 			&:hover {
@@ -134,10 +134,10 @@
 	}
 
 	.home-about {
-		color: colors.$white_300;
+		color: colors.$neutral_300;
 
 		&:hover {
-			color: colors.$white_200;
+			color: colors.$neutral_200;
 		}
 	}
 }

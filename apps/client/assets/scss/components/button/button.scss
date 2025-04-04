@@ -18,7 +18,7 @@
 
 .light-mode {
 	.button-primary {
-		color: colors.$white_50;
+		color: colors.$neutral_50;
 		background-color: colors.$primary_500;
 
 		&:not(:disabled):hover {
@@ -29,7 +29,7 @@
 
 .dark-mode {
 	.button-primary {
-		color: colors.$white_50;
+		color: colors.$neutral_50;
 		background-color: colors.$primary_500;
 
 		&:not(:disabled):hover {
@@ -38,11 +38,11 @@
 	}
 
 	.button-gray {
-		color: colors.$white_50;
-		background-color: colors.$white_700;
+		color: colors.$neutral_50;
+		background-color: colors.$neutral_700;
 
 		&:not(:disabled):hover {
-			background-color: colors.$white_600;
+			background-color: colors.$neutral_600;
 		}
 	}
 }

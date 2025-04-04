@@ -47,7 +47,7 @@
 
 .light-mode {
 	.contributors-item-more {
-		color: colors.$white_50;
+		color: colors.$neutral_50;
 		background-color: colors.$black_500;
 
 		&:hover {
@@ -58,7 +58,7 @@
 
 .dark-mode {
 	.contributors-item-more {
-		color: colors.$white_100;
+		color: colors.$neutral_100;
 		background-color: colors.$black_700;
 
 		&:hover {

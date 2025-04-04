@@ -19,13 +19,13 @@
 .light-mode {
 	.app-main {
 		color: colors.$black_900;
-		background-color: colors.$white_50;
+		background-color: colors.$neutral_100;
 	}
 }
 
 .dark-mode {
 	.app-main {
-		color: colors.$white_100;
+		color: colors.$neutral_100;
 		background-color: colors.$black_900;
 	}
 }

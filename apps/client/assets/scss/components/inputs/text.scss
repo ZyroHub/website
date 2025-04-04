@@ -60,13 +60,13 @@
 .light-mode {
 	.input-text-input {
 		color: colors.$black_900;
-		background-color: colors.$white_50;
+		background-color: colors.$neutral_50;
 	}
 }
 
 .dark-mode {
 	.input-text-input {
-		color: colors.$white_100;
+		color: colors.$neutral_100;
 		background-color: colors.$black_800;
 	}
 }
