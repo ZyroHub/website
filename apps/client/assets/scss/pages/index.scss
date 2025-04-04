@@ -94,11 +94,11 @@
 	.home-toolkits {
 		& > a {
 			color: colors.$neutral_50;
-			background-color: colors.$primary_500;
+			background-color: colors.$neutral_700;
 
 			&:hover {
-				color: colors.$neutral_50;
-				background-color: colors.$primary_600;
+				color: colors.$black_900;
+				background-color: colors.$primary_300;
 			}
 		}
 	}
