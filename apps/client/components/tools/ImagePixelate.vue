@@ -25,6 +25,11 @@ const isSubmittable = computed(() => form.isValid.value && task.isSubmittable.va
 const handleExecute = async () => {
 	if (!isSubmittable.value) return;
 
+	if (task.task.value?.storage?.pixelated_image_url) {
+		URL.revokeObjectURL(task.task.value.storage.pixelated_image_url);
+		task.task.value!.storage!.pixelated_image_url = undefined;
+	}
+
 	const fileBuffer = await getFileBase64(form.values.value.image!);
 
 	await task.start(
@@ -50,7 +55,10 @@ const handleDownload = () => {
 };
 
 const handleClear = () => {
-	task.task.value!.storage!.pixelated_image_url = undefined;
+	if (task.task.value?.storage?.pixelated_image_url) {
+		URL.revokeObjectURL(task.task.value.storage.pixelated_image_url);
+		task.task.value!.storage!.pixelated_image_url = undefined;
+	}
 };
 
 task.onTaskFinished(data => {
