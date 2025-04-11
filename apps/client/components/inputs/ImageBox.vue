@@ -82,7 +82,7 @@ defineExpose({
 		<Transition name="transition_fade_200" mode="out-in">
 			<div v-if="formInput.inputRef.value" class="flex flex-col justify-center items-center gap-4 w-full h-full">
 				<div class="max-w-full max-h-60">
-					<img :src="fileDataUrl" alt="Input Image" class="w-full h-full" />
+					<img :src="fileDataUrl" alt="Input Image" class="w-full h-full rounded-lg" />
 				</div>
 
 				<div class="flex gap-2">

@@ -20,6 +20,6 @@ export class ImageConverterWorker extends BaseWorker {
 
 		const imageBuffer = await imageSharp.toBuffer();
 
-		return { converted_image: imageBuffer } as any;
+		return { converted_image: imageBuffer };
 	}
 }

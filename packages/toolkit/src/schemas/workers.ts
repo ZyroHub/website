@@ -64,6 +64,23 @@ export const workersSchemas = {
 			converted_image_url: z.string().optional()
 		}),
 		errors: ['invalid-file-type'] as string[]
+	},
+	image_pixelate: {
+		args: z.object({
+			image: z.string(),
+			size: z.number().min(1).max(64),
+			quantization: z.boolean().optional(),
+			quantization_count: z.number().min(2).max(128),
+			dithering: z.boolean().optional()
+		}),
+		response: z.object({
+			pixelated_image: z.any()
+		}),
+		storage: z.object({
+			name: z.string(),
+			pixelated_image_url: z.string().optional()
+		}),
+		errors: ['invalid-file-type', 'quantization'] as string[]
 	}
 };
 

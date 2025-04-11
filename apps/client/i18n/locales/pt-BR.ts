@@ -19,7 +19,7 @@ export default {
 				preview: {
 					buttons: {
 						download: 'Download',
-						clear: 'Cancelar'
+						clear: 'Remover'
 					}
 				},
 				no_image: {
