@@ -379,5 +379,14 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 			description: 'Generate universally unique identifiers (UUID) of all versions for your applications.'
 		}
 	},
-	workers: {}
+	workers: {
+		image_pixelate: {
+			progress: {
+				loading_image: 'Loading image...',
+				starting_extra_processing: 'Starting extra processing...',
+				applying_quantization_and_dithering: 'Applying quantization and dithering...',
+				resizing_image: 'Resizing image...'
+			}
+		}
+	}
 };

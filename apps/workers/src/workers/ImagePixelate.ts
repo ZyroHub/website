@@ -33,6 +33,8 @@ export class ImagePixelateWorker extends BaseWorker {
 		const mimeType = filetypemime(fileBuffer)?.[0];
 		if (!mimeType?.startsWith('image/')) throw new Error('invalid-file-type');
 
+		await update_progress(10, 'loading_image');
+
 		const imageSharp = sharp(fileBuffer);
 
 		const inputMetadata = await imageSharp.metadata();
@@ -55,6 +57,8 @@ export class ImagePixelateWorker extends BaseWorker {
 		const newBuffer = Buffer.from(raw_data);
 
 		if (data.quantization) {
+			await update_progress(20, 'starting_extra_processing');
+
 			const palettePixels: number[][] = [];
 			for (let i = 0; i < raw_data.length; i += channels) {
 				palettePixels.push([raw_data[i], raw_data[i + 1], raw_data[i + 2]]);
@@ -64,6 +68,8 @@ export class ImagePixelateWorker extends BaseWorker {
 			if (!quantized) throw new Error('quantization');
 
 			const palette = quantized.palette();
+
+			await update_progress(30, 'applying_quantization_and_dithering');
 
 			for (let y = 0; y < smallHeight; y++) {
 				for (let x = 0; x < smallWidth; x++) {
@@ -103,8 +109,17 @@ export class ImagePixelateWorker extends BaseWorker {
 						distributeError(1, 1, 1 / 16);
 					}
 				}
+
+				if (y % Math.ceil(smallHeight / 10) === 0) {
+					await update_progress(
+						30 + Math.floor((y / smallHeight) * 50),
+						'applying_quantization_and_dithering'
+					);
+				}
 			}
 		}
+
+		await update_progress(data.quantization ? 90 : 50, 'resizing_image');
 
 		const outputFileBuffer = await sharp(newBuffer, {
 			raw: {

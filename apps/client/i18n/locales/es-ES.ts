@@ -381,5 +381,14 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 				'Generar identificadores únicos universales (UUID) de todas las versiones para sus aplicaciones.'
 		}
 	},
-	workers: {}
+	workers: {
+		image_pixelate: {
+			progress: {
+				loading_image: 'Cargando imagen...',
+				starting_extra_processing: 'Iniciando procesamiento extra...',
+				applying_quantization_and_dithering: 'Aplicando cuantización y dithering...',
+				resizing_image: 'Redimensionando imagen...'
+			}
+		}
+	}
 };

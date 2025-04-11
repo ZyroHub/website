@@ -380,5 +380,14 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 			description: 'Gere identificadores únicos universais (UUID) de todas as versões para suas aplicações.'
 		}
 	},
-	workers: {}
+	workers: {
+		image_pixelate: {
+			progress: {
+				loading_image: 'Carregando imagem...',
+				starting_extra_processing: 'Iniciando processamento extra...',
+				applying_quantization_and_dithering: 'Aplicando quantização e dithering...',
+				resizing_image: 'Redimensionando imagem...'
+			}
+		}
+	}
 };
