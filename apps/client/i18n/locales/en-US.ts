@@ -15,6 +15,19 @@ export default {
 			privacy: 'Privacy Policy'
 		},
 		inputs: {
+			image_box: {
+				preview: {
+					buttons: {
+						download: 'Download',
+						clear: 'Clear'
+					}
+				},
+				no_image: {
+					description: 'Drag and drop an image here.',
+					or: 'or',
+					upload: 'Select a File'
+				}
+			},
 			text_area: {
 				copy: {
 					default: 'Copy',
@@ -161,6 +174,18 @@ export default {
 					download: 'Download All',
 					clear: 'Clear'
 				}
+			},
+			image_pixelate: {
+				pixel_size: 'Pixel Size',
+				quantization: 'Quantization',
+				quantization_count: 'Color Count',
+				dithering: 'Dithering',
+				output: {
+					alt: 'Pixelated Image',
+					download: 'Download',
+					clear: 'Remove'
+				},
+				pixelate: 'Pixelate Image'
 			},
 			password_generator: {
 				settings: {
@@ -332,6 +357,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		image_converter: {
 			name: 'Image Converter',
 			description: 'Convert images to different formats. (WebP, PNG, JPG and JPEG)'
+		},
+		image_pixelate: {
+			name: 'Image Pixelate',
+			description: 'Pixelate images to protect sensitive information.'
 		},
 		password_generator: {
 			name: 'Password Generator',

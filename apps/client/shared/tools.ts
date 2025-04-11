@@ -51,6 +51,12 @@ export const getToolList = (): ITool[] => {
 			needs_connection: true
 		},
 		{
+			id: 'image_pixelate',
+			icon: 'pixel:grid',
+			related: [],
+			tags: [ToolTagEnum.CREATORS, ToolTagEnum.IMAGE, ToolTagEnum.FILTER]
+		},
+		{
 			id: 'password_generator',
 			icon: 'fluent:password-clock-48-filled',
 			related: ['password_strength_tester'],

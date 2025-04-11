@@ -115,6 +115,7 @@ export class TasksModuleBase extends BaseModule {
 
 			this.channel?.ack(message as amqp.Message);
 		} catch (e: any) {
+			console.log(e);
 			this.channel?.nack(message as amqp.Message, false, false);
 
 			if (message?.properties.replyTo && taskId) {

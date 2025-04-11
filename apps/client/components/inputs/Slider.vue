@@ -15,8 +15,8 @@ const props = withDefaults(
 	}
 );
 
-const model = defineModel();
-const formInput = useFormInput(props.name, model);
+const model = defineModel<number>();
+const formInput = useFormInput<number>(props.name, model);
 
 const textContent = computed({
 	get: () => String(formInput.inputRef.value),
@@ -77,18 +77,20 @@ onBeforeUnmount(() => {
 						v-model="textContent"
 						class="max-w-16"
 						innerClass="text-center"
-						:mask="{ mask: '##' }" />
+						:mask="{ mask: '###' }" />
 
 					<div ref="slider" class="input-slider-track" @mousedown="handleStartDrag">
 						<div
 							class="input-slider-fill"
 							:style="{
-								width: ((formInput.inputRef.value - props.min) / (props.max - props.min)) * 100 + '%'
+								width:
+									(((formInput.inputRef.value || 1) - props.min) / (props.max - props.min)) * 100 +
+									'%'
 							}" />
 						<div
 							class="input-slider-thumb"
 							:style="{
-								left: `${((formInput.inputRef.value - props.min) / (props.max - props.min)) * 100}%`
+								left: `${(((formInput.inputRef.value || 1) - props.min) / (props.max - props.min)) * 100}%`
 							}" />
 					</div>
 				</div>

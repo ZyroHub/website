@@ -15,6 +15,19 @@ export default {
 			privacy: 'Política de Privacidade'
 		},
 		inputs: {
+			image_box: {
+				preview: {
+					buttons: {
+						download: 'Download',
+						clear: 'Remover'
+					}
+				},
+				no_image: {
+					description: 'Arraste e solte uma imagem.',
+					or: 'ou',
+					upload: 'Selecione um Arquivo'
+				}
+			},
 			text_area: {
 				copy: {
 					default: 'Copiar',
@@ -162,6 +175,18 @@ export default {
 					download: 'Baixar Todos',
 					clear: 'Limpar'
 				}
+			},
+			image_pixelate: {
+				pixel_size: 'Tamanho do Pixel',
+				quantization: 'Quantização',
+				quantization_count: 'Contagem de Cores',
+				dithering: 'Dithering',
+				output: {
+					alt: 'Imagem Pixelada',
+					download: 'Download',
+					clear: 'Remover'
+				},
+				pixelate: 'Pixelar Imagem'
 			},
 			password_generator: {
 				settings: {
@@ -333,6 +358,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		image_converter: {
 			name: 'Conversor de Imagens',
 			description: 'Converta imagens para diferentes formatos diferentes. (WebP, PNG, JPG e JPEG)'
+		},
+		image_pixelate: {
+			name: 'Pixelar Imagem',
+			description: 'Aplique um efeito de pixelização em suas imagens.'
 		},
 		password_generator: {
 			name: 'Gerador de Senhas',

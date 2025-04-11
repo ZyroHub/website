@@ -1,0 +1,48 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.input-image-box-no-image-content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	border: 0.2rem dashed transparent;
+	transition: 200ms;
+}
+
+.input-image-box-no-image-icon {
+	font-size: 8rem;
+}
+
+.input-image-box-no-image-content-actions {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 0.5rem;
+
+	& > button {
+		margin-top: 0.5rem;
+	}
+}
+
+.light-mode {
+	.input-image-box-no-image-content-drag {
+		border-color: colors.$neutral_400;
+	}
+
+	.input-image-box-no-image-icon {
+		color: colors.$neutral_600;
+	}
+}
+
+.dark-mode {
+	.input-image-box-no-image-content-drag {
+		border-color: colors.$black_500;
+	}
+
+	.input-image-box-no-image-icon {
+		color: colors.$black_400;
+	}
+}

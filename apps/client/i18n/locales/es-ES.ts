@@ -15,6 +15,19 @@ export default {
 			privacy: 'Política de Privacidad'
 		},
 		inputs: {
+			image_box: {
+				preview: {
+					buttons: {
+						download: 'Descargar',
+						clear: 'Limpiar'
+					}
+				},
+				no_image: {
+					description: 'Arrastre y suelte una imagen aquí.',
+					or: 'o',
+					upload: 'Seleccione un Archivo'
+				}
+			},
 			text_area: {
 				copy: {
 					default: 'Copiar',
@@ -162,6 +175,18 @@ export default {
 					download: 'Descargar Todo',
 					clear: 'Limpiar'
 				}
+			},
+			image_pixelate: {
+				pixel_size: 'Tamaño del Pixel',
+				quantization: 'Cuantización',
+				quantization_count: 'Número de Colores',
+				dithering: 'Dithering',
+				output: {
+					alt: 'Imagen Pixelada',
+					download: 'Descargar',
+					clear: 'Limpiar'
+				},
+				pixelate: 'Pixelar Imagen'
 			},
 			password_generator: {
 				settings: {
@@ -333,6 +358,10 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 		image_converter: {
 			name: 'Convertidor de Imágenes',
 			description: 'Convertir imágenes a diferentes formatos. (WebP, PNG, JPG y JPEG)'
+		},
+		image_pixelate: {
+			name: 'Pixelar Imagen',
+			description: 'Aplicar un efecto de pixelado a imágenes.'
 		},
 		password_generator: {
 			name: 'Generador de Contraseñas',
