@@ -13,6 +13,7 @@ export enum ToolTagEnum {
 
 	CRYPTO,
 
+	FILTER,
 	EDITOR,
 	ENCODER,
 	DECODER,

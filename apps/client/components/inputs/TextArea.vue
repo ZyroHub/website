@@ -10,8 +10,7 @@ const props = defineProps<{
 const { t } = useI18n();
 
 const model = defineModel<string>();
-
-const formInput = useFormInput(props.name, model);
+const formInput = useFormInput<string>(props.name, model);
 
 const copyState = ref<boolean>(false);
 const copyText = computed(() =>

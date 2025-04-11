@@ -15,6 +15,19 @@ export default {
 			privacy: 'Privacy Policy'
 		},
 		inputs: {
+			image_box: {
+				preview: {
+					buttons: {
+						download: 'Download',
+						clear: 'Clear'
+					}
+				},
+				no_image: {
+					description: 'Drag and drop an image here.',
+					or: 'or',
+					upload: 'Select a File'
+				}
+			},
 			text_area: {
 				copy: {
 					default: 'Copy',
@@ -332,6 +345,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		image_converter: {
 			name: 'Image Converter',
 			description: 'Convert images to different formats. (WebP, PNG, JPG and JPEG)'
+		},
+		image_pixelate: {
+			name: 'Image Pixelate',
+			description: 'Pixelate images to protect sensitive information.'
 		},
 		password_generator: {
 			name: 'Password Generator',

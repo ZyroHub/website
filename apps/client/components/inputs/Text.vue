@@ -29,8 +29,8 @@ const props = defineProps<{
 	appendIconClass?: HtmlHTMLAttributes['class'];
 }>();
 
-const model = defineModel();
-const formInput = useFormInput(props.name, model);
+const model = defineModel<string>();
+const formInput = useFormInput<string>(props.name, model);
 
 const inputRef = useTemplateRef('text-input');
 

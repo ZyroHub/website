@@ -15,6 +15,19 @@ export default {
 			privacy: 'Política de Privacidade'
 		},
 		inputs: {
+			image_box: {
+				preview: {
+					buttons: {
+						download: 'Download',
+						clear: 'Cancelar'
+					}
+				},
+				no_image: {
+					description: 'Arraste e solte uma imagem.',
+					or: 'ou',
+					upload: 'Selecione um Arquivo'
+				}
+			},
 			text_area: {
 				copy: {
 					default: 'Copiar',
@@ -333,6 +346,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		image_converter: {
 			name: 'Conversor de Imagens',
 			description: 'Converta imagens para diferentes formatos diferentes. (WebP, PNG, JPG e JPEG)'
+		},
+		image_pixelate: {
+			name: 'Pixelar Imagem',
+			description: 'Aplique um efeito de pixelização em suas imagens.'
 		},
 		password_generator: {
 			name: 'Gerador de Senhas',

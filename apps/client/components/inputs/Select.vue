@@ -10,8 +10,8 @@ const props = defineProps<{
 	options: { label: string; value: string }[];
 }>();
 
-const model = defineModel();
-const formInput = useFormInput(props.name, model);
+const model = defineModel<string>();
+const formInput = useFormInput<string>(props.name, model);
 
 const textInputRef = useTemplateRef('text-input');
 const textInputContent = ref('');
