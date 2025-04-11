@@ -176,6 +176,18 @@ export default {
 					clear: 'Limpiar'
 				}
 			},
+			image_pixelate: {
+				pixel_size: 'Tamaño del Pixel',
+				quantization: 'Cuantización',
+				quantization_count: 'Número de Colores',
+				dithering: 'Dithering',
+				output: {
+					alt: 'Imagen Pixelada',
+					download: 'Descargar',
+					clear: 'Limpiar'
+				},
+				pixelate: 'Pixelar Imagen'
+			},
 			password_generator: {
 				settings: {
 					size: 'Tamaño',

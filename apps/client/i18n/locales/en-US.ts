@@ -175,6 +175,18 @@ export default {
 					clear: 'Clear'
 				}
 			},
+			image_pixelate: {
+				pixel_size: 'Pixel Size',
+				quantization: 'Quantization',
+				quantization_count: 'Color Count',
+				dithering: 'Dithering',
+				output: {
+					alt: 'Pixelated Image',
+					download: 'Download',
+					clear: 'Remove'
+				},
+				pixelate: 'Pixelate Image'
+			},
 			password_generator: {
 				settings: {
 					size: 'Size',

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import type { WorkerStorage } from '@zyrohub/toolkit';
 import { z } from 'zod';
+
+const { t } = useI18n();
 
 const task = useTask({ worker_id: 'image_pixelate' });
 
@@ -75,16 +76,22 @@ task.onTaskFinished(data => {
 					<InputsImageBox name="image" />
 
 					<div class="flex flex-col w-full mt-6 gap-4">
-						<InputsSlider label="Tamanho do Pixel" name="size" :min="1" :max="64" />
+						<InputsSlider
+							:label="t('components.tools.image_pixelate.pixel_size')"
+							name="size"
+							:min="1"
+							:max="64" />
 
 						<div class="flex flex-col gap-4">
 							<div class="flex gap-4">
-								<InputsCheckbox label="Quantização" name="quantization" />
+								<InputsCheckbox
+									:label="t('components.tools.image_pixelate.quantization')"
+									name="quantization" />
 
 								<Transition name="transition_fade_200" mode="out-in">
 									<InputsCheckbox
 										v-if="form.values.value.quantization"
-										label="Dithering"
+										:label="t('components.tools.image_pixelate.dithering')"
 										name="dithering" />
 								</Transition>
 							</div>
@@ -92,7 +99,7 @@ task.onTaskFinished(data => {
 							<Transition name="transition_fade_200" mode="out-in">
 								<div v-if="form.values.value.quantization">
 									<InputsSlider
-										label="Quantidade de Cores"
+										:label="t('components.tools.image_pixelate.quantization_count')"
 										name="quantization_count"
 										:min="2"
 										:max="128" />
@@ -102,25 +109,34 @@ task.onTaskFinished(data => {
 					</div>
 
 					<Button @click="handleExecute" :disabled="!isSubmittable" theme="primary" class="mt-6">
-						<Icon name="pixel:grid-solid" /> Pixelizar Imagem
+						<Icon name="pixel:grid-solid" /> {{ t('components.tools.image_pixelate.pixelate') }}
 					</Button>
 				</div>
 
 				<div class="flex flex-col gap-4 w-1/2">
-					<div class="max-w-full flex justify-center h-60">
+					<div class="max-w-full flex justify-center items-center h-60">
 						<img
 							v-if="task.task.value?.storage?.pixelated_image_url"
 							:src="task.task.value?.storage?.pixelated_image_url"
-							alt="Imagem Pixelizada"
+							:alt="t('components.tools.image_pixelate.output.alt')"
 							class="max-w-full max-h-60 rounded-lg" />
+						<Icon v-else name="pixel:grid" class="text-32" />
 					</div>
 
-					<div v-if="task.task.value?.storage?.pixelated_image_url" class="flex justify-center gap-2">
-						<Button @click="handleDownload" theme="primary">
+					<div class="flex justify-center gap-2">
+						<Button
+							@click="handleDownload"
+							theme="primary"
+							:disabled="!task.task.value?.storage?.pixelated_image_url">
 							<Icon name="material-symbols:download-rounded" />
-							Download
+							{{ t('components.tools.image_pixelate.output.download') }}
 						</Button>
-						<Button @click="handleClear" theme="gray">Remover</Button>
+						<Button
+							@click="handleClear"
+							theme="gray"
+							:disabled="!task.task.value?.storage?.pixelated_image_url">
+							{{ t('components.tools.image_pixelate.output.clear') }}</Button
+						>
 					</div>
 
 					<ToolkitToolProgress :task="task.task.value" />
