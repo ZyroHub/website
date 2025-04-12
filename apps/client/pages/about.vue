@@ -22,7 +22,7 @@ useSeoMeta({
 
 			<p class="about-description">{{ t('pages.about.description') }}</p>
 
-			<div class="mt-10 flex items-center gap-4">
+			<div class="mt-10 flex items-center gap-4 justify-center md:justify-start flex-col sm:flex-row">
 				<ButtonBuyMeACoffee />
 
 				<a
@@ -37,7 +37,7 @@ useSeoMeta({
 			</div>
 		</div>
 		<div class="about-container-end">
-			<div class="w-full flex flex-wrap justify-center">
+			<div class="w-full flex flex-wrap justify-center items-center flex-col md:flex-row">
 				<NuxtImg class="about-logo" src="images/zyro-color-wide.webp" />
 
 				<div class="mt-12">

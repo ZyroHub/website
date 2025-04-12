@@ -79,8 +79,8 @@ task.onTaskFinished(data => {
 <template>
 	<div>
 		<InputsProvider :form="form">
-			<div class="flex gap-2">
-				<div class="w-1/2">
+			<div class="flex gap-2 flex-wrap md:flex-nowrap">
+				<div class="w-full md:w-1/2">
 					<InputsImageBox name="image" />
 
 					<div class="flex flex-col w-full mt-6 gap-4">
@@ -121,7 +121,7 @@ task.onTaskFinished(data => {
 					</Button>
 				</div>
 
-				<div class="flex flex-col gap-4 w-1/2">
+				<div class="flex flex-col gap-4 w-full md:w-1/2">
 					<div class="max-w-full flex justify-center items-center h-60">
 						<img
 							v-if="task.task.value?.storage?.pixelated_image_url"
