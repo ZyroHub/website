@@ -78,11 +78,11 @@ defineExpose({
 </style>
 
 <template>
-	<div :class="props.class">
+	<div :class="['h-75 max-h-75', props.class]">
 		<Transition name="transition_fade_200" mode="out-in">
 			<div v-if="formInput.inputRef.value" class="flex flex-col justify-center items-center gap-4 w-full h-full">
-				<div class="max-w-full max-h-60">
-					<img :src="fileDataUrl" alt="Input Image" class="w-full h-full rounded-lg" />
+				<div class="max-w-full h-60">
+					<img :src="fileDataUrl" alt="Input Image" class="max-w-full max-h-60 rounded-lg" />
 				</div>
 
 				<div class="flex gap-2">
