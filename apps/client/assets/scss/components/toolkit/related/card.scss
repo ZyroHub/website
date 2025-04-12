@@ -37,10 +37,10 @@
 
 .light-mode {
 	.toolkit-related-card {
-		background-color: colors.$neutral_50;
+		background-color: colors.$primary_50;
 
 		&:hover {
-			background-color: colors.$neutral_100;
+			background-color: colors.$primary_400;
 		}
 	}
 }

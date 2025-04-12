@@ -73,10 +73,10 @@
 .light-mode {
 	.toolkit-navigation-item {
 		color: colors.$black_950;
-		background-color: colors.$neutral_50;
+		background-color: colors.$primary_50;
 
 		&:not(.active):hover {
-			background-color: colors.$primary_200;
+			background-color: colors.$primary_300;
 		}
 
 		&.active {

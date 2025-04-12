@@ -81,11 +81,11 @@
 
 .light-mode {
 	.toolkit-navigation {
-		background-color: colors.$neutral_200;
+		background-color: colors.$neutral_300;
 	}
 
 	.toolkit-navigation-search {
-		background-color: colors.$neutral_50;
+		background-color: colors.$primary_50;
 
 		& > input {
 			color: colors.$black_950;
@@ -98,7 +98,7 @@
 
 	.toolkit-navigation-search-star {
 		color: colors.$black_500;
-		background-color: colors.$neutral_50;
+		background-color: colors.$primary_50;
 
 		&:not(.active) {
 			&:hover {
@@ -108,10 +108,10 @@
 
 		&.active {
 			color: colors.$neutral_100;
-			background-color: colors.$primary_500;
+			background-color: colors.$primary_600;
 
 			&:hover {
-				background-color: colors.$primary_600;
+				background-color: colors.$primary_700;
 			}
 		}
 	}
