@@ -60,11 +60,11 @@ onMounted(() => {
 			<InputsText :label="t('components.tools.password_strength_tester.input')" name="input" class="max-w-128" />
 		</InputsProvider>
 
-		<div class="flex justify-between w-128 mt-1 px-1">
+		<div class="flex justify-between w-128 max-w-full mt-1 px-1">
 			<div
 				v-for="i in conditions.length"
 				:style="{
-					width: `${(512 / conditions.length) * 0.95}px`
+					width: `${(100 / conditions.length) * 0.95}%`
 				}"
 				:class="[
 					'tools-password-strength-tester-condition-bar',
