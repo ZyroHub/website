@@ -15,6 +15,10 @@ const form = useForm(
 		email_subject: '',
 		email_body: '',
 
+		sms_phone: '',
+
+		phone: '',
+
 		dot_style: 'rounded' as DotType,
 		correction_level: 'H' as ErrorCorrectionLevel,
 		margin: 0,
@@ -32,7 +36,8 @@ const typeOptions = [
 	{ label: 'Texto', value: 'text' },
 	{ label: 'Email', value: 'email' },
 	{ label: 'SMS', value: 'sms' },
-	{ label: 'Telefone (VCard)', value: 'vcard' },
+	{ label: 'Telefone', value: 'phone' },
+	{ label: 'Contato (VCard)', value: 'vcard' },
 	{ label: 'Localização', value: 'location' },
 	{ label: 'Link', value: 'url' },
 	{ label: 'X / Twitter', value: 'twitter' },
@@ -56,24 +61,39 @@ const correctionLevelOptions = [
 ];
 
 const updateQRCode = async () => {
-	console.log('update');
 	if (!qrCodeElement.value || !qrCode.value) return;
 
 	let content = '';
 
 	if (form.values.value.type === 'text' || form.values.value.type === 'url') {
-		content = form.values.value.content;
+		if (form.values.value.content) {
+			content = form.values.value.content;
+		}
 	}
 
 	if (form.values.value.type === 'email') {
-		if (!form.values.value.email) return;
+		if (form.values.value.email) {
+			const searchParams = new URLSearchParams({
+				subject: form.values.value.email_subject,
+				body: form.values.value.email_body
+			});
 
-		const searchParams = new URLSearchParams({
-			subject: form.values.value.email_subject,
-			body: form.values.value.email_body
-		});
+			content = `mailto:${form.values.value.email}?${searchParams.toString()}`;
+		}
+	}
 
-		content = `mailto:${form.values.value.email}?${searchParams.toString()}`;
+	if (form.values.value.type === 'sms') {
+		const normalizedPhone = form.values.value.sms_phone.replace(/\D/g, '');
+		if (normalizedPhone) {
+			content = `sms:${form.values.value.sms_phone}`;
+		}
+	}
+
+	if (form.values.value.type === 'phone') {
+		const normalizedPhone = form.values.value.phone.replace(/\D/g, '');
+		if (normalizedPhone) {
+			content = `tel:${normalizedPhone}`;
+		}
 	}
 
 	if (!content) return qrCode.value.update({ data: '' });
@@ -105,6 +125,10 @@ const handleUpdateType = () => {
 	form.values.value.email = '';
 	form.values.value.email_subject = '';
 	form.values.value.email_body = '';
+
+	form.values.value.sms_phone = '';
+
+	form.values.value.phone = '';
 };
 
 watch(form.values.value, () => {
@@ -162,6 +186,14 @@ onMounted(() => {
 								label="Corpo do E-mail"
 								placeholder="Olá, ZyroHub!"
 								:rows="4" />
+						</template>
+
+						<template v-if="form.values.value.type === 'sms'">
+							<InputsText name="sms_phone" label="Número do Telefone" placeholder="Número de Telefone" />
+						</template>
+
+						<template v-if="form.values.value.type === 'phone'">
+							<InputsText name="phone" label="Número do Telefone" placeholder="Número de Telefone" />
 						</template>
 					</div>
 
