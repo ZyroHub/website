@@ -59,7 +59,7 @@ export const getToolList = (): ITool[] => {
 				{ name: 'Quantize', url: 'https://www.npmjs.com/package/quantize' }
 			],
 			related: [],
-			tags: [ToolTagEnum.CREATORS, ToolTagEnum.IMAGE, ToolTagEnum.FILTER]
+			tags: [ToolTagEnum.CREATORS, ToolTagEnum.IMAGE, ToolTagEnum.FILTER, ToolTagEnum.EDITOR]
 		},
 		{
 			id: 'password_generator',
@@ -78,7 +78,14 @@ export const getToolList = (): ITool[] => {
 			icon: 'tabler:qrcode',
 			providers: [{ name: 'QRCode Styling', url: 'https://qr-code-styling.com/' }],
 			related: [],
-			tags: [ToolTagEnum.MISC, ToolTagEnum.GENERATOR]
+			tags: [
+				ToolTagEnum.MISC,
+				ToolTagEnum.IMAGE,
+				ToolTagEnum.GENERATOR,
+				ToolTagEnum.TEXT,
+				ToolTagEnum.URL,
+				ToolTagEnum.EMAIL
+			]
 		},
 		{
 			id: 'text_to_slug',
