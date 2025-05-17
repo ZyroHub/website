@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import QRCodeStyling, { type DotType, type ErrorCorrectionLevel } from 'qr-code-styling';
+import QRCodeStyling, { type DotType, type ErrorCorrectionLevel, type FileExtension } from 'qr-code-styling';
 import { z } from 'zod';
 
 const qrCodeElement = useTemplateRef<HTMLDivElement>('qrcode');
@@ -27,7 +27,10 @@ const form = useForm(
 		image_base64: null as string | null,
 		image_size: 4,
 		image_margin: 4,
-		image_hide_background: true
+		image_hide_background: true,
+
+		output_type: 'png' as FileExtension,
+		output_content: ''
 	},
 	z.object({})
 );
@@ -71,12 +74,12 @@ const updateQRCode = async () => {
 
 	if (form.values.value.type === 'email') {
 		if (form.values.value.email) {
-			const searchParams = new URLSearchParams({
-				subject: form.values.value.email_subject,
-				body: form.values.value.email_body
-			});
+			const searchParams = new URLSearchParams();
 
-			content = `mailto:${form.values.value.email}?${searchParams.toString()}`;
+			if (form.values.value.email_subject) searchParams.append('subject', form.values.value.email_subject);
+			if (form.values.value.email_body) searchParams.append('body', form.values.value.email_body);
+
+			content = `mailto:${form.values.value.email}${searchParams.size ? '?' : ''}${searchParams.toString()}`;
 		}
 	}
 
@@ -93,6 +96,8 @@ const updateQRCode = async () => {
 			content = `tel:${normalizedPhone}`;
 		}
 	}
+
+	form.values.value.output_content = content || '';
 
 	if (!content) return qrCode.value.update({ data: '' });
 
@@ -114,6 +119,15 @@ const updateQRCode = async () => {
 		qrOptions: {
 			errorCorrectionLevel: form.values.value.correction_level
 		}
+	});
+};
+
+const handleDownload = () => {
+	if (!qrCode.value) return;
+
+	qrCode.value.download({
+		name: 'qrcode',
+		extension: form.values.value.output_type
 	});
 };
 
@@ -161,7 +175,7 @@ onMounted(() => {
 <template>
 	<div>
 		<InputsProvider :form="form">
-			<div class="flex gap-2 flex-wrap md:flex-nowrap">
+			<div class="flex gap-2 gap-y-4 flex-wrap md:flex-nowrap">
 				<div class="w-full flex flex-col gap-6 md:w-1/2">
 					<InputsSelect name="type" label="Tipo de Código" :options="typeOptions" />
 
@@ -253,16 +267,23 @@ onMounted(() => {
 					</div>
 
 					<div class="flex gap-2">
-						<Button theme="primary">
+						<Button @click="handleDownload" theme="primary" :disabled="!qrCode?._options.data">
 							<Icon name="material-symbols:download-rounded" />
 							Baixar
 						</Button>
 
-						<Button theme="gray">
+						<Button theme="gray" :disabled="!qrCode?._options.data">
 							<Icon name="mdi:content-copy" />
-							Copiar
+							Copiar Imagem
 						</Button>
 					</div>
+
+					<InputsTextArea
+						name="output_content"
+						label="Conteúdo do Código"
+						placeholder="https://zyrohub.app"
+						:rows="4"
+						readonly />
 				</div>
 			</div>
 		</InputsProvider>

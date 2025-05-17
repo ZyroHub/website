@@ -5,6 +5,7 @@ const props = defineProps<{
 	placeholder?: string;
 	rows?: number;
 	showCopy?: boolean;
+	readonly?: boolean;
 }>();
 
 const { t } = useI18n();
@@ -41,6 +42,7 @@ const handleCopy = () => {
 					v-model="formInput.inputRef.value"
 					:placeholder="props.placeholder"
 					:rows="props.rows"
+					:readonly="props.readonly"
 					class="input-textarea-input"></textarea>
 
 				<Transition name="transition_fade_200" mode="out-in">
