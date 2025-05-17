@@ -92,8 +92,12 @@ watch(searchContent, () => {
 });
 
 onMounted(() => {
-	formInput.inputRef.value = props.options[0].value;
-	textInputContent.value = props.options[0].label;
+	if (!formInput.inputRef.value) {
+		formInput.inputRef.value = props.options[0].value;
+		textInputContent.value = props.options[0].label;
+	} else {
+		textInputContent.value = selectedOption.value?.label || '';
+	}
 });
 </script>
 
