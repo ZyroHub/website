@@ -16,6 +16,7 @@ const form = useForm(
 		email_body: '',
 
 		sms_phone: '',
+		sms_body: '',
 
 		phone: '',
 
@@ -95,9 +96,11 @@ const updateQRCode = async () => {
 	}
 
 	if (form.values.value.type === 'sms') {
-		const normalizedPhone = form.values.value.sms_phone.replace(/\D/g, '');
+		const normalizedPhone = form.values.value.sms_phone.replace(/[^\d+]/g, '');
 		if (normalizedPhone) {
-			content = `sms:${form.values.value.sms_phone}`;
+			const normalizedBody = encodeURIComponent(form.values.value.sms_body || '');
+
+			content = `smsto:${normalizedPhone}${normalizedBody ? `:${normalizedBody}` : ''}`;
 		}
 	}
 
@@ -219,6 +222,12 @@ onMounted(() => {
 
 						<template v-if="form.values.value.type === 'sms'">
 							<InputsText name="sms_phone" label="Número do Telefone" placeholder="Número de Telefone" />
+
+							<InputsTextArea
+								name="sms_body"
+								label="Corpo do SMS"
+								placeholder="Olá, ZyroHub!"
+								:rows="4" />
 						</template>
 
 						<template v-if="form.values.value.type === 'phone'">
