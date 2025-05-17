@@ -43,20 +43,15 @@ const form = useForm(
 	z.object({})
 );
 
-const typeOptions = computed(() => {
-	console.log('updated');
-	locale;
-
-	return [
-		{ label: t('components.tools.qrcode_generator.options.type.options.text'), value: 'text' },
-		{ label: t('components.tools.qrcode_generator.options.type.options.email'), value: 'email' },
-		{ label: t('components.tools.qrcode_generator.options.type.options.sms'), value: 'sms' },
-		{ label: t('components.tools.qrcode_generator.options.type.options.phone'), value: 'phone' },
-		{ label: t('components.tools.qrcode_generator.options.type.options.vcard'), value: 'vcard' },
-		{ label: t('components.tools.qrcode_generator.options.type.options.url'), value: 'url' },
-		{ label: t('components.tools.qrcode_generator.options.type.options.wifi'), value: 'wifi' }
-	];
-});
+const typeOptions = computed(() => [
+	{ label: t('components.tools.qrcode_generator.options.type.options.text'), value: 'text' },
+	{ label: t('components.tools.qrcode_generator.options.type.options.email'), value: 'email' },
+	{ label: t('components.tools.qrcode_generator.options.type.options.sms'), value: 'sms' },
+	{ label: t('components.tools.qrcode_generator.options.type.options.phone'), value: 'phone' },
+	{ label: t('components.tools.qrcode_generator.options.type.options.vcard'), value: 'vcard' },
+	{ label: t('components.tools.qrcode_generator.options.type.options.url'), value: 'url' },
+	{ label: t('components.tools.qrcode_generator.options.type.options.wifi'), value: 'wifi' }
+]);
 
 const wifiEncryptionOptions = computed(() => [
 	{ label: t('components.tools.qrcode_generator.options.wifi_encryption.options.wpa'), value: 'WPA' },
@@ -209,82 +204,88 @@ onMounted(() => {
 						:label="t('components.tools.qrcode_generator.options.type.label')"
 						:options="typeOptions" />
 
-					<div class="flex flex-col gap-4">
-						<template v-if="['url', 'text'].includes(form.values.value.type)">
-							<InputsTextArea
-								name="content"
-								:label="t('components.tools.qrcode_generator.options.content.label')"
-								:placeholder="t('components.tools.qrcode_generator.options.content.placeholder')"
-								:rows="4" />
-						</template>
-
-						<template v-if="form.values.value.type === 'email'">
-							<InputsText
-								name="email"
-								:label="t('components.tools.qrcode_generator.options.email.label')"
-								:placeholder="t('components.tools.qrcode_generator.options.email.placeholder')" />
-
-							<InputsText
-								name="email_subject"
-								:label="t('components.tools.qrcode_generator.options.email_subject.label')"
-								:placeholder="
-									t('components.tools.qrcode_generator.options.email_subject.placeholder')
-								" />
-
-							<InputsTextArea
-								name="email_body"
-								:label="t('components.tools.qrcode_generator.options.email_body.label')"
-								:placeholder="t('components.tools.qrcode_generator.options.email_body.placeholder')"
-								:rows="4" />
-						</template>
-
-						<template v-if="form.values.value.type === 'sms'">
-							<InputsText
-								name="sms_phone"
-								:label="t('components.tools.qrcode_generator.options.sms_phone.label')"
-								:placeholder="t('components.tools.qrcode_generator.options.sms_phone.placeholder')" />
-
-							<InputsTextArea
-								name="sms_body"
-								:label="t('components.tools.qrcode_generator.options.sms_body.label')"
-								:placeholder="t('components.tools.qrcode_generator.options.sms_body.placeholder')"
-								:rows="4" />
-						</template>
-
-						<template v-if="form.values.value.type === 'phone'">
-							<InputsText
-								name="phone"
-								:label="t('components.tools.qrcode_generator.options.phone.label')"
-								:placeholder="t('components.tools.qrcode_generator.options.phone.placeholder')" />
-						</template>
-
-						<template v-if="form.values.value.type === 'wifi'">
-							<InputsText
-								name="wifi_ssid"
-								:label="t('components.tools.qrcode_generator.options.wifi_ssid.label')"
-								:placeholder="t('components.tools.qrcode_generator.options.wifi_ssid.placeholder')" />
-
-							<div class="flex gap-2">
-								<InputsText
-									name="wifi_password"
-									:label="t('components.tools.qrcode_generator.options.wifi_password.label')"
-									:placeholder="
-										t('components.tools.qrcode_generator.options.wifi_password.placeholder')
-									"
-									class="w-full" />
-
-								<InputsSelect
-									name="wifi_encryption"
-									:label="t('components.tools.qrcode_generator.options.wifi_encryption.label')"
-									class="w-full"
-									:options="wifiEncryptionOptions" />
+					<div>
+						<Transition name="transition_fade_200" mode="out-in">
+							<div v-if="['url', 'text'].includes(form.values.value.type)">
+								<InputsTextArea
+									name="content"
+									:label="t('components.tools.qrcode_generator.options.content.label')"
+									:placeholder="t('components.tools.qrcode_generator.options.content.placeholder')"
+									:rows="4" />
 							</div>
 
-							<InputsCheckbox
-								name="wifi_hidden"
-								:label="t('components.tools.qrcode_generator.options.wifi_hidden.label')"
-								class="w-full" />
-						</template>
+							<div v-else-if="form.values.value.type === 'email'" class="flex flex-col gap-4">
+								<InputsText
+									name="email"
+									:label="t('components.tools.qrcode_generator.options.email.label')"
+									:placeholder="t('components.tools.qrcode_generator.options.email.placeholder')" />
+
+								<InputsText
+									name="email_subject"
+									:label="t('components.tools.qrcode_generator.options.email_subject.label')"
+									:placeholder="
+										t('components.tools.qrcode_generator.options.email_subject.placeholder')
+									" />
+
+								<InputsTextArea
+									name="email_body"
+									:label="t('components.tools.qrcode_generator.options.email_body.label')"
+									:placeholder="t('components.tools.qrcode_generator.options.email_body.placeholder')"
+									:rows="4" />
+							</div>
+
+							<div v-else-if="form.values.value.type === 'sms'" class="flex flex-col gap-4">
+								<InputsText
+									name="sms_phone"
+									:label="t('components.tools.qrcode_generator.options.sms_phone.label')"
+									:placeholder="
+										t('components.tools.qrcode_generator.options.sms_phone.placeholder')
+									" />
+
+								<InputsTextArea
+									name="sms_body"
+									:label="t('components.tools.qrcode_generator.options.sms_body.label')"
+									:placeholder="t('components.tools.qrcode_generator.options.sms_body.placeholder')"
+									:rows="4" />
+							</div>
+
+							<div v-else-if="form.values.value.type === 'phone'">
+								<InputsText
+									name="phone"
+									:label="t('components.tools.qrcode_generator.options.phone.label')"
+									:placeholder="t('components.tools.qrcode_generator.options.phone.placeholder')" />
+							</div>
+
+							<div v-else-if="form.values.value.type === 'wifi'" class="flex flex-col gap-4">
+								<InputsText
+									name="wifi_ssid"
+									:label="t('components.tools.qrcode_generator.options.wifi_ssid.label')"
+									:placeholder="
+										t('components.tools.qrcode_generator.options.wifi_ssid.placeholder')
+									" />
+
+								<div class="flex gap-2">
+									<InputsText
+										name="wifi_password"
+										:label="t('components.tools.qrcode_generator.options.wifi_password.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.wifi_password.placeholder')
+										"
+										class="w-full" />
+
+									<InputsSelect
+										name="wifi_encryption"
+										:label="t('components.tools.qrcode_generator.options.wifi_encryption.label')"
+										class="w-full"
+										:options="wifiEncryptionOptions" />
+								</div>
+
+								<InputsCheckbox
+									name="wifi_hidden"
+									:label="t('components.tools.qrcode_generator.options.wifi_hidden.label')"
+									class="w-full" />
+							</div>
+						</Transition>
 					</div>
 
 					<div>
