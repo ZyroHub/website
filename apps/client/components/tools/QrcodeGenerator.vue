@@ -2,7 +2,7 @@
 import QRCodeStyling, { type DotType, type ErrorCorrectionLevel, type FileExtension } from 'qr-code-styling';
 import { z } from 'zod';
 
-const { t, locale } = useI18n();
+const { t } = useI18n();
 
 const qrCodeElement = useTemplateRef<HTMLDivElement>('qrcode');
 const qrCode = ref<QRCodeStyling>();
@@ -398,6 +398,7 @@ onMounted(() => {
 						name="output_content"
 						:label="t('components.tools.qrcode_generator.output.content')"
 						:rows="4"
+						show-copy
 						readonly />
 				</div>
 			</div>
