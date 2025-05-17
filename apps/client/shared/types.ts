@@ -34,9 +34,15 @@ export enum ToolTagEnum {
 export type ToolTagType = keyof typeof ToolTagEnum;
 export const ToolTagsId = Object.keys(ToolTagEnum) as ToolTagType[];
 
+export interface IToolProvider {
+	name: string;
+	url?: string;
+}
+
 export interface ITool {
 	id: string;
 	icon: string;
+	providers?: IToolProvider[];
 	related?: string[];
 	tags: ToolTagEnum[];
 	needs_connection?: boolean;
