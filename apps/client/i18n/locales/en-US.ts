@@ -308,6 +308,7 @@ export default {
 				output: {
 					download: 'Download',
 					copy_image: 'Copy Image',
+					copied_image: 'Image copied!',
 					content: 'QR Code Content'
 				}
 			},

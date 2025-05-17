@@ -309,6 +309,7 @@ export default {
 				output: {
 					download: 'Download',
 					copy_image: 'Copiar Imagem',
+					copied_image: 'Imagem copiada!',
 					content: 'Conteúdo do QR Code'
 				}
 			},

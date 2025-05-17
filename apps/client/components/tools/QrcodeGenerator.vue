@@ -7,6 +7,8 @@ const { t, locale } = useI18n();
 const qrCodeElement = useTemplateRef<HTMLDivElement>('qrcode');
 const qrCode = ref<QRCodeStyling>();
 
+const copyState = ref<boolean>(false);
+
 const form = useForm(
 	{
 		type: 'text',
@@ -151,6 +153,27 @@ const handleDownload = () => {
 		name: 'qrcode',
 		extension: form.values.value.output_type
 	});
+};
+
+const handleCopyImage = async () => {
+	if (!qrCode.value) return;
+
+	const rawData = await qrCode.value.getRawData(form.values.value.output_type);
+
+	if (rawData) {
+		const blob = new Blob([rawData], { type: `image/${form.values.value.output_type}` });
+		const item = new ClipboardItem({ [`image/${form.values.value.output_type}`]: blob });
+
+		navigator.clipboard.write([item]);
+
+		if (!copyState.value) {
+			copyState.value = true;
+
+			setTimeout(() => {
+				copyState.value = false;
+			}, 1000);
+		}
+	}
 };
 
 const handleUpdateType = () => {
@@ -360,9 +383,14 @@ onMounted(() => {
 							{{ t('components.tools.qrcode_generator.output.download') }}
 						</Button>
 
-						<Button theme="gray" :disabled="!qrCode?._options.data">
-							<Icon name="mdi:content-copy" />
-							{{ t('components.tools.qrcode_generator.output.copy_image') }}
+						<Button @click="handleCopyImage" theme="gray" :disabled="!qrCode?._options.data">
+							<template v-if="!copyState">
+								<Icon name="mdi:content-copy" />
+								{{ t('components.tools.qrcode_generator.output.copy_image') }}
+							</template>
+							<template v-else>
+								{{ t('components.tools.qrcode_generator.output.copied_image') }}
+							</template>
 						</Button>
 					</div>
 
