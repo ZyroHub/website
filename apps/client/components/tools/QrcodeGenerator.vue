@@ -2,6 +2,8 @@
 import QRCodeStyling, { type DotType, type ErrorCorrectionLevel, type FileExtension } from 'qr-code-styling';
 import { z } from 'zod';
 
+const { t, locale } = useI18n();
+
 const qrCodeElement = useTemplateRef<HTMLDivElement>('qrcode');
 const qrCode = ref<QRCodeStyling>();
 
@@ -41,37 +43,42 @@ const form = useForm(
 	z.object({})
 );
 
-const typeOptions = [
-	{ label: 'Texto', value: 'text' },
-	{ label: 'Email', value: 'email' },
-	{ label: 'SMS', value: 'sms' },
-	{ label: 'Telefone', value: 'phone' },
-	{ label: 'Contato (VCard)', value: 'vcard' },
-	{ label: 'Link', value: 'url' },
-	{ label: 'Wifi', value: 'wifi' }
-];
+const typeOptions = computed(() => {
+	console.log('updated');
+	locale;
 
-const wifiEncryptionOptions = [
-	{ label: 'WPA', value: 'WPA' },
-	{ label: 'WEP', value: 'WEP' },
-	{ label: 'Sem Senha', value: 'nopass' }
-];
+	return [
+		{ label: t('components.tools.qrcode_generator.options.type.options.text'), value: 'text' },
+		{ label: t('components.tools.qrcode_generator.options.type.options.email'), value: 'email' },
+		{ label: t('components.tools.qrcode_generator.options.type.options.sms'), value: 'sms' },
+		{ label: t('components.tools.qrcode_generator.options.type.options.phone'), value: 'phone' },
+		{ label: t('components.tools.qrcode_generator.options.type.options.vcard'), value: 'vcard' },
+		{ label: t('components.tools.qrcode_generator.options.type.options.url'), value: 'url' },
+		{ label: t('components.tools.qrcode_generator.options.type.options.wifi'), value: 'wifi' }
+	];
+});
 
-const dotStyleOptions = [
-	{ label: 'Arredondado', value: 'rounded' },
-	{ label: 'Extra Arredondado', value: 'extra-rounded' },
-	{ label: 'Quadrado', value: 'square' },
-	{ label: 'Ponto', value: 'dots' },
-	{ label: 'Classy', value: 'classy' },
-	{ label: 'Classy Arredondado', value: 'classy-rounded' }
-];
+const wifiEncryptionOptions = computed(() => [
+	{ label: t('components.tools.qrcode_generator.options.wifi_encryption.options.wpa'), value: 'WPA' },
+	{ label: t('components.tools.qrcode_generator.options.wifi_encryption.options.wep'), value: 'WEP' },
+	{ label: t('components.tools.qrcode_generator.options.wifi_encryption.options.none'), value: 'nopass' }
+]);
 
-const correctionLevelOptions = [
-	{ label: 'Baixo (7%)', value: 'L' },
-	{ label: 'Médio (15%)', value: 'M' },
-	{ label: 'Alto (25%)', value: 'Q' },
-	{ label: 'Máximo (30%)', value: 'H' }
-];
+const dotStyleOptions = computed(() => [
+	{ label: t('components.tools.qrcode_generator.options.dot_style.options.rounded'), value: 'rounded' },
+	{ label: t('components.tools.qrcode_generator.options.dot_style.options.extra_rounded'), value: 'extra-rounded' },
+	{ label: t('components.tools.qrcode_generator.options.dot_style.options.square'), value: 'square' },
+	{ label: t('components.tools.qrcode_generator.options.dot_style.options.dots'), value: 'dots' },
+	{ label: t('components.tools.qrcode_generator.options.dot_style.options.classy'), value: 'classy' },
+	{ label: t('components.tools.qrcode_generator.options.dot_style.options.classy_rounded'), value: 'classy-rounded' }
+]);
+
+const correctionLevelOptions = computed(() => [
+	{ label: t('components.tools.qrcode_generator.options.correction_level.options.l'), value: 'L' },
+	{ label: t('components.tools.qrcode_generator.options.correction_level.options.m'), value: 'M' },
+	{ label: t('components.tools.qrcode_generator.options.correction_level.options.q'), value: 'Q' },
+	{ label: t('components.tools.qrcode_generator.options.correction_level.options.h'), value: 'H' }
+]);
 
 const updateQRCode = async () => {
 	if (!qrCodeElement.value || !qrCode.value) return;
@@ -197,103 +204,137 @@ onMounted(() => {
 		<InputsProvider :form="form">
 			<div class="flex gap-2 gap-y-4 flex-wrap md:flex-nowrap">
 				<div class="w-full flex flex-col gap-6 md:w-1/2">
-					<InputsSelect name="type" label="Tipo de Código" :options="typeOptions" />
+					<InputsSelect
+						name="type"
+						:label="t('components.tools.qrcode_generator.options.type.label')"
+						:options="typeOptions" />
 
 					<div class="flex flex-col gap-4">
 						<template v-if="['url', 'text'].includes(form.values.value.type)">
 							<InputsTextArea
 								name="content"
-								label="Conteúdo"
-								placeholder="https://zyrohub.app"
+								:label="t('components.tools.qrcode_generator.options.content.label')"
+								:placeholder="t('components.tools.qrcode_generator.options.content.placeholder')"
 								:rows="4" />
 						</template>
 
 						<template v-if="form.values.value.type === 'email'">
-							<InputsText name="email" label="E-mail" placeholder="contact@zyrohub.app" />
+							<InputsText
+								name="email"
+								:label="t('components.tools.qrcode_generator.options.email.label')"
+								:placeholder="t('components.tools.qrcode_generator.options.email.placeholder')" />
 
-							<InputsText name="email_subject" label="Assunto" placeholder="Olá, ZyroHub!" />
+							<InputsText
+								name="email_subject"
+								:label="t('components.tools.qrcode_generator.options.email_subject.label')"
+								:placeholder="
+									t('components.tools.qrcode_generator.options.email_subject.placeholder')
+								" />
 
 							<InputsTextArea
 								name="email_body"
-								label="Corpo do E-mail"
-								placeholder="Olá, ZyroHub!"
+								:label="t('components.tools.qrcode_generator.options.email_body.label')"
+								:placeholder="t('components.tools.qrcode_generator.options.email_body.placeholder')"
 								:rows="4" />
 						</template>
 
 						<template v-if="form.values.value.type === 'sms'">
-							<InputsText name="sms_phone" label="Número do Telefone" placeholder="Número de Telefone" />
+							<InputsText
+								name="sms_phone"
+								:label="t('components.tools.qrcode_generator.options.sms_phone.label')"
+								:placeholder="t('components.tools.qrcode_generator.options.sms_phone.placeholder')" />
 
 							<InputsTextArea
 								name="sms_body"
-								label="Corpo do SMS"
-								placeholder="Olá, ZyroHub!"
+								:label="t('components.tools.qrcode_generator.options.sms_body.label')"
+								:placeholder="t('components.tools.qrcode_generator.options.sms_body.placeholder')"
 								:rows="4" />
 						</template>
 
 						<template v-if="form.values.value.type === 'phone'">
-							<InputsText name="phone" label="Número do Telefone" placeholder="Número de Telefone" />
+							<InputsText
+								name="phone"
+								:label="t('components.tools.qrcode_generator.options.phone.label')"
+								:placeholder="t('components.tools.qrcode_generator.options.phone.placeholder')" />
 						</template>
 
 						<template v-if="form.values.value.type === 'wifi'">
-							<InputsText name="wifi_ssid" label="Nome da Rede (SSID)" placeholder="Nome da Rede" />
+							<InputsText
+								name="wifi_ssid"
+								:label="t('components.tools.qrcode_generator.options.wifi_ssid.label')"
+								:placeholder="t('components.tools.qrcode_generator.options.wifi_ssid.placeholder')" />
 
 							<div class="flex gap-2">
 								<InputsText
 									name="wifi_password"
-									label="Senha"
-									placeholder="Senha da Rede"
+									:label="t('components.tools.qrcode_generator.options.wifi_password.label')"
+									:placeholder="
+										t('components.tools.qrcode_generator.options.wifi_password.placeholder')
+									"
 									class="w-full" />
 
 								<InputsSelect
 									name="wifi_encryption"
-									label="Tipo de Criptografia"
+									:label="t('components.tools.qrcode_generator.options.wifi_encryption.label')"
 									class="w-full"
 									:options="wifiEncryptionOptions" />
 							</div>
 
-							<InputsCheckbox name="wifi_hidden" label="Rede Oculta" class="w-full" />
+							<InputsCheckbox
+								name="wifi_hidden"
+								:label="t('components.tools.qrcode_generator.options.wifi_hidden.label')"
+								class="w-full" />
 						</template>
 					</div>
 
 					<div>
-						<p class="text-xl font-semibold">Personalização do Código</p>
+						<p class="text-xl font-semibold">
+							{{ t('components.tools.qrcode_generator.personalization') }}
+						</p>
 
 						<div class="mt-4 flex flex-col gap-4">
 							<div class="flex gap-2">
 								<InputsSelect
 									name="dot_style"
-									label="Estilo das Formas"
+									:label="t('components.tools.qrcode_generator.options.dot_style.label')"
 									class="w-full"
 									:options="dotStyleOptions" />
 
 								<InputsSelect
 									name="correction_level"
-									label="Nível de Correção de Erros"
+									:label="t('components.tools.qrcode_generator.options.correction_level.label')"
 									class="w-full"
 									:options="correctionLevelOptions" />
 							</div>
 
-							<InputsSlider label="Margem do Código" name="margin" class="w-full" :min="0" :max="30" />
+							<InputsSlider
+								name="margin"
+								:label="t('components.tools.qrcode_generator.options.margin.label')"
+								class="w-full"
+								:min="0"
+								:max="30" />
 						</div>
 					</div>
 
 					<div>
-						<p class="text-xl font-semibold">Opções de Imagem</p>
+						<p class="text-xl font-semibold">
+							{{ t('components.tools.qrcode_generator.image_options') }}
+						</p>
 
 						<div class="mt-4 flex flex-col gap-4">
 							<InputsImageBox name="image" :downloadable="false" />
 
 							<div class="flex gap-2">
 								<InputsSlider
-									label="Tamanho da Imagem"
 									name="image_size"
+									:label="t('components.tools.qrcode_generator.options.image_size.label')"
 									class="w-full"
 									:min="1"
 									:max="10" />
 
 								<InputsSlider
-									label="Margem da Imagem"
 									name="image_margin"
+									:label="t('components.tools.qrcode_generator.options.image_margin.label')"
 									class="w-full"
 									:min="0"
 									:max="16" />
@@ -301,7 +342,7 @@ onMounted(() => {
 
 							<InputsCheckbox
 								name="image_hide_background"
-								label="Esconder fundo da imagem"
+								:label="t('components.tools.qrcode_generator.options.image_hide_background.label')"
 								class="w-full" />
 						</div>
 					</div>
@@ -315,19 +356,18 @@ onMounted(() => {
 					<div class="flex gap-2">
 						<Button @click="handleDownload" theme="primary" :disabled="!qrCode?._options.data">
 							<Icon name="material-symbols:download-rounded" />
-							Baixar
+							{{ t('components.tools.qrcode_generator.output.download') }}
 						</Button>
 
 						<Button theme="gray" :disabled="!qrCode?._options.data">
 							<Icon name="mdi:content-copy" />
-							Copiar Imagem
+							{{ t('components.tools.qrcode_generator.output.copy_image') }}
 						</Button>
 					</div>
 
 					<InputsTextArea
 						name="output_content"
-						label="Conteúdo do Código"
-						placeholder="https://zyrohub.app"
+						:label="t('components.tools.qrcode_generator.output.content')"
 						:rows="4"
 						readonly />
 				</div>

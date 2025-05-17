@@ -210,6 +210,108 @@ export default {
 					special: 'Pelo menos um caractere especial'
 				}
 			},
+			qrcode_generator: {
+				personalization: 'Personalização do Código',
+				image_options: 'Opções de Imagem',
+				options: {
+					type: {
+						label: 'Tipo de Código',
+						options: {
+							text: 'Texto',
+							email: 'E-mail',
+							sms: 'SMS',
+							phone: 'Telefone',
+							vcard: 'Contato (VCard)',
+							url: 'URL',
+							wifi: 'Wi-Fi'
+						}
+					},
+					content: {
+						label: 'Conteúdo',
+						placeholder: 'Digite o conteúdo do QR Code...'
+					},
+					email: {
+						label: 'E-mail',
+						placeholder: 'E-mail'
+					},
+					email_subject: {
+						label: 'Assunto',
+						placeholder: 'Assunto do email...'
+					},
+					email_body: {
+						label: 'Corpo do E-mail',
+						placeholder: 'Corpo do e-mail...'
+					},
+					sms_phone: {
+						label: 'Telefone',
+						placeholder: 'Número do telefone...'
+					},
+					sms_body: {
+						label: 'Corpo do SMS',
+						placeholder: 'Corpo do SMS...'
+					},
+					phone: {
+						label: 'Telefone',
+						placeholder: 'Número do telefone...'
+					},
+					wifi_ssid: {
+						label: 'Nome da Rede (SSID)',
+						placeholder: 'Nome da Rede'
+					},
+					wifi_password: {
+						label: 'Senha da Rede',
+						placeholder: 'Senha da Rede'
+					},
+					wifi_encryption: {
+						label: 'Tipo de Criptografia',
+						options: {
+							wpa: 'WPA/WPA2',
+							wep: 'WEP',
+							none: 'Sem Senha'
+						}
+					},
+					wifi_hidden: {
+						label: 'Rede Oculta'
+					},
+					dot_style: {
+						label: 'Estilo das Formas',
+						options: {
+							rounded: 'Arredondado',
+							extra_rounded: 'Extra Arredondado',
+							square: 'Quadrado',
+							dots: 'Pontos',
+							classy: 'Classy',
+							classy_rounded: 'Classy Arredondado'
+						}
+					},
+					correction_level: {
+						label: 'Nível de Correção de Erros',
+						options: {
+							l: 'Baixo (7%)',
+							m: 'Médio (15%)',
+							q: 'Alto (25%)',
+							h: 'Máximo (30%)'
+						}
+					},
+					margin: {
+						label: 'Margem do Código'
+					},
+					image_size: {
+						label: 'Tamanho da Imagem'
+					},
+					image_margin: {
+						label: 'Margem da Imagem'
+					},
+					image_hide_background: {
+						label: 'Ocultar Fundo da Imagem'
+					}
+				},
+				output: {
+					download: 'Download',
+					copy_image: 'Copiar Imagem',
+					content: 'Conteúdo do QR Code'
+				}
+			},
 			text_to_slug: {
 				input: {
 					label: 'Texto',

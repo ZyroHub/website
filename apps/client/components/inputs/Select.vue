@@ -91,6 +91,23 @@ watch(searchContent, () => {
 	selectPosition.value = 0;
 });
 
+watchEffect(() => {
+	if (props.options.length === 0) {
+		textInputContent.value = '';
+		formInput.inputRef.value = '';
+	} else {
+		if (formInput.inputRef.value) {
+			const newSelectedOption = props.options.find(option => option.value === formInput.inputRef.value);
+			if (newSelectedOption) {
+				textInputContent.value = newSelectedOption.label;
+			} else {
+				textInputContent.value = '';
+				formInput.inputRef.value = '';
+			}
+		}
+	}
+});
+
 onMounted(() => {
 	if (!formInput.inputRef.value) {
 		formInput.inputRef.value = props.options[0].value;
