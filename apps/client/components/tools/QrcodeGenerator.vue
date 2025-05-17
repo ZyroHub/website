@@ -1,11 +1,162 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import QRCodeStyling, { type DotType } from 'qr-code-styling';
+import { z } from 'zod';
+
+const qrCodeElement = useTemplateRef<HTMLDivElement>('qrcode');
+const qrCode = ref<QRCodeStyling>();
+
+const form = useForm(
+	{
+		content: '',
+		type: 'text',
+
+		dot_style: 'rounded',
+
+		image: null as File | null,
+		image_base64: null as string | null,
+		image_size: 4,
+		image_margin: 4
+	},
+	z.object({})
+);
+
+const typeOptions = [
+	{ label: 'Texto', value: 'text' },
+	{ label: 'Email', value: 'email' },
+	{ label: 'SMS', value: 'sms' },
+	{ label: 'Telefone (VCard)', value: 'vcard' },
+	{ label: 'Localização', value: 'location' },
+	{ label: 'Link', value: 'url' },
+	{ label: 'X / Twitter', value: 'twitter' },
+	{ label: 'Wifi', value: 'wifi' }
+];
+
+const dotStyleOptions = [
+	{ label: 'Arredondado', value: 'rounded' },
+	{ label: 'Extra Arredondado', value: 'extra-rounded' },
+	{ label: 'Quadrado', value: 'square' },
+	{ label: 'Ponto', value: 'dots' },
+	{ label: 'Classy', value: 'classy' },
+	{ label: 'Classy Arredondado', value: 'classy-rounded' }
+];
+
+const updateQRCode = async () => {
+	if (!qrCodeElement.value || !qrCode.value) return;
+
+	console.log('updated');
+
+	qrCode.value.update({
+		data: form.values.value.content || ' ',
+		type: 'canvas',
+		width: 300,
+		height: 300,
+		image: form.values.value.image_base64 || undefined,
+		dotsOptions: {
+			type: form.values.value.dot_style as DotType
+		},
+		imageOptions: {
+			margin: form.values.value.image_margin,
+			imageSize: form.values.value.image_size / 10
+		},
+		qrOptions: {
+			errorCorrectionLevel: 'H'
+		}
+	});
+};
+
+watch(form.values.value, () => {
+	if (import.meta.client) {
+		updateQRCode();
+	}
+});
+
+watchEffect(async () => {
+	if (form.values.value.image) {
+		const file = await getFileBase64(form.values.value.image);
+		form.values.value.image_base64 = file;
+	} else {
+		form.values.value.image_base64 = null;
+	}
+});
+
+onMounted(() => {
+	if (import.meta.client) {
+		qrCode.value = new QRCodeStyling();
+
+		if (qrCodeElement.value) {
+			qrCode.value.append(qrCodeElement.value);
+			updateQRCode();
+		}
+	}
+});
+</script>
 
 <template>
 	<div>
-		<div class="flex gap-2 flex-wrap md:flex-nowrap">
-			<div class="w-full md:w-1/2"></div>
+		<InputsProvider :form="form">
+			<div class="flex gap-2 flex-wrap md:flex-nowrap">
+				<div class="w-full flex flex-col gap-6 md:w-1/2">
+					<InputsSelect name="type" label="Tipo de Código" :options="typeOptions" />
 
-			<div class="w-full md:w-1/2"></div>
-		</div>
+					<template v-if="['url', 'text'].includes(form.values.value.type)">
+						<InputsTextArea name="content" label="Conteúdo" placeholder="https://zyrohub.app" :rows="4" />
+					</template>
+
+					<div>
+						<p class="text-xl font-semibold">Personalização do Código</p>
+
+						<div class="mt-4 flex flex-col gap-4">
+							<InputsSelect
+								name="dot_style"
+								label="Estilo das Formas"
+								class="max-w-46"
+								:options="dotStyleOptions" />
+						</div>
+					</div>
+
+					<div>
+						<p class="text-xl font-semibold">Opções de Imagem</p>
+
+						<div class="mt-4 flex flex-col gap-4">
+							<InputsImageBox name="image" :downloadable="false" />
+
+							<div class="flex gap-2">
+								<InputsSlider
+									label="Tamanho da Imagem"
+									name="image_size"
+									class="w-full"
+									:min="1"
+									:max="10" />
+
+								<InputsSlider
+									label="Margem da Imagem"
+									name="image_margin"
+									class="w-full"
+									:min="0"
+									:max="16" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="w-full md:w-1/2 flex flex-col gap-4 items-center">
+					<div class="bg-white p-2 rounded-xl">
+						<div ref="qrcode" class="w-75 h-75" />
+					</div>
+
+					<div class="flex gap-2">
+						<Button theme="primary">
+							<Icon name="material-symbols:download-rounded" />
+							Baixar
+						</Button>
+
+						<Button theme="gray">
+							<Icon name="mdi:content-copy" />
+							Copiar
+						</Button>
+					</div>
+				</div>
+			</div>
+		</InputsProvider>
 	</div>
 </template>

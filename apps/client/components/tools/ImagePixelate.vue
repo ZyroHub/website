@@ -30,11 +30,11 @@ const handleExecute = async () => {
 		task.task.value!.storage!.pixelated_image_url = undefined;
 	}
 
-	const fileBuffer = await getFileBase64(form.values.value.image!);
+	const fileBase64 = await getFileBase64(form.values.value.image!);
 
 	await task.start(
 		{
-			image: fileBuffer,
+			image: fileBase64,
 			size: form.values.value.size,
 
 			quantization: form.values.value.quantization,
