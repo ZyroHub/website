@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import QRCodeStyling, { type DotType } from 'qr-code-styling';
+import QRCodeStyling, { type DotType, type ErrorCorrectionLevel } from 'qr-code-styling';
 import { z } from 'zod';
 
 const qrCodeElement = useTemplateRef<HTMLDivElement>('qrcode');
@@ -10,8 +10,8 @@ const form = useForm(
 		content: '',
 		type: 'text',
 
-		dot_style: 'rounded',
-		correction_level: 'H',
+		dot_style: 'rounded' as DotType,
+		correction_level: 'H' as ErrorCorrectionLevel,
 		margin: 0,
 
 		image: null as File | null,
@@ -61,7 +61,7 @@ const updateQRCode = async () => {
 		image: form.values.value.image_base64 || undefined,
 		margin: form.values.value.margin,
 		dotsOptions: {
-			type: form.values.value.dot_style as DotType
+			type: form.values.value.dot_style
 		},
 		imageOptions: {
 			margin: form.values.value.image_margin,
@@ -69,7 +69,7 @@ const updateQRCode = async () => {
 			hideBackgroundDots: form.values.value.image_hide_background
 		},
 		qrOptions: {
-			errorCorrectionLevel: 'H'
+			errorCorrectionLevel: form.values.value.correction_level
 		}
 	});
 };
