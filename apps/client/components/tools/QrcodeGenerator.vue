@@ -19,6 +19,11 @@ const form = useForm(
 
 		phone: '',
 
+		wifi_ssid: '',
+		wifi_password: '',
+		wifi_encryption: 'WPA' as 'WPA' | 'WEP' | 'nopass',
+		wifi_hidden: false,
+
 		dot_style: 'rounded' as DotType,
 		correction_level: 'H' as ErrorCorrectionLevel,
 		margin: 0,
@@ -43,6 +48,12 @@ const typeOptions = [
 	{ label: 'Contato (VCard)', value: 'vcard' },
 	{ label: 'Link', value: 'url' },
 	{ label: 'Wifi', value: 'wifi' }
+];
+
+const wifiEncryptionOptions = [
+	{ label: 'WPA', value: 'WPA' },
+	{ label: 'WEP', value: 'WEP' },
+	{ label: 'Sem Senha', value: 'nopass' }
 ];
 
 const dotStyleOptions = [
@@ -95,6 +106,12 @@ const updateQRCode = async () => {
 		if (normalizedPhone) {
 			content = `tel:${normalizedPhone}`;
 		}
+	}
+
+	if (form.values.value.type === 'wifi') {
+		content = `WIFI:S:${form.values.value.wifi_ssid};T:${form.values.value.wifi_encryption};P:${
+			form.values.value.wifi_password
+		};H:${form.values.value.wifi_hidden};`;
 	}
 
 	form.values.value.output_content = content || '';
@@ -206,6 +223,26 @@ onMounted(() => {
 
 						<template v-if="form.values.value.type === 'phone'">
 							<InputsText name="phone" label="Número do Telefone" placeholder="Número de Telefone" />
+						</template>
+
+						<template v-if="form.values.value.type === 'wifi'">
+							<InputsText name="wifi_ssid" label="Nome da Rede (SSID)" placeholder="Nome da Rede" />
+
+							<div class="flex gap-2">
+								<InputsText
+									name="wifi_password"
+									label="Senha"
+									placeholder="Senha da Rede"
+									class="w-full" />
+
+								<InputsSelect
+									name="wifi_encryption"
+									label="Tipo de Criptografia"
+									class="w-full"
+									:options="wifiEncryptionOptions" />
+							</div>
+
+							<InputsCheckbox name="wifi_hidden" label="Rede Oculta" class="w-full" />
 						</template>
 					</div>
 
