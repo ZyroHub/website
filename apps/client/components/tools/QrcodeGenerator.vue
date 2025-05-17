@@ -38,9 +38,7 @@ const typeOptions = [
 	{ label: 'SMS', value: 'sms' },
 	{ label: 'Telefone', value: 'phone' },
 	{ label: 'Contato (VCard)', value: 'vcard' },
-	{ label: 'Localização', value: 'location' },
 	{ label: 'Link', value: 'url' },
-	{ label: 'X / Twitter', value: 'twitter' },
 	{ label: 'Wifi', value: 'wifi' }
 ];
 
