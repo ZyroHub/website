@@ -76,7 +76,7 @@ export const getToolList = (): ITool[] => {
 		{
 			id: 'qrcode_generator',
 			icon: 'tabler:qrcode',
-			providers: [{ name: 'QRCode Styling', url: 'https://www.npmjs.com/package/qr-code-styling' }],
+			providers: [{ name: 'QRCode Styling', url: 'https://qr-code-styling.com/' }],
 			related: [],
 			tags: [ToolTagEnum.MISC, ToolTagEnum.GENERATOR]
 		},
