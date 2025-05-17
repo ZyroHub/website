@@ -11,11 +11,14 @@ const form = useForm(
 		type: 'text',
 
 		dot_style: 'rounded',
+		correction_level: 'H',
+		margin: 0,
 
 		image: null as File | null,
 		image_base64: null as string | null,
 		image_size: 4,
-		image_margin: 4
+		image_margin: 4,
+		image_hide_background: true
 	},
 	z.object({})
 );
@@ -40,10 +43,15 @@ const dotStyleOptions = [
 	{ label: 'Classy Arredondado', value: 'classy-rounded' }
 ];
 
+const correctionLevelOptions = [
+	{ label: 'Baixo', value: 'L' },
+	{ label: 'Médio', value: 'M' },
+	{ label: 'Alto', value: 'Q' },
+	{ label: 'Máximo', value: 'H' }
+];
+
 const updateQRCode = async () => {
 	if (!qrCodeElement.value || !qrCode.value) return;
-
-	console.log('updated');
 
 	qrCode.value.update({
 		data: form.values.value.content || ' ',
@@ -51,12 +59,14 @@ const updateQRCode = async () => {
 		width: 300,
 		height: 300,
 		image: form.values.value.image_base64 || undefined,
+		margin: form.values.value.margin,
 		dotsOptions: {
 			type: form.values.value.dot_style as DotType
 		},
 		imageOptions: {
 			margin: form.values.value.image_margin,
-			imageSize: form.values.value.image_size / 10
+			imageSize: form.values.value.image_size / 10,
+			hideBackgroundDots: form.values.value.image_hide_background
 		},
 		qrOptions: {
 			errorCorrectionLevel: 'H'
@@ -106,11 +116,21 @@ onMounted(() => {
 						<p class="text-xl font-semibold">Personalização do Código</p>
 
 						<div class="mt-4 flex flex-col gap-4">
-							<InputsSelect
-								name="dot_style"
-								label="Estilo das Formas"
-								class="max-w-46"
-								:options="dotStyleOptions" />
+							<div class="flex gap-2">
+								<InputsSelect
+									name="dot_style"
+									label="Estilo das Formas"
+									class="w-full"
+									:options="dotStyleOptions" />
+
+								<InputsSelect
+									name="correction_level"
+									label="Nível de Correção de Erros"
+									class="w-full"
+									:options="correctionLevelOptions" />
+							</div>
+
+							<InputsSlider label="Margem do Código" name="margin" class="w-full" :min="0" :max="30" />
 						</div>
 					</div>
 
@@ -135,6 +155,11 @@ onMounted(() => {
 									:min="0"
 									:max="16" />
 							</div>
+
+							<InputsCheckbox
+								name="image_hide_background"
+								label="Esconder fundo da imagem"
+								class="w-full" />
 						</div>
 					</div>
 				</div>
