@@ -60,6 +60,7 @@ export default {
 				title: 'Ferramentas Relacionadas'
 			},
 			tool: {
+				provided: 'Fornecido por',
 				connection: {
 					error: {
 						title: 'Falha na Conexão',
@@ -370,6 +371,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		password_strength_tester: {
 			name: 'Validador de Senhas',
 			description: 'Teste a força de suas senhas e obtenha sugestões para melhorá-las.'
+		},
+		qrcode_generator: {
+			name: 'Gerador de QRCode',
+			description: 'Gere códigos qr imediatamente com várias opções de customização.'
 		},
 		text_to_slug: {
 			name: 'Texto para Slug',

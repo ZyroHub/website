@@ -60,6 +60,7 @@ export default {
 				title: 'Herramientas Relacionadas'
 			},
 			tool: {
+				provided: 'Proporcionado por',
 				connection: {
 					error: {
 						title: 'Conexión Fallida',
@@ -370,6 +371,10 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 		password_strength_tester: {
 			name: 'Probador de Contraseñas',
 			description: 'Verificar la seguridad de sus contraseñas utilizando diferentes métricas.'
+		},
+		qrcode_generator: {
+			name: 'Generador de Código QR',
+			description: 'Genere códigos QR inmediatamente con varias opciones de personalización.'
 		},
 		text_to_slug: {
 			name: 'Texto a Slug',
