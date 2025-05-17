@@ -60,6 +60,7 @@ export default {
 				title: 'Related Tools'
 			},
 			tool: {
+				provided: 'Provided by',
 				connection: {
 					error: {
 						title: 'Connection Failed',
@@ -206,6 +207,108 @@ export default {
 					lowercase: 'At least one lowercase letter',
 					number: 'At least one number',
 					special: 'At least one special character'
+				}
+			},
+			qrcode_generator: {
+				personalization: 'Code Personalization',
+				image_options: 'Image Options',
+				options: {
+					type: {
+						label: 'Code Type',
+						options: {
+							text: 'Text',
+							email: 'Email',
+							sms: 'SMS',
+							phone: 'Phone',
+							vcard: 'Contact (VCard)',
+							url: 'URL',
+							wifi: 'Wi-Fi'
+						}
+					},
+					content: {
+						label: 'Content',
+						placeholder: 'Enter the QR Code content...'
+					},
+					email: {
+						label: 'Email',
+						placeholder: 'Email'
+					},
+					email_subject: {
+						label: 'Subject',
+						placeholder: 'Email subject...'
+					},
+					email_body: {
+						label: 'Email Body',
+						placeholder: 'Email body...'
+					},
+					sms_phone: {
+						label: 'Phone',
+						placeholder: 'Phone number...'
+					},
+					sms_body: {
+						label: 'SMS Body',
+						placeholder: 'SMS body...'
+					},
+					phone: {
+						label: 'Phone',
+						placeholder: 'Phone number...'
+					},
+					wifi_ssid: {
+						label: 'Network Name (SSID)',
+						placeholder: 'Network name'
+					},
+					wifi_password: {
+						label: 'Network Password',
+						placeholder: 'Network password'
+					},
+					wifi_encryption: {
+						label: 'Encryption Type',
+						options: {
+							wpa: 'WPA/WPA2',
+							wep: 'WEP',
+							none: 'No Password'
+						}
+					},
+					wifi_hidden: {
+						label: 'Hidden Network'
+					},
+					dot_style: {
+						label: 'Dot Style',
+						options: {
+							rounded: 'Rounded',
+							extra_rounded: 'Extra Rounded',
+							square: 'Square',
+							dots: 'Dots',
+							classy: 'Classy',
+							classy_rounded: 'Classy Rounded'
+						}
+					},
+					correction_level: {
+						label: 'Error Correction Level',
+						options: {
+							l: 'Low (7%)',
+							m: 'Medium (15%)',
+							q: 'High (25%)',
+							h: 'Maximum (30%)'
+						}
+					},
+					margin: {
+						label: 'Code Margin'
+					},
+					image_size: {
+						label: 'Image Size'
+					},
+					image_margin: {
+						label: 'Image Margin'
+					},
+					image_hide_background: {
+						label: 'Hide Image Background'
+					}
+				},
+				output: {
+					download: 'Download',
+					copy_image: 'Copy Image',
+					content: 'QR Code Content'
 				}
 			},
 			text_to_slug: {
@@ -369,6 +472,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		password_strength_tester: {
 			name: 'Password Strength Tester',
 			description: 'Test the strength of your passwords and see how secure they are.'
+		},
+		qrcode_generator: {
+			name: 'QRCode Generator',
+			description: 'Generate QR codes immediately with various customization options.'
 		},
 		text_to_slug: {
 			name: 'Text to Slug',

@@ -53,6 +53,22 @@ useSeoMeta({
 							<Icon :name="tool?.icon" /> {{ t(`tools.${toolId}.name`) }}
 						</p>
 
+						<p v-if="tool?.providers?.length" class="toolkit-tool-providers">
+							{{ t('components.toolkit.tool.provided') }}:
+							<span v-for="(provider, index) in tool?.providers" :key="index">
+								<a
+									v-if="provider.url"
+									:href="provider.url"
+									target="_blank"
+									class="text-blue-500 hover:underline">
+									{{ provider.name }}
+								</a>
+								<span v-else>{{ provider.name }}</span>
+
+								<span v-if="index < tool?.providers.length - 1">, </span>
+							</span>
+						</p>
+
 						<component :is="component" />
 					</div>
 

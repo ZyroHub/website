@@ -4,8 +4,6 @@ const runtimeConfig = useRuntimeConfig();
 const { t } = useI18n();
 const colorMode = useColorMode();
 
-const reverseTheme = computed(() => (colorMode.value === 'dark' ? 'light' : 'dark'));
-
 useSeoMeta({
 	title: t('pages.about.meta.title')
 });
@@ -38,7 +36,12 @@ useSeoMeta({
 		</div>
 		<div class="about-container-end">
 			<div class="w-full flex flex-wrap justify-center items-center flex-col md:flex-row">
-				<NuxtImg class="about-logo" src="images/zyro-color-wide.webp" />
+				<NuxtImg
+					class="about-logo"
+					src="images/zyro-color-wide.webp"
+					width="240px"
+					height="128px"
+					sizes="240px" />
 
 				<div class="mt-12">
 					<Contributors />

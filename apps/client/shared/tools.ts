@@ -46,6 +46,7 @@ export const getToolList = (): ITool[] => {
 		{
 			id: 'image_converter',
 			icon: 'mdi:image',
+			providers: [{ name: 'Sharp', url: 'https://sharp.pixelplumbing.com/' }],
 			related: [],
 			tags: [ToolTagEnum.CREATORS, ToolTagEnum.CONVERTER, ToolTagEnum.IMAGE],
 			needs_connection: true
@@ -53,8 +54,12 @@ export const getToolList = (): ITool[] => {
 		{
 			id: 'image_pixelate',
 			icon: 'pixel:grid',
+			providers: [
+				{ name: 'Sharp', url: 'https://sharp.pixelplumbing.com/' },
+				{ name: 'Quantize', url: 'https://www.npmjs.com/package/quantize' }
+			],
 			related: [],
-			tags: [ToolTagEnum.CREATORS, ToolTagEnum.IMAGE, ToolTagEnum.FILTER]
+			tags: [ToolTagEnum.CREATORS, ToolTagEnum.IMAGE, ToolTagEnum.FILTER, ToolTagEnum.EDITOR]
 		},
 		{
 			id: 'password_generator',
@@ -67,6 +72,20 @@ export const getToolList = (): ITool[] => {
 			icon: 'fluent:password-48-filled',
 			related: ['password_generator'],
 			tags: [ToolTagEnum.MISC, ToolTagEnum.VALIDATOR, ToolTagEnum.PASSWORD]
+		},
+		{
+			id: 'qrcode_generator',
+			icon: 'tabler:qrcode',
+			providers: [{ name: 'QRCode Styling', url: 'https://qr-code-styling.com/' }],
+			related: [],
+			tags: [
+				ToolTagEnum.MISC,
+				ToolTagEnum.IMAGE,
+				ToolTagEnum.GENERATOR,
+				ToolTagEnum.TEXT,
+				ToolTagEnum.URL,
+				ToolTagEnum.EMAIL
+			]
 		},
 		{
 			id: 'text_to_slug',

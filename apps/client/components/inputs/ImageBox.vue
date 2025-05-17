@@ -6,6 +6,7 @@ const { t } = useI18n();
 const props = defineProps<{
 	name?: string;
 	class?: HtmlHTMLAttributes['class'];
+	downloadable?: boolean;
 }>();
 
 const model = defineModel<File>();
@@ -81,12 +82,12 @@ defineExpose({
 	<div :class="['h-75 max-h-75', props.class]">
 		<Transition name="transition_fade_200" mode="out-in">
 			<div v-if="formInput.inputRef.value" class="flex flex-col justify-center items-center gap-4 w-full h-full">
-				<div class="max-w-full h-60">
+				<div class="max-w-full h-60 flex justify-center items-center">
 					<img :src="fileDataUrl" alt="Input Image" class="max-w-full max-h-60 rounded-lg" />
 				</div>
 
 				<div class="flex gap-2">
-					<Button @click="handleDownload" theme="primary">
+					<Button v-if="props.downloadable !== false" @click="handleDownload" theme="primary">
 						<Icon name="material-symbols:download-rounded" />
 						{{ t('components.inputs.image_box.preview.buttons.download') }}
 					</Button>

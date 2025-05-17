@@ -60,6 +60,7 @@ export default {
 				title: 'Herramientas Relacionadas'
 			},
 			tool: {
+				provided: 'Proporcionado por',
 				connection: {
 					error: {
 						title: 'Conexión Fallida',
@@ -207,6 +208,108 @@ export default {
 					lowercase: 'Al menos una letra minúscula',
 					number: 'Al menos un número',
 					special: 'Al menos un carácter especial'
+				}
+			},
+			qrcode_generator: {
+				personalization: 'Personalización del Código',
+				image_options: 'Opciones de Imagen',
+				options: {
+					type: {
+						label: 'Tipo de Código',
+						options: {
+							text: 'Texto',
+							email: 'Correo Electrónico',
+							sms: 'SMS',
+							phone: 'Teléfono',
+							vcard: 'Contacto (VCard)',
+							url: 'URL',
+							wifi: 'Wi-Fi'
+						}
+					},
+					content: {
+						label: 'Contenido',
+						placeholder: 'Ingrese el contenido del código QR...'
+					},
+					email: {
+						label: 'Correo Electrónico',
+						placeholder: 'Correo electrónico'
+					},
+					email_subject: {
+						label: 'Asunto',
+						placeholder: 'Asunto del correo...'
+					},
+					email_body: {
+						label: 'Cuerpo del Correo',
+						placeholder: 'Cuerpo del correo...'
+					},
+					sms_phone: {
+						label: 'Teléfono',
+						placeholder: 'Número de teléfono...'
+					},
+					sms_body: {
+						label: 'Cuerpo del SMS',
+						placeholder: 'Cuerpo del SMS...'
+					},
+					phone: {
+						label: 'Teléfono',
+						placeholder: 'Número de teléfono...'
+					},
+					wifi_ssid: {
+						label: 'Nombre de la Red (SSID)',
+						placeholder: 'Nombre de la red'
+					},
+					wifi_password: {
+						label: 'Contraseña de la Red',
+						placeholder: 'Contraseña de la red'
+					},
+					wifi_encryption: {
+						label: 'Tipo de Cifrado',
+						options: {
+							wpa: 'WPA/WPA2',
+							wep: 'WEP',
+							none: 'Sin Contraseña'
+						}
+					},
+					wifi_hidden: {
+						label: 'Red Oculta'
+					},
+					dot_style: {
+						label: 'Estilo de los Puntos',
+						options: {
+							rounded: 'Redondeado',
+							extra_rounded: 'Extra Redondeado',
+							square: 'Cuadrado',
+							dots: 'Puntos',
+							classy: 'Elegante',
+							classy_rounded: 'Elegante Redondeado'
+						}
+					},
+					correction_level: {
+						label: 'Nivel de Corrección de Errores',
+						options: {
+							l: 'Bajo (7%)',
+							m: 'Medio (15%)',
+							q: 'Alto (25%)',
+							h: 'Máximo (30%)'
+						}
+					},
+					margin: {
+						label: 'Margen del Código'
+					},
+					image_size: {
+						label: 'Tamaño de la Imagen'
+					},
+					image_margin: {
+						label: 'Margen de la Imagen'
+					},
+					image_hide_background: {
+						label: 'Ocultar Fondo de la Imagen'
+					}
+				},
+				output: {
+					download: 'Descargar',
+					copy_image: 'Copiar Imagen',
+					content: 'Contenido del Código QR'
 				}
 			},
 			text_to_slug: {
@@ -370,6 +473,10 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 		password_strength_tester: {
 			name: 'Probador de Contraseñas',
 			description: 'Verificar la seguridad de sus contraseñas utilizando diferentes métricas.'
+		},
+		qrcode_generator: {
+			name: 'Generador de Código QR',
+			description: 'Genere códigos QR inmediatamente con varias opciones de personalización.'
 		},
 		text_to_slug: {
 			name: 'Texto a Slug',
