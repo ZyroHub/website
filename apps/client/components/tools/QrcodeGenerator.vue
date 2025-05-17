@@ -7,8 +7,13 @@ const qrCode = ref<QRCodeStyling>();
 
 const form = useForm(
 	{
-		content: '',
 		type: 'text',
+
+		content: '',
+
+		email: '',
+		email_subject: '',
+		email_body: '',
 
 		dot_style: 'rounded' as DotType,
 		correction_level: 'H' as ErrorCorrectionLevel,
@@ -44,17 +49,37 @@ const dotStyleOptions = [
 ];
 
 const correctionLevelOptions = [
-	{ label: 'Baixo', value: 'L' },
-	{ label: 'Médio', value: 'M' },
-	{ label: 'Alto', value: 'Q' },
-	{ label: 'Máximo', value: 'H' }
+	{ label: 'Baixo (7%)', value: 'L' },
+	{ label: 'Médio (15%)', value: 'M' },
+	{ label: 'Alto (25%)', value: 'Q' },
+	{ label: 'Máximo (30%)', value: 'H' }
 ];
 
 const updateQRCode = async () => {
+	console.log('update');
 	if (!qrCodeElement.value || !qrCode.value) return;
 
+	let content = '';
+
+	if (form.values.value.type === 'text' || form.values.value.type === 'url') {
+		content = form.values.value.content;
+	}
+
+	if (form.values.value.type === 'email') {
+		if (!form.values.value.email) return;
+
+		const searchParams = new URLSearchParams({
+			subject: form.values.value.email_subject,
+			body: form.values.value.email_body
+		});
+
+		content = `mailto:${form.values.value.email}?${searchParams.toString()}`;
+	}
+
+	if (!content) return qrCode.value.update({ data: '' });
+
 	qrCode.value.update({
-		data: form.values.value.content || ' ',
+		data: content || '',
 		type: 'canvas',
 		width: 300,
 		height: 300,
@@ -74,11 +99,21 @@ const updateQRCode = async () => {
 	});
 };
 
+const handleUpdateType = () => {
+	form.values.value.content = '';
+
+	form.values.value.email = '';
+	form.values.value.email_subject = '';
+	form.values.value.email_body = '';
+};
+
 watch(form.values.value, () => {
 	if (import.meta.client) {
 		updateQRCode();
 	}
 });
+
+watch(() => form.values.value.type, handleUpdateType);
 
 watchEffect(async () => {
 	if (form.values.value.image) {
@@ -108,9 +143,27 @@ onMounted(() => {
 				<div class="w-full flex flex-col gap-6 md:w-1/2">
 					<InputsSelect name="type" label="Tipo de Código" :options="typeOptions" />
 
-					<template v-if="['url', 'text'].includes(form.values.value.type)">
-						<InputsTextArea name="content" label="Conteúdo" placeholder="https://zyrohub.app" :rows="4" />
-					</template>
+					<div class="flex flex-col gap-4">
+						<template v-if="['url', 'text'].includes(form.values.value.type)">
+							<InputsTextArea
+								name="content"
+								label="Conteúdo"
+								placeholder="https://zyrohub.app"
+								:rows="4" />
+						</template>
+
+						<template v-if="form.values.value.type === 'email'">
+							<InputsText name="email" label="E-mail" placeholder="contact@zyrohub.app" />
+
+							<InputsText name="email_subject" label="Assunto" placeholder="Olá, ZyroHub!" />
+
+							<InputsTextArea
+								name="email_body"
+								label="Corpo do E-mail"
+								placeholder="Olá, ZyroHub!"
+								:rows="4" />
+						</template>
+					</div>
 
 					<div>
 						<p class="text-xl font-semibold">Personalização do Código</p>
