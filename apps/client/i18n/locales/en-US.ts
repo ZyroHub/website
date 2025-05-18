@@ -60,7 +60,7 @@ export default {
 				title: 'Related Tools'
 			},
 			tool: {
-				provided: 'Provided by',
+				provided: 'Powered by',
 				connection: {
 					error: {
 						title: 'Connection Failed',
@@ -253,6 +253,62 @@ export default {
 						label: 'Phone',
 						placeholder: 'Phone number...'
 					},
+					vcard_first_name: {
+						label: 'First Name',
+						placeholder: 'First name'
+					},
+					vcard_last_name: {
+						label: 'Last Name',
+						placeholder: 'Last name'
+					},
+					vcard_cellphone: {
+						label: 'Cellphone',
+						placeholder: 'Cellphone number'
+					},
+					vcard_telephone: {
+						label: 'Telephone',
+						placeholder: 'Telephone number'
+					},
+					vcard_fax: {
+						label: 'Fax',
+						placeholder: 'Fax number'
+					},
+					vcard_email: {
+						label: 'Email',
+						placeholder: 'Email address'
+					},
+					vcard_company: {
+						label: 'Company',
+						placeholder: 'Company name'
+					},
+					vcard_company_job: {
+						label: 'Job',
+						placeholder: 'Job title'
+					},
+					vcard_city: {
+						label: 'City',
+						placeholder: 'City'
+					},
+					vcard_address: {
+						label: 'Address',
+						placeholder: 'Street address'
+					},
+					vcard_postal_code: {
+						label: 'Postal Code',
+						placeholder: 'Postal code'
+					},
+					vcard_state: {
+						label: 'State',
+						placeholder: 'State'
+					},
+					vcard_country: {
+						label: 'Country',
+						placeholder: 'Country'
+					},
+					vcard_website: {
+						label: 'Website',
+						placeholder: 'Website URL'
+					},
 					wifi_ssid: {
 						label: 'Network Name (SSID)',
 						placeholder: 'Network name'
@@ -273,7 +329,7 @@ export default {
 						label: 'Hidden Network'
 					},
 					dot_style: {
-						label: 'Dot Style',
+						label: 'Shape Style',
 						options: {
 							rounded: 'Rounded',
 							extra_rounded: 'Extra Rounded',

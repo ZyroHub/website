@@ -24,6 +24,21 @@ const form = useForm(
 
 		phone: '',
 
+		vcard_first_name: '',
+		vcard_last_name: '',
+		vcard_cellphone: '',
+		vcard_telephone: '',
+		vcard_fax: '',
+		vcard_email: '',
+		vcard_company: '',
+		vcard_company_job: '',
+		vcard_city: '',
+		vcard_address: '',
+		vcard_postal_code: '',
+		vcard_state: '',
+		vcard_country: '',
+		vcard_website: '',
+
 		wifi_ssid: '',
 		wifi_password: '',
 		wifi_encryption: 'WPA' as 'WPA' | 'WEP' | 'nopass',
@@ -115,6 +130,25 @@ const updateQRCode = async () => {
 		}
 	}
 
+	if (form.values.value.type === 'vcard') {
+		const vCard = [
+			'BEGIN:VCARD',
+			'VERSION:3.0',
+			`N;CHARSET=UTF-8:${form.values.value.vcard_last_name};${form.values.value.vcard_first_name}`,
+			`FN;CHARSET=UTF-8:${form.values.value.vcard_first_name} ${form.values.value.vcard_last_name}`,
+			`TEL;CELL:${form.values.value.vcard_cellphone}`,
+			`TEL;WORK:${form.values.value.vcard_telephone}`,
+			`TEL;FAX:${form.values.value.vcard_fax}`,
+			`EMAIL:${form.values.value.vcard_email}`,
+			`ORG;CHARSET=UTF-8:${form.values.value.vcard_company};${form.values.value.vcard_company_job}`,
+			`ADR;WORK;CHARSET=UTF-8:;;${form.values.value.vcard_address};${form.values.value.vcard_city};${form.values.value.vcard_state};${form.values.value.vcard_postal_code};${form.values.value.vcard_country}`,
+			`URL:${form.values.value.vcard_website}`,
+			'END:VCARD'
+		].join('\n');
+
+		content = vCard;
+	}
+
 	if (form.values.value.type === 'wifi') {
 		content = `WIFI:S:${form.values.value.wifi_ssid};T:${form.values.value.wifi_encryption};P:${
 			form.values.value.wifi_password
@@ -136,6 +170,7 @@ const updateQRCode = async () => {
 			type: form.values.value.dot_style
 		},
 		imageOptions: {
+			crossOrigin: 'anonymous',
 			margin: form.values.value.image_margin,
 			imageSize: form.values.value.image_size / 10,
 			hideBackgroundDots: form.values.value.image_hide_background
@@ -184,8 +219,29 @@ const handleUpdateType = () => {
 	form.values.value.email_body = '';
 
 	form.values.value.sms_phone = '';
+	form.values.value.sms_body = '';
 
 	form.values.value.phone = '';
+
+	form.values.value.vcard_first_name = '';
+	form.values.value.vcard_last_name = '';
+	form.values.value.vcard_cellphone = '';
+	form.values.value.vcard_telephone = '';
+	form.values.value.vcard_fax = '';
+	form.values.value.vcard_email = '';
+	form.values.value.vcard_company = '';
+	form.values.value.vcard_company_job = '';
+	form.values.value.vcard_address = '';
+	form.values.value.vcard_postal_code = '';
+	form.values.value.vcard_city = '';
+	form.values.value.vcard_state = '';
+	form.values.value.vcard_country = '';
+	form.values.value.vcard_website = '';
+
+	form.values.value.wifi_ssid = '';
+	form.values.value.wifi_password = '';
+	form.values.value.wifi_encryption = 'WPA';
+	form.values.value.wifi_hidden = false;
 };
 
 watch(form.values.value, () => {
@@ -277,6 +333,129 @@ onMounted(() => {
 									name="phone"
 									:label="t('components.tools.qrcode_generator.options.phone.label')"
 									:placeholder="t('components.tools.qrcode_generator.options.phone.placeholder')" />
+							</div>
+
+							<div v-else-if="form.values.value.type === 'vcard'" class="flex flex-col gap-4">
+								<div class="flex gap-2">
+									<InputsText
+										name="vcard_first_name"
+										:label="t('components.tools.qrcode_generator.options.vcard_first_name.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_first_name.placeholder')
+										" />
+
+									<InputsText
+										name="vcard_last_name"
+										:label="t('components.tools.qrcode_generator.options.vcard_last_name.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_last_name.placeholder')
+										" />
+								</div>
+
+								<InputsText
+									name="vcard_cellphone"
+									:label="t('components.tools.qrcode_generator.options.vcard_cellphone.label')"
+									:placeholder="
+										t('components.tools.qrcode_generator.options.vcard_cellphone.placeholder')
+									"
+									class="w-full" />
+
+								<div class="flex gap-2">
+									<InputsText
+										name="vcard_telephone"
+										:label="t('components.tools.qrcode_generator.options.vcard_telephone.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_telephone.placeholder')
+										"
+										class="w-full" />
+
+									<InputsText
+										name="vcard_fax"
+										:label="t('components.tools.qrcode_generator.options.vcard_fax.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_fax.placeholder')
+										"
+										class="w-full" />
+								</div>
+
+								<InputsText
+									name="vcard_email"
+									type="email"
+									:label="t('components.tools.qrcode_generator.options.vcard_email.label')"
+									:placeholder="
+										t('components.tools.qrcode_generator.options.vcard_email.placeholder')
+									"
+									class="w-full" />
+
+								<div class="flex gap-2">
+									<InputsText
+										name="vcard_company"
+										type="text"
+										:label="t('components.tools.qrcode_generator.options.vcard_company.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_company.placeholder')
+										"
+										class="w-full" />
+
+									<InputsText
+										name="vcard_company_job"
+										type="text"
+										:label="t('components.tools.qrcode_generator.options.vcard_company_job.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_company_job.placeholder')
+										"
+										class="w-full" />
+								</div>
+
+								<InputsText
+									name="vcard_city"
+									:label="t('components.tools.qrcode_generator.options.vcard_city.label')"
+									:placeholder="t('components.tools.qrcode_generator.options.vcard_city.placeholder')"
+									class="w-full" />
+
+								<div class="flex gap-2">
+									<InputsText
+										name="vcard_address"
+										:label="t('components.tools.qrcode_generator.options.vcard_address.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_address.placeholder')
+										"
+										class="w-full" />
+
+									<InputsText
+										name="vcard_postal_code"
+										:label="t('components.tools.qrcode_generator.options.vcard_postal_code.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_postal_code.placeholder')
+										"
+										class="w-full" />
+								</div>
+
+								<div class="flex gap-2">
+									<InputsText
+										name="vcard_state"
+										:label="t('components.tools.qrcode_generator.options.vcard_state.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_state.placeholder')
+										"
+										class="w-full" />
+
+									<InputsText
+										name="vcard_country"
+										:label="t('components.tools.qrcode_generator.options.vcard_country.label')"
+										:placeholder="
+											t('components.tools.qrcode_generator.options.vcard_country.placeholder')
+										"
+										class="w-full" />
+								</div>
+
+								<InputsText
+									name="vcard_website"
+									:label="t('components.tools.qrcode_generator.options.vcard_website.label')"
+									:placeholder="
+										t('components.tools.qrcode_generator.options.vcard_website.placeholder')
+									"
+									class="w-full" />
 							</div>
 
 							<div v-else-if="form.values.value.type === 'wifi'" class="flex flex-col gap-4">

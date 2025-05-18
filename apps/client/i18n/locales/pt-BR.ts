@@ -60,7 +60,7 @@ export default {
 				title: 'Ferramentas Relacionadas'
 			},
 			tool: {
-				provided: 'Fornecido por',
+				provided: 'Powered by',
 				connection: {
 					error: {
 						title: 'Falha na Conexão',
@@ -253,6 +253,62 @@ export default {
 					phone: {
 						label: 'Telefone',
 						placeholder: 'Número do telefone...'
+					},
+					vcard_first_name: {
+						label: 'Nome',
+						placeholder: 'Nome'
+					},
+					vcard_last_name: {
+						label: 'Sobrenome',
+						placeholder: 'Sobrenome'
+					},
+					vcard_cellphone: {
+						label: 'Celular',
+						placeholder: 'Número do celular'
+					},
+					vcard_telephone: {
+						label: 'Telefone',
+						placeholder: 'Número de telefone'
+					},
+					vcard_fax: {
+						label: 'Fax',
+						placeholder: 'Número de fax'
+					},
+					vcard_email: {
+						label: 'Email',
+						placeholder: 'Endereço de email'
+					},
+					vcard_company: {
+						label: 'Empresa',
+						placeholder: 'Nome da empresa'
+					},
+					vcard_company_job: {
+						label: 'Cargo',
+						placeholder: 'Título do cargo'
+					},
+					vcard_city: {
+						label: 'Cidade',
+						placeholder: 'Cidade'
+					},
+					vcard_address: {
+						label: 'Endereço',
+						placeholder: 'Endereço completo'
+					},
+					vcard_postal_code: {
+						label: 'Código Postal (CEP)',
+						placeholder: 'Código postal'
+					},
+					vcard_state: {
+						label: 'Estado',
+						placeholder: 'Estado'
+					},
+					vcard_country: {
+						label: 'País',
+						placeholder: 'País'
+					},
+					vcard_website: {
+						label: 'Site',
+						placeholder: 'URL do site'
 					},
 					wifi_ssid: {
 						label: 'Nome da Rede (SSID)',
