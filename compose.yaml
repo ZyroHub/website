@@ -29,6 +29,20 @@ services:
         profiles:
             - 'full'
             - 'services'
+    postgres:
+        image: 'postgres'
+        shm_size: '128mb'
+        environment:
+            POSTGRES_DB: 'zyrohub'
+            POSTGRES_USER: 'zyrohub'
+            POSTGRES_PASSWORD: 'zyrohub'
+        ports:
+            - '5432:5432'
+        networks:
+            - 'zyrohub'
+        profiles:
+            - 'full'
+            - 'services'
 
 networks:
     zyrohub:

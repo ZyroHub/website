@@ -11,6 +11,7 @@
 	"keywords": [],
 	"dependencies": {
 		"@zyrohub/config": "workspace:*",
+		"@zyrohub/database": "workspace:*",
 		"@zyrohub/toolkit": "workspace:*"
 	}
 }

@@ -10,7 +10,10 @@
 		"dev": "turbo dev",
 		"dev:client": "turbo dev --filter @zyrohub/client",
 		"dev:server": "turbo dev --filter @zyrohub/server",
-		"dev:workers": "turbo dev --filter @zyrohub/workers"
+		"dev:workers": "turbo dev --filter @zyrohub/workers",
+		"db:generate": "turbo db:generate",
+		"db:push": "turbo db:push",
+		"db:studio": "turbo db:studio"
 	},
 	"workspaces": [
 		"apps/*",

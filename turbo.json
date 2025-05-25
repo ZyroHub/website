@@ -17,6 +17,16 @@
 			"persistent": true,
 			"inputs": ["$TURBO_DEFAULT$", ".env.local", ".env.development"],
 			"passThroughEnv": ["PORT", "SERVER_FULL_URL"]
+		},
+		"db:generate": {
+			"cache": false
+		},
+		"db:push": {
+			"cache": false
+		},
+		"db:studio": {
+			"cache": false,
+			"persistent": true
 		}
 	}
 }
