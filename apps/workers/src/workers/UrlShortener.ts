@@ -12,13 +12,13 @@ export class UrlShortenerWorker extends BaseWorker {
 
 		const code = Utilities.encodeSqids([Date.now()]);
 
-		const link = await prisma.link.create({
+		await prisma.link.create({
 			data: {
 				code: code,
 				target: url
 			}
 		});
 
-		return { id: link.id, code: code };
+		return { code: code };
 	}
 }

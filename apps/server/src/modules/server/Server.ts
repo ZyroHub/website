@@ -11,6 +11,7 @@ import { TasksModule } from '../Tasks.js';
 
 import { HomeController } from '@/handlers/controllers/home.controller.js';
 import { TasksController } from '@/handlers/controllers/tasks.controller.js';
+import { ShortenerController } from '@/handlers/controllers/shortener.controller.js';
 
 export class ServerModuleBase extends BaseModule {
 	dependencies = [RedisModule, TasksModule];
@@ -22,6 +23,7 @@ export class ServerModuleBase extends BaseModule {
 	})
 		.use(cors(config.server.cors))
 		.use(HomeController)
+		.use(ShortenerController)
 		.use(TasksController);
 
 	initHandlers() {

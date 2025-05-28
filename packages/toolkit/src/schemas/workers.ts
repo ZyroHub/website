@@ -87,7 +87,6 @@ export const workersSchemas = {
 			url: z.string().url().min(1).max(2048)
 		}),
 		response: z.object({
-			id: z.string(),
 			code: z.string()
 		}),
 		storage: z.object({}),
