@@ -27,6 +27,7 @@
 		"maska": "^3.0.4",
 		"nuxt": "^3.14.1592",
 		"nuxt-booster": "^3.2.6",
+		"nuxt-schema-org": "^5.0.5",
 		"pinia": "^2.3.0",
 		"qr-code-styling": "^1.9.2",
 		"socket.io-client": "^4.8.1",
