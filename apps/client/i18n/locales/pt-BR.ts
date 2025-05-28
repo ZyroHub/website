@@ -41,6 +41,11 @@ export default {
 					label: 'Alterar idioma'
 				}
 			},
+			theme_switcher: {
+				button: {
+					label: 'Alternar tema'
+				}
+			},
 			tabs: {
 				home: 'Início',
 				developers: 'Developers',

@@ -41,6 +41,11 @@ export default {
 					label: 'Change language'
 				}
 			},
+			theme_selector: {
+				button: {
+					label: 'Change theme'
+				}
+			},
 			tabs: {
 				home: 'Home',
 				developers: 'Developers',

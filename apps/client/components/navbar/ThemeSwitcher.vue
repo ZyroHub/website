@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+const { t } = useI18n();
+
 const colorMode = useColorMode();
 
 const handleThemeChange = () => {
@@ -22,6 +24,7 @@ const handleThemeChange = () => {
 						: 'material-symbols-light:light-mode'
 				"
 				size="30"
+				:aria-label="t('components.navbar.theme_switcher.button.label')"
 				class="navbar-theme-switcher" />
 		</Transition>
 	</ClientOnly>
