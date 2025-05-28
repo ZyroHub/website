@@ -3,7 +3,8 @@
 	"private": true,
 	"scripts": {
 		"db:generate": "prisma generate",
-		"db:push": "dotenvx run -f ../../.env.development -- prisma db push",
+		"db:push": "dotenvx run -f ../../.env -- prisma db push",
+		"db:push:dev": "dotenvx run -f ../../.env.development -- prisma db push",
 		"db:studio": "dotenvx run -f ../../.env.development -- prisma studio"
 	},
 	"dependencies": {
