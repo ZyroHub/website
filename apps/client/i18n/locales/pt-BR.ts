@@ -395,7 +395,7 @@ export default {
 					label: 'URL',
 					placeholder: 'Digite a URL que deseja encurtar...'
 				},
-				generate: 'Encurtar URL',
+				shorten: 'Encurtar URL',
 				output: {
 					label: 'URL Encurtada',
 					placeholder: 'URL encurtada...'

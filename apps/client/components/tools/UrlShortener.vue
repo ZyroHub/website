@@ -40,7 +40,7 @@ const handleExecute = async () => {
 
 				<div>
 					<Button @click="handleExecute" theme="primary" :disabled="!isSubmittable">
-						{{ t('components.tools.url_shortener.generate') }}
+						{{ t('components.tools.url_shortener.shorten') }}
 					</Button>
 				</div>
 			</div>

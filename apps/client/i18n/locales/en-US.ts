@@ -388,6 +388,17 @@ export default {
 				namespace: 'Namespace',
 				generate: 'Generate',
 				output: 'Generated UUID'
+			},
+			url_shortener: {
+				url: {
+					label: 'URL',
+					placeholder: 'Enter the URL you want to shorten...'
+				},
+				shorten: 'Shorten URL',
+				output: {
+					label: 'Shortened URL',
+					placeholder: 'Shortened URL...'
+				}
 			}
 		}
 	},

@@ -389,6 +389,17 @@ export default {
 				namespace: 'Espacio de Nombres',
 				generate: 'Generar',
 				output: 'UUID Generado'
+			},
+			url_shortener: {
+				url: {
+					label: 'URL',
+					placeholder: 'Ingrese la URL que desea acortar...'
+				},
+				shorten: 'Acortar URL',
+				output: {
+					label: 'URL Acortada',
+					placeholder: 'URL acortada...'
+				}
 			}
 		}
 	},
