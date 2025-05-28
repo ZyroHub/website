@@ -4,7 +4,9 @@ import { Elysia } from 'elysia';
 
 export const ShortenerController = new Elysia({
 	prefix: '/s'
-}).get('/:code', async ({ params, redirect }) => {
+}).get('/:code?', async ({ params, redirect }) => {
+	if (!params.code) return redirect(config.client.fullUrl);
+
 	const link = await prisma.link.findUnique({
 		where: { code: params.code }
 	});
