@@ -1,4 +1,3 @@
-import { defineOrganization } from 'nuxt-schema-org/schema';
 const path = require('path');
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -10,7 +9,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/i18n',
 		'@nuxtjs/sitemap',
 		'@nuxtjs/robots',
-		'nuxt-schema-org',
+		// 'nuxt-schema-org',
 		'@nuxtjs/google-fonts',
 		'@nuxt/image',
 		'@unocss/nuxt',
@@ -74,13 +73,6 @@ export default defineNuxtConfig({
 
 	sitemap: {
 		sources: ['/api/__sitemap__/urls']
-	},
-
-	schemaOrg: {
-		identity: defineOrganization({
-			name: 'ZyroHub',
-			logo: '/images/zyro-color.webp'
-		})
 	},
 
 	pwa: {},
