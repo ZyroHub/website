@@ -6,5 +6,8 @@
 	"private": true,
 	"devDependencies": {
 		"@zyrohub/config": "workspace:*"
+	},
+	"dependencies": {
+		"sqids": "^0.3.0"
 	}
 }

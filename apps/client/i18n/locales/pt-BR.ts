@@ -41,6 +41,11 @@ export default {
 					label: 'Alterar idioma'
 				}
 			},
+			theme_switcher: {
+				button: {
+					label: 'Alternar tema'
+				}
+			},
 			tabs: {
 				home: 'Início',
 				developers: 'Developers',
@@ -384,6 +389,17 @@ export default {
 				namespace: 'Namespace',
 				generate: 'Gerar',
 				output: 'UUID Gerado'
+			},
+			url_shortener: {
+				url: {
+					label: 'URL',
+					placeholder: 'Digite a URL que deseja encurtar...'
+				},
+				generate: 'Encurtar URL',
+				output: {
+					label: 'URL Encurtada',
+					placeholder: 'URL encurtada...'
+				}
 			}
 		}
 	},
@@ -542,6 +558,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		uuid_generator: {
 			name: 'Gerador UUID',
 			description: 'Gere identificadores únicos universais (UUID) de todas as versões para suas aplicações.'
+		},
+		url_shortener: {
+			name: 'Encurtador de Links',
+			description: 'Encurte links longos para facilitar o compartilhamento e o uso.'
 		}
 	},
 	workers: {

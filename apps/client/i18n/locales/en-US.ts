@@ -41,6 +41,11 @@ export default {
 					label: 'Change language'
 				}
 			},
+			theme_selector: {
+				button: {
+					label: 'Change theme'
+				}
+			},
 			tabs: {
 				home: 'Home',
 				developers: 'Developers',
@@ -541,6 +546,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 		uuid_generator: {
 			name: 'UUID Generator',
 			description: 'Generate universally unique identifiers (UUID) of all versions for your applications.'
+		},
+		url_shortener: {
+			name: 'URL Shortener',
+			description: 'Shorten long URLs and share them easily.'
 		}
 	},
 	workers: {
