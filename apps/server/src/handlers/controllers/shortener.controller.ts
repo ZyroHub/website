@@ -13,5 +13,10 @@ export const ShortenerController = new Elysia({
 
 	if (!link) return redirect(config.client.fullUrl);
 
+	prisma.link.update({
+		where: { code: params.code },
+		data: { lastUsedAt: new Date() }
+	});
+
 	return redirect(link.target, 301);
 });
