@@ -81,6 +81,17 @@ export const workersSchemas = {
 			pixelated_image_url: z.string().optional()
 		}),
 		errors: ['invalid-file-type', 'quantization'] as string[]
+	},
+	url_shortener: {
+		args: z.object({
+			url: z.string().url().min(1).max(2048)
+		}),
+		response: z.object({
+			id: z.string(),
+			code: z.string()
+		}),
+		storage: z.object({}),
+		errors: [] as string[]
 	}
 };
 

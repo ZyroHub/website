@@ -145,6 +145,7 @@ export default defineNuxtConfig({
 
 		public: {
 			server_url: process.env.SERVER_FULL_URL || 'http://localhost:3000',
+			server_short_url: process.env.SERVER_SHORT_URL || 'http://localhost:3000/s',
 			github_repo: process.env.GITHUB_REPO,
 			buy_me_a_coffee_id: process.env.BUY_ME_A_COFFEE_ID,
 			buy_me_a_coffee_slug: process.env.BUY_ME_A_COFFEE_SLUG

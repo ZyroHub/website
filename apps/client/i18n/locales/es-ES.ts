@@ -543,6 +543,10 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 			name: 'Generador de UUID',
 			description:
 				'Generar identificadores únicos universales (UUID) de todas las versiones para sus aplicaciones.'
+		},
+		url_shortener: {
+			name: 'Acortador de URL',
+			description: 'Acortar URLs largas para compartir fácilmente.'
 		}
 	},
 	workers: {

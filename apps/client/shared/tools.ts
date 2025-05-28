@@ -98,6 +98,19 @@ export const getToolList = (): ITool[] => {
 			icon: 'fluent:document-key-20-filled',
 			related: [],
 			tags: [ToolTagEnum.DEV, ToolTagEnum.MISC, ToolTagEnum.GENERATOR]
+		},
+		{
+			id: 'url_shortener',
+			icon: 'mdi:link-variant',
+			related: [],
+			tags: [
+				ToolTagEnum.MISC,
+				ToolTagEnum.GENERATOR,
+				ToolTagEnum.URL,
+				ToolTagEnum.CONVERTER,
+				ToolTagEnum.COMPRESSION
+			],
+			needs_connection: true
 		}
 	];
 };
