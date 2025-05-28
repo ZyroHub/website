@@ -141,6 +141,10 @@ const config = {
         "fromEnvVar": null,
         "value": "windows",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
@@ -157,6 +161,7 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -165,8 +170,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "generator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"POSTGRE_URL\")\n}\n\nmodel Link {\n  id String @id @default(cuid())\n\n  code   String @unique\n  target String\n\n  lastUsedAt DateTime? @default(now())\n  createdAt  DateTime  @default(now())\n}\n",
-  "inlineSchemaHash": "f338ded17dbb78ed1598aa54178d1ee3584a3295f093e7c54ab66991d5444a45",
+  "inlineSchema": "generator client {\n  provider      = \"prisma-client-js\"\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n  output        = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"POSTGRE_URL\")\n}\n\nmodel Link {\n  id String @id @default(cuid())\n\n  code   String @unique\n  target String\n\n  lastUsedAt DateTime? @default(now())\n  createdAt  DateTime  @default(now())\n}\n",
+  "inlineSchemaHash": "fb9dae00456af5badc5a52e7f7699810b1d94a22c4f85415cc612580866c55c7",
   "copyEngine": true
 }
 config.dirname = '/'
