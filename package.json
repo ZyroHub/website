@@ -14,7 +14,8 @@
 		"db:generate": "turbo db:generate",
 		"db:push": "turbo db:push",
 		"db:push:dev": "turbo db:push:dev",
-		"db:studio": "turbo db:studio"
+		"db:studio": "turbo db:studio",
+		"db:studio:dev": "turbo db:studio:dev"
 	},
 	"workspaces": [
 		"apps/*",

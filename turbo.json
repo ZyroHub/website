@@ -30,6 +30,10 @@
 		"db:studio": {
 			"cache": false,
 			"persistent": true
+		},
+		"db:studio:dev": {
+			"cache": false,
+			"persistent": true
 		}
 	}
 }
