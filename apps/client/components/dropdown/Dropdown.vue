@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { autoUpdate, flip, offset, useFloating, type Placement } from '@floating-ui/vue';
+import { autoUpdate, flip, offset, useFloating } from '@floating-ui/vue';
 import { onMounted, onBeforeUnmount } from 'vue';
 
 const props = defineProps<{
