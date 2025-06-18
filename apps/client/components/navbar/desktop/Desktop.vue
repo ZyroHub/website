@@ -12,19 +12,19 @@ const { t } = useI18n();
 	<nav>
 		<div class="navbar-container">
 			<div class="navbar-container-start">
-				<NavbarTab to="/" :title="t('components.navbar.tabs.home')">
+				<NavbarDesktopTab to="/" :title="t('components.navbar.tabs.home')">
 					<Icon :size="30" name="lucide:home" />
-				</NavbarTab>
-				<NavbarTab to="/developers" :title="t('components.navbar.tabs.developers')">
+				</NavbarDesktopTab>
+				<NavbarDesktopTab to="/developers" :title="t('components.navbar.tabs.developers')">
 					<Icon :size="30" name="ant-design:code-filled" />
-				</NavbarTab>
-				<NavbarTab to="/creators" :title="t('components.navbar.tabs.creators')">
+				</NavbarDesktopTab>
+				<NavbarDesktopTab to="/creators" :title="t('components.navbar.tabs.creators')">
 					<Icon :size="30" name="ant-design:camera-filled" />
-				</NavbarTab>
-				<NavbarTab to="/misc" :title="t('components.navbar.tabs.misc')">
+				</NavbarDesktopTab>
+				<NavbarDesktopTab to="/misc" :title="t('components.navbar.tabs.misc')">
 					<Icon :size="30" name="jam:tools-f" />
-				</NavbarTab>
-				<NavbarTab to="/about">{{ t('components.navbar.tabs.about') }}</NavbarTab>
+				</NavbarDesktopTab>
+				<NavbarDesktopTab to="/about">{{ t('components.navbar.tabs.about') }}</NavbarDesktopTab>
 			</div>
 
 			<div class="navbar-container-center">

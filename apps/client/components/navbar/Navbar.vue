@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-const viewport = useViewport();
+const device = useDevice();
 </script>
 
 <template>
-	<NavbarMobile v-if="viewport.isLessOrEquals('md')" />
+	<NavbarMobile v-if="device.isMobileOrTablet" />
 	<NavbarDesktop v-else />
 </template>
