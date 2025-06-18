@@ -1,0 +1,5 @@
+<template>
+	<NavbarMobileTop />
+
+	<NavbarMobileBottom />
+</template>

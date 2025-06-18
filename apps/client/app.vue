@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 const { finalizePendingLocaleChange, t, locale } = useI18n();
 
+const viewport = useViewport();
+
 const onTransitionBeforeEnter = async () => {
 	await finalizePendingLocaleChange();
 };
@@ -51,6 +53,6 @@ useSeoMeta({
 			<NuxtPage :transition="{ onBeforeEnter: onTransitionBeforeEnter }" />
 		</div>
 
-		<Footer />
+		<Footer v-if="viewport.isGreaterThan('md')" />
 	</div>
 </template>

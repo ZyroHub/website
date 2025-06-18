@@ -1,0 +1,66 @@
+@use '~/assets/scss/utils/_colors.scss';
+
+.navbar {
+	position: sticky;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 4rem;
+	max-height: 4rem;
+	z-index: 100;
+}
+
+.navbar-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	max-height: 4rem;
+	padding: 0.3rem 0;
+
+	& > div {
+		height: 4rem;
+		max-height: 4rem;
+
+		&.navbar-container-start {
+			width: 50%;
+			max-width: 10rem;
+			padding: 0.6rem 0;
+
+			& > a {
+				display: flex;
+				justify-content: center;
+				height: 100%;
+			}
+		}
+
+		&.navbar-container-end {
+			display: flex;
+			justify-content: flex-end;
+			align-items: center;
+			padding-right: 2rem;
+			gap: 1rem;
+
+			width: 50%;
+		}
+	}
+}
+
+.navbar-logo {
+	height: 100%;
+}
+
+.navbar-icon {
+	color: colors.$primary_300;
+}
+
+.light-mode {
+	.navbar {
+		background-color: colors.$black_900;
+	}
+}
+
+.dark-mode {
+	.navbar {
+		background-color: colors.$black_950;
+	}
+}

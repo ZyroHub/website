@@ -7,7 +7,7 @@ const props = defineProps<{
 </script>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/components/navbar/tab.scss';
+@use '~/assets/scss/components/navbar/desktop/tab.scss';
 </style>
 
 <template>

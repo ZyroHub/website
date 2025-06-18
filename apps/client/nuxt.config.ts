@@ -14,6 +14,7 @@ export default defineNuxtConfig({
 		'@nuxt/image',
 		'@unocss/nuxt',
 		'@nuxtjs/color-mode',
+		'nuxt-viewport',
 		'@nuxt/icon',
 		'@pinia/nuxt',
 		'@vite-pwa/nuxt',
@@ -78,6 +79,16 @@ export default defineNuxtConfig({
 	pwa: {},
 
 	booster: {},
+
+	viewport: {
+		breakpoints: {
+			xs: 320,
+			sm: 640,
+			md: 768,
+			lg: 1024
+		},
+		feature: 'maxWidth'
+	},
 
 	googleFonts: {
 		prefetch: true,
