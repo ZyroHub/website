@@ -4,7 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "dotenvx run -f ../../.env -- nuxt build",
-		"dev": "dotenvx run -f ../../.env.development -- nuxt dev",
+		"dev": "dotenvx run -f ../../.env.development -- nuxt dev --host",
 		"start": "dotenvx run -f ../../.env -- node ./dist/server/index.mjs",
 		"generate": "nuxt generate",
 		"preview": "dotenvx run -f ../../.env -- nuxt preview",
@@ -42,6 +42,7 @@
 		"@iconify-json/mdi": "^1.2.2",
 		"@iconify-json/ri": "^1.2.5",
 		"@unocss/nuxt": "^0.65.3",
+		"@unocss/preset-mini": "^66.2.3",
 		"sass": "^1.82.0",
 		"unocss": "^0.65.3"
 	}
