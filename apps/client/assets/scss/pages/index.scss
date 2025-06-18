@@ -14,7 +14,7 @@
 	}
 
 	@media screen and (max-width: 600px) {
-		margin-top: 2rem;
+		display: none;
 	}
 }
 
@@ -27,11 +27,20 @@
 		font-weight: 700;
 		color: transparent;
 	}
+
+	@media screen and (max-width: 600px) {
+		text-align: center;
+	}
 }
 
 .home-description {
 	font-size: 1.1rem;
 	font-weight: 400;
+
+	@media screen and (max-width: 600px) {
+		text-align: center;
+		margin-top: 0;
+	}
 }
 
 .home-toolkits {
