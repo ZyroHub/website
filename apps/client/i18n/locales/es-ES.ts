@@ -432,9 +432,9 @@ export default {
 			title: 'Bienvenido a',
 			description: 'Seleccione una opción a continuación para comenzar.',
 			toolkits: {
-				dev: 'Desarrolladores',
+				dev: 'Developers',
 				creators: 'Creadores',
-				misc: 'Misceláneo'
+				misc: 'Otros'
 			},
 			about: 'Sobre'
 		},
