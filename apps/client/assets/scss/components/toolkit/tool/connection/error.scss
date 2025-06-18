@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .toolkit-tool-connection-error-container {
 	display: flex;
 	flex-direction: column;
@@ -28,28 +26,28 @@
 
 .light-mode {
 	.toolkit-tool-connection-error-icon {
-		color: colors.$black_900;
+		color: var(--black_900);
 	}
 
 	.toolkit-tool-connection-error-title {
-		color: colors.$black_900;
+		color: var(--black_900);
 	}
 
 	.toolkit-tool-connection-error-description {
-		color: colors.$black_900;
+		color: var(--black_900);
 	}
 }
 
 .dark-mode {
 	.toolkit-tool-connection-error-icon {
-		color: colors.$neutral_200;
+		color: var(--neutral_200);
 	}
 
 	.toolkit-tool-connection-error-title {
-		color: colors.$neutral_200;
+		color: var(--neutral_200);
 	}
 
 	.toolkit-tool-connection-error-description {
-		color: colors.$neutral_200;
+		color: var(--neutral_200);
 	}
 }

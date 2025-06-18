@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .toolkit-navigation-item {
 	position: relative;
 	display: flex;
@@ -72,55 +70,55 @@
 
 .light-mode {
 	.toolkit-navigation-item {
-		color: colors.$black_950;
-		background-color: colors.$primary_50;
+		color: var(--black_950);
+		background-color: var(--primary_50);
 
 		&:not(.active):hover {
-			background-color: colors.$primary_300;
+			background-color: var(--primary_300);
 		}
 
 		&.active {
-			color: colors.$neutral_50;
-			background-color: colors.$primary_500;
+			color: var(--neutral_50);
+			background-color: var(--primary_500);
 
 			.toolkit-navigation-item-star {
-				color: colors.$neutral_50;
+				color: var(--neutral_50);
 			}
 		}
 	}
 
 	.toolkit-navigation-item-star {
-		color: colors.$neutral_800;
+		color: var(--neutral_800);
 	}
 }
 
 .dark-mode {
 	.toolkit-navigation-item {
-		color: colors.$neutral_100;
-		background-color: colors.$black_800;
+		color: var(--neutral_100);
+		background-color: var(--black_800);
 
 		&:not(.active):hover {
-			background-color: colors.$black_600;
+			background-color: var(--black_600);
 		}
 
 		&.active {
-			color: colors.$neutral_50;
-			background-color: colors.$primary_500;
+			color: var(--neutral_50);
+			background-color: var(--primary_500);
 
 			.toolkit-navigation-item-star {
-				color: colors.$neutral_50;
+				color: var(--neutral_50);
 			}
 		}
 	}
 
 	.toolkit-navigation-item-star {
-		color: colors.$black_200;
+		color: var(--black_200);
 	}
 }
 
 @keyframes ButtonFavorite {
 	50% {
-		border-color: colors.$primary_500;
+		border-color: var(--primary_500);
 	}
 }
 
@@ -130,7 +128,7 @@
 	}
 
 	50% {
-		color: colors.$primary_500;
+		color: var(--primary_500);
 		transform: scale(1.2) translateY(-50%);
 	}
 

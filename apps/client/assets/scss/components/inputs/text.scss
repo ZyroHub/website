@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .input-text-input {
 	width: 100%;
 	max-width: 100%;
@@ -52,21 +50,21 @@
 }
 
 .input-text-copy-copied {
-	color: colors.$primary_400;
+	color: var(--primary_400);
 	animation: Pulse 400ms;
 	transform-origin: top right;
 }
 
 .light-mode {
 	.input-text-input {
-		color: colors.$black_900;
-		background-color: colors.$neutral_50;
+		color: var(--black_900);
+		background-color: var(--neutral_50);
 	}
 }
 
 .dark-mode {
 	.input-text-input {
-		color: colors.$neutral_100;
-		background-color: colors.$black_800;
+		color: var(--neutral_100);
+		background-color: var(--black_800);
 	}
 }

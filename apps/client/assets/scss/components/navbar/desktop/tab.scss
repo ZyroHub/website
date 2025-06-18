@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .navbar-tab {
 	display: flex;
 	justify-content: center;
@@ -15,7 +13,7 @@
 		color 150ms ease-out;
 
 	&:not(.active) {
-		color: colors.$neutral_200;
+		color: var(--neutral_200);
 
 		&:hover {
 			cursor: pointer;
@@ -33,8 +31,8 @@
 	.navbar-tab {
 		&.active,
 		&:not(.active):hover {
-			color: colors.$black_900;
-			background-color: colors.$primary_50;
+			color: var(--black_900);
+			background-color: var(--primary_50);
 		}
 	}
 }
@@ -43,8 +41,8 @@
 	.navbar-tab {
 		&.active,
 		&:not(.active):hover {
-			color: colors.$neutral_50;
-			background-color: colors.$black_900;
+			color: var(--neutral_50);
+			background-color: var(--black_900);
 		}
 	}
 }

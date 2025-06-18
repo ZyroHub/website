@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .tools-base64-image-container {
 	display: flex;
 	gap: 1rem;
@@ -72,21 +70,21 @@
 
 .light-mode {
 	.tools-base64-no-image-content-drag {
-		border-color: colors.$neutral_400;
+		border-color: var(--neutral_400);
 	}
 
 	.tools-base64-no-image-icon {
-		color: colors.$neutral_600;
+		color: var(--neutral_600);
 	}
 }
 
 .dark-mode {
 	.tools-base64-no-image-content-drag {
-		border-color: colors.$black_500;
+		border-color: var(--black_500);
 	}
 
 	.tools-base64-no-image-icon {
-		color: colors.$black_400;
+		color: var(--black_400);
 	}
 }
 

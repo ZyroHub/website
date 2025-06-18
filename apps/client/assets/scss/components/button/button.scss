@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .button {
 	display: flex;
 	align-items: center;
@@ -18,31 +16,31 @@
 
 .light-mode {
 	.button-primary {
-		color: colors.$neutral_50;
-		background-color: colors.$primary_500;
+		color: var(--neutral_50);
+		background-color: var(--primary_500);
 
 		&:not(:disabled):hover {
-			background-color: colors.$primary_600;
+			background-color: var(--primary_600);
 		}
 	}
 }
 
 .dark-mode {
 	.button-primary {
-		color: colors.$neutral_50;
-		background-color: colors.$primary_500;
+		color: var(--neutral_50);
+		background-color: var(--primary_500);
 
 		&:not(:disabled):hover {
-			background-color: colors.$primary_600;
+			background-color: var(--primary_600);
 		}
 	}
 
 	.button-gray {
-		color: colors.$neutral_50;
-		background-color: colors.$neutral_700;
+		color: var(--neutral_50);
+		background-color: var(--neutral_700);
 
 		&:not(:disabled):hover {
-			background-color: colors.$neutral_600;
+			background-color: var(--neutral_600);
 		}
 	}
 }

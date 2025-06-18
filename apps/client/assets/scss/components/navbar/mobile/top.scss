@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .navbar {
 	position: sticky;
 	top: 0;
@@ -50,17 +48,17 @@
 }
 
 .navbar-icon {
-	color: colors.$primary_300;
+	color: var(--primary_300);
 }
 
 .light-mode {
 	.navbar {
-		background-color: colors.$black_900;
+		background-color: var(--black_900);
 	}
 }
 
 .dark-mode {
 	.navbar {
-		background-color: colors.$black_950;
+		background-color: var(--black_950);
 	}
 }

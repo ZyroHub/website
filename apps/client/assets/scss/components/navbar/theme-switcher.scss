@@ -1,8 +1,6 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .navbar-theme-switcher {
 	cursor: pointer;
-	color: colors.$primary_300;
+	color: var(--primary_300);
 }
 
 .transition_navbar_theme_switcher-enter-active,

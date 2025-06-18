@@ -1,11 +1,9 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .button-bmac {
 	display: flex;
 	gap: 1rem;
 	padding: 0rem 0rem 0rem 1rem;
 	border-radius: 0.4rem;
-	background-color: colors.$primary_300;
+	background-color: var(--primary_300);
 	transition: all 0.3s ease;
 
 	& > span {
@@ -26,18 +24,18 @@
 		align-items: center;
 		padding: 0.4rem 0.8rem;
 		font-size: 0.75rem;
-		color: colors.$neutral_50;
+		color: var(--neutral_50);
 		border-top-right-radius: 0.4rem;
 		border-bottom-right-radius: 0.4rem;
-		background-color: colors.$primary_400;
+		background-color: var(--primary_400);
 		transition: all 0.3s ease;
 	}
 
 	&:hover {
-		background-color: colors.$primary_400;
+		background-color: var(--primary_400);
 
 		& > div {
-			background-color: colors.$primary_500;
+			background-color: var(--primary_500);
 		}
 	}
 }

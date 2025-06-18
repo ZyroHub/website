@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .error-main {
 	display: flex;
 	flex-direction: column;
@@ -51,25 +49,25 @@
 .light-mode {
 	.error-main-content {
 		& > h1 {
-			color: colors.$primary_400;
+			color: var(--primary_400);
 		}
 	}
 
 	.error-main {
-		color: colors.$black_700;
-		background-color: colors.$neutral_50;
+		color: var(--black_700);
+		background-color: var(--neutral_50);
 	}
 }
 
 .dark-mode {
 	.error-main-content {
 		& > h1 {
-			color: colors.$primary_300;
+			color: var(--primary_300);
 		}
 	}
 
 	.error-main {
-		color: colors.$neutral_100;
-		background-color: colors.$black_900;
+		color: var(--neutral_100);
+		background-color: var(--black_900);
 	}
 }

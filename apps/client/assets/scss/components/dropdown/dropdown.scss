@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .dropdown-content {
 	position: relative;
 	display: flex;
@@ -26,14 +24,14 @@
 
 .light-mode {
 	.dropdown-content {
-		background-color: colors.$neutral_600;
+		background-color: var(--neutral_600);
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.459);
 	}
 }
 
 .dark-mode {
 	.dropdown-content {
-		background-color: colors.$black_950;
+		background-color: var(--black_950);
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.459);
 	}
 }

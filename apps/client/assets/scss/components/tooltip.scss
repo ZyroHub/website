@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .tooltip-content {
 	padding: 0.5rem 1rem;
 	max-width: 20rem;
@@ -28,14 +26,14 @@
 
 .light-mode {
 	.tooltip-content {
-		background-color: colors.$black_950;
-		color: colors.$neutral_100;
+		background-color: var(--black_950);
+		color: var(--neutral_100);
 	}
 }
 
 .dark-mode {
 	.tooltip-content {
-		background-color: colors.$black;
-		color: colors.$neutral_100;
+		background-color: var(--black);
+		color: var(--neutral_100);
 	}
 }

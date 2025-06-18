@@ -1,11 +1,9 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .dropdown-item {
 	padding: 0.5rem 0.6rem;
-	color: colors.$neutral_50;
+	color: var(--neutral_50);
 	max-width: 100%;
 	border-radius: 0.4rem;
-	background-color: colors.$black_900;
+	background-color: var(--black_900);
 	transition: background-color 150ms linear;
 	overflow: hidden;
 	white-space: nowrap;
@@ -13,11 +11,11 @@
 	user-select: none;
 
 	&.active {
-		background-color: colors.$black_700;
+		background-color: var(--black_700);
 	}
 
 	&:hover {
 		cursor: pointer;
-		background-color: colors.$black_800;
+		background-color: var(--black_800);
 	}
 }

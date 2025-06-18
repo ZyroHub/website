@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .input-textarea-input {
 	width: 100%;
 	max-width: 100%;
@@ -23,14 +21,14 @@
 
 .light-mode {
 	.input-textarea-input {
-		color: colors.$black_900;
-		background-color: colors.$neutral_50;
+		color: var(--black_900);
+		background-color: var(--neutral_50);
 	}
 }
 
 .dark-mode {
 	.input-textarea-input {
-		color: colors.$neutral_100;
-		background-color: colors.$black_800;
+		color: var(--neutral_100);
+		background-color: var(--black_800);
 	}
 }

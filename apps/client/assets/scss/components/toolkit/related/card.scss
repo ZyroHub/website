@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .toolkit-related-card {
 	display: flex;
 	flex-direction: column;
@@ -37,20 +35,20 @@
 
 .light-mode {
 	.toolkit-related-card {
-		background-color: colors.$primary_50;
+		background-color: var(--primary_50);
 
 		&:hover {
-			background-color: colors.$primary_400;
+			background-color: var(--primary_400);
 		}
 	}
 }
 
 .dark-mode {
 	.toolkit-related-card {
-		background-color: colors.$black_900;
+		background-color: var(--black_900);
 
 		&:hover {
-			background-color: colors.$black_800;
+			background-color: var(--black_800);
 		}
 	}
 }

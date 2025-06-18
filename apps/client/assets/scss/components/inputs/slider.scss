@@ -1,5 +1,3 @@
-@use '~/assets/scss/utils/_colors.scss';
-
 .input-slider-box {
 	display: flex;
 	align-items: center;
@@ -38,36 +36,36 @@
 
 .light-mode {
 	.input-slider-box {
-		background-color: colors.$neutral_50;
+		background-color: var(--neutral_50);
 	}
 
 	.input-slider-track {
-		background-color: colors.$neutral_300;
+		background-color: var(--neutral_300);
 	}
 
 	.input-slider-fill {
-		background-color: colors.$primary_500;
+		background-color: var(--primary_500);
 	}
 
 	.input-slider-thumb {
-		background-color: colors.$primary_500;
+		background-color: var(--primary_500);
 	}
 }
 
 .dark-mode {
 	.input-slider-box {
-		background-color: colors.$black_800;
+		background-color: var(--black_800);
 	}
 
 	.input-slider-track {
-		background-color: colors.$black_950;
+		background-color: var(--black_950);
 	}
 
 	.input-slider-fill {
-		background-color: colors.$primary_500;
+		background-color: var(--primary_500);
 	}
 
 	.input-slider-thumb {
-		background-color: colors.$primary_500;
+		background-color: var(--primary_500);
 	}
 }
