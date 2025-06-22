@@ -4,6 +4,11 @@
 	& > div {
 		height: 100%;
 	}
+
+	@media screen and (max-width: 768px) {
+		border-radius: 0.5rem;
+		padding: 1rem;
+	}
 }
 
 .toolkit-tool-title {
@@ -33,4 +38,20 @@
 
 .transition_tool_state_change-leave-to {
 	opacity: 0;
+}
+
+.light-mode {
+	@media screen and (max-width: 768px) {
+		.toolkit-tool-container {
+			background-color: var(--neutral_300);
+		}
+	}
+}
+
+.dark-mode {
+	@media screen and (max-width: 768px) {
+		.toolkit-tool-container {
+			background-color: var(--black_950);
+		}
+	}
 }

@@ -34,7 +34,7 @@ const handleToggleFavorite = () => {
 </script>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/components/toolkit/navigation/item.scss';
+@use '~/assets/scss/components/toolkit/navigation/desktop/item.scss';
 </style>
 
 <template>

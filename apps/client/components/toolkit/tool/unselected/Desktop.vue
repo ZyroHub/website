@@ -3,7 +3,7 @@ const { t } = useI18n();
 </script>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/components/toolkit/tool/unselected.scss';
+@use '~/assets/scss/components/toolkit/tool/unselected/desktop.scss';
 </style>
 
 <template>

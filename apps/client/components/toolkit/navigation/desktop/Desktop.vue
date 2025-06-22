@@ -26,7 +26,7 @@ const filteredTools = computed(() => {
 </script>
 
 <style lang="scss" scoped>
-@use '~/assets/scss/components/toolkit/navigation/navigation.scss';
+@use '~/assets/scss/components/toolkit/navigation/desktop/desktop.scss';
 </style>
 
 <template>
@@ -49,7 +49,10 @@ const filteredTools = computed(() => {
 
 		<Transition name="transition_navigation_items" mode="out-in">
 			<div :key="tools.isOnlyFavorites.value.toString()" class="toolkit-navigation-items">
-				<ToolkitNavigationItem v-for="tool in filteredTools" :id="tool.id" :path="`${props.path}/${tool.id}`" />
+				<ToolkitNavigationDesktopItem
+					v-for="tool in filteredTools"
+					:id="tool.id"
+					:path="`${props.path}/${tool.id}`" />
 			</div>
 		</Transition>
 	</div>

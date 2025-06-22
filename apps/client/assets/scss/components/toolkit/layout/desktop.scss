@@ -49,16 +49,3 @@
 		background-color: var(--black_950);
 	}
 }
-
-.transition_tool_switch-enter-active,
-.transition_tool_switch-leave-active {
-	transition: all 200ms ease-in-out;
-}
-
-.transition_tool_switch-enter-from {
-	opacity: 0;
-}
-
-.transition_tool_switch-leave-to {
-	opacity: 0;
-}
