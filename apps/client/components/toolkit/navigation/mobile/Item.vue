@@ -9,10 +9,6 @@ const { t } = useI18n();
 
 const tools = useTools();
 const tool = computed(() => tools.get(props.id));
-
-const handleToggleFavorite = () => {
-	tools.toggleFavorite(props.id);
-};
 </script>
 
 <template>

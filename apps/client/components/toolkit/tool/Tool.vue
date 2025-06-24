@@ -1,10 +1,12 @@
 <script lang="ts" setup>
+import { twMerge } from 'tailwind-merge';
 import ToolkitToolError from '~/components/toolkit/tool/Error.vue';
 import ToolkitToolLoading from '~/components/toolkit/tool/Loading.vue';
 import { idToPascalCase } from '~/shared/utilities';
 
 const { t } = useI18n();
 const route = useRoute();
+const device = useDevice();
 
 const appStore = useAppStore();
 
@@ -12,6 +14,12 @@ const tools = useTools();
 
 const toolId = computed(() => route.params.tool_id as string);
 const tool = computed(() => tools.get(toolId.value));
+
+const isFavorite = computed(() => tools.isFavorite(toolId.value));
+
+const handleToggleFavorite = () => {
+	tools.toggleFavorite(toolId.value);
+};
 
 const handleLoader = async () => {
 	try {
@@ -50,7 +58,24 @@ useSeoMeta({
 				<Suspense>
 					<div>
 						<p v-if="tool" class="toolkit-tool-title">
-							<Icon :name="tool?.icon" /> {{ t(`tools.${toolId}.name`) }}
+							<Icon :name="tool?.icon" />
+							<span class="truncate max-w-[75%]">
+								{{ t(`tools.${toolId}.name`) }}
+							</span>
+
+							<span
+								v-if="device.isMobileOrTablet"
+								@click.prevent="handleToggleFavorite"
+								:class="
+									twMerge(
+										'relative duration-200 ml-auto min-w-10 min-h-10 rounded-full dark:text-black-500 dark:bg-black-900',
+										isFavorite && 'dark:text-neutral-100 dark:bg-primary-500'
+									)
+								">
+								<Icon
+									name="mdi:heart"
+									class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-2xl cursor-pointer" />
+							</span>
 						</p>
 
 						<p v-if="tool?.providers?.length" class="toolkit-tool-providers">
