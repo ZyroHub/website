@@ -14,7 +14,7 @@ const tool = computed(() => tools.get(props.id));
 <template>
 	<NuxtLinkLocale
 		:to="`/${props.path}`"
-		class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg text-neutral-800 bg-neutral-400 dark:text-neutral-100 dark:bg-black-800"
+		class="flex flex-col items-center gap-2 px-4 py-3 rounded-lg text-primary-500 bg-primary-50 dark:text-neutral-100 dark:bg-black-800"
 		active-class="active"
 		:draggable="false">
 		<Icon v-if="tool?.icon" :name="tool?.icon" size="94" />
