@@ -12,6 +12,8 @@ const appStore = useAppStore();
 
 const tools = useTools();
 
+const kitPath = inject<string>('kit_path');
+
 const toolId = computed(() => route.params.tool_id as string);
 const tool = computed(() => tools.get(toolId.value));
 
@@ -58,6 +60,15 @@ useSeoMeta({
 				<Suspense>
 					<div>
 						<p v-if="tool" class="toolkit-tool-title">
+							<NuxtLinkLocale
+								v-if="device.isMobileOrTablet"
+								:to="`/${kitPath}`"
+								class="relative duration-200 min-w-10 min-h-10 rounded-full text-neutral-50 bg-neutral-400 dark:text-primary-300 dark:bg-black-900">
+								<Icon
+									name="famicons:arrow-back-outline"
+									class="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 text-2xl cursor-pointer" />
+							</NuxtLinkLocale>
+
 							<Icon :name="tool?.icon" />
 							<span class="truncate max-w-[75%]">
 								{{ t(`tools.${toolId}.name`) }}
@@ -68,8 +79,9 @@ useSeoMeta({
 								@click.prevent="handleToggleFavorite"
 								:class="
 									twMerge(
-										'relative duration-200 ml-auto min-w-10 min-h-10 rounded-full dark:text-black-500 dark:bg-black-900',
-										isFavorite && 'dark:text-neutral-100 dark:bg-primary-500'
+										'relative duration-200 ml-auto min-w-10 min-h-10 rounded-full text-black-500 bg-primary-50 dark:text-black-500 dark:bg-black-900',
+										isFavorite &&
+											'text-neutral-100 bg-primary-600 dark:text-neutral-100 dark:bg-primary-500'
 									)
 								">
 								<Icon

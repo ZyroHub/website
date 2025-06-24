@@ -39,8 +39,9 @@ const filteredTools = computed(() => {
 				@click="tools.toggleOnlyFavorites"
 				:class="
 					twMerge(
-						'relative duration-200 min-w-10 min-h-10 rounded-full dark:text-black-500 dark:bg-black-900',
-						tools.isOnlyFavorites.value && 'dark:text-neutral-100 dark:bg-primary-500'
+						'relative duration-200 min-w-10 min-h-10 rounded-full text-black-500 bg-primary-50 dark:text-black-500 dark:bg-black-900',
+						tools.isOnlyFavorites.value &&
+							'text-neutral-100 bg-primary-600 dark:text-neutral-100 dark:bg-primary-500'
 					)
 				">
 				<Icon
