@@ -33,6 +33,7 @@ const filePicker = useFilePicker({
 			await multiTask.start(
 				{
 					image: fileBuffer,
+					animated: form.values.value.animated,
 					format: form.values.value.format
 				},
 				{
@@ -70,6 +71,7 @@ const handleDrop = async (event: DragEvent) => {
 		await multiTask.start(
 			{
 				image: fileBuffer,
+				animated: form.values.value.animated,
 				format: form.values.value.format
 			},
 			{
