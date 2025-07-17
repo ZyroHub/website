@@ -217,7 +217,8 @@ export default {
 			},
 			qrcode_generator: {
 				personalization: 'Code Personalization',
-				image_options: 'Image Options',
+				image_options: 'Attach Image',
+				url_shorten: 'Shorten URL',
 				options: {
 					type: {
 						label: 'Code Type',

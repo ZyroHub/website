@@ -4,10 +4,14 @@ import { z } from 'zod';
 
 const { t } = useI18n();
 
+const runtimeConfig = useRuntimeConfig();
+
 const qrCodeElement = useTemplateRef<HTMLDivElement>('qrcode');
 const qrCode = ref<QRCodeStyling>();
 
 const copyState = ref<boolean>(false);
+
+const urlShortenerTask = useTask({ worker_id: 'url_shortener' });
 
 const form = useForm(
 	{
@@ -60,14 +64,23 @@ const form = useForm(
 	z.object({})
 );
 
+const isUrlShortenable = computed(() => {
+	if (form.values.value.type !== 'url') return false;
+
+	if (form.values.value.content.includes(runtimeConfig.public.server_short_url)) return false;
+
+	const isValidURL = z.string().url().safeParse(form.values.value.content).success;
+	return isValidURL && urlShortenerTask.isSubmittable.value;
+});
+
 const typeOptions = computed(() => [
 	{ label: t('components.tools.qrcode_generator.options.type.options.text'), value: 'text' },
+	{ label: t('components.tools.qrcode_generator.options.type.options.url'), value: 'url' },
 	{ label: t('components.tools.qrcode_generator.options.type.options.email'), value: 'email' },
+	{ label: t('components.tools.qrcode_generator.options.type.options.wifi'), value: 'wifi' },
 	{ label: t('components.tools.qrcode_generator.options.type.options.sms'), value: 'sms' },
 	{ label: t('components.tools.qrcode_generator.options.type.options.phone'), value: 'phone' },
-	{ label: t('components.tools.qrcode_generator.options.type.options.vcard'), value: 'vcard' },
-	{ label: t('components.tools.qrcode_generator.options.type.options.url'), value: 'url' },
-	{ label: t('components.tools.qrcode_generator.options.type.options.wifi'), value: 'wifi' }
+	{ label: t('components.tools.qrcode_generator.options.type.options.vcard'), value: 'vcard' }
 ]);
 
 const wifiEncryptionOptions = computed(() => [
@@ -181,6 +194,12 @@ const updateQRCode = async () => {
 	});
 };
 
+const handleShortUrl = async () => {
+	await urlShortenerTask.start({
+		url: form.values.value.content
+	});
+};
+
 const handleDownload = () => {
 	if (!qrCode.value) return;
 
@@ -244,6 +263,10 @@ const handleUpdateType = () => {
 	form.values.value.wifi_hidden = false;
 };
 
+urlShortenerTask.onTaskFinished(async data => {
+	if (data.data?.code) form.values.value.content = `${runtimeConfig.public.server_short_url}/${data.data.code}`;
+});
+
 watch(form.values.value, () => {
 	if (import.meta.client) {
 		updateQRCode();
@@ -285,12 +308,27 @@ onMounted(() => {
 
 					<div>
 						<Transition name="transition_fade_200" mode="out-in">
-							<div v-if="['url', 'text'].includes(form.values.value.type)">
+							<div v-if="form.values.value.type === 'text'">
 								<InputsTextArea
 									name="content"
 									:label="t('components.tools.qrcode_generator.options.content.label')"
 									:placeholder="t('components.tools.qrcode_generator.options.content.placeholder')"
 									:rows="4" />
+							</div>
+
+							<div v-else-if="form.values.value.type === 'url'" class="flex flex-col gap-4">
+								<InputsTextArea
+									name="content"
+									:label="t('components.tools.qrcode_generator.options.content.label')"
+									:placeholder="t('components.tools.qrcode_generator.options.content.placeholder')"
+									:rows="4" />
+
+								<div>
+									<Button @click="handleShortUrl" theme="primary" :disabled="!isUrlShortenable">
+										<Icon name="mdi:link-variant" />
+										{{ t('components.tools.qrcode_generator.url_shorten') }}
+									</Button>
+								</div>
 							</div>
 
 							<div v-else-if="form.values.value.type === 'email'" class="flex flex-col gap-4">
