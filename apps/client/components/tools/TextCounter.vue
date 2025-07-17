@@ -31,7 +31,7 @@ const paragraphs = computed(() => {
 </script>
 
 <template>
-	<div class="flex gap-4">
+	<div class="flex gap-4 flex-col md:flex-row">
 		<div class="w-full">
 			<InputsProvider :form="form">
 				<InputsTextArea
@@ -43,7 +43,8 @@ const paragraphs = computed(() => {
 			</InputsProvider>
 		</div>
 
-		<div class="flex w-64 py-6 px-4 flex-col gap-4">
+		<div
+			class="flex w-full md:w-64 md:py-6 md:px-4 flex-row gap-4 md:flex-col flex-wrap items-center justify-between md:justify-start md:items-start">
 			<div>
 				<p class="font-semibold">{{ t('components.tools.text_counter.output.words') }}</p>
 				<p class="text-3xl">{{ words }}</p>
