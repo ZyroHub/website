@@ -12,6 +12,7 @@ const orderedTasks = computed(() =>
 
 const form = useForm(
 	{
+		animated: false,
 		format: 'webp' as WorkerStorage<'image_converter'>['converted_image_format']
 	},
 	z.object({
@@ -161,6 +162,10 @@ multiTask.onTaskFinished(async data => {
 					<Button @click="filePicker.open()" theme="primary">
 						<Icon name="majesticons:file" /> {{ t('components.tools.image_converter.upload') }}
 					</Button>
+				</div>
+
+				<div class="mt-4">
+					<InputsCheckbox :label="t('components.tools.image_converter.animated')" name="animated" />
 				</div>
 			</div>
 		</InputsProvider>

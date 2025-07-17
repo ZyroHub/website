@@ -172,6 +172,7 @@ export default {
 			image_converter: {
 				format: 'Format',
 				upload: 'Select a File',
+				animated: 'Keep Animation (GIF, APNG, etc.)',
 				items: {
 					download: 'Download',
 					remove: 'Remove'

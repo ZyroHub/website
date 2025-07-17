@@ -13,7 +13,7 @@ export class ImageConverterWorker extends BaseWorker {
 		const mimeType = filetypemime(fileBuffer)?.[0];
 		if (!mimeType?.startsWith('image/')) throw new Error('invalid-file-type');
 
-		let imageSharp = sharp(fileBuffer);
+		let imageSharp = sharp(fileBuffer, { animated: !!data.animated });
 
 		imageSharp = imageSharp.toFormat(data.format);
 		if (!['png', 'webp'].includes(data.format)) imageSharp = imageSharp.flatten({ background: '#ffffff' });
