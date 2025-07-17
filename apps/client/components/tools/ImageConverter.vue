@@ -4,6 +4,8 @@ import { z } from 'zod';
 
 const { t } = useI18n();
 
+const toAnimatedFormats = ['webp'];
+
 const multiTask = useMultiTask({ worker_id: 'image_converter', task_save_data: false });
 
 const orderedTasks = computed(() =>
@@ -33,7 +35,7 @@ const filePicker = useFilePicker({
 			await multiTask.start(
 				{
 					image: fileBuffer,
-					animated: form.values.value.animated,
+					animated: toAnimatedFormats.includes(form.values.value.format) ? form.values.value.animated : false,
 					format: form.values.value.format
 				},
 				{
@@ -71,7 +73,7 @@ const handleDrop = async (event: DragEvent) => {
 		await multiTask.start(
 			{
 				image: fileBuffer,
-				animated: form.values.value.animated,
+				animated: toAnimatedFormats.includes(form.values.value.format) ? form.values.value.animated : false,
 				format: form.values.value.format
 			},
 			{
@@ -166,7 +168,7 @@ multiTask.onTaskFinished(async data => {
 					</Button>
 				</div>
 
-				<div class="mt-4">
+				<div v-if="toAnimatedFormats.includes(form.values.value.format)" class="mt-4">
 					<InputsCheckbox :label="t('components.tools.image_converter.animated')" name="animated" />
 				</div>
 			</div>
