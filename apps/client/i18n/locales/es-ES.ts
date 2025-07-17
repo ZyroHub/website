@@ -376,6 +376,18 @@ export default {
 					content: 'Contenido del Código QR'
 				}
 			},
+			text_counter: {
+				content: {
+					label: 'Texto',
+					placeholder: 'Escriba su texto aquí...'
+				},
+				output: {
+					characters: 'Caracteres',
+					words: 'Palabras',
+					lines: 'Líneas',
+					paragraphs: 'Párrafos'
+				}
+			},
 			text_to_slug: {
 				input: {
 					label: 'Texto',

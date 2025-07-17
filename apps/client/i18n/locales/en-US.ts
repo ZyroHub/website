@@ -375,6 +375,18 @@ export default {
 					content: 'QR Code Content'
 				}
 			},
+			text_counter: {
+				content: {
+					label: 'Text',
+					placeholder: 'Type your text here...'
+				},
+				output: {
+					characters: 'Characters',
+					words: 'Words',
+					paragraphs: 'Paragraphs',
+					lines: 'Lines'
+				}
+			},
 			text_to_slug: {
 				input: {
 					label: 'Text',

@@ -1,9 +1,12 @@
 <script lang="ts" setup>
+import { twMerge } from 'tailwind-merge';
+
 const props = defineProps<{
 	label?: string;
 	name?: string;
 	placeholder?: string;
 	rows?: number;
+	class?: string;
 	showCopy?: boolean;
 	readonly?: boolean;
 }>();
@@ -43,7 +46,7 @@ const handleCopy = () => {
 					:placeholder="props.placeholder"
 					:rows="props.rows"
 					:readonly="props.readonly"
-					class="input-textarea-input"></textarea>
+					:class="twMerge('input-textarea-input', props.class)"></textarea>
 
 				<Transition name="transition_fade_200" mode="out-in">
 					<Button
