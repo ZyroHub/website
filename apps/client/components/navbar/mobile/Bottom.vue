@@ -6,7 +6,7 @@ const { t } = useI18n();
 	<nav class="w-full fixed bottom-0 z-100 bg-black-900 dark:bg-black-950 left-0">
 		<div class="flex w-full justify-around items-center h-16">
 			<NavbarMobileTab to="/" :title="t('components.navbar.tabs.home')">
-				<Icon :size="30" name="lucide:home" />
+				<Icon :size="30" name="ant-design:home-filled" />
 			</NavbarMobileTab>
 			<NavbarMobileTab to="/developers" :title="t('components.navbar.tabs.developers')">
 				<Icon :size="30" name="ant-design:code-filled" />
