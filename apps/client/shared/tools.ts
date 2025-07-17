@@ -88,6 +88,12 @@ export const getToolList = (): ITool[] => {
 			]
 		},
 		{
+			id: 'text_counter',
+			icon: 'proicons:draw-text',
+			related: [],
+			tags: [ToolTagEnum.MISC, ToolTagEnum.TEXT, ToolTagEnum.INFO]
+		},
+		{
 			id: 'text_to_slug',
 			icon: 'mdi:format-letter-case',
 			related: [],

@@ -553,6 +553,10 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 			name: 'Gerador de QRCode',
 			description: 'Gere códigos qr imediatamente com várias opções de customização.'
 		},
+		text_counter: {
+			name: 'Contador de Texto',
+			description: 'Conte palavras, caracteres e linhas em um texto.'
+		},
 		text_to_slug: {
 			name: 'Texto para Slug',
 			description: 'Converta textos em um formato amigável para URLs e identificadores.'

@@ -552,6 +552,10 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 			name: 'QRCode Generator',
 			description: 'Generate QR codes immediately with various customization options.'
 		},
+		text_counter: {
+			name: 'Text Counter',
+			description: 'Count characters, words, sentences, and paragraphs in a text.'
+		},
 		text_to_slug: {
 			name: 'Text to Slug',
 			description: 'Convert texts into a friendly format for URLs and identifiers.'

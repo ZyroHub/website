@@ -15,6 +15,7 @@ export enum ToolTagEnum {
 	EMAIL,
 
 	CRYPTO,
+	INFO,
 
 	FILTER,
 	EDITOR,

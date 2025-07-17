@@ -553,6 +553,10 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 			name: 'Generador de Código QR',
 			description: 'Genere códigos QR inmediatamente con varias opciones de personalización.'
 		},
+		text_counter: {
+			name: 'Contador de Texto',
+			description: 'Contar caracteres, palabras y líneas en un texto.'
+		},
 		text_to_slug: {
 			name: 'Texto a Slug',
 			description: 'Convertir textos en un formato amigable para URLs e identificadores.'
