@@ -13,7 +13,7 @@ const { t } = useI18n();
 		<div class="navbar-container">
 			<div class="navbar-container-start">
 				<NavbarDesktopTab to="/" :title="t('components.navbar.tabs.home')">
-					<Icon :size="30" name="lucide:home" />
+					<Icon :size="30" name="ant-design:home-filled" />
 				</NavbarDesktopTab>
 				<NavbarDesktopTab to="/developers" :title="t('components.navbar.tabs.developers')">
 					<Icon :size="30" name="ant-design:code-filled" />
