@@ -9,6 +9,7 @@ export const useTools = () => {
 	const toolList = getToolList();
 
 	const isOnlyFavorites = computed(() => toolsStoreRef.onlyFavorites.value);
+	const isMinimizedNavigation = computed(() => toolsStoreRef.minimizedNavigation.value);
 
 	const get = (id: string) => {
 		return toolList.find(tool => tool.id === id);
@@ -28,12 +29,20 @@ export const useTools = () => {
 		return toolsStoreRef.favorites.value.includes(id);
 	};
 
+	const toggleMinimizedNavigation = () => {
+		toolsStoreRef.minimizedNavigation.value = !toolsStoreRef.minimizedNavigation.value;
+	};
+
 	return {
 		tools: toolList,
-		isOnlyFavorites,
 		get,
+
 		toggleOnlyFavorites,
 		toggleFavorite,
-		isFavorite
+		isFavorite,
+		isOnlyFavorites,
+
+		isMinimizedNavigation,
+		toggleMinimizedNavigation
 	};
 };

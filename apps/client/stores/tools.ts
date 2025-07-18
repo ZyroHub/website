@@ -27,8 +27,11 @@ export const useToolsStore = defineStore('tools', () => {
 
 	const onlyFavorites = ref(false);
 
+	const minimizedNavigation = ref(false);
+
 	return {
 		favorites,
-		onlyFavorites
+		onlyFavorites,
+		minimizedNavigation
 	};
 });
