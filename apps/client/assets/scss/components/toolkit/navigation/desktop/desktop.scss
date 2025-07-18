@@ -19,6 +19,7 @@
 	align-items: center;
 	width: 100%;
 	padding: 1rem 1rem;
+	gap: 0.1rem;
 }
 
 .toolkit-navigation-search {
@@ -47,9 +48,8 @@
 
 .toolkit-navigation-search-star {
 	position: relative;
-	margin: auto;
-	width: 2.5rem;
-	height: 2.5rem;
+	min-width: 2.5rem;
+	min-height: 2.5rem;
 	font-size: 1.5rem;
 	border-radius: 100%;
 	user-select: none;
