@@ -23,6 +23,16 @@ const filteredTools = computed(() => {
 		return translatedName.toLowerCase().includes(searchContent.value.toLowerCase());
 	});
 });
+
+const handleNavigationMouseOver = () => {
+	tools.maximizeNavigation();
+};
+
+const handleNavigationMouseLeave = () => {
+	if (!tools.selectedToolId.value) return;
+
+	tools.minimizeNavigation();
+};
 </script>
 
 <style lang="scss" scoped>
@@ -30,10 +40,13 @@ const filteredTools = computed(() => {
 </style>
 
 <template>
-	<div class="toolkit-navigation">
+	<div
+		@mouseover="handleNavigationMouseOver"
+		@mouseleave="handleNavigationMouseLeave"
+		:class="['toolkit-navigation', { minimized: tools.isMinimizedNavigation.value }]">
 		<p class="toolkit-navigation-title"><slot name="title" /></p>
 
-		<div class="toolkit-navigation-search-area">
+		<div :class="['toolkit-navigation-search-area', { minimized: tools.isMinimizedNavigation.value }]">
 			<div class="toolkit-navigation-search">
 				<Icon name="material-symbols:search" class="toolkit-navigation-search-icon" />
 
@@ -41,14 +54,17 @@ const filteredTools = computed(() => {
 			</div>
 
 			<div
+				v-if="!tools.isMinimizedNavigation.value"
 				@click="tools.toggleOnlyFavorites"
 				:class="['toolkit-navigation-search-star', { active: tools.isOnlyFavorites.value }]">
-				<Icon :name="'mdi:heart'" />
+				<Icon name="mdi:heart" />
 			</div>
 		</div>
 
 		<Transition name="transition_navigation_items" mode="out-in">
-			<div :key="tools.isOnlyFavorites.value.toString()" class="toolkit-navigation-items">
+			<div
+				:key="tools.isOnlyFavorites.value.toString()"
+				:class="['toolkit-navigation-items', { minimized: tools.isMinimizedNavigation.value }]">
 				<ToolkitNavigationDesktopItem
 					v-for="tool in filteredTools"
 					:id="tool.id"

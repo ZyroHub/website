@@ -40,13 +40,17 @@ const handleToggleFavorite = () => {
 <template>
 	<NuxtLinkLocale
 		:to="`/${props.path}`"
-		:class="['toolkit-navigation-item', { 'toolkit-navigation-item-favorite': tools.isFavorite(props.id) }]"
+		:class="[
+			'toolkit-navigation-item',
+			{ favorited: tools.isFavorite(props.id), minimized: tools.isMinimizedNavigation.value }
+		]"
 		active-class="active"
 		:draggable="false">
-		<Icon v-if="tool?.icon" :name="tool?.icon" size="20" />
-		{{ t(`tools.${tool?.id || ''}.name`) }}
+		<Icon v-if="tool?.icon" :name="tool?.icon" size="20" class="toolkit-navigation-item-icon" />
+		<span class="toolkit-navigation-item-text">{{ t(`tools.${tool?.id || ''}.name`) }}</span>
 
 		<Icon
+			v-if="!tools.isMinimizedNavigation.value"
 			@click.prevent.stop="handleToggleFavorite"
 			@mouseover="handleFavoriteButtonHover"
 			@mouseleave="handleFavoriteButtonLeave"
@@ -55,6 +59,10 @@ const handleToggleFavorite = () => {
 			:name="favoriteIcon"
 			size="20" />
 
-		<Icon class="toolkit-navigation-item-arrow" name="mingcute:right-fill" size="24" />
+		<Icon
+			v-if="!tools.isMinimizedNavigation.value"
+			class="toolkit-navigation-item-arrow"
+			name="mingcute:right-fill"
+			size="24" />
 	</NuxtLinkLocale>
 </template>

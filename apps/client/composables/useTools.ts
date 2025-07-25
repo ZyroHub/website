@@ -11,6 +11,10 @@ export const useTools = () => {
 	const isOnlyFavorites = computed(() => toolsStoreRef.onlyFavorites.value);
 	const isMinimizedNavigation = computed(() => toolsStoreRef.minimizedNavigation.value);
 
+	const route = useRoute();
+
+	const selectedToolId = computed(() => route.params.tool_id as string);
+
 	const get = (id: string) => {
 		return toolList.find(tool => tool.id === id);
 	};
@@ -33,9 +37,18 @@ export const useTools = () => {
 		toolsStoreRef.minimizedNavigation.value = !toolsStoreRef.minimizedNavigation.value;
 	};
 
+	const minimizeNavigation = () => {
+		toolsStoreRef.minimizedNavigation.value = true;
+	};
+
+	const maximizeNavigation = () => {
+		toolsStoreRef.minimizedNavigation.value = false;
+	};
+
 	return {
 		tools: toolList,
 		get,
+		selectedToolId,
 
 		toggleOnlyFavorites,
 		toggleFavorite,
@@ -43,6 +56,8 @@ export const useTools = () => {
 		isOnlyFavorites,
 
 		isMinimizedNavigation,
-		toggleMinimizedNavigation
+		toggleMinimizedNavigation,
+		minimizeNavigation,
+		maximizeNavigation
 	};
 };

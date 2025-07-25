@@ -2,23 +2,20 @@
 	display: flex;
 	gap: 1rem;
 	margin-top: 2rem;
+	width: 100%;
 
 	& > div {
 		min-height: 1rem;
 	}
-
-	@media screen and (max-width: 1050px) {
-		flex-direction: column;
-	}
 }
 
 .toolkit-container-start {
-	min-width: 20rem;
-	max-width: 20rem;
+	width: 20rem;
+	overflow-x: hidden;
+	transition-duration: 0.5s;
 
-	@media screen and (max-width: 1050px) {
-		min-width: 100%;
-		max-width: 100%;
+	&.minimized {
+		width: 4rem;
 	}
 }
 
@@ -26,7 +23,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	min-width: calc(100% - 20rem);
+	flex: 1 0 auto;
 }
 
 .toolkit-content {

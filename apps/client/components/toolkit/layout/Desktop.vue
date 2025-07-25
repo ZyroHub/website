@@ -5,6 +5,16 @@ const props = defineProps<{
 	tools?: ITool[];
 	path?: string;
 }>();
+
+const tools = useTools();
+
+onMounted(() => {
+	if (!tools.selectedToolId.value) {
+		tools.maximizeNavigation();
+	} else {
+		tools.minimizeNavigation();
+	}
+});
 </script>
 
 <style lang="scss" scoped>
@@ -13,7 +23,7 @@ const props = defineProps<{
 
 <template>
 	<div class="toolkit-container">
-		<div class="toolkit-container-start">
+		<div :class="['toolkit-container-start', { minimized: tools.isMinimizedNavigation.value }]">
 			<ToolkitNavigationDesktop :tools="props.tools" :path="props.path">
 				<template #title>
 					<slot name="title"></slot>
