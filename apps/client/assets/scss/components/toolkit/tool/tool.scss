@@ -27,6 +27,11 @@
 	margin-bottom: 1rem;
 }
 
+.toolkit-tool-content {
+	padding: 1rem 1rem;
+	border-radius: 1rem;
+}
+
 .transition_tool_state_change-enter-active,
 .transition_tool_state_change-leave-active {
 	transition: all 300ms ease-in-out;
@@ -41,17 +46,13 @@
 }
 
 .light-mode {
-	@media screen and (max-width: 768px) {
-		.toolkit-tool-container {
-			background-color: var(--neutral_300);
-		}
+	.toolkit-tool-content {
+		background-color: var(--neutral_300);
 	}
 }
 
 .dark-mode {
-	@media screen and (max-width: 768px) {
-		.toolkit-tool-container {
-			background-color: var(--black_950);
-		}
+	.toolkit-tool-content {
+		background-color: var(--black_900);
 	}
 }

@@ -6,18 +6,6 @@
 	flex: 1 1 auto;
 }
 
-.home-logo {
-	margin-top: -4rem;
-
-	@media screen and (max-width: 810px) {
-		margin-top: 0;
-	}
-
-	@media screen and (max-width: 600px) {
-		display: none;
-	}
-}
-
 .home-title {
 	font-size: 2.4rem;
 	font-weight: 400;
@@ -91,7 +79,7 @@
 .light-mode {
 	.home-title {
 		& > span {
-			background: linear-gradient(to right, var(--primary_300), var(--primary_400));
+			background: linear-gradient(to right, var(--primary_400), var(--primary_500));
 			background-clip: text;
 			-webkit-background-clip: text;
 			-webkit-text-fill-color: transparent;

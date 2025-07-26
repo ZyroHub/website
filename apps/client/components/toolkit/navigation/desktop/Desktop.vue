@@ -54,7 +54,6 @@ const handleNavigationMouseLeave = () => {
 			</div>
 
 			<div
-				v-if="!tools.isMinimizedNavigation.value"
 				@click="tools.toggleOnlyFavorites"
 				:class="['toolkit-navigation-search-star', { active: tools.isOnlyFavorites.value }]">
 				<Icon name="mdi:heart" />

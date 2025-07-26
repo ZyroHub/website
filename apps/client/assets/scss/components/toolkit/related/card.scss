@@ -35,10 +35,11 @@
 
 .light-mode {
 	.toolkit-related-card {
-		background-color: var(--primary_50);
+		color: var(--neutral_700);
+		background-color: var(--neutral_300);
 
 		&:hover {
-			background-color: var(--primary_400);
+			background-color: var(--neutral_200);
 		}
 	}
 }

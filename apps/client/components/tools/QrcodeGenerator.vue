@@ -299,8 +299,8 @@ onMounted(() => {
 <template>
 	<div>
 		<InputsProvider :form="form">
-			<div class="flex gap-2 gap-y-4 flex-wrap md:flex-nowrap">
-				<div class="w-full flex flex-col gap-6 md:w-1/2">
+			<div class="flex gap-4 gap-y-4 flex-wrap md:flex-nowrap">
+				<div class="w-full flex flex-col gap-6">
 					<InputsSelect
 						name="type"
 						:label="t('components.tools.qrcode_generator.options.type.label')"

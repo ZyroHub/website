@@ -106,7 +106,9 @@ useSeoMeta({
 							</span>
 						</p>
 
-						<component :is="component" />
+						<div class="toolkit-tool-content">
+							<component :is="component" />
+						</div>
 					</div>
 
 					<template #fallback>

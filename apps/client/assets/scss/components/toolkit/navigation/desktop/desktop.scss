@@ -1,11 +1,11 @@
 .toolkit-navigation {
 	min-height: 4rem;
 	border-radius: 1rem;
-	padding-bottom: 1.5rem;
+	padding-bottom: 1rem;
 	transition-duration: 0.5s;
 
 	&.minimized {
-		padding-bottom: 1rem;
+		border-radius: 2rem;
 	}
 }
 
@@ -14,7 +14,6 @@
 	align-items: center;
 	gap: 0.4rem;
 	padding: 0 1.5rem;
-	padding-top: 1rem;
 }
 
 .toolkit-navigation-search-area {
@@ -36,6 +35,10 @@
 				left: 1rem;
 			}
 		}
+
+		& > .toolkit-navigation-search-star {
+			opacity: 0;
+		}
 	}
 }
 
@@ -45,7 +48,7 @@
 	min-width: 3rem;
 
 	max-width: 80%;
-	height: 2.5rem;
+	height: 3rem;
 	border-radius: 10rem;
 	overflow: hidden;
 	transition-duration: 0.5s;
@@ -76,7 +79,8 @@
 	user-select: none;
 	transition:
 		color 0.3s,
-		background-color 0.3s;
+		background-color 0.3s,
+		opacity 0.4s;
 
 	& > span {
 		position: absolute;
@@ -105,11 +109,11 @@
 
 .light-mode {
 	.toolkit-navigation {
-		background-color: var(--neutral_300);
+		background-color: var(--neutral_50);
 	}
 
 	.toolkit-navigation-search {
-		background-color: var(--primary_50);
+		background-color: var(--neutral_300);
 
 		& > input {
 			color: var(--black_950);
@@ -122,20 +126,20 @@
 
 	.toolkit-navigation-search-star {
 		color: var(--black_500);
-		background-color: var(--primary_50);
+		background-color: var(--neutral_300);
 
 		&:not(.active) {
 			&:hover {
-				color: var(--black_400);
+				color: var(--black_700);
 			}
 		}
 
 		&.active {
 			color: var(--neutral_100);
-			background-color: var(--primary_600);
+			background-color: var(--primary_500);
 
 			&:hover {
-				background-color: var(--primary_700);
+				background-color: var(--primary_600);
 			}
 		}
 	}

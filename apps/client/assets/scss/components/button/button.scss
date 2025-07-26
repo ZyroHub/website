@@ -23,6 +23,15 @@
 			background-color: var(--primary_600);
 		}
 	}
+
+	.button-gray {
+		color: var(--neutral_700);
+		background-color: var(--neutral_50);
+
+		&:not(:disabled):hover {
+			background-color: var(--neutral_100);
+		}
+	}
 }
 
 .dark-mode {

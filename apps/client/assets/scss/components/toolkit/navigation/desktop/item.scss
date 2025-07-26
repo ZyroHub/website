@@ -96,10 +96,10 @@
 .light-mode {
 	.toolkit-navigation-item {
 		color: var(--black_950);
-		background-color: var(--primary_50);
+		background-color: var(--neutral_300);
 
 		&:not(.active):hover {
-			background-color: var(--primary_300);
+			background-color: var(--neutral_200);
 		}
 
 		&.active {
