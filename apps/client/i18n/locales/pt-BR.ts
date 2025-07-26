@@ -583,6 +583,11 @@ Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 		}
 	},
 	workers: {
+		image_converter: {
+			progress: {
+				converting_image: 'Convertendo imagem...'
+			}
+		},
 		image_pixelate: {
 			progress: {
 				loading_image: 'Carregando imagem...',

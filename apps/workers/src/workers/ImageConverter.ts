@@ -13,6 +13,8 @@ export class ImageConverterWorker extends BaseWorker {
 		const mimeType = filetypemime(fileBuffer)?.[0];
 		if (!mimeType?.startsWith('image/')) throw new Error('invalid-file-type');
 
+		update_progress(25, 'converting_image');
+
 		let imageSharp = sharp(fileBuffer, { animated: !!data.animated });
 
 		imageSharp = imageSharp.toFormat(data.format);

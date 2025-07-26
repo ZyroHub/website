@@ -14,7 +14,7 @@
 	height: 100%;
 	border-radius: 10rem;
 	overflow-x: hidden;
-	transition: max-width 300ms ease;
+	transition: max-width 500ms ease;
 }
 
 .progress-bar-progress {
@@ -29,7 +29,7 @@
 
 .light-mode {
 	.progress-bar {
-		background-color: var(--neutral_400);
+		background-color: var(--neutral_100);
 	}
 
 	.progress-bar-progress {
@@ -43,7 +43,7 @@
 
 .dark-mode {
 	.progress-bar {
-		background-color: var(--black_900);
+		background-color: var(--black_800);
 	}
 
 	.progress-bar-progress {

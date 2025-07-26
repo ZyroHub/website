@@ -584,6 +584,11 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 		}
 	},
 	workers: {
+		image_converter: {
+			progress: {
+				converting_image: 'Convirtiendo imagen...'
+			}
+		},
 		image_pixelate: {
 			progress: {
 				loading_image: 'Cargando imagen...',
