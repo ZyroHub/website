@@ -1,6 +1,5 @@
 .navbar-theme-switcher {
 	cursor: pointer;
-	color: var(--primary_300);
 }
 
 .transition_navbar_theme_switcher-enter-active,
@@ -16,4 +15,16 @@
 .transition_navbar_theme_switcher-leave-to {
 	opacity: 0;
 	transform: rotate(180deg);
+}
+
+.light-mode {
+	.navbar-theme-switcher {
+		color: var(--primary_400);
+	}
+}
+
+.dark-mode {
+	.navbar-theme-switcher {
+		color: var(--primary_300);
+	}
 }

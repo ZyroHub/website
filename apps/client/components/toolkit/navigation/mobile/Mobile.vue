@@ -28,7 +28,7 @@ const filteredTools = computed(() => {
 
 <template>
 	<div>
-		<div class="sticky flex items-center gap-2 top-0 z-100 py-3 rounded-t-lg bg-neutral-300 dark:bg-black-950">
+		<div class="sticky flex items-center gap-2 top-0 z-100 py-3 rounded-lg bg-neutral-50 dark:bg-black-950">
 			<InputsText
 				v-model="searchContent"
 				:placeholder="t('components.toolkit.navigation.search')"

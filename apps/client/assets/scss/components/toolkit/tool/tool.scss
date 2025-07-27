@@ -48,11 +48,19 @@
 .light-mode {
 	.toolkit-tool-content {
 		background-color: var(--neutral_300);
+
+		@media screen and (max-width: 768px) {
+			background-color: var(--neutral_200);
+		}
 	}
 }
 
 .dark-mode {
 	.toolkit-tool-content {
 		background-color: var(--black_900);
+
+		@media screen and (max-width: 768px) {
+			background-color: var(--neutral_800);
+		}
 	}
 }

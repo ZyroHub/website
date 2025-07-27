@@ -6,7 +6,7 @@ const kitTools = inject<ITool[]>('kit_tools');
 </script>
 
 <template>
-	<div class="bg-neutral-300 dark:bg-black-950 p-4 rounded-lg">
+	<div class="bg-neutral-200 dark:bg-black-950 p-4 rounded-lg">
 		<ToolkitNavigationMobile :tools="kitTools" :path="kitPath">
 			<template #title>
 				<slot name="title"></slot>
