@@ -88,12 +88,17 @@ nav {
 }
 
 .navbar-logo {
+	max-width: max-content;
 	height: 100%;
 }
 
 .light-mode {
 	nav {
 		background-color: var(--neutral_50);
+	}
+
+	.navbar-logo {
+		fill: var(--primary_400);
 	}
 
 	.navbar-icon {
@@ -104,6 +109,10 @@ nav {
 .dark-mode {
 	nav {
 		background-color: var(--black_950);
+	}
+
+	.navbar-logo {
+		fill: var(--primary_300);
 	}
 
 	.navbar-icon {

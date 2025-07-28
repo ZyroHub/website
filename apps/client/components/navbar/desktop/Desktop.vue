@@ -12,14 +12,16 @@ const { t } = useI18n();
 	<nav>
 		<div class="navbar-container">
 			<div class="navbar-container-start">
-				<NuxtLinkLocale to="/">
-					<NuxtImg
+				<NuxtLinkLocale to="/" class="">
+					<!-- <NuxtImg
 						src="images/zyro-color-wide.webp"
 						class="navbar-logo"
 						:alt="t('components.navbar.logo.alt')"
 						width="82px"
 						height="44px"
-						sizes="82px" />
+						sizes="82px" /> -->
+
+					<LogoWide class="navbar-logo" />
 				</NuxtLinkLocale>
 			</div>
 
