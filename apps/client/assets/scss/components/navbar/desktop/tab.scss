@@ -61,7 +61,7 @@
 
 		&.active,
 		&:not(.active):hover {
-			color: var(--black_900);
+			color: var(--primary_500);
 
 			& > div {
 				background-color: var(--neutral_300);
