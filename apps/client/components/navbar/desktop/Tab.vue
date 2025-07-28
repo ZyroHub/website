@@ -14,7 +14,9 @@ const props = defineProps<{
 	<Tooltip placement="bottom">
 		<template #trigger>
 			<NuxtLinkLocale :to="props.to" :aria-label="props.title" is="div" class="navbar-tab" active-class="active">
-				<slot />
+				<div>
+					<slot />
+				</div>
 			</NuxtLinkLocale>
 		</template>
 

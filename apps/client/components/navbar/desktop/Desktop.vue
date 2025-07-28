@@ -12,22 +12,6 @@ const { t } = useI18n();
 	<nav>
 		<div class="navbar-container">
 			<div class="navbar-container-start">
-				<NavbarDesktopTab to="/" :title="t('components.navbar.tabs.home')">
-					<Icon :size="30" name="ant-design:home-filled" />
-				</NavbarDesktopTab>
-				<NavbarDesktopTab to="/developers" :title="t('components.navbar.tabs.developers')">
-					<Icon :size="30" name="ant-design:code-filled" />
-				</NavbarDesktopTab>
-				<NavbarDesktopTab to="/creators" :title="t('components.navbar.tabs.creators')">
-					<Icon :size="30" name="ant-design:camera-filled" />
-				</NavbarDesktopTab>
-				<NavbarDesktopTab to="/misc" :title="t('components.navbar.tabs.misc')">
-					<Icon :size="30" name="jam:tools-f" />
-				</NavbarDesktopTab>
-				<NavbarDesktopTab to="/about">{{ t('components.navbar.tabs.about') }}</NavbarDesktopTab>
-			</div>
-
-			<div class="navbar-container-center">
 				<NuxtLinkLocale to="/">
 					<NuxtImg
 						src="images/zyro-color-wide.webp"
@@ -37,6 +21,21 @@ const { t } = useI18n();
 						height="44px"
 						sizes="82px" />
 				</NuxtLinkLocale>
+			</div>
+
+			<div class="navbar-container-center">
+				<NavbarDesktopTab to="/developers" :title="t('components.navbar.tabs.developers')">
+					<Icon :size="28" name="ant-design:code-filled" />
+				</NavbarDesktopTab>
+				<NavbarDesktopTab to="/creators" :title="t('components.navbar.tabs.creators')">
+					<Icon :size="28" name="ant-design:camera-filled" />
+				</NavbarDesktopTab>
+				<NavbarDesktopTab to="/misc" :title="t('components.navbar.tabs.misc')">
+					<Icon :size="28" name="jam:tools-f" />
+				</NavbarDesktopTab>
+				<NavbarDesktopTab to="/about" :title="t('components.navbar.tabs.about')">
+					<Icon :size="28" name="material-symbols:info-rounded" />
+				</NavbarDesktopTab>
 			</div>
 
 			<div class="navbar-container-end">
