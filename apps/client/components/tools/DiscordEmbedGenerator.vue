@@ -7,7 +7,13 @@
 		<div class="w-[40rem] px-4 py-4 bg-[#1a1a1e] rounded-lg">
 			<DiscordMessage
 				:message="{
-					embeds: [{}]
+					embeds: [
+						{
+							title: 'Olá, nova estrelinha! <:pink_Kirby_On_A_Star:1343776736130633748><:pink_Kirby_On_A_Star:1343776736130633748>',
+							description:
+								'Nossa metrópole é **GIGANTE** e cheia de lugares **incríveis para explorar**. Cada lugar tem uma __vibe diferente__, então ache o seu preferido e mergulhe de cabeça!'
+						}
+					]
 				}" />
 		</div>
 	</div>
