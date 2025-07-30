@@ -88,8 +88,7 @@ export default defineNuxtConfig({
 		display: 'swap',
 		families: {
 			Poppins: [400, 500, 600, 700],
-			Cookie: [400],
-			Asap: [400, 500, 600]
+			Cookie: [400]
 		}
 	},
 
