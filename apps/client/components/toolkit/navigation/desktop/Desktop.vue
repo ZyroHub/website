@@ -61,13 +61,13 @@ const handleNavigationMouseLeave = () => {
 		</div>
 
 		<Transition name="transition_navigation_items" mode="out-in">
-			<div
-				:key="tools.isOnlyFavorites.value.toString()"
-				:class="['toolkit-navigation-items', { minimized: tools.isMinimizedNavigation.value }]">
-				<ToolkitNavigationDesktopItem
-					v-for="tool in filteredTools"
-					:id="tool.id"
-					:path="`${props.path}/${tool.id}`" />
+			<div :key="tools.isOnlyFavorites.value.toString()">
+				<div :class="['toolkit-navigation-items', { minimized: tools.isMinimizedNavigation.value }]">
+					<ToolkitNavigationDesktopItem
+						v-for="tool in filteredTools"
+						:id="tool.id"
+						:path="`${props.path}/${tool.id}`" />
+				</div>
 			</div>
 		</Transition>
 	</div>
