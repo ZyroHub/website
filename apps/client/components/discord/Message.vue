@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { DiscordContent } from '#components';
 import type { DiscordMessage } from '~/shared/discord';
 
 const props = defineProps<{
