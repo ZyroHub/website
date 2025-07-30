@@ -539,6 +539,11 @@ We hope this is clear, and as mentioned earlier, if there is something that you 
 			name: 'Bcrypt Checker',
 			description: 'Check if a password matches a bcrypt hash.'
 		},
+		discord_embed_generator: {
+			name: 'Discord Embed Generator',
+			description:
+				'Create beautiful Discord embeds with rich formatting and customization options. (Text, images, links, and more...)'
+		},
 		hash_generator: {
 			name: 'Hash Generator',
 			description:

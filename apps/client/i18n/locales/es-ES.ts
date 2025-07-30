@@ -540,6 +540,11 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 			name: 'Verificador Bcrypt',
 			description: 'Verificar si una contraseña coincide con un hash bcrypt.'
 		},
+		discord_embed_generator: {
+			name: 'Generador de Embeds de Discord',
+			description:
+				'Generar mensajes enriquecidos para Discord con formato personalizado, enlaces, imágenes y más. (¡Ideal para bots de Discord!)'
+		},
 		hash_generator: {
 			name: 'Generador de Hash',
 			description:

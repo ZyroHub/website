@@ -31,6 +31,10 @@ export enum ToolTagEnum {
 	COLOR,
 	DATE,
 
+	WEB,
+	WEBHOOK,
+	API,
+
 	PASSWORD,
 	HASH
 }

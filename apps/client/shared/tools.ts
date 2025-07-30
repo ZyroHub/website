@@ -29,6 +29,12 @@ export const getToolList = (): ITool[] => {
 			needs_connection: true
 		},
 		{
+			id: 'discord_embed_generator',
+			icon: 'ri:discord-fill',
+			related: [],
+			tags: [ToolTagEnum.MISC, ToolTagEnum.DEV, ToolTagEnum.WEBHOOK, ToolTagEnum.GENERATOR]
+		},
+		{
 			id: 'hash_generator',
 			icon: 'mynaui:hash-square-solid',
 			related: [],
