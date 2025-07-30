@@ -29,8 +29,7 @@ const userAvatar = computed(() => props.message.author?.avatar || '/images/zyro-
 			</div>
 
 			<div class="mt-1">
-				<!-- <DiscordContent v-if="props.message.content" :content="props.message.content" /> -->
-				<DiscordContent content="Bom dia 😂" />
+				<DiscordContent v-if="props.message.content" :content="props.message.content" />
 			</div>
 		</div>
 	</div>

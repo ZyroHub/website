@@ -15,14 +15,34 @@ const contentMdIt = new MarkdownIt({
 	typographer: false
 });
 
+const parseDiscordEmojis = (html: string) => {
+	return html.replace(
+		/&lt;(a?):([a-zA-Z0-9_]+):(\d+)&gt;|<(a?):([a-zA-Z0-9_]+):(\d+)>/g,
+		(match, animated1, name1, id1, animated2, name2, id2) => {
+			const animated = animated1 || animated2;
+			const name = name1 || name2;
+			const id = id1 || id2;
+			const ext = animated === 'a' ? 'gif' : 'webp';
+			const src = `https://cdn.discordapp.com/emojis/${id}.${ext}`;
+			const alt = `:${name}:`;
+
+			return `<img src="${src}" alt="${alt}" class="emoji discord-emoji" loading="lazy" />`;
+		}
+	);
+};
+
 const parseContent = (content: string) => {
-	let parsedContent = contentMdIt.render(content);
+	let parsedContent = content;
+
+	parsedContent = contentMdIt.render(parsedContent);
 
 	parsedContent = twemoji.parse(parsedContent, {
 		folder: 'svg',
-		className: 'discord-twemoji',
+		className: 'discord-emoji',
 		ext: '.svg'
 	});
+
+	parsedContent = parseDiscordEmojis(parsedContent);
 
 	return parsedContent;
 };
@@ -31,7 +51,7 @@ const parsedMessage = computed(() => parseContent(props.content));
 </script>
 
 <style lang="scss">
-.discord-twemoji {
+.discord-emoji {
 	height: 1.2em;
 	width: 1.2em;
 }
