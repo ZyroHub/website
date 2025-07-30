@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import { DiscordContent } from '#components';
 import type { DiscordMessage } from '~/shared/discord';
 
 const props = defineProps<{
@@ -30,6 +29,8 @@ const userAvatar = computed(() => props.message.author?.avatar || '/images/zyro-
 
 			<div class="mt-1">
 				<DiscordContent v-if="props.message.content" :content="props.message.content" />
+
+				<DiscordEmbed v-for="(embed, embedI) in props.message.embeds" :key="embedI" :embed="embed" />
 			</div>
 		</div>
 	</div>
