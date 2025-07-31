@@ -6,14 +6,6 @@ export interface DiscordEmbedAuthor {
 	icon_url?: string;
 }
 
-export interface DiscordEmbedImage {
-	url: string;
-}
-
-export interface DiscordEmbedThumbnail {
-	url: string;
-}
-
 export interface DiscordEmbedField {
 	name: string;
 	value: string;
@@ -32,8 +24,8 @@ export interface DiscordEmbed {
 	timestamp?: string;
 	color?: DiscordContainerColor;
 	footer?: DiscordEmbedFooter;
-	image?: DiscordEmbedImage;
-	thumbnail?: DiscordEmbedThumbnail;
+	image?: string;
+	thumbnail?: string;
 	author?: DiscordEmbedAuthor;
 	fields?: DiscordEmbedField[];
 }
