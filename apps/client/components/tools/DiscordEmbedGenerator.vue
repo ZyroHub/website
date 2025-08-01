@@ -10,7 +10,7 @@
 					content: 'Bom dia, ZyroHub! 🌞',
 					embeds: [
 						{
-							title: 'Olá, nova estrelinha! <:pink_Kirby_On_A_Star:1343776736130633748><:pink_Kirby_On_A_Star:1343776736130633748>',
+							title: 'Olá, anova estrelinha! <:pink_Kirby_On_A_Star:1343776736130633748><:pink_Kirby_On_A_Star:1343776736130633748>',
 							description:
 								'Nossa metrópole é **GIGANTE** e cheia de lugares **incríveis para explorar**. Cada lugar tem uma __vibe__ diferente, então ache o seu preferido e mergulhe de cabeça!',
 							thumbnail: 'https://i.imgur.com/wDmTUmI.gif',
@@ -18,6 +18,18 @@
 								text: 'EletroCity',
 								icon_url: 'https://i.imgur.com/wDmTUmI.gif'
 							},
+							fields: [
+								{
+									name: '1° Evite Poluição Sonora:',
+									value: 'Evite gritar, usar soundboards de forma abusiva, tocar músicas altas no microfone (ear-rape) ou qualquer outra forma de poluição sonora que possa perturbar os outros membros no canal de voz.',
+									inline: true
+								},
+								{
+									name: '2° Respeite o Ambiente:',
+									value: 'Qualquer conteúdo de natureza pornográfica, excessivamente violento (gore) ou sexualmente explícito é estritamente proibido em todos os canais do servidor.',
+									inline: true
+								}
+							],
 							timestamp: new Date().toString()
 						},
 						{
