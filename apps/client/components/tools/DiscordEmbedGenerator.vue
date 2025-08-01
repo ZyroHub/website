@@ -22,7 +22,7 @@
 						},
 						{
 							title: '<a:Hatsune_Miku_Excited:1343738628198764696> Como faço para adicionar no salve!',
-							description: `**1° - Vá na aba do seu perfil (canto inferior direito) e toque em \'Editar Perfil\';**
+							description: `**1° - Vá na aba do seu perfil (canto inferior direito) [aaa](https://google.com/) e toque em \'Editar Perfil\';**
 
 **2° - Role para baixo e encontre a opção \'Tag do Servidor\';**
 

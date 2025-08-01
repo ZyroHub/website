@@ -57,6 +57,11 @@ const parseContent = (content: string) => {
 		parsedContent = parsedContent.replace(/\n/g, '<br>');
 
 		parsedContent = contentMdIt.render(parsedContent);
+
+		parsedContent = parsedContent.replace(
+			/<a href="(.*?)"(.*?)>(.*?)<\/a>/g,
+			'<a href="$1" target="_blank" rel="noopener noreferrer"$2>$3</a>'
+		);
 	}
 
 	parsedContent = twemoji.parse(parsedContent, {
