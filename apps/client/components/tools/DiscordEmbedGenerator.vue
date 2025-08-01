@@ -21,12 +21,12 @@
 							timestamp: new Date().toString()
 						},
 						{
-							title: '<a:Hatsune_Miku_Excited:1343738628198764696> Como faço para adicionar no salve! ✨',
+							title: '<a:Hatsune_Miku_Excited:1343738628198764696> Como faço para adicionar no salve!',
 							description: `**1° - Vá na aba do seu perfil (canto inferior direito) e toque em \'Editar Perfil\';**
 
-**2° - Role para baixo e encontre a opção \'Tag do Servidor\';**\n\n
+**2° - Role para baixo e encontre a opção \'Tag do Servidor\';**
 
-**3° - Adicione a opção \'EletroCity\' e salve! :sparkles:**`,
+**3° - Adicione a opção \'EletroCity\' e salve! ✨**`,
 							image: 'https://cdn.discordapp.com/attachments/1398376205773836288/1400875083907465316/400x400.png?ex=688e3a17&is=688ce897&hm=614af463f74e4f536b241888fd549cf4ac8b6d2d2e8a292f6a79b9bef55be647&',
 							timestamp: new Date().toString()
 						}
