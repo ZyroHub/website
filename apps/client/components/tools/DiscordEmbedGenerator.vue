@@ -10,6 +10,11 @@
 					content: 'Bom dia, ZyroHub! 🌞',
 					embeds: [
 						{
+							author: {
+								name: 'EletroCity',
+								icon_url: 'https://i.imgur.com/wDmTUmI.gif',
+								url: 'https://google.com/'
+							},
 							title: 'Olá, anova estrelinha! <:pink_Kirby_On_A_Star:1343776736130633748><:pink_Kirby_On_A_Star:1343776736130633748>',
 							url: 'https://google.com/',
 							description:
