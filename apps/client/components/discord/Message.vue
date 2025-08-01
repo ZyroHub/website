@@ -5,11 +5,6 @@ const props = defineProps<{
 	message: DiscordMessage;
 }>();
 
-const actualDateFormat = computed(() => {
-	const date = new Date();
-	return `${date.toLocaleTimeString('en-US', { timeStyle: 'short' })}`;
-});
-
 const userName = computed(() => props.message.author?.name || 'ZyroHub');
 const userAvatar = computed(() => props.message.author?.avatar || '/images/zyro-photo.png');
 </script>
@@ -24,7 +19,7 @@ const userAvatar = computed(() => props.message.author?.avatar || '/images/zyro-
 			<div class="text-white flex items-end font-open text-base">
 				<p class="leading-18px font-medium">{{ userName }}</p>
 				<p class="px-[0.30rem] font-semibold ml-1 text-[14px] leading-[18px] rounded-[4px] bg-[#5865f2]">APP</p>
-				<p class="text-[#7f8189] font-normal ml-2 text-xs">{{ actualDateFormat }}</p>
+				<DiscordDateTimestamp class="ml-2" />
 			</div>
 
 			<div class="mt-1">
