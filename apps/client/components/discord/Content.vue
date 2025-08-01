@@ -12,7 +12,7 @@ const props = defineProps<{
 const contentMdIt = new MarkdownIt({
 	html: false,
 	linkify: true,
-	breaks: false,
+	breaks: true,
 	typographer: false
 });
 
@@ -27,7 +27,7 @@ const parseDiscordEmojis = (html: string) => {
 			const src = `https://cdn.discordapp.com/emojis/${id}.${ext}`;
 			const alt = `:${name}:`;
 
-			return `<img src="${src}" alt="${alt}" class="emoji discord-emoji" loading="lazy" />`;
+			return `<img src="${src}" alt="${alt}" class="emoji discord-custom-emoji" loading="lazy" />`;
 		}
 	);
 };
@@ -35,7 +35,9 @@ const parseDiscordEmojis = (html: string) => {
 const parseContent = (content: string) => {
 	let parsedContent = content;
 
-	if (!props.disableMarkdown) parsedContent = contentMdIt.render(parsedContent);
+	if (!props.disableMarkdown) {
+		parsedContent = contentMdIt.render(parsedContent);
+	}
 
 	parsedContent = twemoji.parse(parsedContent, {
 		folder: 'svg',
@@ -53,8 +55,13 @@ const parsedMessage = computed(() => parseContent(props.content));
 
 <style lang="scss">
 .discord-emoji {
-	height: 1.2em;
-	width: 1.2em;
+	height: 1em;
+	width: 1em;
+}
+
+.discord-custom-emoji {
+	height: 0.9em;
+	width: 0.9em;
 }
 </style>
 

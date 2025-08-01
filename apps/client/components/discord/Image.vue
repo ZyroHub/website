@@ -5,5 +5,5 @@ const props = defineProps<{
 </script>
 
 <template>
-	<img :src="props.src" class="w-full max-w-[400px] rounded-md" alt="Large Image" loading="lazy" />
+	<img :src="props.src" class="max-w-[400px] max-h-[300px] rounded-md" alt="Large Image" loading="lazy" />
 </template>

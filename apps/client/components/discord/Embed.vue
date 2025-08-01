@@ -21,7 +21,7 @@ const props = defineProps<{
 					<DiscordContent
 						v-if="props.embed.description"
 						:content="props.embed.description"
-						class="text-[14px] mt-2 text-neutral-200" />
+						class="text-[12px] mt-2 text-neutral-200" />
 				</div>
 
 				<div v-if="props.embed.thumbnail">
