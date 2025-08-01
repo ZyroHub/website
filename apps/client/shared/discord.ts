@@ -7,6 +7,7 @@ export interface DiscordEmbedAuthor {
 }
 
 export interface DiscordEmbedField {
+	id: string;
 	name: string;
 	value: string;
 	inline?: boolean;
@@ -35,7 +36,26 @@ export interface DiscordEmbed {
 	fields?: DiscordEmbedField[];
 }
 
-export interface DiscordComponent {}
+export interface DiscordComponentBase {
+	id?: string;
+}
+
+export type DiscordComponentButton = {
+	type: 'button';
+	style: 'primary' | 'secondary' | 'success' | 'danger' | 'link';
+	label?: string;
+	emoji?: string;
+	custom_id?: string;
+	url?: string;
+	disabled?: boolean;
+} & DiscordComponentBase;
+
+export type DiscordComponent = DiscordComponentButton;
+
+export interface DiscordRow {
+	id?: string;
+	components: DiscordComponent[];
+}
 
 export interface DiscordAuthor {
 	name: string;
@@ -46,7 +66,7 @@ export interface DiscordMessage {
 	author?: DiscordAuthor;
 	content?: string;
 	embeds?: DiscordEmbed[];
-	components?: DiscordComponent[];
+	components?: DiscordRow[];
 }
 
 export const groupFields = (fields: DiscordEmbedField[]): DiscordEmbedGroupedField[] => {

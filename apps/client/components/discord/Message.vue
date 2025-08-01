@@ -28,6 +28,10 @@ const userAvatar = computed(() => props.message.author?.avatar || '/images/zyro-
 				<div class="flex flex-col gap-1">
 					<DiscordEmbed v-for="(embed, embedI) in props.message.embeds" :key="embedI" :embed="embed" />
 				</div>
+
+				<div v-if="props.message.components?.length" class="flex flex-col gap-1 mt-1">
+					<DiscordComponentRow v-for="row in props.message.components" :key="row.id" :row="row" />
+				</div>
 			</div>
 		</div>
 	</div>
