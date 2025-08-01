@@ -33,25 +33,40 @@ const parseDiscordEmojis = (html: string) => {
 	);
 };
 
-const parseContent = (content: string) => {
-	let parsedContent = content;
+const parseDiscordMarkdown = (text: string) => {
+	return text
+		.replace(/__(.*?)__/g, '<u class="underline">$1</u>') // Underline
+		.replace(/~~(.*?)~~/g, '<s class="line-through">$1</s>') // Strikethrough
+		.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>') // Bold
+		.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>'); // Italic
+};
 
-	parsedContent = parsedContent
+const parseDiscordMentions = (text: string) => {
+	return text
+		.replace(/&lt;@!?(\d+)&gt;/g, '<span class="discord-mention">@user</span>')
+		.replace(/&lt;#(\d+)&gt;/g, '<span class="discord-mention">#channel</span>')
+		.replace(/&lt;@&amp;(\d+)&gt;/g, '<span class="discord-mention">@role</span>')
+		.replace(/@everyone/g, '<span class="discord-mention">@everyone</span>')
+		.replace(/@here/g, '<span class="discord-mention">@here</span>');
+};
+
+const escapeHtml = (html: string) => {
+	return html
 		.replace(/&/g, '&amp;')
 		.replace(/</g, '&lt;')
 		.replace(/>/g, '&gt;')
 		.replace(/"/g, '&quot;')
 		.replace(/'/g, '&#039;');
+};
+
+const parseContent = (content: string) => {
+	let parsedContent = content;
+
+	parsedContent = escapeHtml(parsedContent);
 
 	if (!props.disableMarkdown) {
-		// __
-		parsedContent = parsedContent.replace(/__(.*?)__/g, '<u class="underline">$1</u>');
-		// ~~
-		parsedContent = parsedContent.replace(/~~(.*?)~~/g, '<s class="line-through">$1</s>');
-		// **
-		parsedContent = parsedContent.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>');
-		// *
-		parsedContent = parsedContent.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>');
+		parsedContent = parseDiscordMarkdown(parsedContent);
+		parsedContent = parseDiscordMentions(parsedContent);
 
 		// \n
 		parsedContent = parsedContent.replace(/\n/g, '<br>');
