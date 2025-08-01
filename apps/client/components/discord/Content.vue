@@ -5,6 +5,7 @@ import twemoji from 'twemoji';
 
 const props = defineProps<{
 	content: string;
+	disableMarkdown?: boolean;
 	innerClass?: string;
 }>();
 
@@ -34,7 +35,7 @@ const parseDiscordEmojis = (html: string) => {
 const parseContent = (content: string) => {
 	let parsedContent = content;
 
-	parsedContent = contentMdIt.render(parsedContent);
+	if (!props.disableMarkdown) parsedContent = contentMdIt.render(parsedContent);
 
 	parsedContent = twemoji.parse(parsedContent, {
 		folder: 'svg',

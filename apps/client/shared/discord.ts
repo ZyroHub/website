@@ -1,15 +1,9 @@
+export type DiscordContainerColor = string | number;
+
 export interface DiscordEmbedAuthor {
 	name: string;
 	url?: string;
 	icon_url?: string;
-}
-
-export interface DiscordEmbedImage {
-	url: string;
-}
-
-export interface DiscordEmbedThumbnail {
-	url: string;
 }
 
 export interface DiscordEmbedField {
@@ -28,10 +22,10 @@ export interface DiscordEmbed {
 	description?: string;
 	url?: string;
 	timestamp?: string;
-	color?: number;
+	color?: DiscordContainerColor;
 	footer?: DiscordEmbedFooter;
-	image?: DiscordEmbedImage;
-	thumbnail?: DiscordEmbedThumbnail;
+	image?: string;
+	thumbnail?: string;
 	author?: DiscordEmbedAuthor;
 	fields?: DiscordEmbedField[];
 }
