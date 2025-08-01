@@ -15,9 +15,16 @@ const groupedFields = computed(() => groupFields(props.embed.fields || []));
 			<div class="flex justify-between gap-4">
 				<div :class="twMerge('max-w-[480px]', props.embed.thumbnail && 'max-w-[380px]')">
 					<DiscordContent
-						v-if="props.embed.title"
+						v-if="props.embed.title && !props.embed.url"
 						:content="props.embed.title"
 						class="font-bold text-neutral-50" />
+					<a
+						v-else-if="props.embed.title && props.embed.url"
+						:href="props.embed.url"
+						target="_blank"
+						rel="noopener noreferrer">
+						<DiscordContent :content="props.embed.title" class="font-bold text-[#95b8f3] hover:underline" />
+					</a>
 
 					<DiscordContent
 						v-if="props.embed.description"
