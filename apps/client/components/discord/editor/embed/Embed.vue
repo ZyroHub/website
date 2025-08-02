@@ -12,6 +12,13 @@ const emit = defineEmits<{
 
 const embedModel = defineModel<DiscordEmbed>('embed');
 
+const embedColor = computed({
+	get: () => embedModel.value?.color,
+	set: (value: string) => {
+		if (embedModel.value) embedModel.value.color = value;
+	}
+});
+
 const collapsed = ref<boolean>(false);
 
 const embedTitle = computed({
@@ -76,6 +83,22 @@ const handleDelete = () => {
 			<div v-if="!collapsed" class="mt-2 flex flex-col gap-2">
 				<InputsText v-model="embedTitle" label="Title" />
 				<InputsText v-model="embedURL" label="Title Url" />
+
+				<color-picker
+					v-model="embedColor"
+					v-slot="{ color, show }"
+					@close="console.log('ColorPicker is closed')"
+					withHexInput>
+					<div @click="show" class="flex items-center gap-1 w-full">
+						<div class="flex justify-center items-center w-8">
+							<Icon name="jam:eyedropper-f" size="20" />
+						</div>
+
+						<div class="flex-grow text-center rounded-full" :style="{ backgroundColor: color.value }">
+							{{ color }}
+						</div>
+					</div>
+				</color-picker>
 
 				<InputsTextArea v-model="embedDescription" label="Description" :rows="3" />
 			</div>

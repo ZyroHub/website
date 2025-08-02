@@ -11,7 +11,7 @@ const groupedFields = computed(() => groupFields(props.embed.fields || []));
 
 <template>
 	<div>
-		<DiscordContainer :color="props.embed.color?.toString()">
+		<DiscordContainer :color="props.embed.color">
 			<div class="flex justify-between gap-4">
 				<div :class="twMerge('max-w-[480px]', props.embed.thumbnail && 'max-w-[380px]')">
 					<DiscordAuthor v-if="props.embed.author" :author="props.embed.author" class="mb-2" />

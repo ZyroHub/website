@@ -1,4 +1,4 @@
-export type DiscordContainerColor = string | number;
+export type DiscordContainerColor = string;
 
 export interface DiscordEmbedAuthor {
 	name: string;
