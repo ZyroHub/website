@@ -38,7 +38,9 @@ const parseDiscordMarkdown = (text: string) => {
 		.replace(/__(.*?)__/g, '<u class="underline">$1</u>') // Underline
 		.replace(/~~(.*?)~~/g, '<s class="line-through">$1</s>') // Strikethrough
 		.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>') // Bold
-		.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>'); // Italic
+		.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>') // Italic
+
+		.replace(/^\s*-\s+(.*)$/gm, '<li class="list-disc ml-4">$1</li>'); // Unordered list
 };
 
 const parseDiscordMentions = (text: string) => {
@@ -88,7 +90,7 @@ const parseContent = (content: string) => {
 	parsedContent = parseDiscordEmojis(parsedContent);
 
 	parsedContent = DOMPurify.sanitize(parsedContent, {
-		ALLOWED_TAGS: ['p', 'a', 'br', 'strong', 'em', 'u', 's', 'br', 'span', 'img'],
+		ALLOWED_TAGS: ['p', 'a', 'br', 'strong', 'em', 'u', 's', 'br', 'span', 'img', 'li'],
 		ALLOWED_ATTR: ['src', 'alt', 'href', 'class', 'target']
 	});
 
