@@ -63,6 +63,7 @@ export interface DiscordAuthor {
 }
 
 export interface DiscordMessage {
+	id: string;
 	author?: DiscordAuthor;
 	content?: string;
 	embeds?: DiscordEmbed[];

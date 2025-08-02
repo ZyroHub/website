@@ -7,7 +7,7 @@ const props = defineProps<{
 </script>
 
 <template>
-	<div class="flex flex-wrap gap-x-2 gap-y-1">
+	<div class="flex flex-wrap gap-x-2 gap-y-1 max-w-[480px]">
 		<DiscordComponent
 			v-for="dc_component in props.row.components"
 			:key="dc_component.id"

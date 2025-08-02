@@ -1,88 +1,50 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import type { DiscordMessage } from '~/shared/discord';
+
+const discordMessages = ref<DiscordMessage[]>([]);
+
+const handleAddNewMessage = () => {
+	discordMessages.value.push({
+		id: crypto.randomUUID(),
+		content: '',
+		embeds: [],
+		author: {
+			name: '',
+			avatar: ''
+		},
+		components: []
+	});
+};
+</script>
 
 <template>
 	<div class="flex gap-4">
-		<div class="flex-grow"></div>
+		<div class="flex-grow flex flex-col gap-4">
+			<div class="flex flex-col gap-2 max-w-full">
+				<div v-for="(discordMessage, discordMessageI) in discordMessages" :key="discordMessage.id">
+					<DiscordEditor v-model:message="discordMessages[discordMessageI]" :number="discordMessageI + 1" />
+				</div>
+			</div>
 
-		<div class="w-[40rem] px-4 py-4 bg-[#1a1a1e] rounded-lg">
-			<DiscordMessage
-				:message="{
-					content: 'Bom dia, ZyroHub! 🌞',
-					components: [
-						{
-							id: '1',
-							components: [
-								{
-									id: '1',
-									type: 'button',
-									style: 'link',
-									label: 'Visualizar Website',
-									emoji: '🛠️',
-									url: 'https://google.com/'
-								},
-								{ id: '2', type: 'button', style: 'link', label: 'Visualizar Website' },
-								{ id: '3', type: 'button', style: 'link', label: 'Visualizar Website' },
-								{ id: '4', type: 'button', style: 'link', label: 'Visualizar Website' },
-								{ id: '5', type: 'button', style: 'link', label: 'Visualizar Website' }
-							]
-						},
-						{
-							id: '2',
-							components: [
-								{ id: '1', type: 'button', style: 'primary', label: 'Visualizar Website' },
-								{ id: '2', type: 'button', style: 'danger', label: 'Visualizar Website' },
-								{ id: '3', type: 'button', style: 'secondary', label: 'Visualizar Website' },
-								{ id: '4', type: 'button', style: 'success', label: 'Visualizar Website' },
-								{ id: '5', type: 'button', style: 'link', label: 'Visualizar Website' }
-							]
-						}
-					],
-					embeds: [
-						{
-							color: '#ffb29a',
-							author: {
-								name: 'EletroCity',
-								icon_url: 'https://i.imgur.com/wDmTUmI.gif',
-								url: 'https://google.com/'
-							},
-							title: 'Olá, nova estrelinha! <:pink_Kirby_On_A_Star:1343776736130633748><:pink_Kirby_On_A_Star:1343776736130633748>',
-							url: 'https://google.com/',
-							description:
-								'Nossa metrópole é **GIGANTE** e cheia de lugares **incríveis para explorar**. Cada lugar tem uma __vibe__ diferente, então ache o seu preferido e mergulhe de cabeça!',
-							thumbnail: 'https://i.imgur.com/wDmTUmI.gif',
-							footer: {
-								text: 'EletroCity',
-								icon_url: 'https://i.imgur.com/wDmTUmI.gif'
-							},
-							fields: [
-								{
-									id: '1',
-									name: '1° Evite Poluição Sonora:',
-									value: 'Evite gritar, usar soundboards de forma abusiva, tocar músicas altas no microfone (ear-rape) ou qualquer outra forma de poluição sonora que possa perturbar os outros membros no canal de voz.',
-									inline: true
-								},
-								{
-									id: '2',
-									name: '2° Respeite o Ambiente:',
-									value: 'Qualquer conteúdo de natureza pornográfica, excessivamente violento (gore) ou sexualmente explícito é estritamente proibido em todos os canais do servidor.',
-									inline: true
-								}
-							],
-							timestamp: new Date().toString()
-						},
-						{
-							color: '#ffb29a',
-							title: '<a:Hatsune_Miku_Excited:1343738628198764696> Como faço para adicionar no salve!',
-							description: `**1° - Vá na aba do seu perfil (canto inferior direito) e toque em \'Editar Perfil\';**
+			<div>
+				<Button @click="handleAddNewMessage" theme="primary"><Icon name="mdi:plus" /> Add New Message</Button>
+			</div>
+		</div>
 
-**2° - Role para baixo e encontre a opção \'Tag do Servidor\';**
+		<div class="min-w-[40rem] min-h-32 px-4 py-4 bg-[#1a1a1e] rounded-lg">
+			<div class="flex flex-col gap-1">
+				<DiscordMessage
+					v-for="(discordMessage, discordMessageI) in discordMessages"
+					:key="discordMessage.id"
+					:message="discordMessage"
+					:hideUser="discordMessageI > 0" />
+			</div>
 
-**3° - Adicione a opção \'EletroCity\' e salve! ✨**`,
-							image: 'https://cdn.discordapp.com/attachments/1398376205773836288/1400875083907465316/400x400.png?ex=688e3a17&is=688ce897&hm=614af463f74e4f536b241888fd549cf4ac8b6d2d2e8a292f6a79b9bef55be647&',
-							timestamp: new Date().toString()
-						}
-					]
-				}" />
+			<div v-if="discordMessages.length === 0" class="flex justify-center items-center w-full h-full px-4 py-4">
+				<p class="text-center text-neutral-50 text-sm max-w-80">
+					No messages to display. Use the form to generate a new Discord message.
+				</p>
+			</div>
 		</div>
 	</div>
 </template>
