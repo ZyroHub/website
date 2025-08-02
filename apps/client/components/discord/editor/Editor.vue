@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { twMerge } from 'tailwind-merge';
-import type { DiscordMessage } from '~/shared/discord';
+import type { DiscordEmbed, DiscordMessage } from '~/shared/discord';
 
 const props = defineProps<{
 	number: number;
@@ -14,7 +14,12 @@ const messageModel = defineModel<DiscordMessage>('message');
 
 const collapsed = ref<boolean>(false);
 
-const messageContent = ref<string>(messageModel.value?.content || '');
+const messageContent = computed({
+	get: () => messageModel.value?.content || '',
+	set: (value: string) => {
+		if (messageModel.value) messageModel.value.content = value;
+	}
+});
 
 const toggleCollapse = () => {
 	collapsed.value = !collapsed.value;
@@ -24,11 +29,43 @@ const handleDelete = () => {
 	emit('delete');
 };
 
-watch(messageContent, newValue => {
-	if (messageModel.value) {
-		messageModel.value.content = newValue;
+const handleAddNewEmbed = () => {
+	if (!messageModel.value) return;
+
+	const newEmbed: DiscordEmbed = {
+		id: crypto.randomUUID(),
+		title: '',
+		description: '',
+		color: '#ffb29a',
+		image: '',
+		thumbnail: '',
+		author: {
+			name: '',
+			icon_url: ''
+		},
+		url: '',
+		footer: {
+			text: '',
+			icon_url: ''
+		},
+		fields: []
+	};
+
+	if (!messageModel.value.embeds) {
+		messageModel.value.embeds = [];
 	}
-});
+
+	messageModel.value.embeds.push(newEmbed);
+};
+
+const handleDeleteEmbed = (embed_id: string) => {
+	if (!messageModel.value || !messageModel.value.embeds) return;
+
+	const index = messageModel.value.embeds.findIndex(embed => embed.id === embed_id);
+	if (index !== -1) {
+		messageModel.value.embeds.splice(index, 1);
+	}
+};
 </script>
 
 <template>
@@ -58,8 +95,21 @@ watch(messageContent, newValue => {
 		</div>
 
 		<Transition name="transition_fade_200" mode="out-in">
-			<div v-if="!collapsed" class="mt-2">
+			<div v-if="!collapsed" class="mt-2 flex flex-col gap-2">
 				<InputsTextArea v-model="messageContent" :rows="3" />
+
+				<div v-if="messageModel?.embeds?.length" class="flex flex-col gap-2">
+					<DiscordEditorEmbed
+						v-for="(embed, embedI) in messageModel?.embeds || []"
+						:key="embed.id"
+						v-model:embed="messageModel.embeds[embedI]"
+						:number="embedI + 1"
+						@delete="() => handleDeleteEmbed(embed.id)" />
+				</div>
+
+				<div>
+					<Button @click="handleAddNewEmbed" theme="primary"> <Icon name="mdi:plus" /> Add New Embed </Button>
+				</div>
 			</div>
 		</Transition>
 	</div>

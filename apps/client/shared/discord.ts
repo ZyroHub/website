@@ -24,6 +24,7 @@ export interface DiscordEmbedFooter {
 }
 
 export interface DiscordEmbed {
+	id: string;
 	title?: string;
 	description?: string;
 	url?: string;

@@ -16,8 +16,8 @@ const handleAddNewMessage = () => {
 	});
 };
 
-const handleDeleteMessage = (id: string) => {
-	const index = discordMessages.value.findIndex(message => message.id === id);
+const handleDeleteMessage = (discord_id: string) => {
+	const index = discordMessages.value.findIndex(message => message.id === discord_id);
 	if (index !== -1) {
 		discordMessages.value.splice(index, 1);
 	}
@@ -50,7 +50,11 @@ const handleDeleteMessage = (id: string) => {
 					:hideUser="discordMessageI > 0" />
 			</div>
 
-			<div v-if="discordMessages.length === 0" class="flex justify-center items-center w-full h-full px-4 py-4">
+			<div
+				v-if="discordMessages.length === 0"
+				class="flex flex-col justify-center items-center w-full h-full px-4 py-4">
+				<Icon name="mdi:discord" size="48" class="text-neutral-50 mb-2" />
+
 				<p class="text-center text-neutral-50 text-sm max-w-80">
 					No messages to display. Use the form to generate a new Discord message.
 				</p>
