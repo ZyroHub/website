@@ -15,6 +15,13 @@ const handleAddNewMessage = () => {
 		components: []
 	});
 };
+
+const handleDeleteMessage = (id: string) => {
+	const index = discordMessages.value.findIndex(message => message.id === id);
+	if (index !== -1) {
+		discordMessages.value.splice(index, 1);
+	}
+};
 </script>
 
 <template>
@@ -22,7 +29,10 @@ const handleAddNewMessage = () => {
 		<div class="flex-grow flex flex-col gap-4">
 			<div class="flex flex-col gap-2 max-w-full">
 				<div v-for="(discordMessage, discordMessageI) in discordMessages" :key="discordMessage.id">
-					<DiscordEditor v-model:message="discordMessages[discordMessageI]" :number="discordMessageI + 1" />
+					<DiscordEditor
+						v-model:message="discordMessages[discordMessageI]"
+						:number="discordMessageI + 1"
+						@delete="() => handleDeleteMessage(discordMessage.id)" />
 				</div>
 			</div>
 
