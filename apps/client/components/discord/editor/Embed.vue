@@ -79,6 +79,8 @@ const handleDelete = () => {
 				</div>
 			</color-picker>
 
+			<DiscordEditorAuthor :author="embedModel?.author" />
+
 			<DiscordEditorFooter :footer="embedModel?.footer" />
 		</template>
 	</DiscordEditorCollapsable>
