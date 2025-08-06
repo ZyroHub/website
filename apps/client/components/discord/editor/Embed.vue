@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordEmbed } from '~/shared/discord';
+import type { DiscordEmbed, DiscordEmbedAuthor, DiscordEmbedField, DiscordEmbedFooter } from '~/shared/discord';
 
 const props = defineProps<{
 	number: number;
@@ -39,6 +39,27 @@ const embedDescription = computed({
 	}
 });
 
+const embedAuthor = computed({
+	get: () => embedModel.value?.author || { name: '', icon_url: '', url: '' },
+	set: (value: DiscordEmbedAuthor) => {
+		if (embedModel.value) embedModel.value.author = value;
+	}
+});
+
+const embedFields = computed({
+	get: () => embedModel.value?.fields || [],
+	set: (value: DiscordEmbed['fields']) => {
+		if (embedModel.value) embedModel.value.fields = value;
+	}
+});
+
+const embedFooter = computed({
+	get: () => embedModel.value?.footer || { text: '', icon_url: '' },
+	set: (value: DiscordEmbedFooter) => {
+		if (embedModel.value) embedModel.value.footer = value;
+	}
+});
+
 const handleDelete = () => {
 	emit('delete');
 };
@@ -53,7 +74,7 @@ const handleDelete = () => {
 			<Icon
 				name="mdi:delete"
 				size="20"
-				class="text-neutral-800 dark:text-neutral-400 hover:text-red-600 dark:hover:text-red-400 cursor-pointer duration-200"
+				class="hover:text-red-600 dark:hover:text-red-400 cursor-pointer duration-200"
 				@click.stop="handleDelete" />
 		</template>
 
@@ -63,11 +84,7 @@ const handleDelete = () => {
 
 			<InputsTextArea v-model="embedDescription" label="Description" :rows="3" />
 
-			<color-picker
-				v-model="embedColor"
-				v-slot="{ color, show }"
-				@close="console.log('ColorPicker is closed')"
-				withHexInput>
+			<color-picker v-model="embedColor" v-slot="{ color, show }" withHexInput>
 				<div @click="show" class="flex items-center gap-1 w-full">
 					<div class="flex justify-center items-center w-8">
 						<Icon name="jam:eyedropper-f" size="20" />
@@ -79,9 +96,11 @@ const handleDelete = () => {
 				</div>
 			</color-picker>
 
-			<DiscordEditorAuthor :author="embedModel?.author" />
+			<DiscordEditorAuthor v-model:author="embedAuthor" />
 
-			<DiscordEditorFooter :footer="embedModel?.footer" />
+			<DiscordEditorFields v-model:fields="embedFields" />
+
+			<DiscordEditorFooter v-model:footer="embedFooter" />
 		</template>
 	</DiscordEditorCollapsable>
 </template>

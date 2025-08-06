@@ -67,7 +67,7 @@ const handleDeleteEmbed = (embed_id: string) => {
 			<Icon
 				name="mdi:delete"
 				size="20"
-				class="text-neutral-800 dark:text-neutral-400 hover:text-red-600 dark:hover:text-red-400 cursor-pointer duration-200"
+				class="hover:text-red-600 dark:hover:text-red-400 cursor-pointer duration-200"
 				@click.stop="handleDelete" />
 		</template>
 
