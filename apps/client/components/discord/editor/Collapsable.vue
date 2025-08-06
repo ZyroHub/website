@@ -27,11 +27,11 @@ const toggleCollapse = () => {
 				size="20"
 				:class="twMerge('duration-200', collapsed ? '-rotate-90' : 'rotate-0')" />
 
-			<p v-if="props.title" class="text-lg font-semibold">
+			<p v-if="props.title" class="flex-grow w-0 truncate text-lg font-semibold select-none">
 				{{ props.title }}
 			</p>
 
-			<div class="flex-grow flex justify-end items-center">
+			<div class="flex items-center">
 				<slot name="actions" />
 			</div>
 		</div>
