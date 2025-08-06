@@ -68,7 +68,7 @@ const handleDelete = () => {
 <template>
 	<DiscordEditorCollapsable
 		:title="`Embed (${props.number.toString().padStart(2, '0')})`"
-		class="bg-neutral-400 dark:bg-neutral-900 b-l-solid"
+		class="bg-neutral-300 dark:bg-neutral-900 b-l-solid"
 		:style="{ borderColor: embedModel?.color?.toString() }">
 		<template #actions>
 			<Icon
@@ -79,8 +79,16 @@ const handleDelete = () => {
 		</template>
 
 		<template #default>
-			<InputsText v-model="embedTitle" label="Title" />
-			<InputsText v-model="embedURL" label="Title Url" />
+			<div class="flex gap-4 items-end">
+				<div class="flex flex-grow flex-col gap-2">
+					<InputsText v-model="embedTitle" label="Title" />
+					<InputsText v-model="embedURL" label="Title Url" />
+				</div>
+
+				<div class="w-32 h-32">
+					<DiscordEditorImage />
+				</div>
+			</div>
 
 			<InputsTextArea v-model="embedDescription" label="Description" :rows="3" />
 
@@ -95,6 +103,10 @@ const handleDelete = () => {
 					</div>
 				</div>
 			</color-picker>
+
+			<div class="w-full h-32">
+				<DiscordEditorImage />
+			</div>
 
 			<DiscordEditorAuthor v-model:author="embedAuthor" />
 

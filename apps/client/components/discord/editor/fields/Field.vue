@@ -40,7 +40,7 @@ const handleDelete = () => {
 <template>
 	<DiscordEditorCollapsable
 		:title="`Field (${props.number.toString().padStart(2, '0')})${fieldName ? ` ~ ${fieldName}` : ''}`"
-		class="bg-neutral-400 dark:bg-neutral-900">
+		class="bg-neutral-300 dark:bg-neutral-900">
 		<template #actions>
 			<Icon
 				name="mdi:delete"

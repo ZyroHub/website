@@ -27,7 +27,9 @@ const toggleCollapse = () => {
 				size="20"
 				:class="twMerge('duration-200', collapsed ? '-rotate-90' : 'rotate-0')" />
 
-			<p v-if="props.title" class="flex-grow w-0 truncate text-lg font-semibold select-none">
+			<p
+				v-if="props.title"
+				class="flex-grow w-0 truncate text-lg font-semibold select-none text-neutral-950 dark:text-neutral-100">
 				{{ props.title }}
 			</p>
 
