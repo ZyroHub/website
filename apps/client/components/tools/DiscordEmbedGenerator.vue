@@ -12,6 +12,7 @@ const discordSentKey = ref<number>(0);
 
 const isSenddingMessages = ref<boolean>(false);
 const isSendWithSuccess = ref<boolean>(false);
+const isSendWithError = ref<boolean>(false);
 
 const discordMessages = ref<DiscordMessage[]>([]);
 
@@ -37,12 +38,14 @@ const handleDeleteMessage = (discord_id: string) => {
 
 const handleSendMessages = async () => {
 	if (!discordWebhook.value) return;
-	if (isSenddingMessages.value || isSendWithSuccess.value) return;
+	if (isSenddingMessages.value || isSendWithSuccess.value || isSendWithError.value) return;
 	isSenddingMessages.value = true;
 
 	discordSentKey.value = Date.now();
 
 	const sentStartTime = new Date().getTime();
+
+	let hasError = false;
 
 	for (const message of discordMessages.value) {
 		try {
@@ -74,14 +77,22 @@ const handleSendMessages = async () => {
 				}))
 			};
 
-			await fetch(discordWebhook.value.url, {
+			const parsedUrl = new URL(discordWebhook.value.url);
+
+			const sentRes = await fetch(parsedUrl.toString(), {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(formattedMessage)
 			});
-		} catch (error) {}
+
+			if (sentRes && sentRes.status !== 204) {
+				hasError = true;
+			}
+		} catch (error) {
+			hasError = true;
+		}
 	}
 
 	const sentEndTime = new Date().getTime();
@@ -94,11 +105,20 @@ const handleSendMessages = async () => {
 	discordSentKey.value = Date.now();
 
 	isSenddingMessages.value = false;
-	isSendWithSuccess.value = true;
+
+	if (hasError) {
+		isSendWithError.value = true;
+	} else {
+		isSendWithSuccess.value = true;
+	}
 
 	setTimeout(() => {
-		isSendWithSuccess.value = false;
-	}, 2_000);
+		if (hasError) {
+			isSendWithError.value = false;
+		} else {
+			isSendWithSuccess.value = false;
+		}
+	}, 2_400);
 };
 
 const isValidDiscordWebhookURL = (url: string): boolean => {
@@ -189,13 +209,18 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 								<DiscordWebhook :webhook="discordWebhook" />
 							</div>
 
-							<Button :theme="isSendWithSuccess ? 'green' : 'primary'" @click="handleSendMessages">
+							<Button
+								:theme="isSendWithSuccess ? 'green' : isSendWithError ? 'red' : 'primary'"
+								@click="handleSendMessages">
 								<Transition name="transition_fade_200" mode="out-in">
 									<span v-if="isSenddingMessages" class="flex items-center text-2xl">
 										<Icon :key="discordSentKey.toString" name="line-md:uploading-loop" />
 									</span>
 									<span v-else-if="isSendWithSuccess" class="flex items-center text-2xl">
 										<Icon :key="discordSentKey.toString" name="line-md:emoji-grin-filled" />
+									</span>
+									<span v-else-if="isSendWithError" class="flex items-center text-2xl">
+										<Icon :key="discordSentKey.toString" name="line-md:emoji-cry-filled" />
 									</span>
 									<span v-else class="flex items-center gap-2">
 										<Icon name="jam:paper-plane-f" /> Send
