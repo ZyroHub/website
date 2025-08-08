@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { type DiscordWebhook, type DiscordMessage } from '~/shared/discord';
+import { hexColorToDecimal } from '~/shared/colors';
 
 const discordWebhook = ref<DiscordWebhook>();
 const discordWebhookURLInput = ref<string>('');
@@ -46,7 +47,31 @@ const handleSendMessages = async () => {
 	for (const message of discordMessages.value) {
 		try {
 			const formattedMessage = {
-				content: message.content || undefined
+				content: message.content || undefined,
+				embeds: message.embeds?.map(embed => ({
+					title: embed.title || undefined,
+					description: embed.description || undefined,
+					url: embed.url || undefined,
+					color: embed.color ? hexColorToDecimal(embed.color) : undefined,
+					footer: embed.footer?.text
+						? {
+								text: embed.footer?.text,
+								icon_url: embed.footer?.icon_url || undefined
+							}
+						: undefined,
+					author: embed.author?.name
+						? {
+								name: embed.author?.name,
+								url: embed.author?.url || undefined,
+								icon_url: embed.author?.icon_url || undefined
+							}
+						: undefined,
+					fields: embed.fields?.map(field => ({
+						name: field.name || undefined,
+						value: field.value || undefined,
+						inline: field.inline || false
+					}))
+				}))
 			};
 
 			await fetch(discordWebhook.value.url, {
