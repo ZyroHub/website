@@ -2,6 +2,8 @@
 @use '~/assets/scss/transitions.scss';
 @use '~/assets/scss/markdown.scss';
 
+@use '~/assets/scss/discord.scss';
+
 * {
 	margin: 0;
 	padding: 0;
@@ -70,6 +72,8 @@
 	--green_800: #06752e;
 	--green_900: #076028;
 	--green_950: #003714;
+
+	--colorPickerBg: #181818;
 
 	&:disabled {
 		opacity: 0.8;

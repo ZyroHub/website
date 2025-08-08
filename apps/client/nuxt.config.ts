@@ -17,6 +17,7 @@ export default defineNuxtConfig({
 		'@nuxtjs/device',
 		'@nuxt/icon',
 		'@pinia/nuxt',
+		'nuxt-color-picker',
 		'@vite-pwa/nuxt',
 		'@nuxtjs/fontaine',
 		'nuxt-booster'

@@ -1,0 +1,25 @@
+.discord-emoji {
+	height: 1em;
+	width: 1em;
+}
+
+.discord-custom-emoji {
+	height: 0.9em;
+	width: 0.9em;
+}
+
+.discord-mention {
+	cursor: pointer;
+	color: #97a6e5;
+	background-color: #2a2d4f;
+	padding: 0 0.15rem;
+	border-radius: 0.2rem;
+	text-decoration: none;
+	font-weight: 600;
+	transition-duration: 200ms;
+
+	&:hover {
+		color: #f2f2f2;
+		background-color: #5865f2;
+	}
+}
