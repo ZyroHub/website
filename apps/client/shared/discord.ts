@@ -71,6 +71,14 @@ export interface DiscordMessage {
 	components?: DiscordRow[];
 }
 
+export interface DiscordWebhook {
+	id?: string;
+	url: string;
+	name?: string;
+	avatar?: string;
+	token?: string;
+}
+
 export const groupFields = (fields: DiscordEmbedField[]): DiscordEmbedGroupedField[] => {
 	const groupedFields: DiscordEmbedGroupedField[] = [];
 	let currentInlineGroup: DiscordEmbedField[] = [];

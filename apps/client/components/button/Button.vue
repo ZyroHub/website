@@ -2,7 +2,7 @@
 import type { HtmlHTMLAttributes } from 'vue';
 
 const props = defineProps<{
-	theme?: 'primary' | 'gray';
+	theme?: 'primary' | 'gray' | 'green';
 	disabled?: boolean;
 	class?: HtmlHTMLAttributes['class'];
 	ariaLabel?: string;

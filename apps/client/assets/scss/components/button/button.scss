@@ -52,4 +52,13 @@
 			background-color: var(--neutral_600);
 		}
 	}
+
+	.button-green {
+		color: var(--neutral_50);
+		background-color: var(--green_700);
+
+		&:not(:disabled):hover {
+			background-color: var(--green_800);
+		}
+	}
 }

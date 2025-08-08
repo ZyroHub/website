@@ -16,7 +16,7 @@ const toggleCollapse = () => {
 </script>
 
 <template>
-	<div :class="twMerge('bg-neutral-400 dark:bg-neutral-800 rounded-lg px-2 py-2', props.class)">
+	<div :class="twMerge('bg-neutral-400 dark:bg-neutral-800 rounded-lg p-2', props.class)">
 		<div
 			@click="toggleCollapse"
 			:class="

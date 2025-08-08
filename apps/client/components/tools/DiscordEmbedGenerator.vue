@@ -1,5 +1,16 @@
 <script lang="ts" setup>
-import type { DiscordMessage } from '~/shared/discord';
+import { type DiscordWebhook, type DiscordMessage } from '~/shared/discord';
+
+const discordWebhook = ref<DiscordWebhook>();
+const discordWebhookURLInput = ref<string>('');
+
+const isDiscordWebhookLoading = ref<boolean>(false);
+const discordWebhookTimer = ref<any | null>(null);
+const discordWebhookError = ref<boolean>(false);
+const discordSentKey = ref<number>(0);
+
+const isSenddingMessages = ref<boolean>(false);
+const isSendWithSuccess = ref<boolean>(false);
 
 const discordMessages = ref<DiscordMessage[]>([]);
 
@@ -22,22 +33,180 @@ const handleDeleteMessage = (discord_id: string) => {
 		discordMessages.value.splice(index, 1);
 	}
 };
+
+const handleSendMessages = async () => {
+	if (!discordWebhook.value) return;
+	if (isSenddingMessages.value || isSendWithSuccess.value) return;
+	isSenddingMessages.value = true;
+
+	discordSentKey.value = Date.now();
+
+	const sentStartTime = new Date().getTime();
+
+	for (const message of discordMessages.value) {
+		try {
+			const formattedMessage = {
+				content: message.content || undefined
+			};
+
+			await fetch(discordWebhook.value.url, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(formattedMessage)
+			});
+		} catch (error) {}
+	}
+
+	const sentEndTime = new Date().getTime();
+	const elapsedTime = sentEndTime - sentStartTime;
+
+	if (elapsedTime < 2_000) {
+		await new Promise(resolve => setTimeout(resolve, 2_000 - elapsedTime));
+	}
+
+	discordSentKey.value = Date.now();
+
+	isSenddingMessages.value = false;
+	isSendWithSuccess.value = true;
+
+	setTimeout(() => {
+		isSendWithSuccess.value = false;
+	}, 2_000);
+};
+
+const isValidDiscordWebhookURL = (url: string): boolean => {
+	try {
+		const parsedUrl = new URL(url);
+
+		return (
+			parsedUrl.protocol === 'https:' &&
+			parsedUrl.hostname === 'discord.com' &&
+			parsedUrl.pathname.startsWith('/api/webhooks/')
+		);
+	} catch {
+		return false;
+	}
+};
+
+const loadWebhookData = async (webhook_url: string) => {
+	if (!isValidDiscordWebhookURL(webhook_url)) {
+		discordWebhook.value = undefined;
+		discordWebhookError.value = true;
+
+		return;
+	}
+
+	try {
+		isDiscordWebhookLoading.value = true;
+		discordWebhookError.value = false;
+
+		const response = await fetch(webhook_url, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(res => res.json());
+
+		if (response && response.id) {
+			discordWebhook.value = response as DiscordWebhook;
+		} else {
+			discordWebhook.value = undefined;
+			discordWebhookError.value = true;
+		}
+	} catch (error) {
+		discordWebhook.value = undefined;
+		discordWebhookError.value = true;
+	} finally {
+		isDiscordWebhookLoading.value = false;
+	}
+};
+
+watch(discordWebhookURLInput, (new_value, old_value) => {
+	if (new_value !== old_value) {
+		if (discordWebhookTimer.value) {
+			clearTimeout(discordWebhookTimer.value);
+			discordWebhookTimer.value = null;
+		}
+
+		discordWebhookError.value = false;
+
+		if (new_value.trim() === '') {
+			discordWebhook.value = undefined;
+
+			return;
+		}
+
+		discordWebhookTimer.value = setTimeout(() => {
+			loadWebhookData(new_value);
+
+			discordWebhookTimer.value = null;
+		}, 500);
+	}
+});
 </script>
 
 <template>
 	<div class="flex gap-4">
 		<div class="flex-grow flex flex-col gap-4">
-			<div class="flex flex-col gap-2 max-w-full">
-				<div v-for="(discordMessage, discordMessageI) in discordMessages" :key="discordMessage.id">
-					<DiscordEditor
-						v-model:message="discordMessages[discordMessageI]"
-						:number="discordMessageI + 1"
-						@delete="() => handleDeleteMessage(discordMessage.id)" />
-				</div>
+			<div class="flex flex-col gap-2 bg-neutral-400 dark:bg-neutral-800 rounded-lg p-2">
+				<InputsText
+					label="Webhook URL"
+					placeholder="https://discord.com/api/webhooks/..."
+					v-model="discordWebhookURLInput"
+					:disabled="isDiscordWebhookLoading" />
+
+				<Transition name="transition_fade_200" mode="out-in">
+					<div v-if="discordWebhook && !isDiscordWebhookLoading && !discordWebhookTimer">
+						<div class="flex justify-between items-center">
+							<div class="w-64 max-w-64">
+								<DiscordWebhook :webhook="discordWebhook" />
+							</div>
+
+							<Button :theme="isSendWithSuccess ? 'green' : 'primary'" @click="handleSendMessages">
+								<Transition name="transition_fade_200" mode="out-in">
+									<span v-if="isSenddingMessages" class="flex items-center text-2xl">
+										<Icon :key="discordSentKey.toString" name="line-md:uploading-loop" />
+									</span>
+									<span v-else-if="isSendWithSuccess" class="flex items-center text-2xl">
+										<Icon :key="discordSentKey.toString" name="line-md:emoji-grin-filled" />
+									</span>
+									<span v-else class="flex items-center gap-2">
+										<Icon name="jam:paper-plane-f" /> Send
+									</span>
+								</Transition>
+							</Button>
+						</div>
+					</div>
+					<div
+						v-else-if="isDiscordWebhookLoading || discordWebhookTimer"
+						class="flex items-center px-2 gap-2">
+						<Icon name="svg-spinners:3-dots-bounce" />
+						<p>Loading webhook data...</p>
+					</div>
+					<div v-else-if="discordWebhookError" class="flex items-center px-2 gap-2 text-red-500">
+						<Icon name="mdi:alert-circle" />
+						<p>Invalid or no webhook data found.</p>
+					</div>
+				</Transition>
 			</div>
 
-			<div>
-				<Button @click="handleAddNewMessage" theme="primary"><Icon name="mdi:plus" /> Add New Message</Button>
+			<div class="flex flex-col gap-4">
+				<div class="flex flex-col gap-2 max-w-full">
+					<div v-for="(discordMessage, discordMessageI) in discordMessages" :key="discordMessage.id">
+						<DiscordEditor
+							v-model:message="discordMessages[discordMessageI]"
+							:number="discordMessageI + 1"
+							@delete="() => handleDeleteMessage(discordMessage.id)" />
+					</div>
+				</div>
+
+				<div>
+					<Button @click="handleAddNewMessage" theme="primary">
+						<Icon name="mdi:plus" /> Add New Message
+					</Button>
+				</div>
 			</div>
 		</div>
 
