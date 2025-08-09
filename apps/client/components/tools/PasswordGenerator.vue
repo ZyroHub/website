@@ -72,7 +72,7 @@ onMounted(() => {
 <template>
 	<div>
 		<InputsProvider :form="form">
-			<div class="flex gap-4">
+			<div class="flex gap-4 flex-col md:flex-row">
 				<InputsSlider
 					:label="t('components.tools.password_generator.settings.size')"
 					name="size"
@@ -83,7 +83,7 @@ onMounted(() => {
 				<InputsText
 					:label="t('components.tools.password_generator.settings.ignore')"
 					name="ignore"
-					class="max-w-48" />
+					class="max-w-full md:max-w-48" />
 			</div>
 
 			<div class="flex flex-col gap-3 mt-4">
