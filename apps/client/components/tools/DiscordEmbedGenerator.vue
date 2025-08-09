@@ -194,6 +194,12 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 
 <template>
 	<div class="flex gap-4">
+		<div class="absolute max-w-0 max-h-0 opacity-0 overflow-hidden">
+			<Icon name="line-md:uploading-loop" />
+			<Icon name="line-md:emoji-grin-filled" />
+			<Icon name="line-md:emoji-cry-filled" />
+		</div>
+
 		<div class="flex-grow flex flex-col gap-4">
 			<div class="flex flex-col gap-2 bg-neutral-400 dark:bg-neutral-800 rounded-lg p-2">
 				<InputsText
@@ -211,7 +217,8 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 
 							<Button
 								:theme="isSendWithSuccess ? 'green' : isSendWithError ? 'red' : 'primary'"
-								@click="handleSendMessages">
+								@click="handleSendMessages"
+								class="!h-10">
 								<Transition name="transition_fade_200" mode="out-in">
 									<span v-if="isSenddingMessages" class="flex items-center text-2xl">
 										<Icon :key="discordSentKey.toString" name="line-md:uploading-loop" />

@@ -5,7 +5,11 @@ const props = defineProps<{
 	webhook: DiscordWebhook;
 }>();
 
-const webhookAvatar = computed(() => props.webhook.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png');
+const webhookAvatar = computed(() =>
+	props.webhook.avatar
+		? `https://cdn.discordapp.com/avatars/${props.webhook.id}/${props.webhook.avatar}.webp?size=64`
+		: 'https://cdn.discordapp.com/embed/avatars/0.png'
+);
 </script>
 
 <template>
