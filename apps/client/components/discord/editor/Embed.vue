@@ -81,7 +81,7 @@ const handleDelete = () => {
 		<template #default>
 			<div class="flex gap-4 items-end">
 				<div class="flex flex-grow flex-col gap-2">
-					<InputsText v-model="embedTitle" label="Title" />
+					<InputsText v-model="embedTitle" label="Title" :counterMax="256" showCounter />
 					<InputsText v-model="embedURL" label="Title Url" />
 				</div>
 
@@ -90,7 +90,7 @@ const handleDelete = () => {
 				</div>
 			</div>
 
-			<InputsTextArea v-model="embedDescription" label="Description" :rows="3" />
+			<InputsTextArea v-model="embedDescription" label="Description" :rows="3" :counterMax="4096" showCounter />
 
 			<color-picker v-model="embedColor" v-slot="{ color, show }" withHexInput>
 				<div @click="show" class="flex items-center gap-1 w-full">

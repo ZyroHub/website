@@ -7,6 +7,8 @@ const props = defineProps<{
 	placeholder?: string;
 	rows?: number;
 	class?: string;
+	showCounter?: boolean;
+	counterMax?: number;
 	showCopy?: boolean;
 	readonly?: boolean;
 }>();
@@ -57,6 +59,15 @@ const handleCopy = () => {
 						{{ copyText }}
 					</Button>
 				</Transition>
+
+				<div class="w-full">
+					<div class="max-w-max ml-auto">
+						<InputsCharCounter
+							v-if="showCounter"
+							:actual="formInput.inputRef.value?.length || 0"
+							:max="props.counterMax || 0" />
+					</div>
+				</div>
 			</template>
 		</InputsBase>
 	</div>

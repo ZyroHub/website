@@ -23,6 +23,8 @@ const props = defineProps<{
 	class?: HtmlHTMLAttributes['class'];
 	innerClass?: HtmlHTMLAttributes['class'];
 	showCopy?: boolean;
+	showCounter?: boolean;
+	counterMax?: number;
 	prependIcon?: string;
 	prependIconClass?: HtmlHTMLAttributes['class'];
 	appendIcon?: string;
@@ -99,6 +101,15 @@ defineExpose({
 						<Icon v-else name="mdi:content-copy" />
 					</div>
 				</Transition>
+
+				<div class="w-full">
+					<div class="max-w-max ml-auto">
+						<InputsCharCounter
+							v-if="showCounter"
+							:actual="formInput.inputRef.value?.length || 0"
+							:max="props.counterMax || 0" />
+					</div>
+				</div>
 			</template>
 		</InputsBase>
 	</div>

@@ -28,11 +28,15 @@ const authorIconURL = computed({
 <template>
 	<DiscordEditorCollapsable title="Author" collapsed>
 		<template #default>
-			<InputsText v-model="authorName" label="Name" />
+			<div class="flex gap-4 w-full">
+				<div class="w-20 h-20">
+					<DiscordEditorImage />
+				</div>
+
+				<InputsText v-model="authorName" label="Name" class="flex-grow" :counterMax="2048" showCounter />
+			</div>
 
 			<InputsText v-model="authorURL" label="URL" />
-
-			<InputsText v-model="authorIconURL" label="Icon URL" />
 		</template>
 	</DiscordEditorCollapsable>
 </template>

@@ -72,7 +72,7 @@ const handleDeleteEmbed = (embed_id: string) => {
 		</template>
 
 		<template #default>
-			<InputsTextArea v-model="messageContent" :rows="3" />
+			<InputsTextArea v-model="messageContent" :rows="3" :counterMax="2000" showCounter />
 
 			<div v-if="messageModel?.embeds?.length" class="flex flex-col gap-2">
 				<DiscordEditorEmbed
