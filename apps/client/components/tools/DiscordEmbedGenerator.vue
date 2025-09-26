@@ -16,6 +16,16 @@ const isSendWithError = ref<boolean>(false);
 
 const discordMessages = ref<DiscordMessage[]>([]);
 
+const isSubmitable = computed(() => {
+	return (
+		!!discordWebhook.value &&
+		discordMessages.value.length > 0 &&
+		!isSenddingMessages.value &&
+		!isSendWithSuccess.value &&
+		!isSendWithError.value
+	);
+});
+
 const handleAddNewMessage = () => {
 	discordMessages.value.push({
 		id: crypto.randomUUID(),
@@ -37,8 +47,7 @@ const handleDeleteMessage = (discord_id: string) => {
 };
 
 const handleSendMessages = async () => {
-	if (!discordWebhook.value) return;
-	if (isSenddingMessages.value || isSendWithSuccess.value || isSendWithError.value) return;
+	if (!isSubmitable.value) return;
 	isSenddingMessages.value = true;
 
 	discordSentKey.value = Date.now();
@@ -77,7 +86,7 @@ const handleSendMessages = async () => {
 				}))
 			};
 
-			const parsedUrl = new URL(discordWebhook.value.url);
+			const parsedUrl = new URL(discordWebhook.value!.url);
 
 			const sentRes = await fetch(parsedUrl.toString(), {
 				method: 'POST',
@@ -218,6 +227,7 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 							<Button
 								:theme="isSendWithSuccess ? 'green' : isSendWithError ? 'red' : 'primary'"
 								@click="handleSendMessages"
+								:disabled="!isSubmitable"
 								class="!h-10">
 								<Transition name="transition_fade_200" mode="out-in">
 									<span v-if="isSenddingMessages" class="flex items-center text-2xl">
