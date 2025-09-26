@@ -80,7 +80,7 @@ const handleDeleteEmbed = (embed_id: string) => {
 				<div
 					v-for="(error, errorI) in messageModel?.errors || []"
 					:key="errorI"
-					class="flex items-center gap-2 bg-red-100 dark:bg-red-5 00 text-red-800 dark:text-red-100 rounded-md p-2">
+					class="flex items-center gap-2 bg-red-100 dark:bg-red-500 text-red-800 dark:text-red-100 rounded-md p-2">
 					<Icon name="mdi:alert-circle" size="24" />
 					<div>
 						<p v-if="error.message" class="text-sm">
