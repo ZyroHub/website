@@ -63,12 +63,18 @@ export interface DiscordAuthor {
 	avatar?: string;
 }
 
+export interface DiscordError {
+	message?: string;
+	code?: number;
+}
+
 export interface DiscordMessage {
 	id: string;
 	author?: DiscordAuthor;
 	content?: string;
 	embeds?: DiscordEmbed[];
 	components?: DiscordRow[];
+	errors?: DiscordError[];
 }
 
 export interface DiscordWebhook {

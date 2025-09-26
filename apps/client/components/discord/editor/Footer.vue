@@ -21,9 +21,13 @@ const footerIconURL = computed({
 <template>
 	<DiscordEditorCollapsable title="Footer" collapsed>
 		<template #default>
-			<InputsText v-model="footerText" label="Text" />
+			<div class="flex gap-4 w-full">
+				<div class="w-20 h-20">
+					<DiscordEditorImage />
+				</div>
 
-			<InputsText v-model="footerIconURL" label="Icon URL" />
+				<InputsText v-model="footerText" label="Text" class="flex-grow" :counterMax="2048" showCounter />
+			</div>
 		</template>
 	</DiscordEditorCollapsable>
 </template>

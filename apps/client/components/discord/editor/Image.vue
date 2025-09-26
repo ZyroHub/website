@@ -30,7 +30,7 @@ const imageModel = defineModel<string>('image');
 		border-color: var(--black_500);
 
 		&:hover {
-			background-color: var(--black_950);
+			background-color: var(--black_900);
 		}
 	}
 }
@@ -40,7 +40,7 @@ const imageModel = defineModel<string>('image');
 	<div class="w-full h-full">
 		<img v-if="imageModel" class="w-full h-full" :src="imageModel" />
 		<div v-else class="no-image">
-			<Icon name="mdi:image-add" size="40" class="text-neutral-800 dark:text-neutral-400" />
+			<Icon name="mdi:image-add" size="36" class="text-neutral-800 dark:text-neutral-400" />
 		</div>
 	</div>
 </template>

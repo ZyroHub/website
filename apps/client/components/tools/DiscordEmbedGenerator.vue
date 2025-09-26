@@ -16,6 +16,16 @@ const isSendWithError = ref<boolean>(false);
 
 const discordMessages = ref<DiscordMessage[]>([]);
 
+const isSubmitable = computed(() => {
+	return (
+		!!discordWebhook.value &&
+		discordMessages.value.length > 0 &&
+		!isSenddingMessages.value &&
+		!isSendWithSuccess.value &&
+		!isSendWithError.value
+	);
+});
+
 const handleAddNewMessage = () => {
 	discordMessages.value.push({
 		id: crypto.randomUUID(),
@@ -36,14 +46,21 @@ const handleDeleteMessage = (discord_id: string) => {
 	}
 };
 
+const handleClearErrors = () => {
+	for (const message of discordMessages.value) {
+		message.errors = [];
+	}
+};
+
 const handleSendMessages = async () => {
-	if (!discordWebhook.value) return;
-	if (isSenddingMessages.value || isSendWithSuccess.value || isSendWithError.value) return;
+	if (!isSubmitable.value) return;
 	isSenddingMessages.value = true;
 
 	discordSentKey.value = Date.now();
 
 	const sentStartTime = new Date().getTime();
+
+	handleClearErrors();
 
 	let hasError = false;
 
@@ -77,7 +94,7 @@ const handleSendMessages = async () => {
 				}))
 			};
 
-			const parsedUrl = new URL(discordWebhook.value.url);
+			const parsedUrl = new URL(discordWebhook.value!.url);
 
 			const sentRes = await fetch(parsedUrl.toString(), {
 				method: 'POST',
@@ -87,8 +104,19 @@ const handleSendMessages = async () => {
 				body: JSON.stringify(formattedMessage)
 			});
 
+			const sentData = await sentRes.json()?.catch(() => null);
+
 			if (sentRes && sentRes.status !== 204) {
 				hasError = true;
+
+				if (sentData && sentData.message && sentData.code) {
+					discordMessages.value.find(m => m.id === message.id)!.errors = [
+						{
+							message: sentData.message,
+							code: sentData.code
+						}
+					];
+				}
 			}
 		} catch (error) {
 			hasError = true;
@@ -98,8 +126,8 @@ const handleSendMessages = async () => {
 	const sentEndTime = new Date().getTime();
 	const elapsedTime = sentEndTime - sentStartTime;
 
-	if (elapsedTime < 2_000) {
-		await new Promise(resolve => setTimeout(resolve, 2_000 - elapsedTime));
+	if (elapsedTime < 1_000) {
+		await new Promise(resolve => setTimeout(resolve, 1_000 - elapsedTime));
 	}
 
 	discordSentKey.value = Date.now();
@@ -118,7 +146,7 @@ const handleSendMessages = async () => {
 		} else {
 			isSendWithSuccess.value = false;
 		}
-	}, 2_400);
+	}, 1_000);
 };
 
 const isValidDiscordWebhookURL = (url: string): boolean => {
@@ -194,6 +222,12 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 
 <template>
 	<div class="flex gap-4">
+		<div class="absolute max-w-0 max-h-0 opacity-0 overflow-hidden">
+			<Icon name="line-md:uploading-loop" />
+			<Icon name="line-md:emoji-grin-filled" />
+			<Icon name="line-md:emoji-cry-filled" />
+		</div>
+
 		<div class="flex-grow flex flex-col gap-4">
 			<div class="flex flex-col gap-2 bg-neutral-400 dark:bg-neutral-800 rounded-lg p-2">
 				<InputsText
@@ -211,7 +245,9 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 
 							<Button
 								:theme="isSendWithSuccess ? 'green' : isSendWithError ? 'red' : 'primary'"
-								@click="handleSendMessages">
+								@click="handleSendMessages"
+								:disabled="!isSubmitable"
+								class="!h-10">
 								<Transition name="transition_fade_200" mode="out-in">
 									<span v-if="isSenddingMessages" class="flex items-center text-2xl">
 										<Icon :key="discordSentKey.toString" name="line-md:uploading-loop" />

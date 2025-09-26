@@ -11,6 +11,10 @@ const emit = defineEmits<{
 
 const messageModel = defineModel<DiscordMessage>('message');
 
+const hasErrors = computed(() => {
+	return !!messageModel.value?.errors && messageModel.value.errors.length > 0;
+});
+
 const messageContent = computed({
 	get: () => messageModel.value?.content || '',
 	set: (value: string) => {
@@ -62,7 +66,7 @@ const handleDeleteEmbed = (embed_id: string) => {
 </script>
 
 <template>
-	<DiscordEditorCollapsable :title="`Message (${props.number.toString().padStart(2, '0')})`">
+	<DiscordEditorCollapsable :title="`Message (${props.number.toString().padStart(2, '0')})`" :hasWarns="hasErrors">
 		<template #actions>
 			<Icon
 				name="mdi:delete"
@@ -72,7 +76,22 @@ const handleDeleteEmbed = (embed_id: string) => {
 		</template>
 
 		<template #default>
-			<InputsTextArea v-model="messageContent" :rows="3" />
+			<div v-if="hasErrors">
+				<div
+					v-for="(error, errorI) in messageModel?.errors || []"
+					:key="errorI"
+					class="flex items-center gap-2 bg-red-100 dark:bg-red-500 text-red-800 dark:text-red-100 rounded-md p-2">
+					<Icon name="mdi:alert-circle" size="24" />
+					<div>
+						<p v-if="error.message" class="text-sm">
+							{{ error.message || 'An unknown error occurred.' }}
+						</p>
+						<p v-if="error.code" class="font-semibold text-xs">{{ error.code }}</p>
+					</div>
+				</div>
+			</div>
+
+			<InputsTextArea v-model="messageContent" :rows="3" :counterMax="2000" showCounter />
 
 			<div v-if="messageModel?.embeds?.length" class="flex flex-col gap-2">
 				<DiscordEditorEmbed

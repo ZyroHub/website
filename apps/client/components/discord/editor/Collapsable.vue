@@ -6,6 +6,7 @@ const props = defineProps<{
 	class?: string;
 	collapsed?: boolean;
 	headerClass?: string;
+	hasWarns?: boolean;
 }>();
 
 const collapsed = ref<boolean>(props.collapsed ?? false);
@@ -29,8 +30,14 @@ const toggleCollapse = () => {
 
 			<p
 				v-if="props.title"
-				class="flex-grow w-0 truncate text-lg font-semibold select-none text-neutral-950 dark:text-neutral-100">
+				class="flex-grow flex gap-1 items-center w-0 truncate text-lg font-semibold select-none text-neutral-950 dark:text-neutral-100">
 				{{ props.title }}
+
+				<Icon
+					v-if="props.hasWarns"
+					name="mdi:warning-circle"
+					size="20"
+					class="text-red-600 dark:text-red-400" />
 			</p>
 
 			<div class="flex items-center">

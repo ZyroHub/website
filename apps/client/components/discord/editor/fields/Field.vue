@@ -51,14 +51,14 @@ const handleDelete = () => {
 
 		<template #default>
 			<div class="flex items-end justify-between">
-				<InputsText v-model="fieldName" label="Name" class="w-full" />
+				<InputsText v-model="fieldName" label="Name" class="w-full" :counterMax="256" showCounter />
 
 				<div class="px-4">
 					<InputsCheckbox v-model="fieldInline" label="Inline" />
 				</div>
 			</div>
 
-			<InputsTextArea v-model="fieldValue" label="Value" />
+			<InputsTextArea v-model="fieldValue" label="Value" :counterMax="1024" showCounter />
 		</template>
 	</DiscordEditorCollapsable>
 </template>
