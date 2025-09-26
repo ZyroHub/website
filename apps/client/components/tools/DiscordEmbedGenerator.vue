@@ -46,6 +46,12 @@ const handleDeleteMessage = (discord_id: string) => {
 	}
 };
 
+const handleClearErrors = () => {
+	for (const message of discordMessages.value) {
+		message.errors = [];
+	}
+};
+
 const handleSendMessages = async () => {
 	if (!isSubmitable.value) return;
 	isSenddingMessages.value = true;
@@ -53,6 +59,8 @@ const handleSendMessages = async () => {
 	discordSentKey.value = Date.now();
 
 	const sentStartTime = new Date().getTime();
+
+	handleClearErrors();
 
 	let hasError = false;
 
@@ -96,8 +104,19 @@ const handleSendMessages = async () => {
 				body: JSON.stringify(formattedMessage)
 			});
 
+			const sentData = await sentRes.json()?.catch(() => null);
+
 			if (sentRes && sentRes.status !== 204) {
 				hasError = true;
+
+				if (sentData && sentData.message && sentData.code) {
+					discordMessages.value.find(m => m.id === message.id)!.errors = [
+						{
+							message: sentData.message,
+							code: sentData.code
+						}
+					];
+				}
 			}
 		} catch (error) {
 			hasError = true;
@@ -107,8 +126,8 @@ const handleSendMessages = async () => {
 	const sentEndTime = new Date().getTime();
 	const elapsedTime = sentEndTime - sentStartTime;
 
-	if (elapsedTime < 2_000) {
-		await new Promise(resolve => setTimeout(resolve, 2_000 - elapsedTime));
+	if (elapsedTime < 1_000) {
+		await new Promise(resolve => setTimeout(resolve, 1_000 - elapsedTime));
 	}
 
 	discordSentKey.value = Date.now();
@@ -127,7 +146,7 @@ const handleSendMessages = async () => {
 		} else {
 			isSendWithSuccess.value = false;
 		}
-	}, 2_400);
+	}, 1_000);
 };
 
 const isValidDiscordWebhookURL = (url: string): boolean => {

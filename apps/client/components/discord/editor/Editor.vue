@@ -11,6 +11,10 @@ const emit = defineEmits<{
 
 const messageModel = defineModel<DiscordMessage>('message');
 
+const hasErrors = computed(() => {
+	return !!messageModel.value?.errors && messageModel.value.errors.length > 0;
+});
+
 const messageContent = computed({
 	get: () => messageModel.value?.content || '',
 	set: (value: string) => {
@@ -62,7 +66,7 @@ const handleDeleteEmbed = (embed_id: string) => {
 </script>
 
 <template>
-	<DiscordEditorCollapsable :title="`Message (${props.number.toString().padStart(2, '0')})`">
+	<DiscordEditorCollapsable :title="`Message (${props.number.toString().padStart(2, '0')})`" :hasWarns="hasErrors">
 		<template #actions>
 			<Icon
 				name="mdi:delete"
