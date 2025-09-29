@@ -1,15 +1,14 @@
-import amqp from 'amqplib';
-import { config, Terminal, WorkerId, workersSchemas } from '@zyrohub/toolkit';
-import ansicolor from 'ansicolor';
-
-import { BaseModule } from './Base.js';
-import { RedisModule } from './Redis.js';
-import { MessengerModule } from './Messenger.js';
-
 import { BaseWorkerProgress } from '@/workers/Base.js';
 import { workers } from '@/workers/workers.js';
+import { BaseModule, Terminal } from '@zyrohub/core';
+import { config, WorkerId, workersSchemas } from '@zyrohub/toolkit';
+import amqp from 'amqplib';
+import ansicolor from 'ansicolor';
 
-export class TasksModuleBase extends BaseModule {
+import { MessengerModule } from './Messenger.js';
+import { RedisModule } from './Redis.js';
+
+export class TasksModule extends BaseModule {
 	dependencies = [RedisModule, MessengerModule];
 
 	channel?: amqp.Channel;
@@ -40,16 +39,18 @@ export class TasksModuleBase extends BaseModule {
 		let taskId = '';
 		let workerId: WorkerId | undefined;
 
+		const redisModule = this.core?.getModule(RedisModule);
+
 		try {
 			const content = JSON.parse(message?.content.toString() || '{}');
 			if (!content.id) throw new Error('invalid-task-data');
 			taskId = content.id;
 
-			const queuePosition = await RedisModule.instance?.lpos(config.tasks.redisQueueName, content.id);
+			const queuePosition = await redisModule?.instance?.lpos(config.tasks.redisQueueName, content.id);
 			if (!queuePosition && queuePosition !== 0) throw new Error('task-not-in-queue');
 
-			RedisModule.instance?.lrem(config.tasks.redisQueueName, 0, taskId);
-			RedisModule.instance?.rpush(config.tasks.redisRunningQueueName, taskId);
+			redisModule?.instance?.lrem(config.tasks.redisQueueName, 0, taskId);
+			redisModule?.instance?.rpush(config.tasks.redisRunningQueueName, taskId);
 
 			workerId = content.worker_id as WorkerId;
 			const workerData = workers[workerId];
@@ -73,7 +74,7 @@ export class TasksModuleBase extends BaseModule {
 			if (config.tasks.activeLogs) Terminal.info('TASKS', `Processing task ${ansicolor.cyan(taskId)}...`);
 
 			const updateProgress: BaseWorkerProgress = async (progress_percentage, progress_message) => {
-				const existingTask = await RedisModule.instance?.lpos(config.tasks.redisRunningQueueName, taskId);
+				const existingTask = await redisModule?.instance?.lpos(config.tasks.redisRunningQueueName, taskId);
 
 				if (!existingTask && existingTask !== 0) {
 					if (config.tasks.activeLogs)
@@ -93,7 +94,7 @@ export class TasksModuleBase extends BaseModule {
 
 			const workerResponse = (await workerData.execute(content.worker_data, updateProgress)) || null;
 
-			RedisModule.instance?.lrem(config.tasks.redisRunningQueueName, 0, taskId);
+			redisModule?.instance?.lrem(config.tasks.redisRunningQueueName, 0, taskId);
 
 			if (config.tasks.activeLogs) Terminal.info('TASKS', `Task ${ansicolor.cyan(taskId)} processed!`);
 
@@ -139,12 +140,14 @@ export class TasksModuleBase extends BaseModule {
 	}
 
 	async initHandlers() {
-		if (!MessengerModule.instance) {
-			Terminal.error('TASKS', `Failed to initialize handlers! MessengerModule is not initialized!`);
+		const messengerModule = this.core?.getModule(MessengerModule);
+
+		if (!messengerModule?.instance) {
+			Terminal.warn('TASKS', `${ansicolor.cyan('MessengerModule')} not founded or not initialized...`);
 			return;
 		}
 
-		this.channel = await MessengerModule.instance.createChannel();
+		this.channel = await messengerModule.instance.createChannel();
 		if (!this.channel) {
 			Terminal.error('TASKS', `Failed to initialize handlers! Failed to create channel!`);
 			return;
@@ -162,5 +165,3 @@ export class TasksModuleBase extends BaseModule {
 		Terminal.info('TASKS', `Successfully initialized!`);
 	}
 }
-
-export const TasksModule = new TasksModuleBase();

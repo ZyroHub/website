@@ -1,11 +1,8 @@
-import { Terminal } from '@zyrohub/toolkit';
+import { BaseModule, Terminal } from '@zyrohub/core';
 import amqp from 'amqplib';
 
-import { BaseModule } from './Base.js';
-
-export class MessengerModuleBase extends BaseModule {
+export class MessengerModule extends BaseModule {
 	instance?: amqp.ChannelModel;
-	dependencies = [];
 
 	async init() {
 		this.instance = await amqp.connect(process.env.RABBIT_MQ || 'amqp://localhost');
@@ -17,5 +14,3 @@ export class MessengerModuleBase extends BaseModule {
 		Terminal.info('MESSENGER', 'Successfully connected to the server!');
 	}
 }
-
-export const MessengerModule = new MessengerModuleBase();

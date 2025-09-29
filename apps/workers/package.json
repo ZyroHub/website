@@ -1,11 +1,11 @@
 {
 	"name": "@zyrohub/workers",
-	"main": "./src/core/index.ts",
+	"main": "./src/index.ts",
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"start": "cd ../../ && dotenvx run -f .env -- bun run apps/workers/src/core/index.ts",
-		"dev": "cd ../../ && dotenvx run -f .env.development -- bun run --watch apps/workers/src/core/index.ts"
+		"start": "cd ../../ && dotenvx run -f .env -- bun run apps/workers/src/index.ts",
+		"dev": "cd ../../ && dotenvx run -f .env.development -- bun run --watch apps/workers/src/index.ts"
 	},
 	"keywords": [],
 	"license": "ISC",

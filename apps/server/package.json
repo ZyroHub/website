@@ -1,12 +1,12 @@
 {
 	"name": "@zyrohub/server",
-	"main": "./src/core/index.ts",
-	"types": "./src/core/index.ts",
+	"main": "./src/index.ts",
+	"types": "./src/index.ts",
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"start": "cd ../../ && dotenvx run -f .env -- bun run apps/server/src/core/index.ts",
-		"dev": "cd ../../ && dotenvx run -f .env.development -- bun run --watch apps/server/src/core/index.ts"
+		"start": "cd ../../ && dotenvx run -f .env -- bun run apps/server/src/index.ts",
+		"dev": "cd ../../ && dotenvx run -f .env.development -- bun run --watch apps/server/src/index.ts"
 	},
 	"keywords": [],
 	"dependencies": {
