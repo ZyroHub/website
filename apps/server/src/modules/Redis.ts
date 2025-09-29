@@ -1,11 +1,7 @@
-import { Terminal } from '@zyrohub/toolkit';
+import { BaseModule, Terminal } from '@zyrohub/core';
 import { Redis } from 'ioredis';
 
-import { BaseModule } from './Base.js';
-
-export class RedisModuleBase extends BaseModule {
-	dependencies = [];
-
+export class RedisModule extends BaseModule {
 	instance?: Redis;
 
 	async init() {
@@ -29,5 +25,3 @@ export class RedisModuleBase extends BaseModule {
 		await this.instance.connect();
 	}
 }
-
-export const RedisModule = new RedisModuleBase();

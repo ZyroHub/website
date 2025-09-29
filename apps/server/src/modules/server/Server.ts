@@ -1,21 +1,14 @@
-import ansicolor from 'ansicolor';
-import { config, Terminal } from '@zyrohub/toolkit';
-
-import { Elysia } from 'elysia';
 import { cors } from '@elysiajs/cors';
-
-import { BaseModule } from '../Base.js';
-
-import { RedisModule } from '../Redis.js';
-import { TasksModule } from '../Tasks.js';
+import { BaseModule, Terminal } from '@zyrohub/core';
+import { config } from '@zyrohub/toolkit';
+import ansicolor from 'ansicolor';
+import { Elysia } from 'elysia';
 
 import { HomeController } from '@/handlers/controllers/home.controller.js';
-import { TasksController } from '@/handlers/controllers/tasks.controller.js';
 import { ShortenerController } from '@/handlers/controllers/shortener.controller.js';
+import { TasksController } from '@/handlers/controllers/tasks.controller.js';
 
-export class ServerModuleBase extends BaseModule {
-	dependencies = [RedisModule, TasksModule];
-
+export class ServerModule extends BaseModule {
 	server = new Elysia({
 		websocket: {
 			maxPayloadLength: config.server.socketPayloadLimit
@@ -57,5 +50,3 @@ export class ServerModuleBase extends BaseModule {
 		Terminal.info('SERVER', `Successfully initialized on port: ${ansicolor.cyan(config.server.port)}`);
 	}
 }
-
-export const ServerModule = new ServerModuleBase();

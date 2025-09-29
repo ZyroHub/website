@@ -23,6 +23,7 @@ jobs:
                   script: |
                       cd /home/ubuntu/apps/zyrohub
                       sudo -u ubuntu pm2 stop ZyroHub
+                      git reset --hard
                       git pull
                       sudo -u ubuntu bun install
                       sudo -u ubuntu bun run build

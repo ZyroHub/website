@@ -1,9 +1,12 @@
-import { config, Terminal, WorkerArgs, WorkerId, workersSchemas } from '@zyrohub/toolkit';
+import { coreInstance } from '@/index.js';
+import { config, WorkerArgs, WorkerId, workersSchemas } from '@zyrohub/toolkit';
 import { Channel } from 'amqplib';
 import { Elysia, t } from 'elysia';
-
-import { MessengerModule, TasksModule } from '@/modules/modules.js';
 import { z } from 'zod';
+
+import { MessengerModule } from '@/modules/Messenger.js';
+import { TasksModule } from '@/modules/Tasks.js';
+import { Terminal } from '@zyrohub/core';
 
 export const TasksController = new Elysia({
 	prefix: '/tasks',
@@ -46,6 +49,8 @@ export const TasksController = new Elysia({
 			ws.data.store.tasksCorrelation = new Map<string, string>();
 		},
 		async close(ws) {
+			const tasksModule = coreInstance.actualCore?.getModule(TasksModule);
+
 			Terminal.info('SOCKET', `Disconnected: ${ws.id}`);
 
 			ws.unsubscribe('tasks');
@@ -56,7 +61,7 @@ export const TasksController = new Elysia({
 			ws.data.store.tasksCorrelation?.clear();
 
 			for (const task of tasks) {
-				await TasksModule.cancelTask(task);
+				await tasksModule?.cancelTask(task);
 			}
 
 			if (ws.data.store.receiversChannel) {
@@ -67,6 +72,9 @@ export const TasksController = new Elysia({
 			}
 		},
 		async message(ws, body) {
+			const tasksModule = coreInstance.actualCore?.getModule(TasksModule);
+			const messengerModule = coreInstance.actualCore?.getModule(MessengerModule);
+
 			switch (body.name) {
 				case 'ping':
 					{
@@ -128,8 +136,8 @@ export const TasksController = new Elysia({
 						}
 						workerData = workerParseResponse.data;
 
-						const tasksQueueSize = await TasksModule.getQueueSize();
-						if (!tasksQueueSize.success) {
+						const tasksQueueSize = await tasksModule?.getQueueSize();
+						if (!tasksQueueSize?.success) {
 							ws.send({
 								name: 'task:start:error',
 								content: {
@@ -141,7 +149,7 @@ export const TasksController = new Elysia({
 							return;
 						}
 
-						if (tasksQueueSize.size! >= config.tasks.maxQueueSize) {
+						if ((tasksQueueSize.size || 0) >= config.tasks.maxQueueSize) {
 							ws.send({
 								name: 'task:start:error',
 								content: {
@@ -157,7 +165,7 @@ export const TasksController = new Elysia({
 
 						const correlationId = Bun.randomUUIDv7();
 
-						const receiverChannel = await MessengerModule.instance?.createChannel();
+						const receiverChannel = await messengerModule?.instance?.createChannel();
 						if (!receiverChannel) {
 							ws.send({
 								name: 'task:start:error',
@@ -255,14 +263,14 @@ export const TasksController = new Elysia({
 							}
 						});
 
-						const taskData = await TasksModule.addToQueue({
+						const taskData = await tasksModule?.addToQueue({
 							worker_id: workerId,
 							worker_data: workerData,
 							correlation_id: correlationId,
 							reply_to: receiverChannelQueue.queue
 						});
 
-						if (taskData.success && taskData.task_id) {
+						if (taskData?.success && taskData.task_id) {
 							ws.data.store.tasksCorrelation?.set(taskData.task_id, correlationId);
 							ws.data.store.tasks.push(taskData.task_id);
 
@@ -297,8 +305,8 @@ export const TasksController = new Elysia({
 						const dataParseResponse = await dataParse.safeParseAsync(body.content);
 						if (!dataParseResponse.success) return;
 
-						const taskData = await TasksModule.cancelTask(dataParseResponse.data.task_id);
-						if (taskData.success) {
+						const taskData = await tasksModule?.cancelTask(dataParseResponse.data.task_id);
+						if (taskData?.success) {
 							ws.data.store.tasks.splice(ws.data.store.tasks.indexOf(dataParseResponse.data.task_id), 1);
 
 							const correlationId = ws.data.store.tasksCorrelation?.get(dataParseResponse.data.task_id);
