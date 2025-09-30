@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { WorkerArgs } from '@zyrohub/toolkit';
+import type { WorkerArgs } from '@zyrohub/shared';
 import { z } from 'zod';
 
 const { t } = useI18n();

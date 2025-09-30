@@ -1,4 +1,4 @@
-import type { WorkerId, WorkerResponse } from '@zyrohub/toolkit';
+import type { WorkerId, WorkerResponse } from '@zyrohub/shared';
 import type { Task } from '~/shared/types';
 
 export interface Listeners<T extends WorkerId = any> {

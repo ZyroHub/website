@@ -1,6 +1,6 @@
-import { WorkerArgs, WorkerResponse } from '@zyrohub/toolkit';
-import sharp from 'sharp';
+import { WorkerArgs, WorkerResponse } from '@zyrohub/shared';
 import { filetypemime } from 'magic-bytes.js';
+import sharp from 'sharp';
 
 import { BaseWorker, BaseWorkerProgress } from './Base.js';
 

@@ -1,15 +1,11 @@
-import { WorkerId } from '@zyrohub/toolkit';
+import { WorkerId } from '@zyrohub/shared';
 
 import { BaseWorker } from './Base.js';
-
-import { BcryptGeneratorWorker } from './BcryptGenerator.js';
 import { BcryptCheckerWorker } from './BcryptChecker.js';
-
+import { BcryptGeneratorWorker } from './BcryptGenerator.js';
 import { HashGeneratorWorker } from './HashGenerator.js';
-
 import { ImageConverterWorker } from './ImageConverter.js';
 import { ImagePixelateWorker } from './ImagePixelate.js';
-
 import { UrlShortenerWorker } from './UrlShortener.js';
 
 export const workers: Record<WorkerId, typeof BaseWorker> = {

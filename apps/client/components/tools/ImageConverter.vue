@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { WorkerStorage } from '@zyrohub/toolkit';
+import type { WorkerStorage } from '@zyrohub/shared';
 import { z } from 'zod';
 
 const { t } = useI18n();

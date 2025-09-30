@@ -1,5 +1,5 @@
 import { prisma } from '@zyrohub/database';
-import { config } from '@zyrohub/toolkit';
+import { config } from '@zyrohub/shared';
 import { Elysia } from 'elysia';
 
 export const ShortenerController = new Elysia({

@@ -1,4 +1,4 @@
-import type { WorkerArgs, WorkerId, WorkerStorage } from '@zyrohub/toolkit';
+import type { WorkerArgs, WorkerId, WorkerStorage } from '@zyrohub/shared';
 import type { Task } from '~/shared/types';
 
 export interface UseMultiTaskOptions<T> {

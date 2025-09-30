@@ -1,6 +1,6 @@
 import { cors } from '@elysiajs/cors';
 import { BaseModule, Terminal } from '@zyrohub/core';
-import { config } from '@zyrohub/toolkit';
+import { config } from '@zyrohub/shared';
 import ansicolor from 'ansicolor';
 import { Elysia } from 'elysia';
 

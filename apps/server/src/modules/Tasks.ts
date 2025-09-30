@@ -1,5 +1,5 @@
 import { BaseModule, Terminal } from '@zyrohub/core';
-import { config, TaskData, WorkerArgs, WorkerId } from '@zyrohub/toolkit';
+import { config, TaskData, WorkerArgs, WorkerId } from '@zyrohub/shared';
 import amqp from 'amqplib';
 import ansicolor from 'ansicolor';
 import { randomUUID } from 'crypto';

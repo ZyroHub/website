@@ -1,7 +1,7 @@
-import { WorkerArgs, WorkerResponse } from '@zyrohub/toolkit';
-import sharp from 'sharp';
+import { WorkerArgs, WorkerResponse } from '@zyrohub/shared';
 import { filetypemime } from 'magic-bytes.js';
 import quantize, { type RgbPixel } from 'quantize';
+import sharp from 'sharp';
 
 import { BaseWorker, BaseWorkerProgress } from './Base.js';
 

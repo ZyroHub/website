@@ -1,4 +1,4 @@
-import type { WorkerId, WorkerResponse, WorkerStorage } from '@zyrohub/toolkit';
+import type { WorkerId, WorkerResponse, WorkerStorage } from '@zyrohub/shared';
 
 export enum ToolTagEnum {
 	DEV,

@@ -12,6 +12,6 @@
 	"dependencies": {
 		"@zyrohub/config": "workspace:*",
 		"@zyrohub/database": "workspace:*",
-		"@zyrohub/toolkit": "workspace:*"
+		"@zyrohub/shared": "workspace:*"
 	}
 }

@@ -1,4 +1,4 @@
-import { WorkerArgs, WorkerResponse } from '@zyrohub/toolkit';
+import { WorkerArgs, WorkerResponse } from '@zyrohub/shared';
 
 import { BaseWorker, BaseWorkerProgress } from './Base.js';
 

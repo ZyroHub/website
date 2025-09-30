@@ -12,7 +12,7 @@
 	"dependencies": {
 		"@zyrohub/config": "workspace:*",
 		"@zyrohub/database": "workspace:*",
-		"@zyrohub/toolkit": "workspace:*",
+		"@zyrohub/shared": "workspace:*",
 		"bcrypt": "^5.1.1",
 		"magic-bytes.js": "^1.10.0",
 		"quantize": "^1.0.2",

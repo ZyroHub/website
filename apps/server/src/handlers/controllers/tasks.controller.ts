@@ -1,12 +1,12 @@
 import { coreInstance } from '@/index.js';
-import { config, WorkerArgs, WorkerId, workersSchemas } from '@zyrohub/toolkit';
+import { Terminal } from '@zyrohub/core';
+import { config, WorkerArgs, WorkerId, workersSchemas } from '@zyrohub/shared';
 import { Channel } from 'amqplib';
 import { Elysia, t } from 'elysia';
 import { z } from 'zod';
 
 import { MessengerModule } from '@/modules/Messenger.js';
 import { TasksModule } from '@/modules/Tasks.js';
-import { Terminal } from '@zyrohub/core';
 
 export const TasksController = new Elysia({
 	prefix: '/tasks',
