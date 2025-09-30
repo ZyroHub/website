@@ -1,4 +1,5 @@
-import { BaseModule, Terminal } from '@zyrohub/core';
+import { BaseModule } from '@zyrohub/core';
+import { Terminal } from '@zyrohub/utilities';
 import { Redis } from 'ioredis';
 
 export class RedisModule extends BaseModule {

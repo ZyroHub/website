@@ -1,6 +1,7 @@
 import { cors } from '@elysiajs/cors';
-import { BaseModule, Terminal } from '@zyrohub/core';
+import { BaseModule } from '@zyrohub/core';
 import { config } from '@zyrohub/shared';
+import { Terminal } from '@zyrohub/utilities';
 import ansicolor from 'ansicolor';
 import { Elysia } from 'elysia';
 
@@ -34,7 +35,7 @@ export class ServerModule extends BaseModule {
 				return {
 					success: false,
 					code: 'VALIDATION_ERROR',
-					data: { message: error.validator.Errors(error.value).First().message }
+					data: { message: (error.validator as any).Errors(error.value).First().message }
 				};
 		});
 	}

@@ -1,6 +1,6 @@
 import { coreInstance } from '@/index.js';
-import { Terminal } from '@zyrohub/core';
 import { config, WorkerArgs, WorkerId, workersSchemas } from '@zyrohub/shared';
+import { Terminal } from '@zyrohub/utilities';
 import { Channel } from 'amqplib';
 import { Elysia, t } from 'elysia';
 import { z } from 'zod';

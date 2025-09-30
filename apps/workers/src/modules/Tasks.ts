@@ -1,7 +1,8 @@
 import { BaseWorkerProgress } from '@/workers/Base.js';
 import { workers } from '@/workers/workers.js';
-import { BaseModule, Terminal } from '@zyrohub/core';
+import { BaseModule } from '@zyrohub/core';
 import { config, WorkerId, workersSchemas } from '@zyrohub/shared';
+import { Terminal } from '@zyrohub/utilities';
 import amqp from 'amqplib';
 import ansicolor from 'ansicolor';
 

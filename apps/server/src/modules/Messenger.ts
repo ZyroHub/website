@@ -1,4 +1,5 @@
-import { BaseModule, Terminal } from '@zyrohub/core';
+import { BaseModule } from '@zyrohub/core';
+import { Terminal } from '@zyrohub/utilities';
 import amqp from 'amqplib';
 
 export class MessengerModule extends BaseModule {
