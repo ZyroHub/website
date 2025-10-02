@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { type DiscordWebhook, type DiscordMessage } from '~/shared/discord';
 import { hexColorToDecimal } from '~/shared/colors';
+import { type DiscordWebhook, type DiscordMessage } from '~/shared/discord';
 
 const discordWebhook = ref<DiscordWebhook>();
 const discordWebhookURLInput = ref<string>('');
@@ -49,6 +49,12 @@ const handleDeleteMessage = (discord_id: string) => {
 const handleClearErrors = () => {
 	for (const message of discordMessages.value) {
 		message.errors = [];
+
+		if (message.embeds) {
+			for (const embed of message.embeds) {
+				embed.errors = [];
+			}
+		}
 	}
 };
 
@@ -109,13 +115,25 @@ const handleSendMessages = async () => {
 			if (sentRes && sentRes.status !== 204) {
 				hasError = true;
 
-				if (sentData && sentData.message && sentData.code) {
-					discordMessages.value.find(m => m.id === message.id)!.errors = [
-						{
-							message: sentData.message,
-							code: sentData.code
+				const discordMessage = discordMessages.value.find(m => m.id === message.id);
+
+				if (sentData) {
+					if (sentData.message && sentData.code) {
+						discordMessage!.errors = [
+							{
+								message: sentData.message,
+								code: sentData.code
+							}
+						];
+					}
+
+					if (sentData.embeds) {
+						for (const embedIndex of sentData.embeds) {
+							if (discordMessage?.embeds?.[embedIndex].errors) {
+								discordMessage.embeds[embedIndex].errors = [{}];
+							}
 						}
-					];
+					}
 				}
 			}
 		} catch (error) {
@@ -250,13 +268,13 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 								class="!h-10">
 								<Transition name="transition_fade_200" mode="out-in">
 									<span v-if="isSenddingMessages" class="flex items-center text-2xl">
-										<Icon :key="discordSentKey.toString" name="line-md:uploading-loop" />
+										<Icon :key="discordSentKey.toString()" name="line-md:uploading-loop" />
 									</span>
 									<span v-else-if="isSendWithSuccess" class="flex items-center text-2xl">
-										<Icon :key="discordSentKey.toString" name="line-md:emoji-grin-filled" />
+										<Icon :key="discordSentKey.toString()" name="line-md:emoji-grin-filled" />
 									</span>
 									<span v-else-if="isSendWithError" class="flex items-center text-2xl">
-										<Icon :key="discordSentKey.toString" name="line-md:emoji-cry-filled" />
+										<Icon :key="discordSentKey.toString()" name="line-md:emoji-cry-filled" />
 									</span>
 									<span v-else class="flex items-center gap-2">
 										<Icon name="jam:paper-plane-f" /> Send

@@ -77,18 +77,10 @@ const handleDeleteEmbed = (embed_id: string) => {
 
 		<template #default>
 			<div v-if="hasErrors">
-				<div
+				<DiscordEditorError
 					v-for="(error, errorI) in messageModel?.errors || []"
 					:key="errorI"
-					class="flex items-center gap-2 bg-red-100 dark:bg-red-500 text-red-800 dark:text-red-100 rounded-md p-2">
-					<Icon name="mdi:alert-circle" size="24" />
-					<div>
-						<p v-if="error.message" class="text-sm">
-							{{ error.message || 'An unknown error occurred.' }}
-						</p>
-						<p v-if="error.code" class="font-semibold text-xs">{{ error.code }}</p>
-					</div>
-				</div>
+					:error="error" />
 			</div>
 
 			<InputsTextArea v-model="messageContent" :rows="3" :counterMax="2000" showCounter />

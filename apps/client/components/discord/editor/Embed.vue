@@ -5,11 +5,15 @@ const props = defineProps<{
 	number: number;
 }>();
 
-const embedModel = defineModel<DiscordEmbed>('embed');
-
 const emit = defineEmits<{
 	delete: [];
 }>();
+
+const embedModel = defineModel<DiscordEmbed>('embed');
+
+const hasErrors = computed(() => {
+	return !!embedModel.value?.errors && embedModel.value.errors.length > 0;
+});
 
 const embedColor = computed({
 	get: () => embedModel.value?.color,
@@ -69,7 +73,8 @@ const handleDelete = () => {
 	<DiscordEditorCollapsable
 		:title="`Embed (${props.number.toString().padStart(2, '0')})`"
 		class="bg-neutral-300 dark:bg-neutral-900 b-l-solid"
-		:style="{ borderColor: embedModel?.color?.toString() }">
+		:style="{ borderColor: embedModel?.color?.toString() }"
+		:hasWarns="hasErrors">
 		<template #actions>
 			<Icon
 				name="mdi:delete"
@@ -79,6 +84,13 @@ const handleDelete = () => {
 		</template>
 
 		<template #default>
+			<div v-if="hasErrors">
+				<DiscordEditorError
+					v-for="(error, errorI) in embedModel?.errors || []"
+					:key="errorI.toString()"
+					:error="error" />
+			</div>
+
 			<div class="flex gap-4 items-end">
 				<div class="flex flex-grow flex-col gap-2">
 					<InputsText v-model="embedTitle" label="Title" :counterMax="256" showCounter />

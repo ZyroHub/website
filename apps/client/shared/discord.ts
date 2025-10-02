@@ -35,6 +35,7 @@ export interface DiscordEmbed {
 	thumbnail?: string;
 	author?: DiscordEmbedAuthor;
 	fields?: DiscordEmbedField[];
+	errors?: DiscordError[];
 }
 
 export interface DiscordComponentBase {
