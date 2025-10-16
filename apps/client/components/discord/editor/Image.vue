@@ -1,4 +1,10 @@
 <script lang="ts" setup>
+import { twMerge } from 'tailwind-merge';
+
+const props = defineProps<{
+	class?: string;
+}>();
+
 const imageModel = defineModel<string>('image');
 </script>
 
@@ -37,10 +43,25 @@ const imageModel = defineModel<string>('image');
 </style>
 
 <template>
-	<div class="w-full h-full">
-		<img v-if="imageModel" class="w-full h-full" :src="imageModel" />
-		<div v-else class="no-image">
-			<Icon name="mdi:image-add" size="36" class="text-neutral-800 dark:text-neutral-400" />
-		</div>
-	</div>
+	<Dropdown placement="bottom-start">
+		<template #trigger="{ toggleIsOpen }">
+			<div :class="twMerge('w-full h-full', props.class)" @click="toggleIsOpen">
+				<img v-if="imageModel" class="w-full h-full" :src="imageModel" />
+				<div v-else class="no-image">
+					<Icon name="mdi:image-add" size="36" class="text-neutral-800 dark:text-neutral-400" />
+				</div>
+			</div>
+		</template>
+
+		<template #default>
+			<DropdownItem>
+				<Icon name="mdi:link-variant" size="20" />
+				Add Image From URL
+			</DropdownItem>
+			<DropdownItem>
+				<Icon name="mdi:file-upload" size="20" />
+				Attach Image File
+			</DropdownItem>
+		</template>
+	</Dropdown>
 </template>

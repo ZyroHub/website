@@ -42,8 +42,7 @@ const handleSwitchLocale = (new_locale: any) => {
 			<DropdownItem
 				v-for="localeData in locales"
 				:key="localeData.code"
-				@click="handleSwitchLocale(localeData.code)"
-				class="flex items-center gap-2">
+				@click="handleSwitchLocale(localeData.code)">
 				<Icon size="24" :name="getLocaleFlag(localeData.code)" />
 
 				{{ t(`locales.${localeData.code}`) }}

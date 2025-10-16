@@ -1,9 +1,21 @@
 export type DiscordContainerColor = string;
 
+export interface DiscordAttachmentReference {
+	id?: string;
+	type: 'url' | 'attachment';
+	url?: string;
+}
+
+export interface DiscordAttachment {
+	id: string;
+	placement?: DiscordAttachmentPlacement;
+	name?: string;
+}
+
 export interface DiscordEmbedAuthor {
 	name: string;
 	url?: string;
-	icon_url?: string;
+	icon_url?: DiscordAttachmentReference;
 }
 
 export interface DiscordEmbedField {
@@ -20,7 +32,7 @@ export interface DiscordEmbedGroupedField {
 
 export interface DiscordEmbedFooter {
 	text: string;
-	icon_url?: string;
+	icon_url?: DiscordAttachmentReference;
 }
 
 export interface DiscordEmbed {
@@ -31,8 +43,8 @@ export interface DiscordEmbed {
 	timestamp?: string;
 	color?: DiscordContainerColor;
 	footer?: DiscordEmbedFooter;
-	image?: string;
-	thumbnail?: string;
+	image?: DiscordAttachmentReference;
+	thumbnail?: DiscordAttachmentReference;
 	author?: DiscordEmbedAuthor;
 	fields?: DiscordEmbedField[];
 	errors?: DiscordError[];
@@ -69,10 +81,13 @@ export interface DiscordError {
 	code?: number;
 }
 
+export type DiscordAttachmentPlacement = `embeds[${number}].${'image' | 'thumbnail' | 'author' | 'footer'}`;
+
 export interface DiscordMessage {
 	id: string;
 	author?: DiscordAuthor;
 	content?: string;
+	attachments?: DiscordAttachment[];
 	embeds?: DiscordEmbed[];
 	components?: DiscordRow[];
 	errors?: DiscordError[];

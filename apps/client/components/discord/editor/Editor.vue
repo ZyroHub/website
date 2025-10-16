@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordEmbed, DiscordMessage } from '~/shared/discord';
+import type { DiscordAttachment, DiscordEmbed, DiscordMessage } from '~/shared/discord';
 
 const props = defineProps<{
 	number: number;
@@ -22,6 +22,13 @@ const messageContent = computed({
 	}
 });
 
+const messageAttachments = computed({
+	get: () => messageModel.value?.attachments || [],
+	set: (value: DiscordAttachment[]) => {
+		if (messageModel.value) messageModel.value.attachments = value;
+	}
+});
+
 const handleDelete = () => {
 	emit('delete');
 };
@@ -34,16 +41,12 @@ const handleAddNewEmbed = () => {
 		title: '',
 		description: '',
 		color: '#ffb29a',
-		image: '',
-		thumbnail: '',
 		author: {
-			name: '',
-			icon_url: ''
+			name: ''
 		},
 		url: '',
 		footer: {
-			text: '',
-			icon_url: ''
+			text: ''
 		},
 		fields: []
 	};
@@ -84,6 +87,8 @@ const handleDeleteEmbed = (embed_id: string) => {
 			</div>
 
 			<InputsTextArea v-model="messageContent" :rows="3" :counterMax="2000" showCounter />
+
+			<DiscordEditorAttachments v-model:attachments="messageAttachments" />
 
 			<div v-if="messageModel?.embeds?.length" class="flex flex-col gap-2">
 				<DiscordEditorEmbed

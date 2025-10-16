@@ -1,4 +1,7 @@
 .dropdown-item {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
 	padding: 0.5rem 0.6rem;
 	color: var(--neutral_50);
 	max-width: 100%;

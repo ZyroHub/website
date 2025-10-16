@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordEmbed, DiscordEmbedAuthor, DiscordEmbedField, DiscordEmbedFooter } from '~/shared/discord';
+import type { DiscordEmbed, DiscordEmbedAuthor, DiscordEmbedFooter } from '~/shared/discord';
 
 const props = defineProps<{
 	number: number;
@@ -44,7 +44,7 @@ const embedDescription = computed({
 });
 
 const embedAuthor = computed({
-	get: () => embedModel.value?.author || { name: '', icon_url: '', url: '' },
+	get: () => embedModel.value?.author || { name: '', url: '' },
 	set: (value: DiscordEmbedAuthor) => {
 		if (embedModel.value) embedModel.value.author = value;
 	}
@@ -58,7 +58,7 @@ const embedFields = computed({
 });
 
 const embedFooter = computed({
-	get: () => embedModel.value?.footer || { text: '', icon_url: '' },
+	get: () => embedModel.value?.footer || { text: '' },
 	set: (value: DiscordEmbedFooter) => {
 		if (embedModel.value) embedModel.value.footer = value;
 	}
@@ -97,9 +97,7 @@ const handleDelete = () => {
 					<InputsText v-model="embedURL" label="Title Url" />
 				</div>
 
-				<div class="w-32 h-32">
-					<DiscordEditorImage />
-				</div>
+				<DiscordEditorImage class="w-32 h-32" />
 			</div>
 
 			<InputsTextArea v-model="embedDescription" label="Description" :rows="3" :counterMax="4096" showCounter />
@@ -116,9 +114,7 @@ const handleDelete = () => {
 				</div>
 			</color-picker>
 
-			<div class="w-full h-32">
-				<DiscordEditorImage />
-			</div>
+			<DiscordEditorImage class="w-full h-32" />
 
 			<DiscordEditorAuthor v-model:author="embedAuthor" />
 
