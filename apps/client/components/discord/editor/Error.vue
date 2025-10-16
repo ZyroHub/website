@@ -4,6 +4,8 @@ import type { DiscordError } from '~/shared/discord';
 const props = defineProps<{
 	error: DiscordError;
 }>();
+
+const { t } = useI18n();
 </script>
 
 <template>
@@ -11,7 +13,7 @@ const props = defineProps<{
 		<Icon name="mdi:alert-circle" size="24" />
 		<div>
 			<p class="text-sm">
-				{{ props.error.message || 'An unknown error occurred.' }}
+				{{ props.error.message || t('components.discord.editor.error.unknown') }}
 			</p>
 			<p v-if="props.error.code" class="font-semibold text-xs">{{ props.error.code }}</p>
 		</div>

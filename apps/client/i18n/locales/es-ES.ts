@@ -10,6 +10,13 @@ export default {
 			buy_me_a_coffee: 'Patrocinadores de Buy Me a Coffee',
 			more: 'Ver Todos'
 		},
+		discord: {
+			editor: {
+				error: {
+					unknown: 'Ocurrió un error desconocido.'
+				}
+			}
+		},
 		footer: {
 			copy: 'Derechos de autor © {year} ZyroHub - Todos los derechos reservados.',
 			privacy: 'Política de Privacidad'
