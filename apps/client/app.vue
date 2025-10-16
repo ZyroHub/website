@@ -53,6 +53,8 @@ useSeoMeta({
 			<NuxtPage :transition="{ onBeforeEnter: onTransitionBeforeEnter }" />
 		</div>
 
+		<Donate />
+
 		<Footer v-if="!device.isMobileOrTablet" />
 	</div>
 </template>
