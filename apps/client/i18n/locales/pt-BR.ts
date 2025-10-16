@@ -12,6 +12,9 @@ export default {
 		},
 		discord: {
 			editor: {
+				attachments: {
+					no_attachments: 'Nenhum arquivo anexado.'
+				},
 				error: {
 					unknown: 'Ocorreu um erro desconhecido.'
 				}
