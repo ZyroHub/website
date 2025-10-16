@@ -1,8 +1,8 @@
 <script lang="ts" setup>
+import DOMPurify from 'isomorphic-dompurify';
 import MarkdownIt from 'markdown-it';
 import { twMerge } from 'tailwind-merge';
 import twemoji from 'twemoji';
-import DOMPurify from 'isomorphic-dompurify';
 
 const props = defineProps<{
 	content: string;
@@ -40,7 +40,11 @@ const parseDiscordMarkdown = (text: string) => {
 		.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold">$1</strong>') // Bold
 		.replace(/\*(.*?)\*/g, '<em class="italic">$1</em>') // Italic
 
-		.replace(/^\s*-\s+(.*)$/gm, '<li class="list-disc ml-4">$1</li>'); // Unordered list
+		.replace(/^\s*-\s+(.*)$/gm, '<li class="list-disc ml-4">$1</li>') // Unordered list
+		.replace(
+			/\|\|(.*?)\|\|/g,
+			'<span class="px-1 bg-zinc-700 text-zinc-700 hover:text-zinc-300 transition-colors cursor-pointer rounded-md">$1</span>'
+		); // Spoiler
 };
 
 const parseDiscordMentions = (text: string) => {
