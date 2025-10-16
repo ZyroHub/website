@@ -3,16 +3,27 @@ import type { DiscordEmbed, DiscordEmbedAuthor, DiscordEmbedFooter } from '~/sha
 
 const props = defineProps<{
 	number: number;
+	total: number;
 }>();
 
 const emit = defineEmits<{
 	delete: [];
+	moveUp: [];
+	moveDown: [];
 }>();
 
 const embedModel = defineModel<DiscordEmbed>('embed');
 
 const hasErrors = computed(() => {
 	return !!embedModel.value?.errors && embedModel.value.errors.length > 0;
+});
+
+const canMoveUp = computed(() => {
+	return props.number > 1;
+});
+
+const canMoveDown = computed(() => {
+	return props.number < props.total;
 });
 
 const embedColor = computed({
@@ -67,14 +78,26 @@ const embedFooter = computed({
 const handleDelete = () => {
 	emit('delete');
 };
+
+const handleMoveUp = () => {
+	emit('moveUp');
+};
+
+const handleMoveDown = () => {
+	emit('moveDown');
+};
 </script>
 
 <template>
 	<DiscordEditorCollapsable
-		:title="`Embed (${props.number.toString().padStart(2, '0')})`"
+		:title="`Embed (${props.number.toString().padStart(2, '0')})${embedTitle ? ` - ${embedTitle}` : ''}`"
 		class="bg-neutral-300 dark:bg-neutral-900 b-l-solid"
 		:style="{ borderColor: embedModel?.color?.toString() }"
-		:hasWarns="hasErrors">
+		:hasWarns="hasErrors"
+		:canMoveUp="canMoveUp"
+		:canMoveDown="canMoveDown"
+		@moveUp="handleMoveUp"
+		@moveDown="handleMoveDown">
 		<template #actions>
 			<Icon
 				name="mdi:delete"

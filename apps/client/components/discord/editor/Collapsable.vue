@@ -7,6 +7,13 @@ const props = defineProps<{
 	collapsed?: boolean;
 	headerClass?: string;
 	hasWarns?: boolean;
+	canMoveUp?: boolean;
+	canMoveDown?: boolean;
+}>();
+
+const emit = defineEmits<{
+	moveUp: [];
+	moveDown: [];
 }>();
 
 const collapsed = ref<boolean>(props.collapsed ?? false);
@@ -41,6 +48,20 @@ const toggleCollapse = () => {
 			</p>
 
 			<div class="flex items-center">
+				<Icon
+					v-if="props.canMoveUp"
+					name="mdi:arrow-up"
+					size="20"
+					class="hover:text-primary-700 dark:hover:text-primary-400 cursor-pointer duration-200"
+					@click.stop="$emit('moveUp')" />
+
+				<Icon
+					v-if="props.canMoveDown"
+					name="mdi:arrow-down"
+					size="20"
+					class="hover:text-primary-700 dark:hover:text-primary-400 cursor-pointer duration-200"
+					@click.stop="$emit('moveDown')" />
+
 				<slot name="actions" />
 			</div>
 		</div>

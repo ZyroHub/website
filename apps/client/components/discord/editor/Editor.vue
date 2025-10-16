@@ -66,6 +66,28 @@ const handleDeleteEmbed = (embed_id: string) => {
 		messageModel.value.embeds.splice(index, 1);
 	}
 };
+
+const handleMoveUpEmbed = (embed_id: string) => {
+	if (!messageModel.value || !messageModel.value.embeds) return;
+
+	const index = messageModel.value.embeds.findIndex(embed => embed.id === embed_id);
+	if (index > 0) {
+		const temp = messageModel.value.embeds[index - 1];
+		messageModel.value.embeds[index - 1] = messageModel.value.embeds[index];
+		messageModel.value.embeds[index] = temp;
+	}
+};
+
+const handleMoveDownEmbed = (embed_id: string) => {
+	if (!messageModel.value || !messageModel.value.embeds) return;
+
+	const index = messageModel.value.embeds.findIndex(embed => embed.id === embed_id);
+	if (index !== -1 && index < messageModel.value.embeds.length - 1) {
+		const temp = messageModel.value.embeds[index + 1];
+		messageModel.value.embeds[index + 1] = messageModel.value.embeds[index];
+		messageModel.value.embeds[index] = temp;
+	}
+};
 </script>
 
 <template>
@@ -96,7 +118,10 @@ const handleDeleteEmbed = (embed_id: string) => {
 					:key="embed.id"
 					v-model:embed="messageModel.embeds[embedI]"
 					:number="embedI + 1"
-					@delete="() => handleDeleteEmbed(embed.id)" />
+					:total="messageModel.embeds.length"
+					@delete="() => handleDeleteEmbed(embed.id)"
+					@moveUp="() => handleMoveUpEmbed(embed.id)"
+					@moveDown="() => handleMoveDownEmbed(embed.id)" />
 			</div>
 
 			<div>
