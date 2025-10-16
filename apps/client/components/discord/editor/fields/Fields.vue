@@ -23,6 +23,28 @@ const handleDeleteField = (field_id: string) => {
 		fieldsModel.value?.splice(index, 1);
 	}
 };
+
+const handleMoveUpField = (field_id: string) => {
+	if (!fieldsModel.value) return;
+
+	const index = fieldsModel.value.findIndex(field => field.id === field_id);
+	if (index > 0) {
+		const temp = fieldsModel.value[index - 1];
+		fieldsModel.value[index - 1] = fieldsModel.value[index];
+		fieldsModel.value[index] = temp;
+	}
+};
+
+const handleMoveDownField = (field_id: string) => {
+	if (!fieldsModel.value) return;
+
+	const index = fieldsModel.value.findIndex(field => field.id === field_id);
+	if (index !== -1 && index < fieldsModel.value.length - 1) {
+		const temp = fieldsModel.value[index + 1];
+		fieldsModel.value[index + 1] = fieldsModel.value[index];
+		fieldsModel.value[index] = temp;
+	}
+};
 </script>
 
 <template>
@@ -36,7 +58,10 @@ const handleDeleteField = (field_id: string) => {
 					:key="field.id"
 					v-model:field="fieldsModel[fieldI]"
 					:number="fieldI + 1"
-					@delete="() => handleDeleteField(field.id)" />
+					:total="fieldsModel.length"
+					@delete="() => handleDeleteField(field.id)"
+					@moveUp="() => handleMoveUpField(field.id)"
+					@moveDown="() => handleMoveDownField(field.id)" />
 			</div>
 
 			<div>

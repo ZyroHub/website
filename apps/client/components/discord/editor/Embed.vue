@@ -90,7 +90,7 @@ const handleMoveDown = () => {
 
 <template>
 	<DiscordEditorCollapsable
-		:title="`Embed (${props.number.toString().padStart(2, '0')})${embedTitle ? ` - ${embedTitle}` : ''}`"
+		:title="`Embed (${props.number.toString().padStart(2, '0')})${embedTitle ? ` ~ ${embedTitle}` : ''}`"
 		class="bg-neutral-300 dark:bg-neutral-900 b-l-solid"
 		:style="{ borderColor: embedModel?.color?.toString() }"
 		:hasWarns="hasErrors"

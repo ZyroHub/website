@@ -3,13 +3,24 @@ import type { DiscordEmbedField } from '~/shared/discord';
 
 const props = defineProps<{
 	number: number;
+	total: number;
 }>();
 
 const fieldModel = defineModel<DiscordEmbedField>('field');
 
 const emit = defineEmits<{
 	delete: [];
+	moveUp: [];
+	moveDown: [];
 }>();
+
+const canMoveUp = computed(() => {
+	return props.number > 1;
+});
+
+const canMoveDown = computed(() => {
+	return props.number < props.total;
+});
 
 const fieldName = computed({
 	get: () => fieldModel.value?.name || '',
@@ -35,12 +46,24 @@ const fieldValue = computed({
 const handleDelete = () => {
 	emit('delete');
 };
+
+const handleMoveUp = () => {
+	emit('moveUp');
+};
+
+const handleMoveDown = () => {
+	emit('moveDown');
+};
 </script>
 
 <template>
 	<DiscordEditorCollapsable
 		:title="`Field (${props.number.toString().padStart(2, '0')})${fieldName ? ` ~ ${fieldName}` : ''}`"
-		class="bg-neutral-300 dark:bg-neutral-900">
+		class="bg-neutral-300 dark:bg-neutral-900"
+		:canMoveUp="canMoveUp"
+		:canMoveDown="canMoveDown"
+		@moveUp="handleMoveUp"
+		@moveDown="handleMoveDown">
 		<template #actions>
 			<Icon
 				name="mdi:delete"
