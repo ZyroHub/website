@@ -71,7 +71,7 @@ provide('dropdown', {
 		<div ref="floating" :style="floatingStyles" class="z-100">
 			<Transition name="transition_dropdown_visibility">
 				<div v-if="isOpen" :class="['dropdown-content', props.contentClass]">
-					<slot />
+					<slot :open="handleOpen" :close="handleClose" />
 				</div>
 			</Transition>
 		</div>

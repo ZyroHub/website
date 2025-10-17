@@ -5,20 +5,23 @@ const emit = defineEmits<{
 	click: [event: MouseEvent];
 }>();
 
-const props = defineProps<{
-	class?: HTMLAttributes['class'];
-	active?: boolean;
-}>();
+const props = withDefaults(
+	defineProps<{
+		class?: HTMLAttributes['class'];
+		active?: boolean;
+		autoClose?: boolean;
+	}>(),
+	{
+		autoClose: true
+	}
+);
 
-const dropdown = inject<{
-	close: () => void;
-	open: () => void;
-} | null>('dropdown', null);
+const dropdown = useInjectedDropdown();
 
 const handleClick = (event: MouseEvent) => {
 	emit('click', event);
 
-	dropdown?.close();
+	if (props.autoClose) dropdown?.close();
 };
 </script>
 
