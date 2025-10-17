@@ -50,11 +50,11 @@ const groupedFields = computed(() => groupFields(props.embed.fields || []));
 				</div>
 
 				<div v-if="props.embed.thumbnail">
-					<DiscordThumbnail :src="props.embed.thumbnail" />
+					<DiscordThumbnail :attachment="props.embed.thumbnail" />
 				</div>
 			</div>
 
-			<DiscordImage v-if="props.embed.image" :src="props.embed.image" class="mt-2" />
+			<DiscordImage v-if="props.embed.image" :attachment="props.embed.image" class="mt-2" />
 
 			<DiscordFooter
 				v-if="props.embed.footer || props.embed.timestamp"

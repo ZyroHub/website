@@ -8,6 +8,11 @@ const props = defineProps<{
 	contentClass?: string;
 }>();
 
+const emit = defineEmits<{
+	open: [];
+	close: [];
+}>();
+
 const reference = ref<HTMLElement | null>(null);
 const floating = ref<HTMLElement | null>(null);
 
@@ -33,14 +38,28 @@ const handleOpen = () => {
 };
 
 const handleClickOutside = (event: MouseEvent) => {
-	if (
-		reference.value &&
-		!reference.value.contains(event.target as Node) &&
-		floating.value &&
-		!floating.value.contains(event.target as Node)
-	)
+	const path = event.composedPath ? event.composedPath() : (event as any).path || [];
+
+	const clickedInsideReference =
+		reference.value && (path.includes(reference.value) || reference.value.contains(event.target as Node));
+
+	const clickedInsideFloating =
+		floating.value && (path.includes(floating.value) || floating.value.contains(event.target as Node));
+
+	if (!clickedInsideReference && !clickedInsideFloating) {
 		handleClose();
+	}
 };
+
+watch(isOpen, (newValue, oldValue) => {
+	if (newValue !== oldValue) {
+		if (newValue) {
+			emit('open');
+		} else {
+			emit('close');
+		}
+	}
+});
 
 onMounted(() => {
 	document.addEventListener('click', handleClickOutside);
@@ -52,7 +71,8 @@ onBeforeUnmount(() => {
 
 provide('dropdown', {
 	close: handleClose,
-	open: handleOpen
+	open: handleOpen,
+	isOpen: isOpen
 });
 </script>
 

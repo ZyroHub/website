@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+import type { DiscordAttachmentReference } from '~/shared/discord';
+
 const props = defineProps<{
-	src?: string;
+	attachment?: DiscordAttachmentReference;
 }>();
 </script>
 
 <template>
-	<img :src="props.src" class="w-20 h-20 rounded-md" alt="Thumbnail" loading="lazy" />
+	<img :src="props.attachment?.url" class="w-20 h-20 rounded-md" alt="Thumbnail" loading="lazy" />
 </template>

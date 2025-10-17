@@ -47,6 +47,13 @@ const embedURL = computed({
 	}
 });
 
+const embedThumbnail = computed({
+	get: () => embedModel.value?.thumbnail,
+	set: (value: DiscordEmbed['thumbnail']) => {
+		if (embedModel.value) embedModel.value.thumbnail = value;
+	}
+});
+
 const embedDescription = computed({
 	get: () => embedModel.value?.description || '',
 	set: (value: string) => {
@@ -120,7 +127,7 @@ const handleMoveDown = () => {
 					<InputsText v-model="embedURL" label="Title Url" />
 				</div>
 
-				<DiscordEditorImage class="w-32 h-32" />
+				<DiscordEditorImage class="w-32 h-32" v-model:image="embedThumbnail" />
 			</div>
 
 			<InputsTextArea v-model="embedDescription" label="Description" :rows="3" :counterMax="4096" showCounter />

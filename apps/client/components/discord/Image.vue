@@ -1,9 +1,11 @@
 <script lang="ts" setup>
+import type { DiscordAttachmentReference } from '~/shared/discord';
+
 const props = defineProps<{
-	src?: string;
+	attachment?: DiscordAttachmentReference;
 }>();
 </script>
 
 <template>
-	<img :src="props.src" class="max-w-[400px] max-h-[300px] rounded-md" alt="Large Image" loading="lazy" />
+	<img :src="props.attachment?.url" class="max-w-[400px] max-h-[300px] rounded-md" alt="Large Image" loading="lazy" />
 </template>
