@@ -5,6 +5,7 @@ import type { DiscordAttachmentReference } from '~/shared/discord';
 
 const props = defineProps<{
 	class?: string;
+	selectedClass?: string;
 }>();
 
 const imageModel = defineModel<DiscordAttachmentReference>('image');
@@ -80,9 +81,9 @@ const handleRemoveImage = (close: () => void) => {
 </style>
 
 <template>
-	<Dropdown placement="bottom-start" @close="handleCloseDropdown">
+	<Dropdown placement="bottom-start" @close="handleCloseDropdown" reference-class="flex justify-center">
 		<template #trigger="{ toggleIsOpen }">
-			<div :class="twMerge('w-full h-full', props.class)" @click="toggleIsOpen">
+			<div :class="twMerge('w-full h-full', props.class, hasImage && props.selectedClass)" @click="toggleIsOpen">
 				<img v-if="imageModel" class="w-full h-full rounded-lg" :src="imageModel.url" />
 				<div v-else class="no-image">
 					<Icon name="mdi:image-add" size="36" class="text-neutral-800 dark:text-neutral-400" />
@@ -91,32 +92,38 @@ const handleRemoveImage = (close: () => void) => {
 		</template>
 
 		<template #default="{ close }">
-			<div v-if="addStep === 'home'">
-				<div v-if="!hasImage" class="flex flex-col gap-1">
-					<DropdownItem @click="handleSelectMethod('url')" :auto-close="false">
-						<Icon name="mdi:link-variant" size="20" />
-						Add Image From URL
-					</DropdownItem>
-					<DropdownItem @click="handleSelectMethod('upload')" :auto-close="false">
-						<Icon name="mdi:file-upload" size="20" />
-						Attach Image File
-					</DropdownItem>
+			<Transition name="transition_fade_200" mode="out-in">
+				<div v-if="addStep === 'home'">
+					<div v-if="!hasImage" class="flex flex-col gap-1">
+						<DropdownItem @click="handleSelectMethod('url')" :auto-close="false">
+							<Icon name="mdi:link-variant" size="20" />
+							Add Image From URL
+						</DropdownItem>
+						<DropdownItem @click="handleSelectMethod('upload')" :auto-close="false">
+							<Icon name="mdi:file-upload" size="20" />
+							Attach Image File
+						</DropdownItem>
+					</div>
+					<div v-else>
+						<DropdownItem @click="handleRemoveImage(close)">
+							<Icon name="mdi:delete" size="20" />
+							Remove Image
+						</DropdownItem>
+					</div>
 				</div>
-				<div v-else>
-					<DropdownItem @click="handleRemoveImage(close)">
-						<Icon name="mdi:delete" size="20" />
-						Remove Image
-					</DropdownItem>
-				</div>
-			</div>
-			<div v-else-if="addStep === 'url'">
-				<InputsText v-model="imageURL" label="Image URL" prepend-icon="mdi:link" prepend-icon-class="text-lg" />
+				<div v-else-if="addStep === 'url'">
+					<InputsText
+						v-model="imageURL"
+						label="Image URL"
+						prepend-icon="mdi:link"
+						prepend-icon-class="text-lg" />
 
-				<div class="flex justify-end mt-2 gap-2">
-					<Button @click="addStep = 'home'" theme="gray">Cancel</Button>
-					<Button @click="handleAddUrl(close)" theme="primary" :disabled="!isValidImageURL">Add</Button>
+					<div class="flex justify-end mt-2 gap-2">
+						<Button @click="addStep = 'home'" theme="gray">Cancel</Button>
+						<Button @click="handleAddUrl(close)" theme="primary" :disabled="!isValidImageURL">Add</Button>
+					</div>
 				</div>
-			</div>
+			</Transition>
 		</template>
 	</Dropdown>
 </template>

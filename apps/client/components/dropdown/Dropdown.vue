@@ -6,6 +6,7 @@ const props = defineProps<{
 	placement?: Placement;
 	offset?: number;
 	contentClass?: string;
+	referenceClass?: string;
 }>();
 
 const emit = defineEmits<{
@@ -82,7 +83,7 @@ provide('dropdown', {
 
 <template>
 	<div>
-		<div ref="reference">
+		<div ref="reference" :class="[props.referenceClass]">
 			<slot name="trigger" :toggleIsOpen="toggleIsOpen" :open="handleOpen" :close="handleClose">
 				<button @click="toggleIsOpen">Open dropdown</button>
 			</slot>

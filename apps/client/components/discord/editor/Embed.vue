@@ -127,7 +127,7 @@ const handleMoveDown = () => {
 					<InputsText v-model="embedURL" label="Title Url" />
 				</div>
 
-				<DiscordEditorImage class="w-32 h-32" v-model:image="embedThumbnail" />
+				<DiscordEditorImage class="w-32 h-32" selectedClass="w-max min-w-4" v-model:image="embedThumbnail" />
 			</div>
 
 			<InputsTextArea v-model="embedDescription" label="Description" :rows="3" :counterMax="4096" showCounter />
@@ -144,7 +144,7 @@ const handleMoveDown = () => {
 				</div>
 			</color-picker>
 
-			<DiscordEditorImage class="w-full h-32" />
+			<DiscordEditorImage class="w-full h-32" selectedClass="w-max h-64" />
 
 			<DiscordEditorAuthor v-model:author="embedAuthor" />
 
