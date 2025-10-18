@@ -188,7 +188,15 @@ const handleDelete = () => {
 
 			<DiscordEditorFields v-model:fields="embedFields" />
 
-			<DiscordEditorFooter v-model:footer="embedFooter" />
+			<DiscordEditorFooter
+				v-model:footer="embedFooter"
+				:embedNumber="props.number"
+				:attachments="props.attachments"
+				@addAttachment="attachment => emit('addAttachment', attachment)"
+				@addAttachmentPlacement="
+					(attachment_id, placement) => emit('addAttachmentPlacement', attachment_id, placement)
+				"
+				@removeAttachment="(id, placement) => emit('removeAttachment', id, placement)" />
 		</template>
 	</DiscordEditorCollapsable>
 </template>
