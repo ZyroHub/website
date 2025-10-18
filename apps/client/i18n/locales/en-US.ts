@@ -19,6 +19,21 @@ export default {
 				},
 				error: {
 					unknown: 'An unknown error occurred.'
+				},
+				image: {
+					actions: {
+						url: 'Add Image From URL',
+						upload: 'Attach Image File',
+						select: 'Select Attachment',
+						remove: 'Remove Image',
+						add: 'Add',
+						cancel: 'Cancel'
+					},
+					url: {
+						label: 'Image URL'
+					},
+					awaiting_upload: 'Awaiting file selection...',
+					no_attachments: 'No attachments available.'
 				}
 			}
 		},

@@ -16,6 +16,8 @@ const emit = defineEmits<{
 	removeAttachment: [id: string, placement?: DiscordAttachmentPlacement];
 }>();
 
+const { t } = useI18n();
+
 const imageModel = defineModel<DiscordAttachmentReference>('image');
 
 const hasImage = computed(() => !!imageModel.value);
@@ -164,44 +166,50 @@ onBeforeUnmount(() => {
 					<div v-if="!hasImage" class="flex flex-col gap-1">
 						<DropdownItem @click="handleSelectMethod('url')" :auto-close="false">
 							<Icon name="mdi:link-variant" size="20" />
-							Add Image From URL
+							{{ t('components.discord.editor.image.actions.url') }}
 						</DropdownItem>
 						<DropdownItem @click="handleSelectMethod('upload')" :auto-close="false">
 							<Icon name="mdi:file-upload" size="20" />
-							Attach Image File
+							{{ t('components.discord.editor.image.actions.upload') }}
 						</DropdownItem>
 						<DropdownItem
 							@click="handleSelectMethod('select')"
 							:auto-close="false"
 							:disabled="!props.attachments || props.attachments.length === 0">
 							<Icon name="mdi:image-multiple" size="20" />
-							Select Uploaded Image
+							{{ t('components.discord.editor.image.actions.select') }}
 						</DropdownItem>
 					</div>
 					<div v-else>
 						<DropdownItem @click="handleRemoveImage(close)">
 							<Icon name="mdi:delete" size="20" />
-							Remove Image
+							{{ t('components.discord.editor.image.actions.remove') }}
 						</DropdownItem>
 					</div>
 				</div>
 				<div v-else-if="addStep === 'url'">
 					<InputsText
 						v-model="imageURL"
-						label="Image URL"
+						:label="t('components.discord.editor.image.url.label')"
 						prepend-icon="mdi:link"
 						prepend-icon-class="text-lg" />
 
 					<div class="flex justify-end mt-2 gap-2">
-						<Button @click="addStep = 'home'" theme="gray">Cancel</Button>
-						<Button @click="handleAddUrl(close)" theme="primary" :disabled="!isValidImageURL">Add</Button>
+						<Button @click="addStep = 'home'" theme="gray">
+							{{ t('components.discord.editor.image.actions.cancel') }}
+						</Button>
+
+						<Button @click="handleAddUrl(close)" theme="primary" :disabled="!isValidImageURL">
+							{{ t('components.discord.editor.image.actions.add') }}
+						</Button>
 					</div>
 				</div>
 				<div
 					v-else-if="addStep === 'upload'"
 					class="flex flex-col items-center gap-1 px-2 py-2 text-neutral-50">
 					<Icon name="mdi:file-upload" size="48" />
-					<p class="text-sm">Awaiting file selection...</p>
+
+					<p class="text-sm">{{ t('components.discord.editor.image.awaiting_upload') }}</p>
 				</div>
 				<div v-else-if="addStep === 'select'">
 					<div v-if="props.attachments?.length" class="flex flex-col gap-1 max-h-64 overflow-y-auto">
@@ -222,11 +230,13 @@ onBeforeUnmount(() => {
 					</div>
 					<div v-else class="flex flex-col items-center gap-1 px-2 py-2 text-neutral-50">
 						<Icon name="mdi:folder-open" size="48" />
-						<p class="text-sm">No attachments available.</p>
+						<p class="text-sm">{{ t('components.discord.editor.image.no_attachments') }}</p>
 					</div>
 
 					<div class="flex justify-end mt-2 gap-2">
-						<Button @click="addStep = 'home'" theme="gray">Cancel</Button>
+						<Button @click="addStep = 'home'" theme="gray">
+							{{ t('components.discord.editor.image.actions.cancel') }}
+						</Button>
 					</div>
 				</div>
 			</Transition>

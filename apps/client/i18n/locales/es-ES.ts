@@ -19,6 +19,21 @@ export default {
 				},
 				error: {
 					unknown: 'Ocurrió un error desconocido.'
+				},
+				image: {
+					actions: {
+						url: 'Agregar vía URL',
+						upload: 'Subir Archivo',
+						select: 'Seleccionar Adjunto',
+						remove: 'Eliminar Imagen',
+						add: 'Agregar',
+						cancel: 'Cancelar'
+					},
+					url: {
+						label: 'URL de la Imagen'
+					},
+					awaiting_upload: 'Esperando selección de archivo...',
+					no_attachments: 'No hay archivos adjuntos disponibles.'
 				}
 			}
 		},
