@@ -82,14 +82,14 @@ const handleSendMessages = async () => {
 					footer: embed.footer?.text
 						? {
 								text: embed.footer?.text,
-								icon_url: embed.footer?.icon_url || undefined
+								icon_url: embed.footer?.icon || undefined
 							}
 						: undefined,
 					author: embed.author?.name
 						? {
 								name: embed.author?.name,
 								url: embed.author?.url || undefined,
-								icon_url: embed.author?.icon_url || undefined
+								icon_url: embed.author?.icon || undefined
 							}
 						: undefined,
 					fields: embed.fields?.map(field => ({

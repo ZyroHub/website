@@ -8,7 +8,7 @@ export interface DiscordAttachmentReference {
 
 export interface DiscordAttachment {
 	id: string;
-	placement?: DiscordAttachmentPlacement;
+	placements?: DiscordAttachmentPlacement[];
 	name?: string;
 	file?: File;
 	type: 'image' | 'other';
@@ -18,7 +18,7 @@ export interface DiscordAttachment {
 export interface DiscordEmbedAuthor {
 	name: string;
 	url?: string;
-	icon_url?: DiscordAttachmentReference;
+	icon?: DiscordAttachmentReference;
 }
 
 export interface DiscordEmbedField {
@@ -35,7 +35,7 @@ export interface DiscordEmbedGroupedField {
 
 export interface DiscordEmbedFooter {
 	text: string;
-	icon_url?: DiscordAttachmentReference;
+	icon?: DiscordAttachmentReference;
 }
 
 export interface DiscordEmbed {

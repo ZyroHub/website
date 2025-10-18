@@ -9,7 +9,7 @@ const props = defineProps<{
 <template>
 	<div>
 		<div class="flex items-center">
-			<img v-if="props.author.icon_url" :src="props.author.icon_url" class="w-6 h-6 rounded-full" />
+			<img v-if="props.author.icon?.url" :src="props.author.icon?.url" class="w-6 h-6 rounded-full" />
 
 			<p v-if="props.author.name && !props.author.url" class="text-[14px] text-neutral-50 font-semibold ml-2">
 				{{ props.author.name }}

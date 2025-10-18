@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-import type { DiscordAttachment } from '~/shared/discord';
+import type { DiscordAttachment, DiscordAttachmentPlacement } from '~/shared/discord';
 
 const emit = defineEmits<{
-	addAttachment: [attachment: DiscordAttachment];
+	addAttachment: [attachment: DiscordAttachment, placement?: DiscordAttachmentPlacement];
 	removeAttachment: [id: string];
 }>();
 
@@ -40,7 +40,7 @@ const maxAttachments = ref(10);
 		collapsed>
 		<div v-if="attachmentsModel?.length" class="flex flex-col gap-1">
 			<div v-for="attachment in attachmentsModel" :key="attachment.id" class="flex items-center w-full gap-2">
-				<div>
+				<div class="flex justify-center min-w-20">
 					<div v-if="attachment.type === 'image'">
 						<img
 							:src="attachment.preview_url"
@@ -76,9 +76,9 @@ const maxAttachments = ref(10);
 		</div>
 
 		<div class="flex justify-center mt-1">
-			<Button @click="filePicker.open" theme="primary"
-				><Icon name="mdi:plus" /> {{ t('components.discord.editor.attachments.upload') }}</Button
-			>
+			<Button @click="filePicker.open" theme="primary">
+				<Icon name="mdi:plus" /> {{ t('components.discord.editor.attachments.upload') }}
+			</Button>
 		</div>
 	</DiscordEditorCollapsable>
 </template>

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordAttachment, DiscordEmbed, DiscordMessage } from '~/shared/discord';
+import type { DiscordAttachment, DiscordAttachmentPlacement, DiscordEmbed, DiscordMessage } from '~/shared/discord';
 
 const props = defineProps<{
 	number: number;
@@ -99,39 +99,63 @@ const handleAddAttachment = (attachment: DiscordAttachment) => {
 	messageModel.value.attachments.push(attachment);
 };
 
-const handleRemoveAttachment = (attachment_id: string) => {
+const handleRemoveAttachment = (attachment_id: string, placement?: DiscordAttachmentPlacement) => {
 	if (!messageModel.value || !messageModel.value.attachments) return;
 
 	const attachmentData = messageModel.value.attachments.find(att => att.id === attachment_id);
 
-	if (attachmentData) {
+	const newPlacementsList = attachmentData?.placements || [];
+	if (placement) {
+		if (newPlacementsList) {
+			const placementIndex = newPlacementsList.indexOf(placement);
+
+			if (placementIndex !== -1) {
+				newPlacementsList.splice(placementIndex, 1);
+			}
+		}
+	}
+
+	if (attachmentData && (!placement || (placement && newPlacementsList.length === 0))) {
 		if (attachmentData?.preview_url) {
 			URL.revokeObjectURL(attachmentData.preview_url);
 		}
 
-		if (attachmentData.placement) {
-			const placementMatch = attachmentData.placement.match(
-				/^(?<prefix>embeds)\.(?<index>\d+)\.(?<type>image|thumbnail)$/
-			);
+		if (attachmentData.placements) {
+			for (const attachmentPlacement of attachmentData.placements) {
+				const placementMatch = attachmentPlacement.match(
+					/^(?<prefix>embeds)\.(?<index>\d+)\.(?<type>image|thumbnail|author|footer)$/
+				);
 
-			if (placementMatch && messageModel.value.embeds) {
-				const { index, type } = placementMatch.groups!;
-				const embedIndex = parseInt(index, 10);
+				if (placementMatch && messageModel.value.embeds) {
+					const { index, type } = placementMatch.groups!;
+					const embedIndex = parseInt(index, 10);
 
-				if (embedIndex >= 0 && embedIndex < messageModel.value.embeds.length) {
-					if (type === 'image') {
-						messageModel.value.embeds[embedIndex].image = undefined;
-					} else if (type === 'thumbnail') {
-						messageModel.value.embeds[embedIndex].thumbnail = undefined;
+					if (embedIndex >= 0 && embedIndex < messageModel.value.embeds.length) {
+						if (type === 'image') {
+							messageModel.value.embeds[embedIndex].image = undefined;
+						} else if (type === 'thumbnail') {
+							messageModel.value.embeds[embedIndex].thumbnail = undefined;
+						} else if (type === 'author') {
+							if (messageModel.value.embeds[embedIndex].author) {
+								messageModel.value.embeds[embedIndex].author.icon = undefined;
+							}
+						} else if (type === 'footer') {
+							if (messageModel.value.embeds[embedIndex].footer) {
+								messageModel.value.embeds[embedIndex].footer.icon = undefined;
+							}
+						}
 					}
 				}
 			}
 		}
 	}
 
-	const index = messageModel.value.attachments.findIndex(attachment => attachment.id === attachment_id);
-	if (index !== -1) {
-		messageModel.value.attachments.splice(index, 1);
+	if (!placement || !newPlacementsList.length) {
+		const attachmentIndex = messageModel.value.attachments.findIndex(attachment => attachment.id === attachment_id);
+
+		if (attachmentIndex !== -1) {
+			messageModel.value.attachments.splice(attachmentIndex, 1);
+		}
 	}
 };
 </script>

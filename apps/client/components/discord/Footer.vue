@@ -11,7 +11,7 @@ const props = defineProps<{
 	<div>
 		<div class="flex items-center">
 			<template v-if="props.footer">
-				<img v-if="props.footer.icon_url" :src="props.footer.icon_url" class="w-5 h-5 rounded-full" />
+				<img v-if="props.footer.icon" :src="props.footer.icon" class="w-5 h-5 rounded-full" />
 
 				<p class="text-xs text-neutral-300 font-medium ml-2 max-w-96 break-words overflow-x-hidden">
 					{{ props.footer.text }}

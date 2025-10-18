@@ -11,7 +11,7 @@ const props = defineProps<{
 
 const emit = defineEmits<{
 	addAttachment: [attachment: DiscordAttachment];
-	removeAttachment: [id: string];
+	removeAttachment: [id: string, placement?: DiscordAttachmentPlacement];
 }>();
 
 const imageModel = defineModel<DiscordAttachmentReference>('image');
@@ -31,7 +31,7 @@ const imageFilePicker = useFilePicker({
 			emit('addAttachment', {
 				id: attachmentId,
 				name: file.name,
-				placement: props.placement,
+				placements: props.placement ? [props.placement] : undefined,
 				file,
 				type: 'image',
 				preview_url: fileUrl
@@ -80,7 +80,7 @@ const handleAddUrl = (close: () => void) => {
 
 const handleRemoveImage = (close: () => void) => {
 	if (imageModel.value?.type === 'attachment') {
-		emit('removeAttachment', imageModel.value.id);
+		emit('removeAttachment', imageModel.value.id, props.placement);
 
 		if (imageModel.value.url) {
 			URL.revokeObjectURL(imageModel.value.url);
