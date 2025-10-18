@@ -99,6 +99,22 @@ const handleAddAttachment = (attachment: DiscordAttachment) => {
 	messageModel.value.attachments.push(attachment);
 };
 
+const handleAddAttachmentPlacement = (attachment_id: string, placement: DiscordAttachmentPlacement) => {
+	if (!messageModel.value || !messageModel.value.attachments) return;
+
+	const attachmentData = messageModel.value.attachments.find(att => att.id === attachment_id);
+
+	if (attachmentData) {
+		if (!attachmentData.placements) {
+			attachmentData.placements = [];
+		}
+
+		if (!attachmentData.placements.includes(placement)) {
+			attachmentData.placements.push(placement);
+		}
+	}
+};
+
 const handleRemoveAttachment = (attachment_id: string, placement?: DiscordAttachmentPlacement) => {
 	if (!messageModel.value || !messageModel.value.attachments) return;
 
@@ -192,10 +208,12 @@ const handleRemoveAttachment = (attachment_id: string, placement?: DiscordAttach
 					v-model:embed="messageModel.embeds[embedI]"
 					:number="embedI + 1"
 					:total="messageModel.embeds.length"
+					:attachments="messageModel.attachments || []"
 					@delete="() => handleDeleteEmbed(embed.id)"
 					@moveUp="() => handleMoveUpEmbed(embed.id)"
 					@moveDown="() => handleMoveDownEmbed(embed.id)"
 					@addAttachment="handleAddAttachment"
+					@addAttachmentPlacement="handleAddAttachmentPlacement"
 					@removeAttachment="handleRemoveAttachment" />
 			</div>
 

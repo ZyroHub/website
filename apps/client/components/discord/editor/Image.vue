@@ -5,12 +5,14 @@ import type { DiscordAttachment, DiscordAttachmentPlacement, DiscordAttachmentRe
 
 const props = defineProps<{
 	class?: string;
-	placement?: DiscordAttachmentPlacement;
 	selectedClass?: string;
+	attachments?: DiscordAttachment[];
+	placement?: DiscordAttachmentPlacement;
 }>();
 
 const emit = defineEmits<{
 	addAttachment: [attachment: DiscordAttachment];
+	addAttachmentPlacement: [attachment_id: string, placement: DiscordAttachmentPlacement];
 	removeAttachment: [id: string, placement?: DiscordAttachmentPlacement];
 }>();
 
@@ -50,9 +52,9 @@ const imageURL = ref('');
 
 const isValidImageURL = computed(() => z.string().url().safeParse(imageURL.value).success);
 
-const addStep = ref<'home' | 'url' | 'upload'>('home');
+const addStep = ref<'home' | 'url' | 'upload' | 'select'>('home');
 
-const handleSelectMethod = async (method: 'url' | 'upload') => {
+const handleSelectMethod = async (method: 'url' | 'upload' | 'select') => {
 	addStep.value = method;
 
 	if (method === 'upload') {
@@ -74,6 +76,18 @@ const handleAddUrl = (close: () => void) => {
 		type: 'url',
 		url: imageURL.value
 	};
+
+	close();
+};
+
+const handleSelectFromAttachments = (attachment: DiscordAttachment, close: () => void) => {
+	imageModel.value = {
+		id: attachment.id,
+		type: 'attachment',
+		url: attachment.preview_url || ''
+	};
+
+	if (props.placement) emit('addAttachmentPlacement', attachment.id, props.placement);
 
 	close();
 };
@@ -156,6 +170,13 @@ onBeforeUnmount(() => {
 							<Icon name="mdi:file-upload" size="20" />
 							Attach Image File
 						</DropdownItem>
+						<DropdownItem
+							@click="handleSelectMethod('select')"
+							:auto-close="false"
+							:disabled="!props.attachments || props.attachments.length === 0">
+							<Icon name="mdi:image-multiple" size="20" />
+							Select Uploaded Image
+						</DropdownItem>
 					</div>
 					<div v-else>
 						<DropdownItem @click="handleRemoveImage(close)">
@@ -181,6 +202,32 @@ onBeforeUnmount(() => {
 					class="flex flex-col items-center gap-1 px-2 py-2 text-neutral-50">
 					<Icon name="mdi:file-upload" size="48" />
 					<p class="text-sm">Awaiting file selection...</p>
+				</div>
+				<div v-else-if="addStep === 'select'">
+					<div v-if="props.attachments?.length" class="flex flex-col gap-1 max-h-64 overflow-y-auto">
+						<DropdownItem
+							v-for="attachment in props.attachments"
+							:key="attachment.id"
+							@click="() => handleSelectFromAttachments(attachment, close)"
+							:auto-close="false"
+							class="gap-2">
+							<img
+								v-if="attachment.type === 'image'"
+								:src="attachment.preview_url"
+								class="w-10 h-10 rounded-md object-cover" />
+							<Icon v-else name="mdi:file" size="40" class="text-neutral-600 dark:text-neutral-400" />
+
+							<p class="font-medium truncate">{{ attachment.name }}</p>
+						</DropdownItem>
+					</div>
+					<div v-else class="flex flex-col items-center gap-1 px-2 py-2 text-neutral-50">
+						<Icon name="mdi:folder-open" size="48" />
+						<p class="text-sm">No attachments available.</p>
+					</div>
+
+					<div class="flex justify-end mt-2 gap-2">
+						<Button @click="addStep = 'home'" theme="gray">Cancel</Button>
+					</div>
 				</div>
 			</Transition>
 		</template>

@@ -11,6 +11,7 @@ import type {
 const props = defineProps<{
 	number: number;
 	total: number;
+	attachments: DiscordAttachment[];
 }>();
 
 const emit = defineEmits<{
@@ -18,6 +19,7 @@ const emit = defineEmits<{
 	moveUp: [];
 	moveDown: [];
 	addAttachment: [attachment: DiscordAttachment];
+	addAttachmentPlacement: [attachment_id: string, placement: DiscordAttachmentPlacement];
 	removeAttachment: [id: string, placement?: DiscordAttachmentPlacement];
 }>();
 
@@ -139,8 +141,12 @@ const handleDelete = () => {
 					class="w-32 h-32"
 					selectedClass="w-max min-w-4"
 					v-model:image="embedThumbnail"
+					:attachments="props.attachments"
 					:placement="`embeds.${props.number - 1}.thumbnail`"
 					@addAttachment="attachment => emit('addAttachment', attachment)"
+					@addAttachmentPlacement="
+						(attachment_id, placement) => emit('addAttachmentPlacement', attachment_id, placement)
+					"
 					@removeAttachment="(id, placement) => emit('removeAttachment', id, placement)" />
 			</div>
 
@@ -162,14 +168,22 @@ const handleDelete = () => {
 				class="w-full h-32"
 				selectedClass="w-max h-64"
 				v-model:image="embedImage"
+				:attachments="props.attachments"
 				:placement="`embeds.${props.number - 1}.image`"
 				@addAttachment="attachment => emit('addAttachment', attachment)"
+				@addAttachmentPlacement="
+					(attachment_id, placement) => emit('addAttachmentPlacement', attachment_id, placement)
+				"
 				@removeAttachment="(id, placement) => emit('removeAttachment', id, placement)" />
 
 			<DiscordEditorAuthor
 				v-model:author="embedAuthor"
 				:embedNumber="props.number"
+				:attachments="props.attachments"
 				@addAttachment="attachment => emit('addAttachment', attachment)"
+				@addAttachmentPlacement="
+					(attachment_id, placement) => emit('addAttachmentPlacement', attachment_id, placement)
+				"
 				@removeAttachment="(id, placement) => emit('removeAttachment', id, placement)" />
 
 			<DiscordEditorFields v-model:fields="embedFields" />
