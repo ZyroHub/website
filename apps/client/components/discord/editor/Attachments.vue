@@ -63,20 +63,22 @@ const maxAttachments = ref(10);
 
 					<div class="flex gap-2 mt-1">
 						<Button theme="gray" @click="emit('removeAttachment', attachment.id)">
-							<Icon name="mdi:delete" /> Remove
+							<Icon name="mdi:delete" /> {{ t('components.discord.editor.attachments.remove') }}
 						</Button>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div v-else class="flex items-center justify-center gap-2 p-4 text-neutral-200">
+		<div v-else class="flex items-center justify-center gap-2 p-4 text-neutral-800 dark:text-neutral-200">
 			<Icon name="mdi:file-outline" size="32" />
 
 			<p class="text-base">{{ t('components.discord.editor.attachments.no_attachments') }}</p>
 		</div>
 
 		<div class="flex justify-center mt-1">
-			<Button @click="filePicker.open" theme="primary"><Icon name="mdi:plus" /> Upload File</Button>
+			<Button @click="filePicker.open" theme="primary"
+				><Icon name="mdi:plus" /> {{ t('components.discord.editor.attachments.upload') }}</Button
+			>
 		</div>
 	</DiscordEditorCollapsable>
 </template>

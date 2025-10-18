@@ -13,7 +13,9 @@ export default {
 		discord: {
 			editor: {
 				attachments: {
-					no_attachments: 'No files attached.'
+					no_attachments: 'No files attached.',
+					remove: 'Retirar',
+					upload: 'Subir Archivo'
 				},
 				error: {
 					unknown: 'Ocurrió un error desconocido.'
