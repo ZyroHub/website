@@ -1,6 +1,11 @@
 <script lang="ts" setup>
 import { hexColorToDecimal } from '~/shared/colors';
-import { type DiscordWebhook, type DiscordMessage } from '~/shared/discord';
+import {
+	type DiscordWebhook,
+	type DiscordMessage,
+	getAttachmentReferenceUrl,
+	getAttachmentFileName
+} from '~/shared/discord';
 
 const discordWebhook = ref<DiscordWebhook>();
 const discordWebhookURLInput = ref<string>('');
@@ -72,6 +77,12 @@ const handleSendMessages = async () => {
 
 	for (const message of discordMessages.value) {
 		try {
+			const formData = new FormData();
+
+			for (const attachment of message.attachments || []) {
+				if (attachment.file) formData.append('file', attachment.file, getAttachmentFileName(attachment));
+			}
+
 			const formattedMessage = {
 				content: message.content || undefined,
 				embeds: message.embeds?.map(embed => ({
@@ -79,17 +90,21 @@ const handleSendMessages = async () => {
 					description: embed.description || undefined,
 					url: embed.url || undefined,
 					color: embed.color ? hexColorToDecimal(embed.color) : undefined,
+					image: embed.image ? { url: getAttachmentReferenceUrl(message, embed.image) } : undefined,
+					thumbnail: embed.thumbnail
+						? { url: getAttachmentReferenceUrl(message, embed.thumbnail) }
+						: undefined,
 					footer: embed.footer?.text
 						? {
 								text: embed.footer?.text,
-								icon_url: embed.footer?.icon || undefined
+								icon_url: getAttachmentReferenceUrl(message, embed.footer.icon)
 							}
 						: undefined,
 					author: embed.author?.name
 						? {
 								name: embed.author?.name,
 								url: embed.author?.url || undefined,
-								icon_url: embed.author?.icon || undefined
+								icon_url: getAttachmentReferenceUrl(message, embed.author?.icon)
 							}
 						: undefined,
 					fields: embed.fields?.map(field => ({
@@ -100,19 +115,20 @@ const handleSendMessages = async () => {
 				}))
 			};
 
+			formData.append('payload_json', JSON.stringify(formattedMessage));
+
 			const parsedUrl = new URL(discordWebhook.value!.url);
+
+			parsedUrl.searchParams.append('wait', 'true');
 
 			const sentRes = await fetch(parsedUrl.toString(), {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(formattedMessage)
+				body: formData
 			});
 
 			const sentData = await sentRes.json()?.catch(() => null);
 
-			if (sentRes && sentRes.status !== 204) {
+			if (sentRes && sentRes.status !== 200) {
 				hasError = true;
 
 				const discordMessage = discordMessages.value.find(m => m.id === message.id);

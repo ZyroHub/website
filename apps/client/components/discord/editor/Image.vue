@@ -28,7 +28,7 @@ const imageFilePicker = useFilePicker({
 		const file = files[0];
 
 		if (file) {
-			const attachmentId = crypto.randomUUID();
+			const attachmentId = `${Date.now()}_${Math.floor(Math.random() * 100)}`;
 
 			const fileUrl = URL.createObjectURL(file);
 

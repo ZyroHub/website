@@ -12,7 +12,7 @@ const filePicker = useFilePicker({
 	multiple: true,
 	onFilesAdd: async files => {
 		for (const file of files) {
-			const attachmentId = crypto.randomUUID();
+			const attachmentId = `${Date.now()}_${Math.floor(Math.random() * 100)}`;
 
 			const isImage = file.type.startsWith('image/');
 			const previewUrl = isImage ? URL.createObjectURL(file) : undefined;

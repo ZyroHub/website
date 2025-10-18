@@ -104,6 +104,24 @@ export interface DiscordWebhook {
 	token?: string;
 }
 
+export const getAttachmentFileName = (attachment: DiscordAttachment) => {
+	return attachment.name || (attachment.file ? attachment.file.name : 'unknown') || 'unknown';
+};
+
+export const getAttachmentReferenceUrl = (message: DiscordMessage, attachment?: DiscordAttachmentReference) => {
+	if (!attachment) return undefined;
+
+	if (attachment.type === 'url' && attachment.url) {
+		return attachment.url;
+	} else if (attachment.type === 'attachment') {
+		const foundAttachment = message.attachments?.find(att => att.id === attachment.id);
+
+		return foundAttachment ? `attachment://${getAttachmentFileName(foundAttachment)}` : undefined;
+	}
+
+	return undefined;
+};
+
 export const groupFields = (fields: DiscordEmbedField[]): DiscordEmbedGroupedField[] => {
 	const groupedFields: DiscordEmbedGroupedField[] = [];
 	let currentInlineGroup: DiscordEmbedField[] = [];

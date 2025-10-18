@@ -139,7 +139,7 @@ const handleDelete = () => {
 
 				<DiscordEditorImage
 					class="w-32 h-32"
-					selectedClass="w-max min-w-4"
+					selectedClass="w-max max-w-32 min-w-4"
 					v-model:image="embedThumbnail"
 					:attachments="props.attachments"
 					:placement="`embeds.${props.number - 1}.thumbnail`"
