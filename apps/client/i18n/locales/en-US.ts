@@ -151,20 +151,6 @@ export default {
 					upload: 'Select a File'
 				}
 			},
-			bcrypt_generator: {
-				input: {
-					label: 'Password',
-					placeholder: 'Type your password here...'
-				},
-				rounds: {
-					label: 'Rounds'
-				},
-				generate: 'Generate Hash',
-				output: {
-					label: 'Hash Bcrypt',
-					placeholder: 'Bcrypt generated hash...'
-				}
-			},
 			bcrypt_checker: {
 				password: {
 					label: 'Password',
@@ -182,6 +168,20 @@ export default {
 					error: 'FAILED',
 					valid: 'MATCHED',
 					invalid: 'INVALID MATCH'
+				}
+			},
+			bcrypt_generator: {
+				input: {
+					label: 'Password',
+					placeholder: 'Type your password here...'
+				},
+				rounds: {
+					label: 'Rounds'
+				},
+				generate: 'Generate Hash',
+				output: {
+					label: 'Hash Bcrypt',
+					placeholder: 'Bcrypt generated hash...'
 				}
 			},
 			hash_generator: {

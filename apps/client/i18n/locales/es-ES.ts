@@ -152,20 +152,6 @@ export default {
 					upload: 'Seleccione un Archivo'
 				}
 			},
-			bcrypt_generator: {
-				input: {
-					label: 'Contraseña',
-					placeholder: 'Escriba su contraseña aquí...'
-				},
-				rounds: {
-					label: 'Rondas'
-				},
-				generate: 'Generar Hash',
-				output: {
-					label: 'Hash Bcrypt',
-					placeholder: 'Hash generado por Bcrypt...'
-				}
-			},
 			bcrypt_checker: {
 				password: {
 					label: 'Contraseña',
@@ -183,6 +169,20 @@ export default {
 					error: 'FALLIDO',
 					valid: 'COINCIDE',
 					invalid: 'NO COINCIDE'
+				}
+			},
+			bcrypt_generator: {
+				input: {
+					label: 'Contraseña',
+					placeholder: 'Escriba su contraseña aquí...'
+				},
+				rounds: {
+					label: 'Rondas'
+				},
+				generate: 'Generar Hash',
+				output: {
+					label: 'Hash Bcrypt',
+					placeholder: 'Hash generado por Bcrypt...'
 				}
 			},
 			hash_generator: {
