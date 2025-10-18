@@ -4,11 +4,14 @@ import {
 	type DiscordWebhook,
 	type DiscordMessage,
 	getAttachmentReferenceUrl,
-	getAttachmentFileName
+	getAttachmentFileName,
+	isValidDiscordWebhookURL
 } from '~/shared/discord';
 
 const discordWebhook = ref<DiscordWebhook>();
 const discordWebhookURLInput = ref<string>('');
+
+const selectedTab = ref<string>('preview');
 
 const isDiscordWebhookLoading = ref<boolean>(false);
 const discordWebhookTimer = ref<any | null>(null);
@@ -183,20 +186,6 @@ const handleSendMessages = async () => {
 	}, 1_000);
 };
 
-const isValidDiscordWebhookURL = (url: string): boolean => {
-	try {
-		const parsedUrl = new URL(url);
-
-		return (
-			parsedUrl.protocol === 'https:' &&
-			parsedUrl.hostname === 'discord.com' &&
-			parsedUrl.pathname.startsWith('/api/webhooks/')
-		);
-	} catch {
-		return false;
-	}
-};
-
 const loadWebhookData = async (webhook_url: string) => {
 	if (!isValidDiscordWebhookURL(webhook_url)) {
 		discordWebhook.value = undefined;
@@ -331,22 +320,42 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 		</div>
 
 		<div class="min-w-[40rem] min-h-32 px-4 py-4 bg-[#1a1a1e] rounded-lg">
-			<div class="flex flex-col gap-1">
-				<DiscordMessage
-					v-for="(discordMessage, discordMessageI) in discordMessages"
-					:key="discordMessage.id"
-					:message="discordMessage"
-					:hideUser="discordMessageI > 0" />
+			<div class="flex justify-between">
+				<div>
+					<InputsToggle
+						v-model="selectedTab"
+						:options="[
+							{ label: 'Preview', value: 'preview', icon: 'mdi:eye' },
+							{ label: 'Code', value: 'code', icon: 'mdi:code-tags' }
+						]" />
+				</div>
+
+				<div></div>
 			</div>
 
-			<div
-				v-if="discordMessages.length === 0"
-				class="flex flex-col justify-center items-center w-full h-full px-4 py-4">
-				<Icon name="mdi:discord" size="48" class="text-neutral-50 mb-2" />
+			<div class="mt-4">
+				<Transition name="transition_fade_200" mode="out-in">
+					<div v-if="selectedTab === 'preview'">
+						<div class="flex flex-col gap-1">
+							<DiscordMessage
+								v-for="(discordMessage, discordMessageI) in discordMessages"
+								:key="discordMessage.id"
+								:message="discordMessage"
+								:hideUser="discordMessageI > 0" />
+						</div>
 
-				<p class="text-center text-neutral-50 text-sm max-w-80">
-					No messages to display. Use the form to generate a new Discord message.
-				</p>
+						<div
+							v-if="discordMessages.length === 0"
+							class="flex flex-col justify-center items-center w-full h-full px-4 py-4">
+							<Icon name="mdi:discord" size="48" class="text-neutral-50 mb-2" />
+
+							<p class="text-center text-neutral-50 text-sm max-w-80">
+								No messages to display. Use the form to generate a new Discord message.
+							</p>
+						</div>
+					</div>
+					<div v-else-if="selectedTab === 'code'"></div>
+				</Transition>
 			</div>
 		</div>
 	</div>

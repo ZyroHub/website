@@ -122,6 +122,20 @@ export const getAttachmentReferenceUrl = (message: DiscordMessage, attachment?: 
 	return undefined;
 };
 
+export const isValidDiscordWebhookURL = (url: string): boolean => {
+	try {
+		const parsedUrl = new URL(url);
+
+		return (
+			parsedUrl.protocol === 'https:' &&
+			parsedUrl.hostname === 'discord.com' &&
+			parsedUrl.pathname.startsWith('/api/webhooks/')
+		);
+	} catch {
+		return false;
+	}
+};
+
 export const groupFields = (fields: DiscordEmbedField[]): DiscordEmbedGroupedField[] => {
 	const groupedFields: DiscordEmbedGroupedField[] = [];
 	let currentInlineGroup: DiscordEmbedField[] = [];
