@@ -5,7 +5,7 @@ const props = defineProps<{
 	label?: string;
 	name?: string;
 	class?: HtmlHTMLAttributes['class'];
-	options: { label: string; value: string }[];
+	options: { label: string; value: string; icon?: string }[];
 }>();
 
 const model = defineModel<string>();
@@ -32,7 +32,10 @@ const handleSelect = (value: string) => {
 						:key="option.value"
 						@click="handleSelect(option.value)"
 						:class="['toggle-button', { active: selectedOption && selectedOption.value === option.value }]">
-						<span>{{ option.label }}</span>
+						<span>
+							<Icon v-if="option.icon" :name="option.icon" />
+							{{ option.label }}
+						</span>
 					</button>
 				</div>
 			</template>
