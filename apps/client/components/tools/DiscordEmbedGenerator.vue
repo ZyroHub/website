@@ -8,10 +8,17 @@ import {
 	isValidDiscordWebhookURL
 } from '~/shared/discord';
 
+const { t } = useI18n();
+
 const discordWebhook = ref<DiscordWebhook>();
 const discordWebhookURLInput = ref<string>('');
 
 const selectedTab = ref<string>('preview');
+
+const tabOptions = computed(() => [
+	{ label: t('components.tools.discord_embed_generator.tab.preview'), value: 'preview', icon: 'mdi:eye' },
+	{ label: t('components.tools.discord_embed_generator.tab.code'), value: 'code', icon: 'mdi:code-tags' }
+]);
 
 const isDiscordWebhookLoading = ref<boolean>(false);
 const discordWebhookTimer = ref<any | null>(null);
@@ -254,7 +261,7 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 		<div class="flex-grow flex flex-col gap-4">
 			<div class="flex flex-col gap-2 bg-neutral-400 dark:bg-neutral-800 rounded-lg p-2">
 				<InputsText
-					label="Webhook URL"
+					:label="t('components.tools.discord_embed_generator.webhook.label')"
 					placeholder="https://discord.com/api/webhooks/..."
 					v-model="discordWebhookURLInput"
 					:disabled="isDiscordWebhookLoading" />
@@ -282,7 +289,8 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 										<Icon :key="discordSentKey.toString()" name="line-md:emoji-cry-filled" />
 									</span>
 									<span v-else class="flex items-center gap-2">
-										<Icon name="jam:paper-plane-f" /> Send
+										<Icon name="jam:paper-plane-f" />
+										{{ t('components.tools.discord_embed_generator.send') }}
 									</span>
 								</Transition>
 							</Button>
@@ -292,11 +300,11 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 						v-else-if="isDiscordWebhookLoading || discordWebhookTimer"
 						class="flex items-center px-2 gap-2">
 						<Icon name="svg-spinners:3-dots-bounce" />
-						<p>Loading webhook data...</p>
+						<p>{{ t('components.tools.discord_embed_generator.webhook.loading') }}</p>
 					</div>
 					<div v-else-if="discordWebhookError" class="flex items-center px-2 gap-2 text-red-500">
 						<Icon name="mdi:alert-circle" />
-						<p>Invalid or no webhook data found.</p>
+						<p>{{ t('components.tools.discord_embed_generator.webhook.invalid') }}</p>
 					</div>
 				</Transition>
 			</div>
@@ -313,7 +321,8 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 
 				<div>
 					<Button @click="handleAddNewMessage" theme="primary">
-						<Icon name="mdi:plus" /> Add New Message
+						<Icon name="mdi:plus" /> 
+						{{ t('components.tools.discord_embed_generator.messages.add') }}
 					</Button>
 				</div>
 			</div>
@@ -322,18 +331,13 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 		<div class="min-w-[40rem] min-h-32 px-4 py-4 bg-[#1a1a1e] rounded-lg">
 			<div class="flex justify-between">
 				<div>
-					<InputsToggle
-						v-model="selectedTab"
-						:options="[
-							{ label: 'Preview', value: 'preview', icon: 'mdi:eye' },
-							{ label: 'Code', value: 'code', icon: 'mdi:code-tags' }
-						]" />
+					<InputsToggle v-model="selectedTab" :options="tabOptions" />
 				</div>
 
 				<div></div>
 			</div>
 
-			<div class="mt-4">
+			<div class="mt-6">
 				<Transition name="transition_fade_200" mode="out-in">
 					<div v-if="selectedTab === 'preview'">
 						<div class="flex flex-col gap-1">
@@ -350,7 +354,7 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 							<Icon name="mdi:discord" size="48" class="text-neutral-50 mb-2" />
 
 							<p class="text-center text-neutral-50 text-sm max-w-80">
-								No messages to display. Use the form to generate a new Discord message.
+								{{ t('components.tools.discord_embed_generator.no_message') }}
 							</p>
 						</div>
 					</div>

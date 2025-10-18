@@ -184,6 +184,22 @@ export default {
 					placeholder: 'Bcrypt generated hash...'
 				}
 			},
+			discord_embed_generator: {
+				webhook: {
+					label: 'Webhook URL',
+					loading: 'Loading webhook data...',
+					invalid: 'Invalid or no webhook data found.'
+				},
+				messages: {
+					add: 'Add New Message'
+				},
+				tab: {
+					preview: 'Preview',
+					code: 'Code'
+				},
+				send: 'Send',
+				no_message: 'No messages to display. Use the form to generate a new Discord message.'
+			},
 			hash_generator: {
 				text: {
 					label: 'Text',

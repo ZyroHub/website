@@ -215,7 +215,7 @@ const handleCopyImage = async () => {
 	const rawData = await qrCode.value.getRawData(form.values.value.output_type);
 
 	if (rawData) {
-		const blob = new Blob([rawData], { type: `image/${form.values.value.output_type}` });
+		const blob = new Blob([rawData as any], { type: `image/${form.values.value.output_type}` });
 		const item = new ClipboardItem({ [`image/${form.values.value.output_type}`]: blob });
 
 		navigator.clipboard.write([item]);

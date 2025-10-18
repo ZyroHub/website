@@ -197,6 +197,22 @@ export default {
 					placeholder: 'Hash gerado...'
 				}
 			},
+			discord_embed_generator: {
+				webhook: {
+					label: 'URL do Webhook',
+					loading: 'Carregando dados do webhook...',
+					invalid: 'Dados do webhook inválidos ou não encontrados.'
+				},
+				messages: {
+					add: 'Nova Mensagem'
+				},
+				tab: {
+					preview: 'Visualização',
+					code: 'Código'
+				},
+				send: 'Enviar',
+				no_message: 'Não há mensagens para exibir. Use o formulário para construir uma nova mensagem.'
+			},
 			image_converter: {
 				format: 'Formato',
 				upload: 'Selecione um Arquivo',
