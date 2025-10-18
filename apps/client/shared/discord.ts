@@ -1,7 +1,7 @@
 export type DiscordContainerColor = string;
 
 export interface DiscordAttachmentReference {
-	id?: string;
+	id: string;
 	type: 'url' | 'attachment';
 	url?: string;
 }
@@ -10,6 +10,9 @@ export interface DiscordAttachment {
 	id: string;
 	placement?: DiscordAttachmentPlacement;
 	name?: string;
+	file?: File;
+	type: 'image' | 'other';
+	preview_url?: string;
 }
 
 export interface DiscordEmbedAuthor {
@@ -81,7 +84,7 @@ export interface DiscordError {
 	code?: number;
 }
 
-export type DiscordAttachmentPlacement = `embeds[${number}].${'image' | 'thumbnail' | 'author' | 'footer'}`;
+export type DiscordAttachmentPlacement = `embeds.${number}.${'image' | 'thumbnail' | 'author' | 'footer'}`;
 
 export interface DiscordMessage {
 	id: string;

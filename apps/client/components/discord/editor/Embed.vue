@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordEmbed, DiscordEmbedAuthor, DiscordEmbedFooter } from '~/shared/discord';
+import type { DiscordAttachment, DiscordEmbed, DiscordEmbedAuthor, DiscordEmbedFooter } from '~/shared/discord';
 
 const props = defineProps<{
 	number: number;
@@ -10,6 +10,8 @@ const emit = defineEmits<{
 	delete: [];
 	moveUp: [];
 	moveDown: [];
+	addAttachment: [attachment: DiscordAttachment];
+	removeAttachment: [id: string];
 }>();
 
 const embedModel = defineModel<DiscordEmbed>('embed');
@@ -54,6 +56,13 @@ const embedThumbnail = computed({
 	}
 });
 
+const embedImage = computed({
+	get: () => embedModel.value?.image,
+	set: (value: DiscordEmbed['image']) => {
+		if (embedModel.value) embedModel.value.image = value;
+	}
+});
+
 const embedDescription = computed({
 	get: () => embedModel.value?.description || '',
 	set: (value: string) => {
@@ -85,14 +94,6 @@ const embedFooter = computed({
 const handleDelete = () => {
 	emit('delete');
 };
-
-const handleMoveUp = () => {
-	emit('moveUp');
-};
-
-const handleMoveDown = () => {
-	emit('moveDown');
-};
 </script>
 
 <template>
@@ -103,8 +104,8 @@ const handleMoveDown = () => {
 		:hasWarns="hasErrors"
 		:canMoveUp="canMoveUp"
 		:canMoveDown="canMoveDown"
-		@moveUp="handleMoveUp"
-		@moveDown="handleMoveDown">
+		@moveUp="emit('moveUp')"
+		@moveDown="emit('moveDown')">
 		<template #actions>
 			<Icon
 				name="mdi:delete"
@@ -127,7 +128,13 @@ const handleMoveDown = () => {
 					<InputsText v-model="embedURL" label="Title Url" />
 				</div>
 
-				<DiscordEditorImage class="w-32 h-32" selectedClass="w-max min-w-4" v-model:image="embedThumbnail" />
+				<DiscordEditorImage
+					class="w-32 h-32"
+					selectedClass="w-max min-w-4"
+					v-model:image="embedThumbnail"
+					:placement="`embeds.${props.number - 1}.thumbnail`"
+					@addAttachment="attachment => emit('addAttachment', attachment)"
+					@removeAttachment="id => emit('removeAttachment', id)" />
 			</div>
 
 			<InputsTextArea v-model="embedDescription" label="Description" :rows="3" :counterMax="4096" showCounter />
@@ -144,7 +151,13 @@ const handleMoveDown = () => {
 				</div>
 			</color-picker>
 
-			<DiscordEditorImage class="w-full h-32" selectedClass="w-max h-64" />
+			<DiscordEditorImage
+				class="w-full h-32"
+				selectedClass="w-max h-64"
+				v-model:image="embedImage"
+				:placement="`embeds.${props.number - 1}.image`"
+				@addAttachment="attachment => emit('addAttachment', attachment)"
+				@removeAttachment="id => emit('removeAttachment', id)" />
 
 			<DiscordEditorAuthor v-model:author="embedAuthor" />
 

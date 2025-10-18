@@ -88,6 +88,52 @@ const handleMoveDownEmbed = (embed_id: string) => {
 		messageModel.value.embeds[index] = temp;
 	}
 };
+
+const handleAddAttachment = (attachment: DiscordAttachment) => {
+	if (!messageModel.value) return;
+
+	if (!messageModel.value.attachments) {
+		messageModel.value.attachments = [];
+	}
+
+	messageModel.value.attachments.push(attachment);
+};
+
+const handleRemoveAttachment = (attachment_id: string) => {
+	if (!messageModel.value || !messageModel.value.attachments) return;
+
+	const attachmentData = messageModel.value.attachments.find(att => att.id === attachment_id);
+
+	if (attachmentData) {
+		if (attachmentData?.preview_url) {
+			URL.revokeObjectURL(attachmentData.preview_url);
+		}
+
+		if (attachmentData.placement) {
+			const placementMatch = attachmentData.placement.match(
+				/^(?<prefix>embeds)\.(?<index>\d+)\.(?<type>image|thumbnail)$/
+			);
+
+			if (placementMatch && messageModel.value.embeds) {
+				const { index, type } = placementMatch.groups!;
+				const embedIndex = parseInt(index, 10);
+
+				if (embedIndex >= 0 && embedIndex < messageModel.value.embeds.length) {
+					if (type === 'image') {
+						messageModel.value.embeds[embedIndex].image = undefined;
+					} else if (type === 'thumbnail') {
+						messageModel.value.embeds[embedIndex].thumbnail = undefined;
+					}
+				}
+			}
+		}
+	}
+
+	const index = messageModel.value.attachments.findIndex(attachment => attachment.id === attachment_id);
+	if (index !== -1) {
+		messageModel.value.attachments.splice(index, 1);
+	}
+};
 </script>
 
 <template>
@@ -110,7 +156,10 @@ const handleMoveDownEmbed = (embed_id: string) => {
 
 			<InputsTextArea v-model="messageContent" :rows="3" :counterMax="2000" showCounter />
 
-			<DiscordEditorAttachments v-model:attachments="messageAttachments" />
+			<DiscordEditorAttachments
+				v-model:attachments="messageAttachments"
+				@addAttachment="handleAddAttachment"
+				@removeAttachment="handleRemoveAttachment" />
 
 			<div v-if="messageModel?.embeds?.length" class="flex flex-col gap-2">
 				<DiscordEditorEmbed
@@ -121,11 +170,13 @@ const handleMoveDownEmbed = (embed_id: string) => {
 					:total="messageModel.embeds.length"
 					@delete="() => handleDeleteEmbed(embed.id)"
 					@moveUp="() => handleMoveUpEmbed(embed.id)"
-					@moveDown="() => handleMoveDownEmbed(embed.id)" />
+					@moveDown="() => handleMoveDownEmbed(embed.id)"
+					@addAttachment="handleAddAttachment"
+					@removeAttachment="handleRemoveAttachment" />
 			</div>
 
 			<div>
-				<Button @click="handleAddNewEmbed" theme="primary"> <Icon name="mdi:plus" /> Add New Embed</Button>
+				<Button @click="handleAddNewEmbed" theme="primary"><Icon name="mdi:plus" /> Add New Embed</Button>
 			</div>
 		</template>
 	</DiscordEditorCollapsable>

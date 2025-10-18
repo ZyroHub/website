@@ -1,16 +1,50 @@
 <script lang="ts" setup>
 import { twMerge } from 'tailwind-merge';
 import z from 'zod';
-import type { DiscordAttachmentReference } from '~/shared/discord';
+import type { DiscordAttachment, DiscordAttachmentPlacement, DiscordAttachmentReference } from '~/shared/discord';
 
 const props = defineProps<{
 	class?: string;
+	placement?: DiscordAttachmentPlacement;
 	selectedClass?: string;
+}>();
+
+const emit = defineEmits<{
+	addAttachment: [attachment: DiscordAttachment];
+	removeAttachment: [id: string];
 }>();
 
 const imageModel = defineModel<DiscordAttachmentReference>('image');
 
 const hasImage = computed(() => !!imageModel.value);
+
+const imageFilePicker = useFilePicker({
+	accept: 'image/*',
+	onFilesAdd: async files => {
+		const file = files[0];
+
+		if (file) {
+			const attachmentId = crypto.randomUUID();
+
+			const fileUrl = URL.createObjectURL(file);
+
+			emit('addAttachment', {
+				id: attachmentId,
+				name: file.name,
+				placement: props.placement,
+				file,
+				type: 'image',
+				preview_url: fileUrl
+			});
+
+			imageModel.value = {
+				id: attachmentId,
+				type: 'attachment',
+				url: fileUrl
+			};
+		}
+	}
+});
 
 const imageURL = ref('');
 
@@ -18,8 +52,13 @@ const isValidImageURL = computed(() => z.string().url().safeParse(imageURL.value
 
 const addStep = ref<'home' | 'url' | 'upload'>('home');
 
-const handleSelectMethod = (method: 'url' | 'upload') => {
+const handleSelectMethod = async (method: 'url' | 'upload') => {
 	addStep.value = method;
+
+	if (method === 'upload') {
+		await nextTick();
+		imageFilePicker.open();
+	}
 };
 
 const handleCloseDropdown = () => {
@@ -40,10 +79,24 @@ const handleAddUrl = (close: () => void) => {
 };
 
 const handleRemoveImage = (close: () => void) => {
+	if (imageModel.value?.type === 'attachment') {
+		emit('removeAttachment', imageModel.value.id);
+
+		if (imageModel.value.url) {
+			URL.revokeObjectURL(imageModel.value.url);
+		}
+	}
+
 	imageModel.value = undefined;
 
 	close();
 };
+
+onBeforeUnmount(() => {
+	if (imageModel.value?.type === 'attachment' && imageModel.value.url) {
+		URL.revokeObjectURL(imageModel.value.url);
+	}
+});
 </script>
 
 <style lang="scss" scoped>
@@ -122,6 +175,12 @@ const handleRemoveImage = (close: () => void) => {
 						<Button @click="addStep = 'home'" theme="gray">Cancel</Button>
 						<Button @click="handleAddUrl(close)" theme="primary" :disabled="!isValidImageURL">Add</Button>
 					</div>
+				</div>
+				<div
+					v-else-if="addStep === 'upload'"
+					class="flex flex-col items-center gap-1 px-2 py-2 text-neutral-50">
+					<Icon name="mdi:file-upload" size="48" />
+					<p class="text-sm">Awaiting file selection...</p>
 				</div>
 			</Transition>
 		</template>
