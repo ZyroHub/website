@@ -5,6 +5,7 @@ export default defineNuxtConfig({
 	ssr: true,
 	compatibilityDate: '2024-11-01',
 	devtools: { enabled: false },
+	sourcemap: false,
 	modules: [
 		'@nuxtjs/i18n',
 		'@nuxtjs/sitemap',
@@ -26,9 +27,7 @@ export default defineNuxtConfig({
 	vite: {
 		css: {
 			preprocessorOptions: {
-				scss: {
-					api: 'modern-compiler'
-				}
+				scss: {}
 			}
 		},
 		resolve: {
