@@ -5,7 +5,9 @@ const props = defineProps<{
 	attachments: DiscordAttachment[];
 }>();
 
-const imageAttachments = computed(() => props.attachments.filter(attachment => attachment.type === 'image'));
+const imageAttachments = computed(() =>
+	props.attachments.filter(attachment => attachment.type === 'image' && !attachment.placements?.length)
+);
 const otherAttachments = computed(() => props.attachments.filter(attachment => attachment.type === 'other'));
 </script>
 
