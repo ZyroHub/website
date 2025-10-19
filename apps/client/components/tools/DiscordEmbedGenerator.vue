@@ -314,7 +314,16 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 								v-for="(discordMessage, discordMessageI) in discordMessages"
 								:key="discordMessage.id"
 								:message="discordMessage"
-								:hideUser="discordMessageI > 0" />
+								:hideUser="discordMessageI > 0"
+								:user="
+									discordWebhook?.id
+										? {
+												id: discordWebhook.id,
+												name: discordWebhook.name,
+												avatar: discordWebhook.avatar
+											}
+										: undefined
+								" />
 						</div>
 
 						<div

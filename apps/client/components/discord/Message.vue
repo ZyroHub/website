@@ -4,10 +4,19 @@ import type { DiscordMessage } from '~/shared/discord/discord';
 const props = defineProps<{
 	message: DiscordMessage;
 	hideUser?: boolean;
+	user?: {
+		id?: string;
+		name?: string;
+		avatar?: string;
+	};
 }>();
 
-const userName = computed(() => props.message.author?.name || 'ZyroHub');
-const userAvatar = computed(() => props.message.author?.avatar || '/images/zyro-photo.png');
+const userName = computed(() => props.user?.name || 'ZyroHub');
+const userAvatar = computed(() =>
+	props.user?.avatar
+		? `https://cdn.discordapp.com/avatars/${props.user.id}/${props.user.avatar}.webp?size=64`
+		: '/images/zyro-photo.png'
+);
 </script>
 
 <template>
