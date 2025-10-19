@@ -19,7 +19,7 @@ const filePicker = useFilePicker({
 
 			emit('addAttachment', {
 				id: attachmentId,
-				name: file.name,
+				name: toSlugFileName(file.name),
 				file,
 				type: isImage ? 'image' : 'other',
 				preview_url: previewUrl

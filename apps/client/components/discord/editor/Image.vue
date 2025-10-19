@@ -34,7 +34,7 @@ const imageFilePicker = useFilePicker({
 
 			emit('addAttachment', {
 				id: attachmentId,
-				name: file.name,
+				name: toSlugFileName(file.name),
 				placements: props.placement ? [props.placement] : undefined,
 				file,
 				type: 'image',

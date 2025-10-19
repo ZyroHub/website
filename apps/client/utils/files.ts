@@ -1,3 +1,5 @@
+import { toSlug } from '~/shared/utilities';
+
 export const downloadFile = async (file_name: string, file: string | Blob) => {
 	const fileRes = typeof file === 'string' ? await fetch(file) : null;
 	const fileBlob = typeof file === 'string' ? await fileRes?.blob() : file;
@@ -60,4 +62,17 @@ export const formatFileSize = (size: number) => {
 	if (i === 0) return `${size} ${sizes[i] || ''}`;
 
 	return `${(size / Math.pow(1024, i)).toFixed(2)} ${sizes[i] || ''}`;
+};
+
+export const toSlugFileName = (filename: string) => {
+	const lastDotIndex = filename.lastIndexOf('.');
+
+	if (lastDotIndex === -1) {
+		return toSlug(filename);
+	}
+
+	const namePart = filename.substring(0, lastDotIndex);
+	const extensionPart = filename.substring(lastDotIndex);
+
+	return `${toSlug(namePart)}${extensionPart}`;
 };
