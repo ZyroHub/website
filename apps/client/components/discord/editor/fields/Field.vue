@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordEmbedField } from '~/shared/discord';
+import type { DiscordEmbedField } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	number: number;

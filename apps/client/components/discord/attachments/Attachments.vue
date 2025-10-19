@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordAttachment } from '~/shared/discord';
+import type { DiscordAttachment } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	attachments: DiscordAttachment[];

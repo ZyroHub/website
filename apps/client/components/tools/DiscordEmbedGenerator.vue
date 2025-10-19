@@ -1,12 +1,11 @@
 <script lang="ts" setup>
-import { hexColorToDecimal } from '~/shared/colors';
 import {
 	type DiscordWebhook,
 	type DiscordMessage,
-	getAttachmentReferenceUrl,
 	getAttachmentFileName,
 	isValidDiscordWebhookURL
-} from '~/shared/discord';
+} from '~/shared/discord/discord';
+import { mountDiscordAPICode } from '~/shared/discord/generator';
 
 const { t } = useI18n();
 
@@ -93,37 +92,7 @@ const handleSendMessages = async () => {
 				if (attachment.file) formData.append('file', attachment.file, getAttachmentFileName(attachment));
 			}
 
-			const formattedMessage = {
-				content: message.content || undefined,
-				embeds: message.embeds?.map(embed => ({
-					title: embed.title || undefined,
-					description: embed.description || undefined,
-					url: embed.url || undefined,
-					color: embed.color ? hexColorToDecimal(embed.color) : undefined,
-					image: embed.image ? { url: getAttachmentReferenceUrl(message, embed.image) } : undefined,
-					thumbnail: embed.thumbnail
-						? { url: getAttachmentReferenceUrl(message, embed.thumbnail) }
-						: undefined,
-					footer: embed.footer?.text
-						? {
-								text: embed.footer?.text,
-								icon_url: getAttachmentReferenceUrl(message, embed.footer.icon)
-							}
-						: undefined,
-					author: embed.author?.name
-						? {
-								name: embed.author?.name,
-								url: embed.author?.url || undefined,
-								icon_url: getAttachmentReferenceUrl(message, embed.author?.icon)
-							}
-						: undefined,
-					fields: embed.fields?.map(field => ({
-						name: field.name || undefined,
-						value: field.value || undefined,
-						inline: field.inline || false
-					}))
-				}))
-			};
+			const formattedMessage = mountDiscordAPICode(message);
 
 			formData.append('payload_json', JSON.stringify(formattedMessage));
 
@@ -321,7 +290,7 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 
 				<div>
 					<Button @click="handleAddNewMessage" theme="primary">
-						<Icon name="mdi:plus" /> 
+						<Icon name="mdi:plus" />
 						{{ t('components.tools.discord_embed_generator.messages.add') }}
 					</Button>
 				</div>
@@ -337,9 +306,9 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 				<div></div>
 			</div>
 
-			<div class="mt-6">
+			<div>
 				<Transition name="transition_fade_200" mode="out-in">
-					<div v-if="selectedTab === 'preview'">
+					<div v-if="selectedTab === 'preview'" class="mt-6">
 						<div class="flex flex-col gap-1">
 							<DiscordMessage
 								v-for="(discordMessage, discordMessageI) in discordMessages"
@@ -358,7 +327,9 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 							</p>
 						</div>
 					</div>
-					<div v-else-if="selectedTab === 'code'"></div>
+					<div v-else-if="selectedTab === 'code'" class="mt-4">
+						<DiscordCode :messages="discordMessages" />
+					</div>
 				</Transition>
 			</div>
 		</div>

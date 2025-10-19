@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordWebhook } from '~/shared/discord';
+import type { DiscordWebhook } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	webhook: DiscordWebhook;

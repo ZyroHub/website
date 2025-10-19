@@ -1,7 +1,11 @@
 <script lang="ts" setup>
 import { twMerge } from 'tailwind-merge';
 import z from 'zod';
-import type { DiscordAttachment, DiscordAttachmentPlacement, DiscordAttachmentReference } from '~/shared/discord';
+import type {
+	DiscordAttachment,
+	DiscordAttachmentPlacement,
+	DiscordAttachmentReference
+} from '~/shared/discord/discord';
 
 const props = defineProps<{
 	class?: string;

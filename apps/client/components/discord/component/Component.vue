@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordComponent } from '~/shared/discord';
+import type { DiscordComponent } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	dc_component: DiscordComponent;

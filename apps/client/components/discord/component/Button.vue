@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { twMerge } from 'tailwind-merge';
 import twemoji from 'twemoji';
-import type { DiscordComponentButton } from '~/shared/discord';
+import type { DiscordComponentButton } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	button: DiscordComponentButton;

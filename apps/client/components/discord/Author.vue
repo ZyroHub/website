@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordEmbedAuthor } from '~/shared/discord';
+import type { DiscordEmbedAuthor } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	author: DiscordEmbedAuthor;

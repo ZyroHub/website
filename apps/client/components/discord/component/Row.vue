@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordRow } from '~/shared/discord';
+import type { DiscordRow } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	row: DiscordRow;

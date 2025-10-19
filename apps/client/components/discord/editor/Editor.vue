@@ -1,5 +1,10 @@
 <script lang="ts" setup>
-import type { DiscordAttachment, DiscordAttachmentPlacement, DiscordEmbed, DiscordMessage } from '~/shared/discord';
+import type {
+	DiscordAttachment,
+	DiscordAttachmentPlacement,
+	DiscordEmbed,
+	DiscordMessage
+} from '~/shared/discord/discord';
 
 const props = defineProps<{
 	number: number;

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { twMerge } from 'tailwind-merge';
-import type { DiscordEmbedField } from '~/shared/discord';
+import type { DiscordEmbedField } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	field: DiscordEmbedField;

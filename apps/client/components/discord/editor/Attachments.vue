@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordAttachment, DiscordAttachmentPlacement } from '~/shared/discord';
+import type { DiscordAttachment, DiscordAttachmentPlacement } from '~/shared/discord/discord';
 
 const emit = defineEmits<{
 	addAttachment: [attachment: DiscordAttachment, placement?: DiscordAttachmentPlacement];

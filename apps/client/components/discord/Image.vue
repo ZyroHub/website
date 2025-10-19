@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordAttachmentReference } from '~/shared/discord';
+import type { DiscordAttachmentReference } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	attachment?: DiscordAttachmentReference;

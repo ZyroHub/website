@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordEmbedFooter } from '~/shared/discord';
+import type { DiscordEmbedFooter } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	footer?: DiscordEmbedFooter;

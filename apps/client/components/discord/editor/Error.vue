@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { DiscordError } from '~/shared/discord';
+import type { DiscordError } from '~/shared/discord/discord';
 
 const props = defineProps<{
 	error: DiscordError;

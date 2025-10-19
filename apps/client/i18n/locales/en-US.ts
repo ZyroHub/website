@@ -5,6 +5,12 @@ export default {
 		es: 'Español'
 	},
 	components: {
+		button: {
+			copy: {
+				default: 'Copy',
+				success: 'Copied!'
+			}
+		},
 		contributors: {
 			github: 'GitHub Contributors',
 			buy_me_a_coffee: 'Buy Me a Coffee Supporters',

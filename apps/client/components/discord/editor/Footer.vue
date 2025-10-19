@@ -4,7 +4,7 @@ import type {
 	DiscordAttachmentPlacement,
 	DiscordAttachmentReference,
 	DiscordEmbedFooter
-} from '~/shared/discord';
+} from '~/shared/discord/discord';
 
 const props = defineProps<{
 	embedNumber: number;

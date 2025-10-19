@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { getContrastingColor } from '~/shared/colors';
 import type {
 	DiscordAttachment,
 	DiscordAttachmentPlacement,
@@ -6,7 +7,7 @@ import type {
 	DiscordEmbed,
 	DiscordEmbedAuthor,
 	DiscordEmbedFooter
-} from '~/shared/discord';
+} from '~/shared/discord/discord';
 
 const props = defineProps<{
 	number: number;
@@ -158,7 +159,9 @@ const handleDelete = () => {
 						<Icon name="jam:eyedropper-f" size="20" />
 					</div>
 
-					<div class="flex-grow text-center rounded-md" :style="{ backgroundColor: color.value }">
+					<div
+						class="flex-grow text-center rounded-md"
+						:style="{ backgroundColor: color.value, color: getContrastingColor(color.value) }">
 						{{ color }}
 					</div>
 				</div>
