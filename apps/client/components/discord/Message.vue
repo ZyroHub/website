@@ -30,7 +30,11 @@ const userAvatar = computed(() => props.message.author?.avatar || '/images/zyro-
 					:content="props.message.content"
 					class="-mt-1 max-w-[500px] text-neutral-200" />
 
-				<DiscordAttachments />
+				<div v-if="props.message.attachments?.length" class="mt-1 mb-1">
+					<DiscordAttachments
+						v-if="props.message.attachments"
+						:attachments="props.message.attachments || []" />
+				</div>
 
 				<div class="flex flex-col gap-1">
 					<DiscordEmbed v-for="(embed, embedI) in props.message.embeds" :key="embedI" :embed="embed" />

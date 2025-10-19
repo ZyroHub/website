@@ -51,3 +51,13 @@ export const getFileFromSocketData = (socket_data: { type: string; data: number[
 
 	return new Uint8Array(socket_data.data).buffer;
 };
+
+export const formatFileSize = (size: number) => {
+	const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+	if (size === 0) return '0 B';
+
+	const i = Math.floor(Math.log(size) / Math.log(1024));
+	if (i === 0) return `${size} ${sizes[i] || ''}`;
+
+	return `${(size / Math.pow(1024, i)).toFixed(2)} ${sizes[i] || ''}`;
+};

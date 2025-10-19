@@ -328,7 +328,7 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 			</div>
 		</div>
 
-		<div class="min-w-[40rem] min-h-32 px-4 py-4 bg-[#1a1a1e] rounded-lg">
+		<div class="w-[40rem] min-h-32 px-4 py-4 bg-[#1a1a1e] rounded-lg">
 			<div class="flex justify-between">
 				<div>
 					<InputsToggle v-model="selectedTab" :options="tabOptions" />
