@@ -11,13 +11,20 @@ const otherAttachments = computed(() => props.attachments.filter(attachment => a
 
 <template>
 	<div>
-		<div class="flex flex-col gap-1">
+		<div v-if="otherAttachments.length" class="flex flex-col gap-1">
 			<DiscordAttachmentsOther
 				v-for="attachment in otherAttachments"
 				:key="attachment.id"
 				:attachment="attachment" />
 		</div>
 
-		<div></div>
+		<div v-if="imageAttachments.length" class="flex flex-wrap gap-2 mt-2">
+			<img
+				v-for="attachment in imageAttachments"
+				:key="attachment.id"
+				:src="attachment.preview_url"
+				alt="Attachment Preview"
+				class="max-w-max max-h-64 object-contain rounded-md border border-neutral-400" />
+		</div>
 	</div>
 </template>
