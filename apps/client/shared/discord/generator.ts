@@ -168,10 +168,14 @@ export const generateDiscordJSCode = (messages: DiscordMessage[]) => {
 };
 
 export const generateDiscordJDACode = (messages: DiscordMessage[]) => {
+	if (messages.length === 0) return '// ------';
+
 	return '';
 };
 
 export const generateDiscordPythonCode = (messages: DiscordMessage[]) => {
+	if (messages.length === 0) return '# ------';
+
 	return '';
 };
 
