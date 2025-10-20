@@ -5,6 +5,7 @@ export const discordGeneratorLanguages = [
 	{ id: 'json', name: 'JSON', language: 'json' },
 	{ id: 'discord.js', name: 'Discord.js (JavaScript)', language: 'javascript' },
 	{ id: 'discord.js-ts', name: 'Discord.js (TypeScript)', language: 'typescript' },
+	{ id: 'eris', name: 'Eris (JavaScript)', language: 'javascript' },
 	{ id: 'jda', name: 'JDA (Java)', language: 'java' },
 	{ id: 'discord.py', name: 'Discord.py (Python)', language: 'python' },
 	{ id: 'py-cord', name: 'Py-Cord (Python)', language: 'python' }
@@ -169,6 +170,12 @@ export const generateDiscordJSCode = (messages: DiscordMessage[]) => {
 	return mountedMessages.join('\n\n');
 };
 
+export const generateDiscordErisCode = (messages: DiscordMessage[]) => {
+	if (messages.length === 0) return '// ------';
+
+	return '';
+};
+
 export const generateDiscordJDACode = (messages: DiscordMessage[]) => {
 	if (messages.length === 0) return '// ------';
 
@@ -195,6 +202,8 @@ export const generateDiscordCode = (messages: DiscordMessage[], language: string
 			return generateDiscordJSCode(messages);
 		case 'discord.js-ts':
 			return generateDiscordJSCode(messages);
+		case 'eris':
+			return generateDiscordErisCode(messages);
 		case 'jda':
 			return generateDiscordJDACode(messages);
 		case 'discord.py':
