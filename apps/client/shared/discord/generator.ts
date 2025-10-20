@@ -151,7 +151,7 @@ export const generateDiscordJSCode = (messages: DiscordMessage[]) => {
 		messageChain += `// Message ${actualMessageNum}\n`;
 		messageChain += mountedEmbeds.map(embed => embed.chain).join('\n\n') + (mountedEmbeds.length > 0 ? '\n\n' : '');
 
-		messageChain += `channel.send({\n`;
+		messageChain += `await channel.send({\n`;
 
 		const propertiesChain: string[] = [];
 
