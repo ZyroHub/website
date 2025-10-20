@@ -3,9 +3,11 @@ import { getAttachmentReferenceUrl, type DiscordMessage } from './discord';
 
 export const discordGeneratorLanguages = [
 	{ id: 'json', name: 'JSON', language: 'json' },
-	{ id: 'discord.js', name: 'Discord.js', language: 'javascript' },
-	{ id: 'jda', name: 'JDA', language: 'java' },
-	{ id: 'python', name: 'Discord.py', language: 'python' }
+	{ id: 'discord.js', name: 'Discord.js (JavaScript)', language: 'javascript' },
+	{ id: 'discord.js-ts', name: 'Discord.js (TypeScript)', language: 'typescript' },
+	{ id: 'jda', name: 'JDA (Java)', language: 'java' },
+	{ id: 'discord.py', name: 'Discord.py (Python)', language: 'python' },
+	{ id: 'py-cord', name: 'Py-Cord (Python)', language: 'python' }
 ];
 
 export const mountDiscordAPICode = (message: DiscordMessage) => {
@@ -179,16 +181,26 @@ export const generateDiscordPythonCode = (messages: DiscordMessage[]) => {
 	return '';
 };
 
+export const generateDiscordPyCordCode = (messages: DiscordMessage[]) => {
+	if (messages.length === 0) return '# ------';
+
+	return '';
+};
+
 export const generateDiscordCode = (messages: DiscordMessage[], language: string) => {
 	switch (language) {
 		case 'json':
 			return generateDiscordJSONCode(messages);
 		case 'discord.js':
 			return generateDiscordJSCode(messages);
+		case 'discord.js-ts':
+			return generateDiscordJSCode(messages);
 		case 'jda':
 			return generateDiscordJDACode(messages);
-		case 'python':
+		case 'discord.py':
 			return generateDiscordPythonCode(messages);
+		case 'py-cord':
+			return generateDiscordPyCordCode(messages);
 		default:
 			return '';
 	}
