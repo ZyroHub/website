@@ -6,28 +6,32 @@ const props = defineProps<{
 	messages: DiscordMessage[];
 }>();
 
-const selectedLanguage = ref('json');
+const selectedCode = ref('json');
 
 const languageOptions = computed(() =>
 	discordGeneratorLanguages.map(lang => ({
 		label: lang.name,
-		value: lang.language
+		value: lang.id
 	}))
 );
 
-const generatedCode = computed(() => generateDiscordCode(props.messages, selectedLanguage.value));
+const discordGeneratorLanguage = computed(() => {
+	return discordGeneratorLanguages.find(lang => lang.id === selectedCode.value);
+});
+
+const generatedCode = computed(() => generateDiscordCode(props.messages, selectedCode.value));
 </script>
 
 <template>
 	<div>
 		<div class="flex gap-2 items-center">
-			<InputsSelect :options="languageOptions" v-model="selectedLanguage" class="max-w-36" />
+			<InputsSelect :options="languageOptions" v-model="selectedCode" class="max-w-36" />
 
 			<ButtonCopy :content="generatedCode" />
 		</div>
 
 		<div class="rounded-lg overflow-hidden mt-2">
-			<CodePreview language="javascript" :code="generatedCode" />
+			<CodePreview :language="discordGeneratorLanguage?.language || 'javascript'" :code="generatedCode" />
 		</div>
 	</div>
 </template>

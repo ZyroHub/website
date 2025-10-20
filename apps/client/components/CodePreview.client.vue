@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-// 1. Importe watch e nextTick
 import Prism from 'prismjs';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-javascript';
@@ -30,5 +29,7 @@ watch(
 </script>
 
 <template>
-	<pre :class="[languageClass, '!my-0']"><code class="code-block">{{ props.code }}</code></pre>
+	<div :key="languageClass">
+		<pre :class="[languageClass, '!my-0']"><code>{{ props.code }}</code></pre>
+	</div>
 </template>
