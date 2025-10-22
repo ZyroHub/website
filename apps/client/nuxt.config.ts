@@ -112,8 +112,8 @@ export default defineNuxtConfig({
 				file: 'en.ts'
 			},
 			{
-				code: 'pt',
-				language: 'pt',
+				code: 'pt-BR',
+				language: 'pt-BR',
 				name: 'Português Brasil',
 				file: 'pt-BR.ts'
 			},
