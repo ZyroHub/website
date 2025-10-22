@@ -1,0 +1,690 @@
+export default {
+	locales: {
+		en: 'English',
+		pt: 'Português',
+		'pt-BR': 'Português Brasil',
+		es: 'Espanhol'
+	},
+	components: {
+		button: {
+			copy: {
+				default: 'Copiar',
+				success: 'Copiado!'
+			}
+		},
+		contributors: {
+			github: 'Contribuidores no GitHub',
+			buy_me_a_coffee: 'Apoiantes no Buy Me a Coffee',
+			more: 'Ver Todos'
+		},
+		discord: {
+			editor: {
+				title: 'Mensagem',
+				add_embed: 'Adicionar Novo Embed',
+				attachments: {
+					title: 'Anexos',
+					no_attachments: 'Nenhum ficheiro anexado.',
+					remove: 'Remover',
+					upload: 'Carregar Ficheiro'
+				},
+				author: {
+					title: 'Autor',
+					form: {
+						name: 'Nome',
+						url: 'URL'
+					}
+				},
+				embed: {
+					form: {
+						title: 'Título',
+						title_url: 'URL do Título',
+						description: 'Descrição'
+					}
+				},
+				error: {
+					unknown: 'Ocorreu um erro desconhecido.'
+				},
+				fields: {
+					title: 'Campos',
+					add: 'Adicionar Novo Campo',
+					field: {
+						title: 'Campo',
+						form: {
+							name: 'Nome',
+							value: 'Valor',
+							inline: 'Alinhamento'
+						}
+					}
+				},
+				footer: {
+					title: 'Rodapé',
+					form: {
+						text: 'Texto'
+					}
+				},
+				image: {
+					actions: {
+						url: 'Adicionar Via URL',
+						upload: 'Carregar Ficheiro',
+						select: 'Selecionar Anexo',
+						remove: 'Remover Imagem',
+						add: 'Adicionar',
+						cancel: 'Cancelar'
+					},
+					url: {
+						label: 'URL da Imagem'
+					},
+					awaiting_upload: 'Aguardando seleção de ficheiro...',
+					no_attachments: 'Nenhum anexo disponível.'
+				}
+			}
+		},
+		footer: {
+			copy: 'Copyright © {year} ZyroHub - Todos os direitos reservados.',
+			privacy: 'Política de Privacidade'
+		},
+		inputs: {
+			image_box: {
+				preview: {
+					buttons: {
+						download: 'Transferir',
+						clear: 'Remover'
+					}
+				},
+				no_image: {
+					description: 'Arraste e largue uma imagem.',
+					or: 'ou',
+					upload: 'Selecione um Ficheiro'
+				}
+			},
+			text_area: {
+				copy: {
+					default: 'Copiar',
+					success: 'Copiado!'
+				}
+			}
+		},
+		navbar: {
+			language_selector: {
+				button: {
+					label: 'Alterar idioma'
+				}
+			},
+			theme_switcher: {
+				button: {
+					label: 'Alternar tema'
+				}
+			},
+			tabs: {
+				home: 'Início',
+				developers: 'Developers',
+				creators: 'Creators',
+				misc: 'Outros',
+				about: 'Sobre'
+			},
+			logo: {
+				alt: 'Logótipo do ZyroHub'
+			}
+		},
+		toolkit: {
+			navigation: {
+				search: 'Pesquisar ferramenta...'
+			},
+			related: {
+				title: 'Ferramentas Relacionadas'
+			},
+			tool: {
+				provided: 'Powered by',
+				connection: {
+					error: {
+						title: 'Falha na Conexão',
+						description: 'Não foi possível estabelecer conexão com o servidor.',
+						buttons: {
+							try_again: 'Tentar Novamente',
+							cancel: 'Cancelar'
+						}
+					},
+					loading: {
+						description: 'A estabelecer conexão com o servidor...'
+					}
+				},
+				progress: {
+					none: 'Aguardando execução...',
+					pending: 'A inicializar...',
+					queued: 'Na Fila: {position}',
+					running: 'A executar...',
+					finished: 'Concluído!',
+					error: 'Ocorreu um erro!'
+				},
+				unselected: {
+					description: 'Selecione uma ferramenta para continuar.'
+				},
+				error: {
+					title: 'Ocorreu um Erro!',
+					description:
+						'A ferramenta que está a tentar aceder pode não existir ou estar indisponível no momento.'
+				}
+			}
+		},
+		tools: {
+			base64_text: {
+				input: {
+					label: 'Texto',
+					placeholder: 'Digite o seu texto aqui...'
+				},
+				output: {
+					label: 'Texto Base64',
+					placeholder: 'Texto codificado em Base64...'
+				}
+			},
+			base64_image: {
+				input: {
+					label: 'Texto Base64',
+					placeholder: 'Imagem codificada em Base64...'
+				},
+				preview: {
+					buttons: {
+						download: 'Transferir',
+						clear: 'Cancelar'
+					}
+				},
+				no_image: {
+					description: 'Arraste e largue uma imagem.',
+					or: 'ou',
+					upload: 'Selecione um Ficheiro'
+				}
+			},
+			bcrypt_checker: {
+				password: {
+					label: 'Palavra-passe',
+					placeholder: 'Digite a sua palavra-passe...'
+				},
+				hash: {
+					label: 'Hash Bcrypt',
+					placeholder: 'Digite o hash Bcrypt...'
+				},
+				validate: 'Verificar Hash',
+				result: {
+					text: 'Resultado:',
+					awaiting: 'AGUARDANDO',
+					running: 'A VERIFICAR',
+					error: 'FALHOU',
+					valid: 'CORRESPONDENTE',
+					invalid: 'NÃO CORRESPONDEM'
+				}
+			},
+			bcrypt_generator: {
+				input: {
+					label: 'Palavra-passe',
+					placeholder: 'Digite a sua palavra-passe...'
+				},
+				rounds: {
+					label: 'Rounds'
+				},
+				generate: 'Gerar Hash',
+				output: {
+					label: 'Hash Bcrypt',
+					placeholder: 'Hash gerado com Bcrypt...'
+				}
+			},
+			hash_generator: {
+				text: {
+					label: 'Texto',
+					placeholder: 'Digite o seu texto aqui...'
+				},
+				algorithm: 'Algoritmo',
+				generate: 'Gerar Hash',
+				output: {
+					label: 'Hash Gerado',
+					placeholder: 'Hash gerado...'
+				}
+			},
+			discord_embed_generator: {
+				webhook: {
+					label: 'URL do Webhook',
+					loading: 'A carregar dados do webhook...',
+					invalid: 'Dados do webhook inválidos ou não encontrados.'
+				},
+				messages: {
+					add: 'Nova Mensagem'
+				},
+				tab: {
+					preview: 'Pré-visualização',
+					code: 'Código'
+				},
+				send: 'Enviar',
+				no_message: 'Não há mensagens para exibir. Use o formulário para construir uma nova mensagem.'
+			},
+			image_converter: {
+				format: 'Formato',
+				upload: 'Selecione um Ficheiro',
+				animated: 'Manter Animação (GIF, APNG, etc.)',
+				items: {
+					download: 'Transferir',
+					remove: 'Remover'
+				},
+				bulk: {
+					download: 'Transferir Todos',
+					clear: 'Limpar'
+				}
+			},
+			image_pixelate: {
+				pixel_size: 'Tamanho do Pixel',
+				quantization: 'Quantização',
+				quantization_count: 'Contagem de Cores',
+				dithering: 'Dithering',
+				output: {
+					alt: 'Imagem Pixelizada',
+					download: 'Transferir',
+					clear: 'Remover'
+				},
+				pixelate: 'Pixelizar Imagem'
+			},
+			password_generator: {
+				settings: {
+					size: 'Tamanho da Palavra-passe',
+					ignore: 'Ignorar Caracteres',
+					uppers: 'Incluir Letras Maiúsculas',
+					lowers: 'Incluir Letras Minúsculas',
+					numbers: 'Incluir Números',
+					symbols: 'Incluir Caracteres Especiais'
+				},
+				output: 'Palavra-passe Gerada'
+			},
+			password_strength_tester: {
+				input: 'Palavra-passe',
+				conditions: {
+					length: 'Mínimo de 8 caracteres',
+					uppercase: 'Pelo menos uma letra maiúscula',
+					lowercase: 'Pelo menos uma letra minúscula',
+					number: 'Pelo menos um número',
+					special: 'Pelo menos um caractere especial'
+				}
+			},
+			qrcode_generator: {
+				personalization: 'Personalização do Código',
+				image_options: 'Anexar Imagem',
+				url_shorten: 'Encurtar URL',
+				options: {
+					type: {
+						label: 'Tipo de Código',
+						options: {
+							text: 'Texto',
+							email: 'E-mail',
+							sms: 'SMS',
+							phone: 'Telefone',
+							vcard: 'Contacto (VCard)',
+							url: 'URL',
+							wifi: 'Wi-Fi'
+						}
+					},
+					content: {
+						label: 'Conteúdo',
+						placeholder: 'Digite o conteúdo do QR Code...'
+					},
+					email: {
+						label: 'E-mail',
+						placeholder: 'E-mail'
+					},
+					email_subject: {
+						label: 'Assunto',
+						placeholder: 'Assunto do e-mail...'
+					},
+					email_body: {
+						label: 'Corpo do E-mail',
+						placeholder: 'Corpo do e-mail...'
+					},
+					sms_phone: {
+						label: 'Telefone',
+						placeholder: 'Número de telefone...'
+					},
+					sms_body: {
+						label: 'Corpo do SMS',
+						placeholder: 'Corpo do SMS...'
+					},
+					phone: {
+						label: 'Telefone',
+						placeholder: 'Número de telefone...'
+					},
+					vcard_first_name: {
+						label: 'Nome',
+						placeholder: 'Nome'
+					},
+					vcard_last_name: {
+						label: 'Sobrenome',
+						placeholder: 'Sobrenome'
+					},
+					vcard_cellphone: {
+						label: 'Telemóvel',
+						placeholder: 'Número de telemóvel'
+					},
+					vcard_telephone: {
+						label: 'Telefone',
+						placeholder: 'Número de telefone'
+					},
+					vcard_fax: {
+						label: 'Fax',
+						placeholder: 'Número de fax'
+					},
+					vcard_email: {
+						label: 'Email',
+						placeholder: 'Endereço de email'
+					},
+					vcard_company: {
+						label: 'Empresa',
+						placeholder: 'Nome da empresa'
+					},
+					vcard_company_job: {
+						label: 'Cargo',
+						placeholder: 'Título do cargo'
+					},
+					vcard_city: {
+						label: 'Cidade',
+						placeholder: 'Cidade'
+					},
+					vcard_address: {
+						label: 'Morada',
+						placeholder: 'Morada completa'
+					},
+					vcard_postal_code: {
+						label: 'Código Postal (CEP)',
+						placeholder: 'Código postal'
+					},
+					vcard_state: {
+						label: 'Distrito/Estado',
+						placeholder: 'Distrito/Estado'
+					},
+					vcard_country: {
+						label: 'País',
+						placeholder: 'País'
+					},
+					vcard_website: {
+						label: 'Site',
+						placeholder: 'URL do site'
+					},
+					wifi_ssid: {
+						label: 'Nome da Rede (SSID)',
+						placeholder: 'Nome da Rede'
+					},
+					wifi_password: {
+						label: 'Palavra-passe da Rede',
+						placeholder: 'Palavra-passe da Rede'
+					},
+					wifi_encryption: {
+						label: 'Tipo de Criptografia',
+						options: {
+							wpa: 'WPA/WPA2',
+							wep: 'WEP',
+							none: 'Sem Palavra-passe'
+						}
+					},
+					wifi_hidden: {
+						label: 'Rede Oculta'
+					},
+					dot_style: {
+						label: 'Estilo dos Pontos',
+						options: {
+							rounded: 'Arredondado',
+							extra_rounded: 'Extra Arredondado',
+							square: 'Quadrado',
+							dots: 'Pontos',
+							classy: 'Classy',
+							classy_rounded: 'Classy Arredondado'
+						}
+					},
+					correction_level: {
+						label: 'Nível de Correção de Erros',
+						options: {
+							l: 'Baixo (7%)',
+							m: 'Médio (15%)',
+							q: 'Alto (25%)',
+							h: 'Máximo (30%)'
+						}
+					},
+					margin: {
+						label: 'Margem do Código'
+					},
+					image_size: {
+						label: 'Tamanho da Imagem'
+					},
+					image_margin: {
+						label: 'Margem da Imagem'
+					},
+					image_hide_background: {
+						label: 'Ocultar Fundo da Imagem'
+					}
+				},
+				output: {
+					download: 'Transferir',
+					copy_image: 'Copiar Imagem',
+					copied_image: 'Imagem copiada!',
+					content: 'Conteúdo do QR Code'
+				}
+			},
+			text_counter: {
+				content: {
+					label: 'Texto',
+					placeholder: 'Digite o seu texto aqui...'
+				},
+				output: {
+					words: 'Palavras',
+					characters: 'Carateres',
+					lines: 'Linhas',
+					paragraphs: 'Parágrafos'
+				}
+			},
+			text_to_slug: {
+				input: {
+					label: 'Texto',
+					placeholder: 'Digite o seu texto aqui...'
+				},
+				output: {
+					label: 'Slug',
+					placeholder: 'Texto convertido para slug...'
+				}
+			},
+			uuid_generator: {
+				version: 'Versão',
+				namespace: 'Namespace',
+				generate: 'Gerar',
+				output: 'UUID Gerado'
+			},
+			url_shortener: {
+				url: {
+					label: 'URL',
+					placeholder: 'Digite a URL que deseja encurtar...'
+				},
+				shorten: 'Encurtar URL',
+				output: {
+					label: 'URL Encurtada',
+					placeholder: 'URL encurtada...'
+				}
+			}
+		}
+	},
+	pages: {
+		meta: {
+			description:
+				'ZyroHub é um kit de ferramentas desenhado para programadores, oferecendo soluções para conversão e manipulação de média. Inclui uma variedade de ferramentas essenciais, eliminando a necessidade de instalar ou depender de múltiplos softwares e serviços para realizar tarefas comuns.'
+		},
+		error: {
+			meta: {
+				title: 'Erro {code}',
+				description: 'Ocorreu um erro ao tentar aceder à página solicitada.'
+			},
+			back: 'Voltar para o Início',
+			errors: {
+				not_found: {
+					title: 'Página Não Encontrada',
+					description: 'A página que está a tentar aceder não existe ou está indisponível no momento.'
+				},
+				default: {
+					title: 'Oops! Ocorreu um erro.',
+					description: 'Algo correu mal ao tentar aceder à página solicitada.'
+				}
+			}
+		},
+		home: {
+			logo: {
+				alt: 'Logótipo do ZyroHub'
+			},
+			title: 'Bem-Vindo ao',
+			description: 'Por favor, selecione uma das opções abaixo para começar.',
+			toolkits: {
+				dev: 'Developers',
+				creators: 'Creators',
+				misc: 'Outros'
+			},
+			about: 'SOBRE'
+		},
+		about: {
+			meta: {
+				title: 'Sobre'
+			},
+			title: 'Sobre o ZyroHub',
+			description: `
+ZyroHub é um kit de ferramentas desenhado para programadores, oferecendo soluções para conversão e manipulação de média. Inclui uma variedade de ferramentas essenciais, eliminando a necessidade de instalar ou depender de múltiplos softwares e serviços para realizar tarefas comuns.
+
+É um projeto totalmente open-source (código aberto), com o intuito de fornecer uma plataforma gratuita e acessível para todos. Se gostaria de contribuir com o projeto, pode aceder ao repositório oficial no GitHub e enviar as suas sugestões, correções ou novas ferramentas.
+
+Se o projeto lhe foi útil, considere fazer uma doação para ajudar a manter a plataforma ativa, funcional e melhor a cada dia. Qualquer valor é bem-vindo e será utilizado para cobrir os custos de alojamento e desenvolvimento da plataforma.
+`,
+			contribute: 'Contribuir'
+		},
+		developers: {
+			meta: {
+				title: 'Programadores',
+				description:
+					'Conjunto de ferramentas essenciais para programadores, oferecendo soluções para tarefas comuns, como conversão de texto, geração de palavras-passe, codificação e descodificação de strings, e muito mais.'
+			},
+			title: 'Developers'
+		},
+		creators: {
+			meta: {
+				title: 'Creators',
+				description:
+					'Conjunto de ferramentas essenciais para criadores, oferecendo soluções para tarefas comuns, como conversão de média, manipulação de imagens, edição de vídeos, e muito mais.'
+			},
+			title: 'Creators'
+		},
+		misc: {
+			meta: {
+				title: 'Outros',
+				description:
+					'Conjunto de ferramentas diversas, oferecendo soluções para tarefas comuns, como cálculos matemáticos, conversão de unidades, geração de QR Codes, e muito mais.'
+			},
+			title: 'Outros'
+		},
+		privacy: {
+			meta: {
+				title: 'Política de Privacidade',
+				description: 'Confira a nossa política de privacidade e saiba como protegemos as suas informações.'
+			},
+			content: `
+# Política de Privacidade
+
+A sua privacidade é importante para nós. É política do ZyroHub respeitar a sua privacidade em relação a qualquer informação sua que possamos recolher no site [ZyroHub](https://zyrohub.app), e outros sites que possuímos e operamos.
+
+Apenas retemos as informações recolhidas pelo tempo necessário para fornecer o serviço solicitado. Quando armazenamos dados, protegemo-los dentro de meios comercialmente aceitáveis para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.
+
+Não partilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.
+
+O nosso site pode ter hiperligações para sites externos que não são operados por nós. Esteja ciente de que não temos controlo sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade pelas suas respetivas políticas de privacidade.
+
+O uso continuado do nosso site será considerado como aceitação das nossas práticas em torno de privacidade e informações pessoais. Se tiver alguma dúvida sobre como lidamos com dados do utilizador e informações pessoais, entre em contacto connosco.
+
+## Compromisso do Utilizador
+
+O utilizador compromete-se a fazer uso adequado dos conteúdos e da informação que o ZyroHub oferece no site e com caráter enunciativo, mas não limitativo:
+
+    A) Não se envolver em atividades que sejam ilegais ou contrárias à boa fé e à ordem pública;
+    B) Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, jogo de azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos;
+    C) Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) do ZyroHub, de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou software que sejam capazes de causar os danos anteriormente mencionados.
+
+## Mais informações
+
+Esperamos que esteja esclarecido e, como mencionado anteriormente, se houver algo que não tem a certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que usa no nosso site.
+            `,
+			date: '~ Esta política é efetiva a partir do dia 06 de Janeiro de 2025.'
+		}
+	},
+	tools: {
+		base64_text: {
+			name: 'Texto Base64',
+			description: 'Codifique e descodifique textos para Base64.'
+		},
+		base64_image: {
+			name: 'Imagem Base64',
+			description: 'Codifique e descodifique imagens para Base64.'
+		},
+		bcrypt_generator: {
+			name: 'Gerador Bcrypt',
+			description: 'Gere hash de palavras-passe utilizando o algoritmo de hash bcrypt.'
+		},
+		bcrypt_checker: {
+			name: 'Verificador Bcrypt',
+			description: 'Verifique se uma palavra-passe corresponde a um hash bcrypt.'
+		},
+		discord_embed_generator: {
+			name: 'Gerador de Embeds Discord',
+			description:
+				'Crie embeds personalizados para Discord, facilitando a formatação de mensagens ricas e interativas.'
+		},
+		hash_generator: {
+			name: 'Gerador de Hash',
+			description:
+				'Gere hash de textos utilizando diferentes algoritmos de hash. (MD5, SHA1, SHA256, SHA512, entre outros...)'
+		},
+		image_converter: {
+			name: 'Conversor de Imagens',
+			description: 'Converta imagens para diferentes formatos diferentes. (WebP, PNG, JPG e JPEG)'
+		},
+		image_pixelate: {
+			name: 'Pixelizar Imagem',
+			description: 'Aplique um efeito de pixelização nas suas imagens.'
+		},
+		password_generator: {
+			name: 'Gerador de Palavras-passe',
+			description: 'Gere palavras-passe aleatórias com diferentes níveis de segurança e configurações.'
+		},
+		password_strength_tester: {
+			name: 'Validador de Palavras-passe',
+			description: 'Teste a força das suas palavras-passe e obtenha sugestões para melhorá-las.'
+		},
+		qrcode_generator: {
+			name: 'Gerador de QRCode',
+			description: 'Gere códigos QR imediatamente com várias opções de customização.'
+		},
+		text_counter: {
+			name: 'Contador de Texto',
+			description: 'Conte palavras, carateres e linhas num texto.'
+		},
+		text_to_slug: {
+			name: 'Texto para Slug',
+			description: 'Converta textos num formato amigável para URLs e identificadores.'
+		},
+		uuid_generator: {
+			name: 'Gerador UUID',
+			description: 'Gere identificadores únicos universais (UUID) de todas as versões para as suas aplicações.'
+		},
+		url_shortener: {
+			name: 'Encurtador de Hiperligações',
+			description: 'Encurte hiperligações longas para facilitar a partilha e o uso.'
+		}
+	},
+	workers: {
+		image_converter: {
+			progress: {
+				converting_image: 'A converter imagem...'
+			}
+		},
+		image_pixelate: {
+			progress: {
+				loading_image: 'A carregar imagem...',
+				starting_extra_processing: 'A iniciar processamento extra...',
+				applying_quantization_and_dithering: 'A aplicar quantização e dithering...',
+				resizing_image: 'A redimensionar imagem...'
+			}
+		}
+	}
+};
