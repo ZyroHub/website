@@ -7,6 +7,8 @@ const getLocaleFlag = (locale: string) => {
 	switch (locale) {
 		case 'en':
 			return 'circle-flags:us-um';
+		case 'pt':
+			return 'circle-flags:pt';
 		case 'pt-BR':
 			return 'circle-flags:br';
 		case 'es':

@@ -112,16 +112,16 @@ export default defineNuxtConfig({
 				file: 'en.ts'
 			},
 			{
-				code: 'pt-BR',
-				language: 'pt-BR',
-				name: 'Português Brasil',
-				file: 'pt-BR.ts'
-			},
-			{
 				code: 'pt',
 				language: 'pt',
 				name: 'Português',
 				// Brazilian Portuguese kept for backward compatibility
+				file: 'pt-BR.ts'
+			},
+			{
+				code: 'pt-BR',
+				language: 'pt-BR',
+				name: 'Português Brasil',
 				file: 'pt-BR.ts'
 			},
 			{
@@ -143,6 +143,7 @@ export default defineNuxtConfig({
 				'mdi:content-copy',
 
 				'circle-flags:us-um',
+				'circle-flags:pt',
 				'circle-flags:br',
 				'circle-flags:es'
 			]

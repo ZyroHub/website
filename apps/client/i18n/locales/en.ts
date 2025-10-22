@@ -1,6 +1,7 @@
 export default {
 	locales: {
 		en: 'English',
+		pt: 'Português',
 		'pt-BR': 'Português Brasil',
 		es: 'Español'
 	},
