@@ -23,8 +23,40 @@ export default {
 					remove: 'Remove',
 					upload: 'Upload File'
 				},
+				author: {
+					title: 'Author',
+					form: {
+						name: 'Name',
+						url: 'URL'
+					}
+				},
+				embed: {
+					form: {
+						title: 'Title',
+						title_url: 'Title URL',
+						description: 'Description'
+					}
+				},
 				error: {
 					unknown: 'An unknown error occurred.'
+				},
+				fields: {
+					title: 'Fields',
+					add: 'Add New Field',
+					field: {
+						title: 'Field',
+						form: {
+							name: 'Name',
+							value: 'Value',
+							inline: 'Inline'
+						}
+					}
+				},
+				footer: {
+					title: 'Footer',
+					form: {
+						text: 'Text'
+					}
 				},
 				image: {
 					actions: {

@@ -14,6 +14,8 @@ const emit = defineEmits<{
 	moveDown: [];
 }>();
 
+const { t } = useI18n();
+
 const canMoveUp = computed(() => {
 	return props.number > 1;
 });
@@ -58,7 +60,7 @@ const handleMoveDown = () => {
 
 <template>
 	<DiscordEditorCollapsable
-		:title="`Field (${props.number.toString().padStart(2, '0')})${fieldName ? ` ~ ${fieldName}` : ''}`"
+		:title="`${t('components.discord.editor.fields.field.title')} (${props.number.toString().padStart(2, '0')})${fieldName ? ` ~ ${fieldName}` : ''}`"
 		class="bg-neutral-300 dark:bg-neutral-900"
 		:canMoveUp="canMoveUp"
 		:canMoveDown="canMoveDown"
@@ -74,14 +76,25 @@ const handleMoveDown = () => {
 
 		<template #default>
 			<div class="flex items-end justify-between">
-				<InputsText v-model="fieldName" label="Name" class="w-full" :counterMax="256" showCounter />
+				<InputsText
+					v-model="fieldName"
+					:label="t('components.discord.editor.fields.field.form.name')"
+					class="w-full"
+					:counterMax="256"
+					showCounter />
 
 				<div class="px-4">
-					<InputsCheckbox v-model="fieldInline" label="Inline" />
+					<InputsCheckbox
+						v-model="fieldInline"
+						:label="t('components.discord.editor.fields.field.form.inline')" />
 				</div>
 			</div>
 
-			<InputsTextArea v-model="fieldValue" label="Value" :counterMax="1024" showCounter />
+			<InputsTextArea
+				v-model="fieldValue"
+				:label="t('components.discord.editor.fields.field.form.value')"
+				:counterMax="1024"
+				showCounter />
 		</template>
 	</DiscordEditorCollapsable>
 </template>

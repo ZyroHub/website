@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { DiscordEmbedField } from '~/shared/discord/discord';
 
+const { t } = useI18n();
+
 const fieldsModel = defineModel<DiscordEmbedField[]>('fields');
 
 const maxFields = ref(25);
@@ -49,7 +51,7 @@ const handleMoveDownField = (field_id: string) => {
 
 <template>
 	<DiscordEditorCollapsable
-		:title="`Fields (${fieldsModel?.length.toString().padStart(2, '0')}/${maxFields.toString().padStart(2, '0')})`"
+		:title="`${t('components.discord.editor.fields.title')} (${fieldsModel?.length.toString().padStart(2, '0')}/${maxFields.toString().padStart(2, '0')})`"
 		collapsed>
 		<template #default>
 			<div v-if="fieldsModel?.length" class="flex flex-col gap-2">
@@ -66,7 +68,7 @@ const handleMoveDownField = (field_id: string) => {
 
 			<div>
 				<Button @click="handleAddNewField" theme="primary" :disabled="(fieldsModel?.length || 0) >= maxFields">
-					<Icon name="mdi:plus" /> Add New Field
+					<Icon name="mdi:plus" /> {{ t('components.discord.editor.fields.add') }}
 				</Button>
 			</div>
 		</template>

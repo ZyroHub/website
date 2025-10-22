@@ -17,6 +17,8 @@ const emit = defineEmits<{
 	removeAttachment: [id: string, placement?: DiscordAttachmentPlacement];
 }>();
 
+const { t } = useI18n();
+
 const authorModel = defineModel<DiscordEmbedAuthor>('author');
 
 const authorName = computed({
@@ -42,7 +44,7 @@ const authorIcon = computed({
 </script>
 
 <template>
-	<DiscordEditorCollapsable title="Author" collapsed>
+	<DiscordEditorCollapsable :title="t('components.discord.editor.author.title')" collapsed>
 		<template #default>
 			<div class="flex gap-4 w-full">
 				<DiscordEditorImage
@@ -56,10 +58,15 @@ const authorIcon = computed({
 					"
 					@removeAttachment="(id, placement) => emit('removeAttachment', id, placement)" />
 
-				<InputsText v-model="authorName" label="Name" class="flex-grow" :counterMax="2048" showCounter />
+				<InputsText
+					v-model="authorName"
+					:label="t('components.discord.editor.author.form.name')"
+					class="flex-grow"
+					:counterMax="2048"
+					showCounter />
 			</div>
 
-			<InputsText v-model="authorURL" label="URL" />
+			<InputsText v-model="authorURL" :label="t('components.discord.editor.author.form.url')" />
 		</template>
 	</DiscordEditorCollapsable>
 </template>

@@ -17,6 +17,8 @@ const emit = defineEmits<{
 	removeAttachment: [id: string, placement?: DiscordAttachmentPlacement];
 }>();
 
+const { t } = useI18n();
+
 const footerModel = defineModel<DiscordEmbedFooter>('footer');
 
 const footerText = computed({
@@ -35,7 +37,7 @@ const footerIcon = computed({
 </script>
 
 <template>
-	<DiscordEditorCollapsable title="Footer" collapsed>
+	<DiscordEditorCollapsable :title="t('components.discord.editor.footer.title')" collapsed>
 		<template #default>
 			<div class="flex gap-4 w-full">
 				<DiscordEditorImage
@@ -49,7 +51,12 @@ const footerIcon = computed({
 					"
 					@removeAttachment="(id, placement) => emit('removeAttachment', id, placement)" />
 
-				<InputsText v-model="footerText" label="Text" class="flex-grow" :counterMax="2048" showCounter />
+				<InputsText
+					v-model="footerText"
+					:label="t('components.discord.editor.footer.form.text')"
+					class="flex-grow"
+					:counterMax="2048"
+					showCounter />
 			</div>
 		</template>
 	</DiscordEditorCollapsable>

@@ -23,8 +23,40 @@ export default {
 					remove: 'Retirar',
 					upload: 'Subir Archivo'
 				},
+				author: {
+					title: 'Autor',
+					form: {
+						name: 'Nombre',
+						url: 'URL'
+					}
+				},
+				embed: {
+					form: {
+						title: 'Título',
+						title_url: 'URL del Título',
+						description: 'Descripción'
+					}
+				},
 				error: {
 					unknown: 'Ocurrió un error desconocido.'
+				},
+				fields: {
+					title: 'Campos',
+					add: 'Agregar Nuevo Campo',
+					field: {
+						title: 'Campo',
+						form: {
+							name: 'Nombre',
+							value: 'Valor',
+							inline: 'En línea'
+						}
+					}
+				},
+				footer: {
+					title: 'Pie de Página',
+					form: {
+						text: 'Texto'
+					}
 				},
 				image: {
 					actions: {

@@ -23,8 +23,40 @@ export default {
 					remove: 'Remover',
 					upload: 'Enviar Arquivo'
 				},
+				author: {
+					title: 'Autor',
+					form: {
+						name: 'Nome',
+						url: 'URL'
+					}
+				},
+				embed: {
+					form: {
+						title: 'Título',
+						title_url: 'URL do Título',
+						description: 'Descrição'
+					}
+				},
 				error: {
 					unknown: 'Ocorreu um erro desconhecido.'
+				},
+				fields: {
+					title: 'Campos',
+					add: 'Adicionar Novo Campo',
+					field: {
+						title: 'Campo',
+						form: {
+							name: 'Nome',
+							value: 'Valor',
+							inline: 'Alinhamento'
+						}
+					}
+				},
+				footer: {
+					title: 'Rodapé',
+					form: {
+						text: 'Texto'
+					}
 				},
 				image: {
 					actions: {

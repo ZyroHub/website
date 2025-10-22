@@ -24,6 +24,8 @@ const emit = defineEmits<{
 	removeAttachment: [id: string, placement?: DiscordAttachmentPlacement];
 }>();
 
+const { t } = useI18n();
+
 const embedModel = defineModel<DiscordEmbed>('embed');
 
 const hasErrors = computed(() => {
@@ -134,8 +136,12 @@ const handleDelete = () => {
 
 			<div class="flex gap-4 items-end">
 				<div class="flex flex-grow flex-col gap-2">
-					<InputsText v-model="embedTitle" label="Title" :counterMax="256" showCounter />
-					<InputsText v-model="embedURL" label="Title Url" />
+					<InputsText
+						v-model="embedTitle"
+						:label="t('components.discord.editor.embed.form.title')"
+						:counterMax="256"
+						showCounter />
+					<InputsText v-model="embedURL" :label="t('components.discord.editor.embed.form.title_url')" />
 				</div>
 
 				<DiscordEditorImage
@@ -151,7 +157,12 @@ const handleDelete = () => {
 					@removeAttachment="(id, placement) => emit('removeAttachment', id, placement)" />
 			</div>
 
-			<InputsTextArea v-model="embedDescription" label="Description" :rows="3" :counterMax="4096" showCounter />
+			<InputsTextArea
+				v-model="embedDescription"
+				:label="t('components.discord.editor.embed.form.description')"
+				:rows="3"
+				:counterMax="4096"
+				showCounter />
 
 			<color-picker v-model="embedColor" v-slot="{ color, show }" withHexInput>
 				<div @click="show" class="flex items-center gap-1 w-full">
