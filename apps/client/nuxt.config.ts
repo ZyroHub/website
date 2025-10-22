@@ -107,7 +107,7 @@ export default defineNuxtConfig({
 		locales: [
 			{
 				code: 'en',
-				language: 'en-US',
+				language: 'en',
 				name: 'English',
 				file: 'en-US.ts'
 			},
@@ -119,7 +119,7 @@ export default defineNuxtConfig({
 			},
 			{
 				code: 'es',
-				language: 'es-ES',
+				language: 'es',
 				name: 'Español',
 				file: 'es-ES.ts'
 			}
