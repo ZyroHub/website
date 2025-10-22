@@ -19,6 +19,7 @@ export default {
 		discord: {
 			editor: {
 				title: 'Message',
+				add_embed: 'Add New Embed',
 				attachments: {
 					title: 'Attachments',
 					no_attachments: 'No files attached.',

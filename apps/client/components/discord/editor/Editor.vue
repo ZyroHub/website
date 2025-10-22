@@ -225,7 +225,7 @@ const handleRemoveAttachment = (attachment_id: string, placement?: DiscordAttach
 			</div>
 
 			<div>
-				<Button @click="handleAddNewEmbed" theme="primary"><Icon name="mdi:plus" /> Add New Embed</Button>
+				<Button @click="handleAddNewEmbed" theme="primary"><Icon name="mdi:plus" /> {{ t('components.discord.editor.add_embed') }}</Button>
 			</div>
 		</template>
 	</DiscordEditorCollapsable>
