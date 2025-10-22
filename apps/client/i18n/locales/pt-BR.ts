@@ -18,7 +18,9 @@ export default {
 		},
 		discord: {
 			editor: {
+				title: 'Mensagem',
 				attachments: {
+					title: 'Anexos',
 					no_attachments: 'Nenhum arquivo anexado.',
 					remove: 'Remover',
 					upload: 'Enviar Arquivo'

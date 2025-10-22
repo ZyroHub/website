@@ -18,8 +18,10 @@ export default {
 		},
 		discord: {
 			editor: {
+				title: 'Mensaje',
 				attachments: {
-					no_attachments: 'No files attached.',
+					title: 'Adjuntos',
+					no_attachments: 'No hay archivos adjuntos.',
 					remove: 'Retirar',
 					upload: 'Subir Archivo'
 				},

@@ -35,7 +35,7 @@ const maxAttachments = ref(10);
 
 <template>
 	<DiscordEditorCollapsable
-		:title="`Files (${attachmentsModel?.length.toString().padStart(2, '0')}/${maxAttachments.toString().padStart(2, '0')})`"
+		:title="`${t('components.discord.editor.attachments.title')} (${attachmentsModel?.length.toString().padStart(2, '0')}/${maxAttachments.toString().padStart(2, '0')})`"
 		class="bg-neutral-300 dark:bg-neutral-900"
 		collapsed>
 		<div v-if="attachmentsModel?.length" class="flex flex-col gap-1">

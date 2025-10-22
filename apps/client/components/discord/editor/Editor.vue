@@ -14,6 +14,8 @@ const emit = defineEmits<{
 	delete: [];
 }>();
 
+const { t } = useI18n();
+
 const messageModel = defineModel<DiscordMessage>('message');
 
 const hasErrors = computed(() => {
@@ -182,7 +184,7 @@ const handleRemoveAttachment = (attachment_id: string, placement?: DiscordAttach
 </script>
 
 <template>
-	<DiscordEditorCollapsable :title="`Message (${props.number.toString().padStart(2, '0')})`" :hasWarns="hasErrors">
+	<DiscordEditorCollapsable :title="`${t('components.discord.editor.title')} (${props.number.toString().padStart(2, '0')})`" :hasWarns="hasErrors">
 		<template #actions>
 			<Icon
 				name="mdi:delete"
