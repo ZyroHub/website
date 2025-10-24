@@ -239,7 +239,7 @@ export default {
 					placeholder: 'Hash gerado...'
 				}
 			},
-			discord_embed_generator: {
+			discord_message_builder: {
 				webhook: {
 					label: 'URL do Webhook',
 					loading: 'A carregar dados do webhook...',
@@ -625,10 +625,10 @@ Esperamos que esteja esclarecido e, como mencionado anteriormente, se houver alg
 			name: 'Verificador Bcrypt',
 			description: 'Verifique se uma palavra-passe corresponde a um hash bcrypt.'
 		},
-		discord_embed_generator: {
-			name: 'Gerador de Embeds Discord',
+		discord_message_builder: {
+			name: 'Gerador de Mensagens para Discord',
 			description:
-				'Crie embeds personalizados para Discord, facilitando a formatação de mensagens ricas e interativas.'
+				'Crie mensagens personalizadas para o Discord, facilitando a formatação de mensagens ricas e interativas.'
 		},
 		hash_generator: {
 			name: 'Gerador de Hash',

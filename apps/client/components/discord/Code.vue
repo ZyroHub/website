@@ -25,7 +25,7 @@ const generatedCode = computed(() => generateDiscordCode(props.messages, selecte
 <template>
 	<div>
 		<div class="flex gap-2 items-center">
-			<InputsSelect :options="languageOptions" v-model="selectedCode" class="max-w-44" />
+			<InputsSelect :options="languageOptions" v-model="selectedCode" class="max-w-60" />
 
 			<ButtonCopy :content="generatedCode" />
 		</div>

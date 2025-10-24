@@ -15,8 +15,8 @@ const discordWebhookURLInput = ref<string>('');
 const selectedTab = ref<string>('preview');
 
 const tabOptions = computed(() => [
-	{ label: t('components.tools.discord_embed_generator.tab.preview'), value: 'preview', icon: 'mdi:eye' },
-	{ label: t('components.tools.discord_embed_generator.tab.code'), value: 'code', icon: 'mdi:code-tags' }
+	{ label: t('components.tools.discord_message_builder.tab.preview'), value: 'preview', icon: 'mdi:eye' },
+	{ label: t('components.tools.discord_message_builder.tab.code'), value: 'code', icon: 'mdi:code-tags' }
 ]);
 
 const isDiscordWebhookLoading = ref<boolean>(false);
@@ -230,7 +230,7 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 		<div class="flex-grow flex flex-col gap-4">
 			<div class="flex flex-col gap-2 bg-neutral-400 dark:bg-neutral-800 rounded-lg p-2">
 				<InputsText
-					:label="t('components.tools.discord_embed_generator.webhook.label')"
+					:label="t('components.tools.discord_message_builder.webhook.label')"
 					placeholder="https://discord.com/api/webhooks/..."
 					v-model="discordWebhookURLInput"
 					:disabled="isDiscordWebhookLoading" />
@@ -259,7 +259,7 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 									</span>
 									<span v-else class="flex items-center gap-2">
 										<Icon name="jam:paper-plane-f" />
-										{{ t('components.tools.discord_embed_generator.send') }}
+										{{ t('components.tools.discord_message_builder.send') }}
 									</span>
 								</Transition>
 							</Button>
@@ -269,11 +269,11 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 						v-else-if="isDiscordWebhookLoading || discordWebhookTimer"
 						class="flex items-center px-2 gap-2">
 						<Icon name="svg-spinners:3-dots-bounce" />
-						<p>{{ t('components.tools.discord_embed_generator.webhook.loading') }}</p>
+						<p>{{ t('components.tools.discord_message_builder.webhook.loading') }}</p>
 					</div>
 					<div v-else-if="discordWebhookError" class="flex items-center px-2 gap-2 text-red-500">
 						<Icon name="mdi:alert-circle" />
-						<p>{{ t('components.tools.discord_embed_generator.webhook.invalid') }}</p>
+						<p>{{ t('components.tools.discord_message_builder.webhook.invalid') }}</p>
 					</div>
 				</Transition>
 			</div>
@@ -291,7 +291,7 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 				<div>
 					<Button @click="handleAddNewMessage" theme="primary">
 						<Icon name="mdi:plus" />
-						{{ t('components.tools.discord_embed_generator.messages.add') }}
+						{{ t('components.tools.discord_message_builder.messages.add') }}
 					</Button>
 				</div>
 			</div>
@@ -332,7 +332,7 @@ watch(discordWebhookURLInput, (new_value, old_value) => {
 							<Icon name="mdi:discord" size="48" class="text-neutral-50 mb-2" />
 
 							<p class="text-center text-neutral-50 text-sm max-w-80">
-								{{ t('components.tools.discord_embed_generator.no_message') }}
+								{{ t('components.tools.discord_message_builder.no_message') }}
 							</p>
 						</div>
 					</div>

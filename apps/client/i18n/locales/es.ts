@@ -227,7 +227,7 @@ export default {
 					placeholder: 'Hash generado por Bcrypt...'
 				}
 			},
-			discord_embed_generator: {
+			discord_message_builder: {
 				webhook: {
 					label: 'URL del Webhook',
 					loading: 'Cargando datos del webhook...',
@@ -625,8 +625,8 @@ Esperamos que esto sea claro, y como se mencionó anteriormente, si hay algo de 
 			name: 'Verificador Bcrypt',
 			description: 'Verificar si una contraseña coincide con un hash bcrypt.'
 		},
-		discord_embed_generator: {
-			name: 'Generador de Embeds de Discord',
+		discord_message_builder: {
+			name: 'Generador de Mensajes para Discord',
 			description:
 				'Generar mensajes enriquecidos para Discord con formato personalizado, enlaces, imágenes y más. (¡Ideal para bots de Discord!)'
 		},

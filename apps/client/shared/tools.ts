@@ -29,7 +29,7 @@ export const getToolList = (): ITool[] => {
 			needs_connection: true
 		},
 		{
-			id: 'discord_embed_generator',
+			id: 'discord_message_builder',
 			icon: 'ri:discord-fill',
 			related: [],
 			tags: [ToolTagEnum.MISC, ToolTagEnum.DEV, ToolTagEnum.WEBHOOK, ToolTagEnum.GENERATOR]
