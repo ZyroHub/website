@@ -3,6 +3,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import MarkdownIt from 'markdown-it';
 import { twMerge } from 'tailwind-merge';
 import twemoji from 'twemoji';
+import { discordEmojiMap } from '~/shared/discord/emojis';
 
 const props = defineProps<{
 	content: string;
@@ -17,7 +18,7 @@ const contentMdIt = new MarkdownIt({
 	typographer: false
 });
 
-const parseDiscordEmojis = (html: string) => {
+const parseDiscordCustomEmojis = (html: string) => {
 	return html.replace(
 		/&lt;(a?):([a-zA-Z0-9_]+):(\d+)&gt;|<(a?):([a-zA-Z0-9_]+):(\d+)>/g,
 		(match, animated1, name1, id1, animated2, name2, id2) => {
@@ -31,6 +32,13 @@ const parseDiscordEmojis = (html: string) => {
 			return `<img src="${src}" alt="${alt}" class="emoji discord-custom-emoji" loading="lazy" />`;
 		}
 	);
+};
+
+const parseDiscordEmojis = (html: string) => {
+	return html.replace(/:([a-zA-Z0-9_]+):/g, (match, emojiName: string) => {
+		const emoji = discordEmojiMap[emojiName];
+		return emoji ? emoji : match;
+	});
 };
 
 const parseDiscordMarkdown = (text: string) => {
@@ -85,13 +93,14 @@ const parseContent = (content: string) => {
 		);
 	}
 
+	parsedContent = parseDiscordCustomEmojis(parsedContent);
+	parsedContent = parseDiscordEmojis(parsedContent);
+
 	parsedContent = twemoji.parse(parsedContent, {
 		folder: 'svg',
 		className: 'discord-emoji',
 		ext: '.svg'
 	});
-
-	parsedContent = parseDiscordEmojis(parsedContent);
 
 	parsedContent = DOMPurify.sanitize(parsedContent, {
 		ALLOWED_TAGS: ['p', 'a', 'br', 'strong', 'em', 'u', 's', 'br', 'span', 'img', 'li'],
