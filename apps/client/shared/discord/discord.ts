@@ -94,6 +94,7 @@ export interface DiscordMessage {
 	embeds?: DiscordEmbed[];
 	components?: DiscordRow[];
 	errors?: DiscordError[];
+	is_components_v2?: boolean;
 }
 
 export interface DiscordWebhook {

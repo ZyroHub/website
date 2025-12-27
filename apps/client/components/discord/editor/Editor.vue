@@ -184,7 +184,9 @@ const handleRemoveAttachment = (attachment_id: string, placement?: DiscordAttach
 </script>
 
 <template>
-	<DiscordEditorCollapsable :title="`${t('components.discord.editor.title')} (${props.number.toString().padStart(2, '0')})`" :hasWarns="hasErrors">
+	<DiscordEditorCollapsable
+		:title="`${t('components.discord.editor.title')} (${props.number.toString().padStart(2, '0')})`"
+		:hasWarns="hasErrors">
 		<template #actions>
 			<Icon
 				name="mdi:delete"
@@ -225,7 +227,9 @@ const handleRemoveAttachment = (attachment_id: string, placement?: DiscordAttach
 			</div>
 
 			<div>
-				<Button @click="handleAddNewEmbed" theme="primary"><Icon name="mdi:plus" /> {{ t('components.discord.editor.add_embed') }}</Button>
+				<Button @click="handleAddNewEmbed" theme="primary">
+					<Icon name="mdi:plus" /> {{ t('components.discord.editor.add_embed') }}
+				</Button>
 			</div>
 		</template>
 	</DiscordEditorCollapsable>
