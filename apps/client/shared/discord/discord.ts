@@ -106,7 +106,10 @@ export interface DiscordWebhook {
 }
 
 export const getAttachmentFileName = (attachment: DiscordAttachment) => {
-	return attachment.name || (attachment.file ? toSlugFileName(attachment.file.name) : 'unknown') || 'unknown';
+	return (
+		`${attachment.id}-` +
+		(attachment.name || (attachment.file ? toSlugFileName(attachment.file.name) : 'unknown') || 'unknown')
+	);
 };
 
 export const getAttachmentReferenceUrl = (message: DiscordMessage, attachment?: DiscordAttachmentReference) => {

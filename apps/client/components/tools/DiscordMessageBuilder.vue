@@ -89,10 +89,13 @@ const handleSendMessages = async () => {
 			const formData = new FormData();
 
 			for (const attachment of message.attachments || []) {
-				if (attachment.file) formData.append('file', attachment.file, getAttachmentFileName(attachment));
+				if (attachment.file)
+					formData.append(`file-${attachment.id}`, attachment.file, getAttachmentFileName(attachment));
 			}
 
 			const formattedMessage = mountDiscordAPICode(message);
+
+			console.log(formattedMessage);
 
 			formData.append('payload_json', JSON.stringify(formattedMessage));
 
