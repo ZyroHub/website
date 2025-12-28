@@ -45,11 +45,14 @@ export default defineNuxtConfig({
 			publicDir: path.join(__dirname, 'dist'),
 			serverDir: path.join(__dirname, 'dist', 'server'),
 			dir: path.join(__dirname, 'dist')
+		},
+		externals: {
+			inline: ['unhead', '@unhead/vue']
 		}
 	},
 
 	build: {
-		transpile: ['shiki']
+		transpile: ['unhead', '@unhead/vue', '@nuxtjs/seo', 'shiki']
 	},
 
 	app: { pageTransition: { name: 'transition_route_switch', mode: 'out-in' } },

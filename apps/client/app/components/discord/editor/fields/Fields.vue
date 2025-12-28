@@ -32,8 +32,8 @@ const handleMoveUpField = (field_id: string) => {
 	const index = fieldsModel.value.findIndex(field => field.id === field_id);
 	if (index > 0) {
 		const temp = fieldsModel.value[index - 1];
-		fieldsModel.value[index - 1] = fieldsModel.value[index];
-		fieldsModel.value[index] = temp;
+		fieldsModel.value[index - 1] = fieldsModel.value[index] as any;
+		fieldsModel.value[index] = temp as any;
 	}
 };
 
@@ -43,8 +43,8 @@ const handleMoveDownField = (field_id: string) => {
 	const index = fieldsModel.value.findIndex(field => field.id === field_id);
 	if (index !== -1 && index < fieldsModel.value.length - 1) {
 		const temp = fieldsModel.value[index + 1];
-		fieldsModel.value[index + 1] = fieldsModel.value[index];
-		fieldsModel.value[index] = temp;
+		fieldsModel.value[index + 1] = fieldsModel.value[index] as any;
+		fieldsModel.value[index] = temp as any;
 	}
 };
 </script>
