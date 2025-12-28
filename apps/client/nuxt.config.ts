@@ -48,6 +48,10 @@ export default defineNuxtConfig({
 		}
 	},
 
+	build: {
+		transpile: ['shiki']
+	},
+
 	app: { pageTransition: { name: 'transition_route_switch', mode: 'out-in' } },
 
 	image: {
