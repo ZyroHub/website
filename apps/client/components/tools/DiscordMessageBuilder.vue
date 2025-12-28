@@ -95,8 +95,6 @@ const handleSendMessages = async () => {
 
 			const formattedMessage = mountDiscordAPICode(message);
 
-			console.log(formattedMessage);
-
 			formData.append('payload_json', JSON.stringify(formattedMessage));
 
 			const parsedUrl = new URL(discordWebhook.value!.url);
