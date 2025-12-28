@@ -8,9 +8,6 @@ export default defineNuxtConfig({
 	sourcemap: false,
 	modules: [
 		'@nuxtjs/i18n',
-		'@nuxtjs/sitemap',
-		'@nuxtjs/robots',
-		// 'nuxt-schema-org',
 		'@nuxtjs/google-fonts',
 		'@nuxt/image',
 		'@unocss/nuxt',
@@ -21,7 +18,8 @@ export default defineNuxtConfig({
 		'nuxt-color-picker',
 		'@vite-pwa/nuxt',
 		'@nuxtjs/fontaine',
-		'nuxt-booster'
+		'nuxt-booster',
+		'@nuxtjs/seo'
 	],
 
 	vite: {
@@ -66,6 +64,10 @@ export default defineNuxtConfig({
 	site: {
 		url: 'https://zyrohub.app',
 		name: 'ZyroHub'
+	},
+
+	seo: {
+		fallbackTitle: false
 	},
 
 	robots: {
