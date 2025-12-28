@@ -21,7 +21,8 @@ export class ImageConverterWorker extends BaseWorker {
 		if (!['png', 'webp'].includes(data.format)) imageSharp = imageSharp.flatten({ background: '#ffffff' });
 
 		const imageBuffer = await imageSharp.toBuffer();
+		const imageBase64 = `data:image/${data.format};base64,${imageBuffer.toString('base64')}`;
 
-		return { converted_image: imageBuffer };
+		return { converted_image: imageBase64 };
 	}
 }

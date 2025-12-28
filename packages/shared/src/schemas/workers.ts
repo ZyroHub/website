@@ -56,7 +56,7 @@ export const workersSchemas = {
 			format: z.enum(['webp', 'png', 'jpeg', 'jpg'])
 		}),
 		response: z.object({
-			converted_image: z.any()
+			converted_image: z.string()
 		}),
 		storage: z.object({
 			name: z.string(),

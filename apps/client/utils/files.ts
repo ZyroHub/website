@@ -54,6 +54,18 @@ export const getFileFromSocketData = (socket_data: { type: string; data: number[
 	return new Uint8Array(socket_data.data).buffer;
 };
 
+export const getFileFromBase64 = (base64: string) => {
+	const binaryString = atob(base64.split(',')[1]);
+	const len = binaryString.length;
+	const bytes = new Uint8Array(len);
+
+	for (let i = 0; i < len; i++) {
+		bytes[i] = binaryString.charCodeAt(i);
+	}
+
+	return bytes.buffer;
+};
+
 export const formatFileSize = (size: number) => {
 	const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
 	if (size === 0) return '0 B';

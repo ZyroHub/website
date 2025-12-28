@@ -119,7 +119,7 @@ multiTask.onTaskFinished(async data => {
 	const task = multiTask.get(data.task.id);
 	if (!task) return;
 
-	const convertedFile = getFileFromSocketData(data.data?.converted_image) as ArrayBuffer;
+	const convertedFile = getFileFromBase64(data.data?.converted_image);
 	if (!convertedFile) return;
 
 	const fileBlob = new Blob([convertedFile], { type: 'image/' + task.storage?.converted_image_format });
