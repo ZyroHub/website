@@ -7,7 +7,7 @@ import type {
 } from '~/shared/discord/discord';
 
 const props = defineProps<{
-	embedNumber: number;
+	embedId: string;
 	attachments: DiscordAttachment[];
 }>();
 
@@ -43,7 +43,7 @@ const footerIcon = computed({
 				<DiscordEditorImage
 					class="w-20 h-20"
 					v-model:image="footerIcon"
-					:placement="`embeds.${props.embedNumber - 1}.footer`"
+					:placement="`embeds.${props.embedId}.footer`"
 					:attachments="props.attachments"
 					@addAttachment="attachment => emit('addAttachment', attachment)"
 					@addAttachmentPlacement="

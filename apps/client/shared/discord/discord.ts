@@ -84,7 +84,7 @@ export interface DiscordError {
 	code?: number;
 }
 
-export type DiscordAttachmentPlacement = `embeds.${number}.${'image' | 'thumbnail' | 'author' | 'footer'}`;
+export type DiscordAttachmentPlacement = `embeds.${string}.${'image' | 'thumbnail' | 'author' | 'footer'}`;
 
 export interface DiscordMessage {
 	id: string;

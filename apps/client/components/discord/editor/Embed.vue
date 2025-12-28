@@ -110,6 +110,7 @@ const handleDelete = () => {
 
 <template>
 	<DiscordEditorCollapsable
+		v-if="embedModel"
 		:title="`Embed (${props.number.toString().padStart(2, '0')})${embedTitle ? ` ~ ${embedTitle}` : ''}`"
 		class="bg-neutral-300 dark:bg-neutral-900 b-l-solid"
 		:style="{ borderColor: embedModel?.color?.toString() }"
@@ -149,7 +150,7 @@ const handleDelete = () => {
 					selectedClass="w-max max-w-32 min-w-4"
 					v-model:image="embedThumbnail"
 					:attachments="props.attachments"
-					:placement="`embeds.${props.number - 1}.thumbnail`"
+					:placement="`embeds.${embedModel.id}.thumbnail`"
 					@addAttachment="attachment => emit('addAttachment', attachment)"
 					@addAttachmentPlacement="
 						(attachment_id, placement) => emit('addAttachmentPlacement', attachment_id, placement)
@@ -183,7 +184,7 @@ const handleDelete = () => {
 				selectedClass="w-max h-64"
 				v-model:image="embedImage"
 				:attachments="props.attachments"
-				:placement="`embeds.${props.number - 1}.image`"
+				:placement="`embeds.${embedModel.id}.image`"
 				@addAttachment="attachment => emit('addAttachment', attachment)"
 				@addAttachmentPlacement="
 					(attachment_id, placement) => emit('addAttachmentPlacement', attachment_id, placement)
@@ -192,7 +193,7 @@ const handleDelete = () => {
 
 			<DiscordEditorAuthor
 				v-model:author="embedAuthor"
-				:embedNumber="props.number"
+				:embedId="embedModel?.id"
 				:attachments="props.attachments"
 				@addAttachment="attachment => emit('addAttachment', attachment)"
 				@addAttachmentPlacement="
@@ -204,7 +205,7 @@ const handleDelete = () => {
 
 			<DiscordEditorFooter
 				v-model:footer="embedFooter"
-				:embedNumber="props.number"
+				:embedId="embedModel.id"
 				:attachments="props.attachments"
 				@addAttachment="attachment => emit('addAttachment', attachment)"
 				@addAttachmentPlacement="

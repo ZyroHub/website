@@ -104,6 +104,7 @@ const handleAddAttachment = (attachment: DiscordAttachment) => {
 	}
 
 	messageModel.value.attachments.push(attachment);
+	console.log('add-attachment', messageModel.value.attachments);
 };
 
 const handleAddAttachmentPlacement = (attachment_id: string, placement: DiscordAttachmentPlacement) => {
@@ -146,12 +147,12 @@ const handleRemoveAttachment = (attachment_id: string, placement?: DiscordAttach
 		if (attachmentData.placements) {
 			for (const attachmentPlacement of attachmentData.placements) {
 				const placementMatch = attachmentPlacement.match(
-					/^(?<prefix>embeds)\.(?<index>\d+)\.(?<type>image|thumbnail|author|footer)$/
+					/^(?<prefix>embeds)\.(?<embedId>([A-z0-9]|-)+)\.(?<type>image|thumbnail|author|footer)$/
 				);
 
 				if (placementMatch && messageModel.value.embeds) {
-					const { index, type } = placementMatch.groups!;
-					const embedIndex = parseInt(index, 10);
+					const { embedId, type } = placementMatch.groups!;
+					const embedIndex = messageModel.value.embeds.findIndex(embed => embed.id === embedId);
 
 					if (embedIndex >= 0 && embedIndex < messageModel.value.embeds.length) {
 						if (type === 'image') {
