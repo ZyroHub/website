@@ -1,0 +1,100 @@
+<script lang="ts" setup>
+import type { DiscordEmbedField } from '~~/shared/discord/discord';
+
+const props = defineProps<{
+	number: number;
+	total: number;
+}>();
+
+const fieldModel = defineModel<DiscordEmbedField>('field');
+
+const emit = defineEmits<{
+	delete: [];
+	moveUp: [];
+	moveDown: [];
+}>();
+
+const { t } = useI18n();
+
+const canMoveUp = computed(() => {
+	return props.number > 1;
+});
+
+const canMoveDown = computed(() => {
+	return props.number < props.total;
+});
+
+const fieldName = computed({
+	get: () => fieldModel.value?.name || '',
+	set: (value: string) => {
+		if (fieldModel.value) fieldModel.value.name = value;
+	}
+});
+
+const fieldInline = computed({
+	get: () => fieldModel.value?.inline || false,
+	set: (value: boolean) => {
+		if (fieldModel.value) fieldModel.value.inline = value;
+	}
+});
+
+const fieldValue = computed({
+	get: () => fieldModel.value?.value || '',
+	set: (value: string) => {
+		if (fieldModel.value) fieldModel.value.value = value;
+	}
+});
+
+const handleDelete = () => {
+	emit('delete');
+};
+
+const handleMoveUp = () => {
+	emit('moveUp');
+};
+
+const handleMoveDown = () => {
+	emit('moveDown');
+};
+</script>
+
+<template>
+	<DiscordEditorCollapsable
+		:title="`${t('components.discord.editor.fields.field.title')} (${props.number.toString().padStart(2, '0')})${fieldName ? ` ~ ${fieldName}` : ''}`"
+		class="bg-neutral-300 dark:bg-neutral-900"
+		:canMoveUp="canMoveUp"
+		:canMoveDown="canMoveDown"
+		@moveUp="handleMoveUp"
+		@moveDown="handleMoveDown">
+		<template #actions>
+			<Icon
+				name="mdi:delete"
+				size="20"
+				class="hover:text-red-600 dark:hover:text-red-400 cursor-pointer duration-200"
+				@click.stop="handleDelete" />
+		</template>
+
+		<template #default>
+			<div class="flex items-end justify-between">
+				<InputsText
+					v-model="fieldName"
+					:label="t('components.discord.editor.fields.field.form.name')"
+					class="w-full"
+					:counterMax="256"
+					showCounter />
+
+				<div class="px-4">
+					<InputsCheckbox
+						v-model="fieldInline"
+						:label="t('components.discord.editor.fields.field.form.inline')" />
+				</div>
+			</div>
+
+			<InputsTextArea
+				v-model="fieldValue"
+				:label="t('components.discord.editor.fields.field.form.value')"
+				:counterMax="1024"
+				showCounter />
+		</template>
+	</DiscordEditorCollapsable>
+</template>

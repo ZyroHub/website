@@ -27,7 +27,7 @@
 		"isomorphic-dompurify": "^2.26.0",
 		"markdown-it": "^14.1.0",
 		"maska": "^3.0.4",
-		"nuxt": "^3.14.1592",
+		"nuxt": "^4.0.0",
 		"nuxt-booster": "^3.2.6",
 		"nuxt-color-picker": "^1.2.8",
 		"pinia": "^2.3.0",

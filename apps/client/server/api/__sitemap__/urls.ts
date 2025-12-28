@@ -1,8 +1,7 @@
 import { defineSitemapEventHandler } from '#imports';
-
 import type { SitemapUrlInput } from '#sitemap/types';
-import { getToolList } from '~/shared/tools';
-import { ToolTagEnum } from '~/shared/types';
+import { getToolList } from '~~/shared/tools';
+import { ToolTagEnum } from '~~/shared/types';
 
 export default defineSitemapEventHandler(() => {
 	const urls: SitemapUrlInput[] = [];
