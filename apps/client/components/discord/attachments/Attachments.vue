@@ -26,7 +26,7 @@ const otherAttachments = computed(() => props.attachments.filter(attachment => a
 				:key="attachment.id"
 				:src="attachment.preview_url"
 				alt="Attachment Preview"
-				class="max-w-max max-h-64 object-contain rounded-md border border-neutral-400" />
+				class="max-w-full max-h-64 object-contain rounded-md border border-neutral-400" />
 		</div>
 	</div>
 </template>
