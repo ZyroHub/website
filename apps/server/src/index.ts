@@ -5,6 +5,9 @@ import { MessengerModule, RedisModule, ServerModule, TasksModule } from './modul
 const core = new ClusteredCore({
 	core: {
 		modules: [RedisModule, MessengerModule, TasksModule, ServerModule]
+	},
+	settings: {
+		cpus: 1
 	}
 });
 

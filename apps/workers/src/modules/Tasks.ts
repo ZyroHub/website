@@ -1,6 +1,6 @@
 import { BaseWorkerProgress } from '@/workers/Base.js';
 import { workers } from '@/workers/workers.js';
-import { BaseModule } from '@zyrohub/core';
+import { BaseModule, Module } from '@zyrohub/core';
 import { config, WorkerId, workersSchemas } from '@zyrohub/shared';
 import { Terminal } from '@zyrohub/utilities';
 import amqp from 'amqplib';
@@ -9,6 +9,7 @@ import ansicolor from 'ansicolor';
 import { MessengerModule } from './Messenger.js';
 import { RedisModule } from './Redis.js';
 
+@Module()
 export class TasksModule extends BaseModule {
 	dependencies = [RedisModule, MessengerModule];
 

@@ -1,5 +1,5 @@
 import { cors } from '@elysiajs/cors';
-import { BaseModule } from '@zyrohub/core';
+import { BaseModule, Module } from '@zyrohub/core';
 import { config } from '@zyrohub/shared';
 import { Terminal } from '@zyrohub/utilities';
 import ansicolor from 'ansicolor';
@@ -9,6 +9,7 @@ import { HomeController } from '@/handlers/controllers/home.controller.js';
 import { ShortenerController } from '@/handlers/controllers/shortener.controller.js';
 import { TasksController } from '@/handlers/controllers/tasks.controller.js';
 
+@Module()
 export class ServerModule extends BaseModule {
 	server = new Elysia({
 		websocket: {

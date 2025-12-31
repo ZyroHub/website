@@ -1,4 +1,4 @@
-import { BaseModule } from '@zyrohub/core';
+import { BaseModule, Module } from '@zyrohub/core';
 import { config, TaskData, WorkerArgs, WorkerId } from '@zyrohub/shared';
 import { Terminal } from '@zyrohub/utilities';
 import amqp from 'amqplib';
@@ -9,6 +9,7 @@ import { MessengerModule } from './Messenger.js';
 import { RedisModule } from './Redis.js';
 import { ServerModule } from './server/Server.js';
 
+@Module()
 export class TasksModule extends BaseModule {
 	channel?: amqp.Channel;
 	channelQueueName = process.env.RABBIT_MQ_TASKS_QUEUE || 'tasks';
